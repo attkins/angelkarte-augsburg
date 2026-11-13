@@ -11,7 +11,49 @@
     "name": "Fischereiverein Augsburg",
     "shortName": "FVA",
     "website": "https://www.fva-ev.de",
-    "contact": "Geschäftsstelle Holzbachstr. 12, Augsburg"
+    "contact": "Geschäftsstelle Holzbachstr. 12 ½, 86152 Augsburg, 0821 33361"
+  },
+  {
+    "id": "fv-friedberg",
+    "name": "Fischereiverein Friedberg",
+    "shortName": "FV Friedberg",
+    "website": "https://fv-friedberg.de",
+    "contact": "Fischerheim, Afrastraße 76, 86316 Friedberg, 0821 605362"
+  },
+  {
+    "id": "fv-haunstetten",
+    "name": "Fischereiverein Haunstetten",
+    "shortName": "FV Haunstetten",
+    "website": "https://fischereiverein-haunstetten.de",
+    "contact": null
+  },
+  {
+    "id": "fv-koenigsbrunn",
+    "name": "Fischereiverein Königsbrunn 1969",
+    "shortName": "FV Königsbrunn",
+    "website": "https://www.fischereiverein-koenigsbrunn.de",
+    "contact": null
+  },
+  {
+    "id": "fv-bobingen",
+    "name": "Fischereiverein Bobingen",
+    "shortName": "FV Bobingen",
+    "website": "https://fischereivereinbobingen.de",
+    "contact": "Vereinsheim Flurstraße 26, 86399 Bobingen"
+  },
+  {
+    "id": "fv-wehringen",
+    "name": "Fischereiverein Wehringen",
+    "shortName": "FV Wehringen",
+    "website": "https://fischereiverein-wehringen.de",
+    "contact": "Aue 4, 86517 Wehringen"
+  },
+  {
+    "id": "aac-augsburg",
+    "name": "1. Augsburger Angler-Club",
+    "shortName": "1. AAC",
+    "website": null,
+    "contact": null
   },
   {
     "id": "fv-goeggingen",
@@ -24,6 +66,20 @@
     "id": "fischergilde-barbara",
     "name": "Fischergilde Barbara",
     "shortName": "Fischergilde Barbara",
+    "website": null,
+    "contact": null
+  },
+  {
+    "id": "lfv-langweid",
+    "name": "Lechfischereiverein Langweid",
+    "shortName": "LFV Langweid",
+    "website": null,
+    "contact": null
+  },
+  {
+    "id": "fv-zusmarshausen",
+    "name": "Fischereiverein Zusmarshausen",
+    "shortName": "FV Zusmarshausen",
     "website": null,
     "contact": null
   }

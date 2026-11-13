@@ -29,9 +29,11 @@ export interface Prices {
   guestYouth?: number
   deposit?: number
   note?: string
+  /** ISO date from which these prices apply, e.g. a new price list for the coming year. */
+  validFrom?: string
 }
 
-export type PriceKey = Exclude<keyof Prices, 'note'>
+export type PriceKey = Exclude<keyof Prices, 'note' | 'validFrom'>
 
 export interface OnlinePurchase {
   provider?: string
@@ -44,12 +46,16 @@ export interface WaterProperties {
   clubId: string
   guestAccess: GuestAccess
   accessNote: string | null
+  /** Fishing season of the club as free text, e.g. "16.03. bis 14.12.". Null if all year or unknown. */
+  season: string | null
   prices: Prices | null
   species: string[]
   rules: string[]
   closedSeasons: string[]
   onlinePurchase: OnlinePurchase | null
   lastChecked: string | null
+  /** URL of the page or document the data was taken from, for the next check. */
+  source: string | null
   geometryStatus: GeometryStatus
 }
 

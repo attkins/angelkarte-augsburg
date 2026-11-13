@@ -87,7 +87,7 @@ This replaces the earlier plan of a static site without build step. The plain Le
 3. ~~Define the data schema in detail~~ (done, see data-schema.md)
 4. ~~Build a map prototype with a few sample waters and sales points~~ (done, placeholder geometry)
 5. ~~Set up Vue 3 + Vite + TypeScript project and migrate the prototype~~ (done 2026-11-13)
-6. Replace placeholder geometries and geocode sales point addresses
+6. Replace placeholder geometries and geocode sales point addresses (sales points geocoded and lake outlines from OSM on 2026-11-13. Still open: exact river stretches, lakes without OSM match, Wertach and Lech geometry)
 7. Filters (species, online purchase, guest access)
-8. Extend the schema where the research showed gaps: online platform (hejfish or Angelroute) plus link, deposit return deadline, weekday limits, price validity year
-9. Enter the researched clubs into the data files
+8. ~~Extend the schema where the research showed gaps~~ (done 2026-11-13: `season`, `source`, `prices.validFrom`. Deposit deadlines and weekday limits stay free text in `prices.note` and `accessNote`)
+9. ~~Enter the researched clubs into the data files~~ (done 2026-11-13. Left out for now: Kirnach, LFV Paar, Schmutter and Zusam, 1. AAC waters outside the core region)

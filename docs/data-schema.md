@@ -27,12 +27,14 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `clubId` | string | Must exist in `clubs.json` |
 | `guestAccess` | string | `open`, `withMember`, `membersOnly` or `unknown` |
 | `accessNote` | string or null | Seasonal limits and other access details, shown directly under the access badge |
-| `prices` | object or null | Keys `member`, `guest`, `youth`, `guestYouth`, `deposit` (numbers in euros) and `note` (text). All optional |
+| `season` | string or null | Fishing season of the club as free text, e.g. `16.03. bis 14.12.`. `null` if all year or unknown |
+| `prices` | object or null | Keys `member`, `guest`, `youth`, `guestYouth`, `deposit` (numbers in euros), `note` (text) and `validFrom` (ISO date, when a price list only applies from a certain date). All optional |
 | `species` | string[] | Fish species for this water |
 | `rules` | string[] | Bait, catch limits, night fishing, fly only and so on |
 | `closedSeasons` | string[] | Only where they differ from the state rules |
-| `onlinePurchase` | object or null | `{ "provider": "hejfish", "url": "..." }` |
+| `onlinePurchase` | object or null | `{ "provider": "hejfish", "url": "..." }`. Provider is the platform name, e.g. `hejfish` or `Angelroute` |
 | `lastChecked` | string or null | ISO date `YYYY-MM-DD` |
+| `source` | string or null | URL of the page or PDF the data comes from, so the next check knows where to look |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
 
 ## sales-points.geojson

@@ -10,7 +10,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const GUEST_ACCESS = ['open', 'withMember', 'membersOnly', 'unknown']
 const GEOMETRY_STATUS = ['placeholder', 'traced', 'verified']
 const WATER_GEOMETRIES = ['Polygon', 'MultiPolygon', 'LineString', 'MultiLineString']
-const PRICE_KEYS = ['member', 'guest', 'youth', 'guestYouth', 'deposit', 'note']
+const PRICE_KEYS = ['member', 'guest', 'youth', 'guestYouth', 'deposit', 'note', 'validFrom']
+const TEXT_PRICE_KEYS = ['note', 'validFrom']
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
 const errors = []
@@ -64,11 +65,15 @@ for (const feature of waters.features) {
   if (p.prices) {
     for (const [key, value] of Object.entries(p.prices)) {
       if (!PRICE_KEYS.includes(key)) errors.push(`${where}: unknown price key "${key}"`)
-      else if (key !== 'note' && typeof value !== 'number') errors.push(`${where}: price "${key}" must be a number`)
+      else if (!TEXT_PRICE_KEYS.includes(key) && typeof value !== 'number') errors.push(`${where}: price "${key}" must be a number`)
     }
+    if (p.prices.validFrom && !ISO_DATE.test(p.prices.validFrom)) errors.push(`${where}: prices.validFrom must be YYYY-MM-DD`)
   }
 
   if (p.onlinePurchase && !p.onlinePurchase.url) errors.push(`${where}: onlinePurchase needs a url`)
+  if (!('season' in p)) errors.push(`${where}: missing season (use null if all year or unknown)`)
+  if (!('source' in p)) errors.push(`${where}: missing source (use null if unknown)`)
+  else if (!p.source) warnings.push(`${where}: source is not set`)
 }
 
 for (const feature of salesPoints.features) {
@@ -88,7 +93,7 @@ for (const feature of salesPoints.features) {
 
 for (const feature of waters.features) {
   const p = feature.properties
-  if (!referencedWaterIds.has(p.id) && !p.onlinePurchase) {
+  if (p.guestAccess !== 'membersOnly' && !referencedWaterIds.has(p.id) && !p.onlinePurchase) {
     warnings.push(`water "${p.id}": no sales point and no online purchase`)
   }
 }

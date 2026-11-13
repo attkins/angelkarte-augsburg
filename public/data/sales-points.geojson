@@ -6,26 +6,109 @@
       "properties": {
         "id": "jafispo",
         "name": "Jafispo Angelgeräte",
-        "address": "Kurzes Geländ 8 A, 86156 Augsburg",
-        "phone": null,
+        "address": "Kurzes Geländ 8a, 86156 Augsburg",
+        "phone": "0821 472105",
         "openingHours": null,
-        "waterIds": ["lfv-lech"],
-        "coordinatesApproximate": true
+        "waterIds": [
+          "fva-auensee",
+          "fva-autobahnsee",
+          "fva-fva-see",
+          "fva-guenz",
+          "fva-kammel-billenhausen",
+          "fva-kammel-loppenhausen",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-schmutter-achsheim",
+          "fva-schmutter-erlingen",
+          "fva-schmutter-gessertshausen",
+          "fva-schmutter-hammel",
+          "fva-schmutter-westendorf",
+          "fva-wertach-grossaitingen",
+          "fva-wertach-stadt",
+          "fva-zusam-heissesheim",
+          "fva-zusam-unterthuerheim",
+          "fvh-alemannensee",
+          "fvh-lochbach",
+          "fvh-roemersee",
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach",
+          "lfv-anwaltinger-see",
+          "lfv-kaisersee",
+          "lfv-lech",
+          "lfv-lechauensee-1",
+          "lfv-lechauensee-2",
+          "lfv-stadtwasser"
+        ],
+        "coordinatesApproximate": false
       },
-      "geometry": { "type": "Point", "coordinates": [10.9045, 48.3712] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.85022,
+          48.38718
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "fishermans-partner-augsburg",
-        "name": "Fisherman's Partner",
+        "name": "Fisherman's Partner Augsburg",
         "address": "Gögginger Str. 93, 86199 Augsburg",
-        "phone": null,
+        "phone": "0821 58960504",
         "openingHours": null,
-        "waterIds": ["lfv-lech"],
-        "coordinatesApproximate": true
+        "waterIds": [
+          "fva-auensee",
+          "fva-autobahnsee",
+          "fva-fva-see",
+          "fva-guenz",
+          "fva-kammel-billenhausen",
+          "fva-kammel-loppenhausen",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-schmutter-achsheim",
+          "fva-schmutter-erlingen",
+          "fva-schmutter-gessertshausen",
+          "fva-schmutter-hammel",
+          "fva-schmutter-westendorf",
+          "fva-wertach-grossaitingen",
+          "fva-wertach-stadt",
+          "fva-zusam-heissesheim",
+          "fva-zusam-unterthuerheim",
+          "fvb-paintensee",
+          "fvb-singold",
+          "fvb-wertach",
+          "fvh-alemannensee",
+          "fvh-lochbach",
+          "fvh-roemersee",
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach",
+          "lfv-anwaltinger-see",
+          "lfv-kaisersee",
+          "lfv-lech",
+          "lfv-lechauensee-1",
+          "lfv-lechauensee-2",
+          "lfv-stadtwasser"
+        ],
+        "coordinatesApproximate": false
       },
-      "geometry": { "type": "Point", "coordinates": [10.883, 48.3555] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.88149,
+          48.35192
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -35,10 +118,23 @@
         "address": "Stätzlinger Str. 86, 86165 Augsburg",
         "phone": null,
         "openingHours": null,
-        "waterIds": ["lfv-lech"],
-        "coordinatesApproximate": true
+        "waterIds": [
+          "lfv-anwaltinger-see",
+          "lfv-kaisersee",
+          "lfv-lech",
+          "lfv-lechauensee-1",
+          "lfv-lechauensee-2",
+          "lfv-stadtwasser"
+        ],
+        "coordinatesApproximate": false
       },
-      "geometry": { "type": "Point", "coordinates": [10.942, 48.384] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.93786,
+          48.37805
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -48,10 +144,23 @@
         "address": "Werlbergerstr. 2, 86551 Aichach",
         "phone": null,
         "openingHours": null,
-        "waterIds": ["lfv-lech"],
-        "coordinatesApproximate": true
+        "waterIds": [
+          "lfv-anwaltinger-see",
+          "lfv-kaisersee",
+          "lfv-lech",
+          "lfv-lechauensee-1",
+          "lfv-lechauensee-2",
+          "lfv-stadtwasser"
+        ],
+        "coordinatesApproximate": false
       },
-      "geometry": { "type": "Point", "coordinates": [11.133, 48.459] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.12957,
+          48.4578
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -61,23 +170,614 @@
         "address": "Riedlerstr. 11, 86152 Augsburg",
         "phone": null,
         "openingHours": "Freitag 14:30 bis 18:00",
-        "waterIds": ["lfv-lech"],
-        "coordinatesApproximate": true
+        "waterIds": [
+          "lfv-anwaltinger-see",
+          "lfv-kaisersee",
+          "lfv-lech",
+          "lfv-lechauensee-1",
+          "lfv-lechauensee-2",
+          "lfv-stadtwasser"
+        ],
+        "coordinatesApproximate": false
       },
-      "geometry": { "type": "Point", "coordinates": [10.884, 48.38] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.90574,
+          48.37539
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "fva-geschaeftsstelle",
         "name": "FVA Geschäftsstelle",
-        "address": "Holzbachstr. 12, Augsburg",
-        "phone": null,
+        "address": "Holzbachstr. 12 ½, 86152 Augsburg",
+        "phone": "0821 33361",
         "openingHours": "Dienstag und Freitag 17:00 bis 20:00",
-        "waterIds": ["fva-kuhsee"],
+        "waterIds": [
+          "fva-auensee",
+          "fva-autobahnsee",
+          "fva-brunnenbach",
+          "fva-fva-see",
+          "fva-guenz",
+          "fva-kammel-billenhausen",
+          "fva-kammel-loppenhausen",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-schmutter-achsheim",
+          "fva-schmutter-erlingen",
+          "fva-schmutter-gessertshausen",
+          "fva-schmutter-hammel",
+          "fva-schmutter-westendorf",
+          "fva-wertach-grossaitingen",
+          "fva-wertach-stadt",
+          "fva-zusam-heissesheim",
+          "fva-zusam-unterthuerheim"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.87804,
+          48.36814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "augsburger-angelcenter",
+        "name": "Augsburger Angelcenter",
+        "address": "Arberstr. 1, 86179 Augsburg",
+        "phone": "0821 593602",
+        "openingHours": null,
+        "waterIds": [
+          "aac-friedberger-ach-rehling",
+          "aac-hopfenangersee",
+          "aac-lechkanaele",
+          "aac-lechwaldsee",
+          "aac-schmutter-batzenhofen",
+          "aac-singold-inningen",
+          "aac-wertach-goeggingen",
+          "fgb-altoettinger-weiher",
+          "fgb-herrentratsee",
+          "fgb-hurlacher-see",
+          "fva-auensee",
+          "fva-autobahnsee",
+          "fva-fva-see",
+          "fva-guenz",
+          "fva-kammel-loppenhausen",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-schmutter-achsheim",
+          "fva-schmutter-gessertshausen",
+          "fva-schmutter-hammel",
+          "fva-schmutter-westendorf",
+          "fva-wertach-grossaitingen",
+          "fva-wertach-stadt",
+          "fva-zusam-heissesheim",
+          "fva-zusam-unterthuerheim",
+          "fvf-friedberger-see",
+          "fvg-bergheimer-baggersee",
+          "fvh-alemannensee",
+          "fvh-lochbach",
+          "fvh-roemersee",
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach",
+          "fvw-wertach",
+          "fvz-rothsee",
+          "lfvl-sandseen"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.91068,
+          48.3159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "camping-bella-augusta",
+        "name": "Campingplatz Bella Augusta",
+        "address": "Mühlhauser Str. 54b, 86169 Augsburg",
+        "phone": null,
+        "openingHours": "Montag, Mittwoch und Freitag 9:00 bis 11:00",
+        "waterIds": [
+          "fva-autobahnsee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.92243,
+          48.412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "zierfischoase-kissing",
+        "name": "Zierfischoase und Angelshop",
+        "address": "Gartenstr. 3, 86438 Kissing",
+        "phone": "0160 4294726",
+        "openingHours": "Mo 16 bis 19, Mi 14 bis 18, Fr 8 bis 10 und 14 bis 18, Sa 8 bis 13. November bis Februar kürzer.",
+        "waterIds": [
+          "fva-auensee",
+          "fva-autobahnsee",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-schmutter-achsheim",
+          "fva-schmutter-westendorf",
+          "fva-wertach-grossaitingen"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.96475,
+          48.30636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bk-tankstelle-friedberg",
+        "name": "BK Tankstelle Friedberg West",
+        "address": "Augsburger Str. 72, 86316 Friedberg",
+        "phone": "0821 664201",
+        "openingHours": "Täglich bis 22:00",
+        "waterIds": [
+          "fva-autobahnsee",
+          "fva-kuhsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-wertach-grossaitingen",
+          "fvf-ach-1",
+          "fvf-ach-2",
+          "fvf-afrasee-1",
+          "fvf-afrasee-2",
+          "fvf-friedberger-see",
+          "fvf-paar-dasing",
+          "fvf-paar-ottmaring",
+          "fvf-walter-see"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.95555,
+          48.356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hernas-bobingen",
+        "name": "Hernas Dein Markt (REWE, Poststelle)",
+        "address": "Winterstr. 20, 86399 Bobingen-Siedlung",
+        "phone": null,
+        "openingHours": "Mo bis Fr 9 bis 18, Sa 9 bis 16",
+        "waterIds": [
+          "fva-auensee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-wertach-grossaitingen"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.79914,
+          48.27296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fp-neuaubing",
+        "name": "Fisherman's Partner Neuaubing",
+        "address": "Bodenseestr. 275, 81249 München",
+        "phone": "089 89328417",
+        "openingHours": null,
+        "waterIds": [
+          "fva-kammel-loppenhausen",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2",
+          "fva-wertach-grossaitingen"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.42008,
+          48.14188
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kemmler-muenchen",
+        "name": "Angelfachgeschäft Kemmler",
+        "address": "Hermann-Lingg-Str. 11, 80336 München",
+        "phone": "089 532480",
+        "openingHours": null,
+        "waterIds": [
+          "fva-autobahnsee",
+          "fva-lech-22-23",
+          "fva-lochbach-1",
+          "fva-lochbach-2"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.55176,
+          48.13796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fp-parsdorf",
+        "name": "Fisherman's Partner Parsdorf",
+        "address": "Gruberstr. 9, 85599 Parsdorf",
+        "phone": "089 99153827",
+        "openingHours": null,
+        "waterIds": [
+          "fva-lech-22-23",
+          "fva-lochbach-1"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.78649,
+          48.14571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kempf-krumbach",
+        "name": "Fa. Kempf",
+        "address": "Am Buchkopf 29, 86381 Krumbach",
+        "phone": "08282 81768",
+        "openingHours": null,
+        "waterIds": [
+          "fva-guenz",
+          "fva-kammel-billenhausen",
+          "fva-kammel-loppenhausen",
+          "fva-lech-22-23"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.35572,
+          48.23796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mueller-kaufbeuren",
+        "name": "Angelgeräte Müller",
+        "address": "Salzstr. 22, 87600 Kaufbeuren",
+        "phone": "08341 73371",
+        "openingHours": null,
+        "waterIds": [
+          "fva-guenz",
+          "fva-lech-22-23",
+          "fvh-alemannensee",
+          "fvh-lochbach",
+          "fvh-roemersee",
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.59681,
+          47.86959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "beisszeit-kaufbeuren",
+        "name": "Angelsport Beißzeit",
+        "address": "Neuer Markt 20, 87600 Kaufbeuren",
+        "phone": "08341 9344540",
+        "openingHours": null,
+        "waterIds": [
+          "fva-lech-22-23"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.63578,
+          47.913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "angelstadl-altenstadt",
+        "name": "Angelstadl Altenstadt",
+        "address": "Alte Bahnhofstr. 6, 86972 Altenstadt",
+        "phone": "08861 908936",
+        "openingHours": null,
+        "waterIds": [
+          "fva-lech-22-23"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.88322,
+          47.82262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sonnleitner-bad-toelz",
+        "name": "Angelfachgeschäft Sonnleitner",
+        "address": "Lenggrieser Str. 24, 83646 Bad Tölz",
+        "phone": "08041 7979075",
+        "openingHours": null,
+        "waterIds": [
+          "fva-lech-22-23"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.55904,
+          47.75817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fvf-fischerheim",
+        "name": "Fischerheim FV Friedberg",
+        "address": "Afrastraße 76, 86316 Friedberg",
+        "phone": "0821 605362",
+        "openingHours": null,
+        "waterIds": [
+          "fvf-ach-1",
+          "fvf-ach-2",
+          "fvf-afrasee-1",
+          "fvf-afrasee-2",
+          "fvf-friedberger-see",
+          "fvf-paar-dasing",
+          "fvf-paar-ottmaring",
+          "fvf-walter-see"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.97343,
+          48.34634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "holland-blumen-haunstetten",
+        "name": "Holland Blumen (im EDEKA Center)",
+        "address": "Königsbrunner Straße, Augsburg-Haunstetten Süd",
+        "phone": null,
+        "openingHours": null,
+        "waterIds": [
+          "fvh-alemannensee",
+          "fvh-lochbach",
+          "fvh-roemersee"
+        ],
         "coordinatesApproximate": true
       },
-      "geometry": { "type": "Point", "coordinates": [10.88, 48.362] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.89885,
+          48.29443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "anglerparadies-mindelheim",
+        "name": "Anglerparadies Mindelheim",
+        "address": "Fellhornstr. 6 A, 87719 Mindelheim",
+        "phone": "08261 732289",
+        "openingHours": null,
+        "waterIds": [
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.49695,
+          48.0372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "angel-zoo-ernst-kissing",
+        "name": "Angel-Zoo-Ernst",
+        "address": "Kirchstr. 1, 86438 Kissing",
+        "phone": "08233 8479553",
+        "openingHours": null,
+        "waterIds": [
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.96997,
+          48.30431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "osetskiy-koenigsbrunn",
+        "name": "Osetskiy Angelgeräte",
+        "address": "Haunstetter Str. 91, 86343 Königsbrunn",
+        "phone": "08231 9780157",
+        "openingHours": null,
+        "waterIds": [
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.89323,
+          48.28075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "omv-grossaitingen",
+        "name": "OMV Tankstelle Großaitingen",
+        "address": "Lindauer Str. 10, 86845 Großaitingen",
+        "phone": "08203 961998",
+        "openingHours": null,
+        "waterIds": [
+          "fvk-hermannweiher",
+          "fvk-hintersee",
+          "fvk-kringweiher",
+          "fvk-petriweiher",
+          "fvk-wertach-siebnach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.78087,
+          48.22733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kohl-waerme-bobingen",
+        "name": "Fa. Kohl + Wärme",
+        "address": "Gutenbergstr. 6, 86399 Bobingen",
+        "phone": "08234 959830",
+        "openingHours": "Mo bis Fr 9 bis 12 und 13 bis 17",
+        "waterIds": [
+          "fvb-paintensee",
+          "fvb-singold",
+          "fvb-wertach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.84483,
+          48.26707
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hauser-bobingen",
+        "name": "Genusswaren Hauser",
+        "address": "Hochstr. 21, 86399 Bobingen",
+        "phone": "08234 4308910",
+        "openingHours": "Mo bis Fr 8 bis 18, Sa 8 bis 12:30",
+        "waterIds": [
+          "fvb-singold",
+          "fvb-wertach"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.83475,
+          48.27151
+        ]
+      }
     }
   ]
 }

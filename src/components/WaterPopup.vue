@@ -39,6 +39,7 @@ const hasDetails = computed(
 )
 
 const lastChecked = computed(() => formatDate(p.value.lastChecked))
+const pricesValidFrom = computed(() => formatDate(p.value.prices?.validFrom))
 </script>
 
 <template>
@@ -47,6 +48,7 @@ const lastChecked = computed(() => formatDate(p.value.lastChecked))
     <p class="club">{{ club?.name ?? 'Verein unbekannt' }}</p>
     <span class="access" :style="{ background: access.color }">{{ access.label }}</span>
     <p v-if="p.accessNote" class="note">{{ p.accessNote }}</p>
+    <p v-if="p.season" class="note">Saison: {{ p.season }}</p>
 
     <template v-if="priceRows.length">
       <table class="prices">
@@ -57,6 +59,7 @@ const lastChecked = computed(() => formatDate(p.value.lastChecked))
           </tr>
         </tbody>
       </table>
+      <p v-if="pricesValidFrom" class="note">Preise gültig ab {{ pricesValidFrom }}.</p>
       <p v-if="p.prices?.note" class="note">{{ p.prices.note }}</p>
     </template>
     <p v-else class="note">Preise noch nicht erfasst.</p>
@@ -103,7 +106,10 @@ const lastChecked = computed(() => formatDate(p.value.lastChecked))
       <p v-if="club?.contact">{{ club.contact }}</p>
     </details>
 
-    <p v-if="lastChecked" class="meta">Zuletzt geprüft am {{ lastChecked }}</p>
+    <p v-if="lastChecked" class="meta">
+      Zuletzt geprüft am {{ lastChecked }}<template v-if="p.source">,
+        <a :href="p.source" target="_blank" rel="noopener">Quelle</a></template>
+    </p>
     <p v-if="p.geometryStatus === 'placeholder'" class="warning">Umriss ist nur ein Platzhalter.</p>
   </div>
 </template>

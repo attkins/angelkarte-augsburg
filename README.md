@@ -64,7 +64,9 @@ It reports broken references (unknown club or water ids) as errors and placehold
 
 ## Current state
 
-The sample data covers the Lech (LFV), Kuhsee (FVA), Bergheimer Baggersee and Herrentratsee together with six sales points. All geometries and sales point coordinates are placeholders and need to be replaced with real ones.
+The data covers 12 clubs, 62 waters and 27 sales points from the research in `docs/research-clubs.md` (as of 2026-11-13).
+
+Lakes that exist in OpenStreetMap under their name use the OSM outline (`geometryStatus: traced`). River stretches are cut from the OSM river around the nearest village and are still marked as `placeholder`, because the real club boundaries are not known yet. A few waters without OSM match are small stand-in squares or lines. Sales point coordinates are geocoded from their address via Nominatim.
 
 ## Deployment
 
