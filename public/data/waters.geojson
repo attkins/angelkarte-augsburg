@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lfv-lech",
+        "name": "Lech",
+        "clubId": "lfv-augsburg",
+        "guestAccess": "withMember",
+        "accessNote": "Gäste nur mit volljährigem Mitglied und nur vom 15. Juli bis 31. Oktober.",
+        "prices": {
+          "member": 15,
+          "guest": 20,
+          "youth": 12,
+          "guestYouth": 20,
+          "deposit": 5,
+          "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
+        },
+        "species": [],
+        "rules": [],
+        "closedSeasons": [],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-10",
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [10.9305, 48.342],
+          [10.9265, 48.356],
+          [10.922, 48.37],
+          [10.9175, 48.385],
+          [10.912, 48.4]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fva-kuhsee",
+        "name": "Kuhsee",
+        "clubId": "fva-augsburg",
+        "guestAccess": "unknown",
+        "accessNote": "Preise und Gastregeln stehen in den PDFs auf der Vereinsseite, noch nicht ausgewertet.",
+        "prices": null,
+        "species": [],
+        "rules": [],
+        "closedSeasons": [],
+        "onlinePurchase": null,
+        "lastChecked": null,
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [10.922, 48.3455],
+            [10.929, 48.3455],
+            [10.93, 48.3495],
+            [10.923, 48.3505],
+            [10.922, 48.3455]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fvg-bergheimer-baggersee",
+        "name": "Bergheimer Baggersee",
+        "clubId": "fv-goeggingen",
+        "guestAccess": "open",
+        "accessNote": null,
+        "prices": {
+          "guest": 20,
+          "note": "Ab 20 € laut hejfish."
+        },
+        "species": ["Karpfen", "Hecht", "Schleie", "Regenbogenforelle", "Flussbarsch", "Aal", "Döbel"],
+        "rules": [],
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com"
+        },
+        "lastChecked": "2026-11-10",
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [10.837, 48.3275],
+            [10.843, 48.3275],
+            [10.8435, 48.331],
+            [10.8375, 48.3315],
+            [10.837, 48.3275]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fgb-herrentratsee",
+        "name": "Herrentratsee",
+        "clubId": "fischergilde-barbara",
+        "guestAccess": "open",
+        "accessNote": "Saison 16. März bis 14. Dezember. Ausdruck der Online-Karte erforderlich.",
+        "prices": {
+          "guest": 15,
+          "note": "Ab 15 € laut hejfish."
+        },
+        "species": ["Regenbogenforelle", "Bachforelle", "Schleie", "Karpfen", "Graskarpfen", "Döbel", "Zander", "Aal"],
+        "rules": [],
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com"
+        },
+        "lastChecked": "2026-11-10",
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [10.967, 48.297],
+            [10.9725, 48.297],
+            [10.973, 48.3005],
+            [10.9675, 48.301],
+            [10.967, 48.297]
+          ]
+        ]
+      }
+    }
+  ]
+}

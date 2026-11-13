@@ -66,19 +66,19 @@ See [data-schema.md](data-schema.md) for the detailed schema.
 - Vue 3 with Single File Components and the Composition API (`<script setup>`)
 - TypeScript, with types derived from the data schema (Club, Water, SalesPoint)
 - Vite as build tool
-- Leaflet used directly (no vue-leaflet wrapper), encapsulated in a map composable so highlighting and fitBounds stay fully under our control
-- Still a static site without backend: data as GeoJSON (waters, sales points) plus a small JSON for clubs, loaded at runtime
+- Leaflet used directly (no vue-leaflet wrapper), encapsulated in the MapView component so highlighting and fitBounds stay fully under our control
+- Still a static site without backend: data as GeoJSON (waters, sales points) plus a small JSON for clubs, loaded at runtime from `public/data/`
 - Hosting on GitHub Pages, built and deployed via a GitHub Action, unlisted link for friends
 - Geometry drawn with geojson.io or traced from OSM via Overpass
 - Sales point coordinates via geocoding the address once (e.g. Nominatim) and stored in the data
 
-This replaces the earlier plan of a static site without build step. The existing plain Leaflet prototype will be migrated.
+This replaces the earlier plan of a static site without build step. The plain Leaflet prototype was migrated on 2026-11-13.
 
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)
 - Whether access should be restricted (password) or an unlisted link is enough
-- State management: plain composables or Pinia (probably composables are enough)
+- State management: plain composables or Pinia (composables are enough so far)
 
 ## Next steps
 
@@ -86,7 +86,7 @@ This replaces the earlier plan of a static site without build step. The existing
 2. ~~Collect sales points with addresses~~ (done for FVA, Friedberg, Haunstetten, Königsbrunn, Bobingen)
 3. ~~Define the data schema in detail~~ (done, see data-schema.md)
 4. ~~Build a map prototype with a few sample waters and sales points~~ (done, placeholder geometry)
-5. Set up Vue 3 + Vite + TypeScript project and migrate the prototype
+5. ~~Set up Vue 3 + Vite + TypeScript project and migrate the prototype~~ (done 2026-11-13)
 6. Replace placeholder geometries and geocode sales point addresses
 7. Filters (species, online purchase, guest access)
 8. Extend the schema where the research showed gaps: online platform (hejfish or Angelroute) plus link, deposit return deadline, weekday limits, price validity year

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "lfv-augsburg",
+    "name": "Lechfischereiverein Augsburg",
+    "shortName": "LFV",
+    "website": "https://lfv-augsburg.de",
+    "contact": "Geschäftsstelle Riedlerstr. 11, 86152 Augsburg"
+  },
+  {
+    "id": "fva-augsburg",
+    "name": "Fischereiverein Augsburg",
+    "shortName": "FVA",
+    "website": "https://www.fva-ev.de",
+    "contact": "Geschäftsstelle Holzbachstr. 12, Augsburg"
+  },
+  {
+    "id": "fv-goeggingen",
+    "name": "Fischereiverein Göggingen",
+    "shortName": "FV Göggingen",
+    "website": null,
+    "contact": null
+  },
+  {
+    "id": "fischergilde-barbara",
+    "name": "Fischergilde Barbara",
+    "shortName": "Fischergilde Barbara",
+    "website": null,
+    "contact": null
+  }
+]

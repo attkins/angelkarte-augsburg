@@ -1,0 +1,149 @@
+:root {
+  --color-sales-point: #1f5fa8;
+  --color-highlight: #ffd400;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-main {
+  flex: 1;
+  min-height: 0;
+}
+
+.app-message {
+  margin: 2rem;
+  text-align: center;
+  color: #555;
+}
+
+.app-message.is-error {
+  color: #c0392b;
+}
+
+/*
+ * Popups. Global on purpose: the content is rendered by Vue but lives inside
+ * Leaflet's popup container, and both popup components share these styles.
+ */
+
+.popup h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.popup p {
+  margin: 0.3rem 0;
+}
+
+.popup .club {
+  margin: 0 0 0.5rem;
+  color: #555;
+}
+
+.popup .access {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.popup .note {
+  font-size: 0.85rem;
+}
+
+.popup table.prices {
+  margin: 0.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.popup table.prices td {
+  padding: 0.1rem 0.75rem 0.1rem 0;
+}
+
+.popup table.prices td:last-child {
+  text-align: right;
+  padding-right: 0;
+}
+
+.popup h4 {
+  margin: 0.6rem 0 0.2rem;
+  font-size: 0.85rem;
+}
+
+.popup ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.popup details {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.popup summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.popup .meta {
+  margin-top: 0.4rem;
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.popup .warning {
+  margin-top: 0.4rem;
+  color: #a35d00;
+  font-size: 0.75rem;
+}
+
+.popup button.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #0b62c4;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Sales point marker, rendered by Leaflet as a divIcon. */
+
+.sales-point-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--color-sales-point);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.sales-point-icon.is-highlighted {
+  background: var(--color-highlight);
+  color: #000;
+  outline: 3px solid var(--color-sales-point);
+}

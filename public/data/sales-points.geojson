@@ -1,0 +1,83 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jafispo",
+        "name": "Jafispo Angelgeräte",
+        "address": "Kurzes Geländ 8 A, 86156 Augsburg",
+        "phone": null,
+        "openingHours": null,
+        "waterIds": ["lfv-lech"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [10.9045, 48.3712] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fishermans-partner-augsburg",
+        "name": "Fisherman's Partner",
+        "address": "Gögginger Str. 93, 86199 Augsburg",
+        "phone": null,
+        "openingHours": null,
+        "waterIds": ["lfv-lech"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [10.883, 48.3555] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aral-staetzlinger-str",
+        "name": "ARAL Tankstelle",
+        "address": "Stätzlinger Str. 86, 86165 Augsburg",
+        "phone": null,
+        "openingHours": null,
+        "waterIds": ["lfv-lech"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [10.942, 48.384] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tierfreunde-aichach",
+        "name": "Tierfreunde Fachgeschäft",
+        "address": "Werlbergerstr. 2, 86551 Aichach",
+        "phone": null,
+        "openingHours": null,
+        "waterIds": ["lfv-lech"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [11.133, 48.459] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lfv-geschaeftsstelle",
+        "name": "LFV Geschäftsstelle",
+        "address": "Riedlerstr. 11, 86152 Augsburg",
+        "phone": null,
+        "openingHours": "Freitag 14:30 bis 18:00",
+        "waterIds": ["lfv-lech"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [10.884, 48.38] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fva-geschaeftsstelle",
+        "name": "FVA Geschäftsstelle",
+        "address": "Holzbachstr. 12, Augsburg",
+        "phone": null,
+        "openingHours": "Dienstag und Freitag 17:00 bis 20:00",
+        "waterIds": ["fva-kuhsee"],
+        "coordinatesApproximate": true
+      },
+      "geometry": { "type": "Point", "coordinates": [10.88, 48.362] }
+    }
+  ]
+}
