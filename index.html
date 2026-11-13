@@ -2,9 +2,18 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <title>Angelkarte Augsburg</title>
+  <script>
+    // Set the theme before the first paint so the page does not flash light in dark mode.
+    // useTheme() takes over once the app has started.
+    try {
+      var stored = localStorage.getItem('angelkarte-theme')
+      var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <div id="app"></div>

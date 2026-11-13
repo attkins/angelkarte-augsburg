@@ -1,0 +1,310 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import AccessBadge from '@/components/AccessBadge.vue'
+import AppIcon from '@/components/AppIcon.vue'
+import { PRICE_LABELS } from '@/config'
+import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
+import { formatDate, formatPrice } from '@/utils/format'
+import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
+
+const props = withDefaults(
+  defineProps<{
+    water: WaterFeature
+    data: MapData
+    /** Injected for tests. */
+    now?: Date
+  }>(),
+  { now: () => new Date() },
+)
+
+const emit = defineEmits<{ selectSalesPoint: [id: string]; close: [] }>()
+
+const p = computed(() => props.water.properties)
+const club = computed(() => props.data.clubsById.get(p.value.clubId))
+
+const status = computed(() => availability(p.value.season, p.value.guestPeriod, props.now))
+// Members-only waters are closed for guests anyway, a "wieder ab" date would be misleading.
+const closedReason = computed(() => (p.value.guestAccess === 'membersOnly' ? null : status.value.reason))
+
+const priceTiles = computed(() => {
+  const prices = p.value.prices
+  if (!prices) return []
+  return (Object.keys(PRICE_LABELS) as (keyof typeof PRICE_LABELS)[]).flatMap((key) => {
+    const value = prices[key]
+    return typeof value === 'number' ? [{ key, label: PRICE_LABELS[key], value }] : []
+  })
+})
+
+const priceNotes = computed(() => {
+  const prices = p.value.prices
+  if (!prices) return []
+  const notes: string[] = []
+  if (typeof prices.deposit === 'number') notes.push(`Plus ${formatPrice(prices.deposit)} Pfand pro Karte.`)
+  const validFrom = formatDate(prices.validFrom)
+  if (validFrom) notes.push(`Preise gültig ab ${validFrom}.`)
+  if (prices.note) notes.push(prices.note)
+  return notes
+})
+
+const salesPoints = computed(() =>
+  (props.data.salesPointIdsByWater.get(p.value.id) ?? [])
+    .map((id) => props.data.salesPointsById.get(id))
+    .filter((sp): sp is SalesPointFeature => Boolean(sp))
+    .map((sp) => {
+      const rules = sp.properties.openingHours
+      const opening = rules ? openingStatus(rules, props.now) : null
+      return {
+        id: sp.properties.id,
+        name: sp.properties.name,
+        address: sp.properties.address,
+        open: opening?.open ?? null,
+        openingText: opening ? describeOpeningStatus(opening) : null,
+      }
+    }),
+)
+
+const lastChecked = computed(() => formatDate(p.value.lastChecked))
+const hasRules = computed(() => p.value.rules.length > 0 || Boolean(p.value.seasonNote))
+const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.contact))
+</script>
+
+<template>
+  <article class="detail" :aria-label="`Details ${p.name}`">
+    <button type="button" class="back-link" @click="emit('close')">
+      <AppIcon name="arrow-left" :size="16" />Alle Gewässer
+    </button>
+
+    <header class="detail-header">
+      <div class="detail-title">
+        <h1 class="serif">{{ p.name }}</h1>
+        <p class="subtitle">{{ club?.name ?? 'Verein unbekannt' }}</p>
+      </div>
+      <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
+        <AppIcon name="close" :size="18" :stroke-width="2.2" />
+      </button>
+    </header>
+
+    <div class="badges">
+      <AccessBadge :access="p.guestAccess" />
+      <span v-if="p.season" class="info-badge"><AppIcon name="calendar" :size="15" />Saison {{ formatRange(p.season) }}</span>
+      <span v-if="p.guestPeriod" class="info-badge">
+        <AppIcon name="calendar" :size="15" />Gäste {{ formatRange(p.guestPeriod) }}
+      </span>
+    </div>
+
+    <div v-if="closedReason || p.accessNote" class="notice" :class="{ 'is-warning': closedReason }">
+      <AppIcon :name="closedReason ? 'clock' : 'member'" :size="20" class="notice-icon" />
+      <span>
+        <template v-if="closedReason">{{ closedReason }}</template>
+        <template v-if="closedReason && p.accessNote">{{ ' ' }}</template>
+        <template v-if="p.accessNote">{{ p.accessNote }}</template>
+      </span>
+    </div>
+
+    <section aria-label="Preise">
+      <div v-if="priceTiles.length" class="price-grid" :style="{ '--columns': priceTiles.length }">
+        <div v-for="tile in priceTiles" :key="tile.key" class="price-tile" :class="{ 'is-main': tile.key === 'guest' }">
+          <div class="price-label">{{ tile.label }}</div>
+          <div class="price-value">{{ formatPrice(tile.value) }}</div>
+        </div>
+      </div>
+      <p v-else class="muted">Preise noch nicht erfasst.</p>
+      <p v-if="priceNotes.length" class="muted price-note">{{ priceNotes.join(' ') }}</p>
+    </section>
+
+    <a
+      v-if="p.onlinePurchase?.url"
+      class="primary-action"
+      :href="p.onlinePurchase.url"
+      target="_blank"
+      rel="noopener"
+    >
+      Online kaufen bei {{ p.onlinePurchase.provider ?? 'Online-Shop' }}
+      <AppIcon name="external" :size="18" />
+    </a>
+
+    <section>
+      <h2 :class="p.onlinePurchase?.url ? 'section-label' : 'section-title serif'">
+        {{ p.onlinePurchase?.url ? 'Oder vor Ort' : 'Hier bekommst Du die Karte' }}
+      </h2>
+      <div v-if="salesPoints.length" class="list-card">
+        <button
+          v-for="sp in salesPoints"
+          :key="sp.id"
+          type="button"
+          class="list-row"
+          @click="emit('selectSalesPoint', sp.id)"
+        >
+          <span class="row-icon"><AppIcon name="shop" :size="17" /></span>
+          <span class="row-text">
+            <span class="row-title">{{ sp.name }}</span>
+            <span class="row-sub">{{ sp.address }}</span>
+            <span v-if="sp.openingText" class="row-sub" :class="sp.open ? 'is-open' : 'is-closed'">
+              {{ sp.open ? 'Geöffnet' : 'Geschlossen' }}, {{ sp.openingText }}
+            </span>
+          </span>
+          <AppIcon name="chevron-right" :size="18" class="row-chevron" />
+        </button>
+      </div>
+      <p v-else-if="!p.onlinePurchase?.url" class="muted">Noch keine Ausgabestelle erfasst.</p>
+    </section>
+
+    <section v-if="p.species.length">
+      <h2 class="section-title serif">Fischarten</h2>
+      <div class="chips">
+        <span v-for="species in p.species" :key="species" class="chip">{{ species }}</span>
+      </div>
+    </section>
+
+    <div class="accordion">
+      <details v-if="hasRules">
+        <summary>Regeln und Besonderheiten<AppIcon name="chevron-down" :size="18" /></summary>
+        <ul>
+          <li v-if="p.seasonNote">{{ p.seasonNote }}</li>
+          <li v-for="rule in p.rules" :key="rule">{{ rule }}</li>
+        </ul>
+      </details>
+      <details v-if="p.closedSeasons.length">
+        <summary>Schonzeiten und Mindestmaße<AppIcon name="chevron-down" :size="18" /></summary>
+        <ul>
+          <li v-for="item in p.closedSeasons" :key="item">{{ item }}</li>
+        </ul>
+      </details>
+      <details v-if="hasClubInfo">
+        <summary>Verein und Kontakt<AppIcon name="chevron-down" :size="18" /></summary>
+        <p v-if="club?.website">
+          <a :href="club.website" target="_blank" rel="noopener">{{ club.website.replace(/^https?:\/\/(www\.)?/, '') }}</a>
+        </p>
+        <p v-if="club?.contact">{{ club.contact }}</p>
+      </details>
+    </div>
+
+    <footer class="meta">
+      <p v-if="lastChecked">
+        <AppIcon name="check" :size="15" />Zuletzt geprüft am {{ lastChecked }}<template v-if="p.source">,
+          <a :href="p.source" target="_blank" rel="noopener">Quelle</a></template>
+      </p>
+      <p v-if="p.geometryStatus === 'placeholder'" class="warning">Die Lage auf der Karte ist nur ungefähr.</p>
+    </footer>
+  </article>
+</template>
+
+<style scoped>
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.info-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 15px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.notice {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.notice.is-warning {
+  background: var(--member-bg);
+  color: var(--member-text);
+}
+
+.notice-icon {
+  flex: 0 0 20px;
+  margin-top: 1px;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-tile {
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface-3);
+}
+
+@media (max-width: 899px) {
+  .price-grid {
+    gap: 6px;
+  }
+
+  .price-tile {
+    padding: 8px 10px;
+  }
+
+  .price-value {
+    font-size: 20px;
+  }
+}
+
+.price-tile.is-main {
+  background: var(--accent-soft);
+}
+
+.price-label {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.price-value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.price-tile.is-main .price-value {
+  font-weight: 700;
+  color: var(--accent-text);
+}
+
+.price-note {
+  margin: 8px 0 0;
+}
+
+.primary-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary-action:hover {
+  color: var(--on-accent);
+  filter: brightness(1.08);
+}
+
+.is-open {
+  color: var(--open-text);
+}
+
+.is-closed {
+  color: var(--closed-text);
+}
+</style>

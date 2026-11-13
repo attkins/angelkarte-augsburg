@@ -1,42 +1,62 @@
 <script setup lang="ts">
-import { GUEST_ACCESS, SALES_POINT_COLOR } from '@/config'
+import AppIcon from '@/components/AppIcon.vue'
+import { GUEST_ACCESS } from '@/config'
+
+defineProps<{ embedded?: boolean }>()
 </script>
 
 <template>
-  <div class="legend">
-    <div v-for="(access, key) in GUEST_ACCESS" :key="key">
-      <span class="swatch" :style="{ background: access.color }" />{{ access.label }}
-    </div>
-    <div>
-      <span class="swatch is-round" :style="{ background: SALES_POINT_COLOR }" />Ausgabestelle
+  <div class="legend" :class="{ glass: !embedded, 'is-embedded': embedded }">
+    <div class="legend-title">Gastzugang</div>
+    <div v-for="(access, key) in GUEST_ACCESS" :key="key" class="legend-row">
+      <span
+        class="swatch"
+        :class="{ 'is-dashed': access.token === 'unknown' }"
+        :style="{ '--swatch': `var(--${access.token})` }"
+      />
+      <AppIcon :name="access.icon" :size="15" :stroke-width="2.2" :style="{ color: `var(--${access.token}-text)` }" />
+      {{ access.label }}
     </div>
   </div>
 </template>
 
 <style scoped>
 .legend {
-  position: absolute;
-  right: 10px;
-  bottom: 24px;
-  z-index: 1000;
-  padding: 0.5rem 0.7rem;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  font-size: 0.8rem;
-  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+}
+
+.legend.is-embedded {
+  padding: 0;
+}
+
+.legend-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .swatch {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 0.4rem;
-  border-radius: 2px;
-  vertical-align: middle;
+  width: 22px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--swatch);
 }
 
-.swatch.is-round {
-  border-radius: 50%;
+.swatch.is-dashed {
+  background: none;
+  border: 1px dashed var(--swatch);
 }
 </style>

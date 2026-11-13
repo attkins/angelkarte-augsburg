@@ -9,6 +9,7 @@
         "address": "Kurzes Geländ 8a, 86156 Augsburg",
         "phone": "0821 472105",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-auensee",
           "fva-autobahnsee",
@@ -62,6 +63,7 @@
         "address": "Gögginger Str. 93, 86199 Augsburg",
         "phone": "0821 58960504",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-auensee",
           "fva-autobahnsee",
@@ -118,6 +120,7 @@
         "address": "Stätzlinger Str. 86, 86165 Augsburg",
         "phone": null,
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "lfv-anwaltinger-see",
           "lfv-kaisersee",
@@ -144,6 +147,7 @@
         "address": "Werlbergerstr. 2, 86551 Aichach",
         "phone": null,
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "lfv-anwaltinger-see",
           "lfv-kaisersee",
@@ -169,7 +173,16 @@
         "name": "LFV Geschäftsstelle",
         "address": "Riedlerstr. 11, 86152 Augsburg",
         "phone": null,
-        "openingHours": "Freitag 14:30 bis 18:00",
+        "openingHours": [
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "14:30",
+            "close": "18:00"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "lfv-anwaltinger-see",
           "lfv-kaisersee",
@@ -195,7 +208,17 @@
         "name": "FVA Geschäftsstelle",
         "address": "Holzbachstr. 12 ½, 86152 Augsburg",
         "phone": "0821 33361",
-        "openingHours": "Dienstag und Freitag 17:00 bis 20:00",
+        "openingHours": [
+          {
+            "days": [
+              "tu",
+              "fr"
+            ],
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "fva-auensee",
           "fva-autobahnsee",
@@ -236,6 +259,7 @@
         "address": "Arberstr. 1, 86179 Augsburg",
         "phone": "0821 593602",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "aac-friedberger-ach-rehling",
           "aac-hopfenangersee",
@@ -295,7 +319,18 @@
         "name": "Campingplatz Bella Augusta",
         "address": "Mühlhauser Str. 54b, 86169 Augsburg",
         "phone": null,
-        "openingHours": "Montag, Mittwoch und Freitag 9:00 bis 11:00",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "we",
+              "fr"
+            ],
+            "open": "09:00",
+            "close": "11:00"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "fva-autobahnsee"
         ],
@@ -316,7 +351,111 @@
         "name": "Zierfischoase und Angelshop",
         "address": "Gartenstr. 3, 86438 Kissing",
         "phone": "0160 4294726",
-        "openingHours": "Mo 16 bis 19, Mi 14 bis 18, Fr 8 bis 10 und 14 bis 18, Sa 8 bis 13. November bis Februar kürzer.",
+        "openingHours": [
+          {
+            "days": [
+              "mo"
+            ],
+            "open": "16:00",
+            "close": "19:00"
+          },
+          {
+            "days": [
+              "we"
+            ],
+            "open": "14:00",
+            "close": "18:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "08:00",
+            "close": "10:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "14:00",
+            "close": "18:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "08:00",
+            "close": "13:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "we",
+              "fr"
+            ],
+            "open": "14:00",
+            "close": "18:00",
+            "months": [
+              11,
+              12,
+              1,
+              2
+            ]
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "10:00",
+            "close": "13:00",
+            "months": [
+              11,
+              12,
+              1,
+              2
+            ]
+          }
+        ],
+        "openingHoursNote": "Von November bis Februar kürzere Zeiten.",
         "waterIds": [
           "fva-auensee",
           "fva-autobahnsee",
@@ -345,7 +484,8 @@
         "name": "BK Tankstelle Friedberg West",
         "address": "Augsburger Str. 72, 86316 Friedberg",
         "phone": "0821 664201",
-        "openingHours": "Täglich bis 22:00",
+        "openingHours": null,
+        "openingHoursNote": "Täglich bis 22 Uhr, Öffnungszeit am Morgen nicht bekannt.",
         "waterIds": [
           "fva-autobahnsee",
           "fva-kuhsee",
@@ -378,7 +518,27 @@
         "name": "Hernas Dein Markt (REWE, Poststelle)",
         "address": "Winterstr. 20, 86399 Bobingen-Siedlung",
         "phone": null,
-        "openingHours": "Mo bis Fr 9 bis 18, Sa 9 bis 16",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "09:00",
+            "close": "18:00"
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "09:00",
+            "close": "16:00"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "fva-auensee",
           "fva-lech-22-23",
@@ -403,6 +563,7 @@
         "address": "Bodenseestr. 275, 81249 München",
         "phone": "089 89328417",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-kammel-loppenhausen",
           "fva-lech-22-23",
@@ -428,6 +589,7 @@
         "address": "Hermann-Lingg-Str. 11, 80336 München",
         "phone": "089 532480",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-autobahnsee",
           "fva-lech-22-23",
@@ -452,6 +614,7 @@
         "address": "Gruberstr. 9, 85599 Parsdorf",
         "phone": "089 99153827",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-lech-22-23",
           "fva-lochbach-1"
@@ -474,6 +637,7 @@
         "address": "Am Buchkopf 29, 86381 Krumbach",
         "phone": "08282 81768",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-guenz",
           "fva-kammel-billenhausen",
@@ -498,6 +662,7 @@
         "address": "Salzstr. 22, 87600 Kaufbeuren",
         "phone": "08341 73371",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-guenz",
           "fva-lech-22-23",
@@ -528,6 +693,7 @@
         "address": "Neuer Markt 20, 87600 Kaufbeuren",
         "phone": "08341 9344540",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-lech-22-23"
         ],
@@ -549,6 +715,7 @@
         "address": "Alte Bahnhofstr. 6, 86972 Altenstadt",
         "phone": "08861 908936",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-lech-22-23"
         ],
@@ -570,6 +737,7 @@
         "address": "Lenggrieser Str. 24, 83646 Bad Tölz",
         "phone": "08041 7979075",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fva-lech-22-23"
         ],
@@ -591,6 +759,7 @@
         "address": "Afrastraße 76, 86316 Friedberg",
         "phone": "0821 605362",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvf-ach-1",
           "fvf-ach-2",
@@ -619,6 +788,7 @@
         "address": "Königsbrunner Straße, Augsburg-Haunstetten Süd",
         "phone": null,
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvh-alemannensee",
           "fvh-lochbach",
@@ -642,6 +812,7 @@
         "address": "Fellhornstr. 6 A, 87719 Mindelheim",
         "phone": "08261 732289",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvk-hermannweiher",
           "fvk-hintersee",
@@ -667,6 +838,7 @@
         "address": "Kirchstr. 1, 86438 Kissing",
         "phone": "08233 8479553",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvk-hermannweiher",
           "fvk-hintersee",
@@ -692,6 +864,7 @@
         "address": "Haunstetter Str. 91, 86343 Königsbrunn",
         "phone": "08231 9780157",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvk-hermannweiher",
           "fvk-hintersee",
@@ -717,6 +890,7 @@
         "address": "Lindauer Str. 10, 86845 Großaitingen",
         "phone": "08203 961998",
         "openingHours": null,
+        "openingHoursNote": null,
         "waterIds": [
           "fvk-hermannweiher",
           "fvk-hintersee",
@@ -741,7 +915,31 @@
         "name": "Fa. Kohl + Wärme",
         "address": "Gutenbergstr. 6, 86399 Bobingen",
         "phone": "08234 959830",
-        "openingHours": "Mo bis Fr 9 bis 12 und 13 bis 17",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "13:00",
+            "close": "17:00"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "fvb-paintensee",
           "fvb-singold",
@@ -764,7 +962,27 @@
         "name": "Genusswaren Hauser",
         "address": "Hochstr. 21, 86399 Bobingen",
         "phone": "08234 4308910",
-        "openingHours": "Mo bis Fr 8 bis 18, Sa 8 bis 12:30",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "08:00",
+            "close": "18:00"
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "08:00",
+            "close": "12:30"
+          }
+        ],
+        "openingHoursNote": null,
         "waterIds": [
           "fvb-singold",
           "fvb-wertach"

@@ -2,7 +2,7 @@
 
 Interactive map for Augsburg and the surrounding area that shows which angling clubs sell day tickets (Tageskarten), for which waters, and where to buy them.
 
-Built with [Vue 3](https://vuejs.org), TypeScript, [Vite](https://vite.dev) and [Leaflet](https://leafletjs.com) on OpenStreetMap tiles. There is no backend. The data lives in plain GeoJSON and JSON files that are fetched at runtime.
+Built with [Vue 3](https://vuejs.org), TypeScript, [Vite](https://vite.dev) and [Leaflet](https://leafletjs.com) on [CARTO](https://carto.com/basemaps) base maps (OpenStreetMap data). There is no backend. The data lives in plain GeoJSON and JSON files that are fetched at runtime.
 
 ## Getting started
 
@@ -14,6 +14,24 @@ npm run dev
 ```
 
 Then open the URL Vite prints (usually http://localhost:5173).
+
+### CARTO API key
+
+The base maps come from CARTO and need a free API key. Without one the tiles show an "API KEY REQUIRED" watermark.
+
+1. Request a key at https://carto.com/basemaps/apikey/ (free, no CARTO account needed).
+2. Copy `.env.example` to `.env.local` and put the key in `VITE_CARTO_API_KEY`. `.env.local` is in `.gitignore`.
+3. Restart `npm run dev`, Vite only reads env files on start.
+
+The key is part of the built JavaScript and visible in the browser, like every map key. Protect it in the CARTO dashboard with a website restriction to your hosts (e.g. `localhost` and the GitHub Pages domain) instead of trying to keep it secret.
+
+For the GitHub Pages build, add the key as a repository variable `VITE_CARTO_API_KEY` (Settings, Secrets and variables, Actions, Variables) and pass it to the build step in `.github/workflows/deploy.yml`:
+
+```yaml
+      - run: npm run build
+        env:
+          VITE_CARTO_API_KEY: ${{ vars.VITE_CARTO_API_KEY }}
+```
 
 Other scripts:
 
@@ -30,17 +48,22 @@ npm run test:watch  # run the unit tests on every change
 
 ```
 index.html                      Vite entry point
-src/main.ts                     app bootstrap, global styles
-src/App.vue                     layout, loads the data, owns the selection
-src/config.ts                   region bounds, colours, labels, data file paths
+src/main.ts                     app bootstrap, fonts, global styles
+src/App.vue                     layout (side panel or bottom sheet), loads the data, owns the selection
+src/config.ts                   region bounds, tile layers, access labels, data file paths
 src/types.ts                    types for clubs, waters, sales points and the selection
+src/icons.ts                    names of the line icons
+src/style.css                   design tokens for light and dark, shared panel and map styles
 src/composables/useMapData.ts   loads data files and builds lookups
-src/components/MapView.vue      Leaflet map, layers, highlighting, fitBounds
-src/components/MapPopup.vue     renders Vue content inside a Leaflet popup
-src/components/WaterPopup.vue   popup content for a water
-src/components/SalesPointPopup.vue  popup content for a sales point
-src/components/MapLegend.vue    legend overlay
-src/style.css                   global styles (popups, marker icon)
+src/composables/useTheme.ts     light and dark theme, follows the system until the user picks one
+src/utils/format.ts             prices, dates, phone links
+src/utils/time.ts               seasons, guest periods and opening hours relative to today
+src/components/MapView.vue      Leaflet map, highlighting, connection lines, map controls
+src/components/WaterDetail.vue  details of a water
+src/components/SalesPointDetail.vue  details of a sales point
+src/components/WaterList.vue    list of all waters when nothing is selected
+src/components/MapLegend.vue    legend
+src/components/AccessBadge.vue, AppIcon.vue, ThemeToggle.vue  small building blocks
 public/data/                    clubs.json, waters.geojson, sales-points.geojson
 scripts/validate-data.mjs       checks the data files (CLI)
 scripts/lib/validate-data.mjs   the actual checks, shared by the CLI and the tests
@@ -49,23 +72,37 @@ tests/                          validator tests, data file tests and shared fixt
 docs/                           concept, research and data schema
 ```
 
-## How the map works
+## How the app works
 
-`App.vue` holds a single `selection` (a water or a sales point, or nothing). `MapView` reacts to it by highlighting the selected item and everything linked to it, zooming so that all of it is visible, and showing the matching popup. Clicking a water, a marker or a link inside a popup only changes the selection. Leaflet objects are kept outside of Vue reactivity.
+`App.vue` holds a single `selection` (a water or a sales point, or nothing).
+
+- On wide screens (900 px and up) the details are shown in a side panel on the left. Without a selection it lists all waters.
+- On small screens the details slide up as a bottom sheet over the map. Without a selection the sheet only shows a handle that opens the list.
+
+`MapView` reacts to the selection by highlighting the selected item, drawing dashed lines to everything linked to it, dimming the rest and zooming so that all of it is visible. Clicking a water, a marker or a row in the panel only changes the selection. Leaflet objects are kept outside of Vue reactivity.
+
+## Design
+
+The look follows the design draft "Morgennebel". Colours are CSS variables in `src/style.css`, one set for light and one for dark. `useTheme()` sets `data-theme` on `<html>`, a small script in `index.html` does the same before the first paint so dark mode does not flash. Map colours are read from the same variables, so the map follows the theme too.
+
+The fonts Figtree and Vollkorn are bundled from `@fontsource-variable` packages instead of loading them from Google Fonts, so no visitor data goes to Google.
+
+The base maps are CARTO Positron (light) and Dark Matter (dark). They need a free API key, see Getting started.
 
 ## Tests
 
 The unit tests use [Vitest](https://vitest.dev) and [Vue Test Utils](https://test-utils.vuejs.org).
 
-Unit tests live next to the file they test, e.g. `WaterPopup.spec.ts` beside `WaterPopup.vue`.
+Unit tests live next to the file they test, e.g. `WaterDetail.spec.ts` beside `WaterDetail.vue`.
 
-- `src/utils/format.spec.ts` and `src/composables/useMapData.spec.ts` cover the formatting helpers and the lookup tables built from the data files.
-- `src/components/*.spec.ts` mount the water and sales point popups in jsdom and check what they show and emit.
-- `src/config.spec.ts` checks that labels and colours exist for every value the validator accepts.
+- `src/utils/*.spec.ts` cover formatting and the date logic for seasons, guest periods and opening hours.
+- `src/composables/*.spec.ts` cover the lookup tables built from the data files and the theme handling.
+- `src/components/*.spec.ts` mount the panel components in jsdom and check what they show and emit. They pass a fixed `now`, so open and closed states are reproducible.
+- `src/config.spec.ts` checks that labels and colour tokens exist for every value the validator accepts, in both themes.
 - `tests/validate-data.spec.ts` covers every rule of the data validator.
 - `tests/data-files.spec.ts` runs the validator on the real files in `public/data/` and also checks that all coordinates lie in Bavaria in lon, lat order, ids are well-formed and polygon rings are closed.
 
-The map itself (`MapView.vue`, `MapPopup.vue`) depends on Leaflet rendering and is not unit tested.
+The map itself (`MapView.vue`) and the layout in `App.vue` depend on Leaflet and real rendering and are not unit tested.
 
 Test data is built with the helpers in `tests/fixtures.ts`. Each helper returns a valid object, a test only overrides the fields it is about.
 

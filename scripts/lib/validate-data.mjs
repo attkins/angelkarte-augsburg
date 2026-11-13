@@ -7,6 +7,50 @@ export const WATER_GEOMETRIES = ['Polygon', 'MultiPolygon', 'LineString', 'Multi
 export const PRICE_KEYS = ['member', 'guest', 'youth', 'guestYouth', 'deposit', 'note', 'validFrom']
 const TEXT_PRICE_KEYS = ['note', 'validFrom']
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+const MONTH_DAY = /^(\d{2})-(\d{2})$/
+const TIME = /^([01]\d|2[0-3]):[0-5]\d$/
+export const WEEKDAYS = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
+const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+function isMonthDay(value) {
+  const match = typeof value === 'string' ? MONTH_DAY.exec(value) : null
+  if (!match) return false
+  const month = Number(match[1])
+  const day = Number(match[2])
+  return month >= 1 && month <= 12 && day >= 1 && day <= DAYS_IN_MONTH[month - 1]
+}
+
+/** Checks a nullable `{ from, to }` date range and reports problems with the given label. */
+function checkDateRange(range, label, errors) {
+  if (range === null) return
+  if (typeof range !== 'object' || !isMonthDay(range.from) || !isMonthDay(range.to)) {
+    errors.push(`${label} must be null or { from: "MM-DD", to: "MM-DD" }`)
+  }
+}
+
+function checkOpeningRules(rules, where, errors) {
+  if (rules === null) return
+  if (!Array.isArray(rules)) {
+    errors.push(`${where}: openingHours must be null or a list of rules`)
+    return
+  }
+  rules.forEach((rule, index) => {
+    const label = `${where}: openingHours[${index}]`
+    if (!Array.isArray(rule.days) || rule.days.length === 0 || rule.days.some((d) => !WEEKDAYS.includes(d))) {
+      errors.push(`${label}: days must be a non-empty list of ${WEEKDAYS.join(', ')}`)
+    }
+    if (!TIME.test(rule.open ?? '') || !TIME.test(rule.close ?? '')) {
+      errors.push(`${label}: open and close must be HH:MM`)
+    } else if (rule.open >= rule.close) {
+      errors.push(`${label}: open must be before close`)
+    }
+    if (rule.months !== undefined) {
+      const valid = Array.isArray(rule.months) && rule.months.length > 0 &&
+        rule.months.every((m) => Number.isInteger(m) && m >= 1 && m <= 12)
+      if (!valid) errors.push(`${label}: months must be a non-empty list of numbers from 1 to 12`)
+    }
+  })
+}
 
 /**
  * @param {{ clubs: any[], waters: { type?: string, features: any[] }, salesPoints: { type?: string, features: any[] } }} data
@@ -64,7 +108,11 @@ export function validateData({ clubs, waters, salesPoints }) {
     }
 
     if (p.onlinePurchase && !p.onlinePurchase.url) errors.push(`${where}: onlinePurchase needs a url`)
-    if (!('season' in p)) errors.push(`${where}: missing season (use null if all year or unknown)`)
+    for (const key of ['season', 'seasonNote', 'guestPeriod']) {
+      if (!(key in p)) errors.push(`${where}: missing ${key} (use null if not applicable)`)
+    }
+    if ('season' in p) checkDateRange(p.season, `${where}: season`, errors)
+    if ('guestPeriod' in p) checkDateRange(p.guestPeriod, `${where}: guestPeriod`, errors)
     if (!('source' in p)) errors.push(`${where}: missing source (use null if unknown)`)
     else if (!p.source) warnings.push(`${where}: source is not set`)
   }
@@ -79,6 +127,10 @@ export function validateData({ clubs, waters, salesPoints }) {
     if (!p.address) errors.push(`${where}: missing address`)
     if (feature.geometry?.type !== 'Point') errors.push(`${where}: geometry must be a Point`)
     if (p.coordinatesApproximate) warnings.push(`${where}: coordinates are approximate`)
+    for (const key of ['openingHours', 'openingHoursNote']) {
+      if (!(key in p)) errors.push(`${where}: missing ${key} (use null if unknown)`)
+    }
+    if ('openingHours' in p) checkOpeningRules(p.openingHours, where, errors)
 
     for (const waterId of p.waterIds ?? []) {
       if (!waterIds.has(waterId)) errors.push(`${where}: unknown waterId "${waterId}"`)

@@ -1,23 +1,296 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import AppHeader from '@/components/AppHeader.vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import AppIcon from '@/components/AppIcon.vue'
 import MapView from '@/components/MapView.vue'
+import SalesPointDetail from '@/components/SalesPointDetail.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import WaterDetail from '@/components/WaterDetail.vue'
+import WaterList from '@/components/WaterList.vue'
 import { useMapData } from '@/composables/useMapData'
+import { useTheme } from '@/composables/useTheme'
 import type { Selection } from '@/types'
 
+useTheme()
 const { data, error } = useMapData()
 const selection = ref<Selection | null>(null)
+/** Only used on small screens: whether the list is shown in the bottom sheet. */
+const listOpen = ref(false)
+const panel = useTemplateRef<HTMLElement>('panel')
+
+const selectedWater = computed(() =>
+  selection.value?.kind === 'water' ? data.value?.watersById.get(selection.value.id) : undefined,
+)
+const selectedSalesPoint = computed(() =>
+  selection.value?.kind === 'salesPoint' ? data.value?.salesPointsById.get(selection.value.id) : undefined,
+)
+const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value)
+
+function selectWater(id: string) {
+  selection.value = { kind: 'water', id }
+}
+
+function selectSalesPoint(id: string) {
+  selection.value = { kind: 'salesPoint', id }
+}
+
+function closeDetail() {
+  selection.value = null
+}
+
+// Start every new detail at the top.
+watch(selection, async () => {
+  await nextTick()
+  panel.value?.querySelector('.panel-body')?.scrollTo({ top: 0 })
+  panel.value?.scrollTo({ top: 0 })
+})
 </script>
 
 <template>
   <div class="app">
-    <AppHeader />
-    <main class="app-main" aria-label="Karte der Gewässer und Ausgabestellen">
+    <aside ref="panel" class="panel" :class="{ 'is-open': sheetOpen }">
+      <header class="panel-header">
+        <div class="logo"><AppIcon name="fish" :size="24" :stroke-width="1.9" /></div>
+        <div class="brand">
+          <div class="brand-title serif">Angelkarte</div>
+          <div class="brand-sub">Augsburg und Umland</div>
+        </div>
+        <ThemeToggle />
+      </header>
+
+      <button
+        v-if="!selection"
+        type="button"
+        class="sheet-handle"
+        :aria-expanded="listOpen"
+        @click="listOpen = !listOpen"
+      >
+        <span class="grip" />
+        <span v-if="data">{{ listOpen ? 'Liste schließen' : `Alle ${data.waters.features.length} Gewässer` }}</span>
+      </button>
+      <div v-else class="sheet-handle is-static" aria-hidden="true"><span class="grip" /></div>
+
+      <div class="panel-body">
+        <template v-if="data">
+          <WaterDetail
+            v-if="selectedWater"
+            :key="selectedWater.properties.id"
+            :water="selectedWater"
+            :data="data"
+            @select-sales-point="selectSalesPoint"
+            @close="closeDetail"
+          />
+          <SalesPointDetail
+            v-else-if="selectedSalesPoint"
+            :key="selectedSalesPoint.properties.id"
+            :sales-point="selectedSalesPoint"
+            :data="data"
+            @select-water="selectWater"
+            @close="closeDetail"
+          />
+          <WaterList v-else :data="data" @select-water="selectWater" />
+        </template>
+      </div>
+    </aside>
+
+    <main class="map-area">
       <MapView v-if="data" v-model:selection="selection" :data="data" />
-      <p v-else-if="error" class="app-message is-error">
-        Die Kartendaten konnten nicht geladen werden.
-      </p>
+      <p v-else-if="error" class="app-message is-error">Die Kartendaten konnten nicht geladen werden.</p>
       <p v-else class="app-message">Karte wird geladen …</p>
+
+      <div class="mobile-bar">
+        <div class="brand-pill glass">
+          <AppIcon name="fish" :size="20" :stroke-width="1.9" />
+          <span class="serif">Angelkarte</span>
+        </div>
+        <ThemeToggle floating />
+      </div>
     </main>
   </div>
 </template>
+
+<style scoped>
+.app {
+  display: flex;
+  height: 100%;
+  background: var(--land);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.brand {
+  flex: 1;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.panel-body {
+  padding: 16px 24px 28px;
+}
+
+.map-area {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.app-message {
+  margin: 2rem;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.app-message.is-error {
+  color: var(--closed-text);
+}
+
+.mobile-bar {
+  position: absolute;
+  top: calc(16px + env(safe-area-inset-top));
+  left: 16px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.mobile-bar > * {
+  pointer-events: auto;
+}
+
+.brand-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.brand-pill svg {
+  color: var(--accent-text);
+}
+
+.mobile-bar .theme-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.sheet-handle {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .panel {
+    flex: 0 0 var(--panel-width);
+    width: var(--panel-width);
+    height: 100%;
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+  }
+
+  .mobile-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .app {
+    position: relative;
+  }
+
+  .map-area {
+    position: absolute;
+    inset: 0;
+  }
+
+  .panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    max-height: 62vh;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-radius: 26px 26px 0 0;
+    box-shadow: var(--shadow);
+  }
+
+  .panel-header {
+    display: none;
+  }
+
+  .sheet-handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 20px 14px;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .sheet-handle.is-static {
+    padding-bottom: 4px;
+    cursor: default;
+  }
+
+  .grip {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--border);
+  }
+
+  .panel-body {
+    overflow-y: auto;
+    padding: 4px 20px 20px;
+  }
+
+  .panel:not(.is-open) .panel-body {
+    display: none;
+  }
+}
+</style>

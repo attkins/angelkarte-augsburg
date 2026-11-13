@@ -14,6 +14,27 @@ export type GuestAccess = 'open' | 'withMember' | 'membersOnly' | 'unknown'
 
 export type GeometryStatus = 'placeholder' | 'traced' | 'verified'
 
+/** Day of the year as `MM-DD`, without a year. */
+export type MonthDay = string
+
+/** Recurring period within a year, both ends inclusive. `from` after `to` wraps over New Year. */
+export interface DateRange {
+  from: MonthDay
+  to: MonthDay
+}
+
+export type Weekday = 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa' | 'su'
+
+/** One opening interval on the given weekdays, optionally only in some months (1 to 12). */
+export interface OpeningRule {
+  days: Weekday[]
+  /** `HH:MM` */
+  open: string
+  /** `HH:MM`, later than `open` on the same day. */
+  close: string
+  months?: number[]
+}
+
 export interface Club {
   id: string
   name: string
@@ -46,8 +67,12 @@ export interface WaterProperties {
   clubId: string
   guestAccess: GuestAccess
   accessNote: string | null
-  /** Fishing season of the club as free text, e.g. "16.03. bis 14.12.". Null if all year or unknown. */
-  season: string | null
+  /** Fishing season. Null if fishing is allowed all year or the season is unknown. */
+  season: DateRange | null
+  /** Season details that do not fit a fixed date range. */
+  seasonNote: string | null
+  /** Period in which guests may fish, if shorter than the season. Null if no extra limit. */
+  guestPeriod: DateRange | null
   prices: Prices | null
   species: string[]
   rules: string[]
@@ -68,7 +93,10 @@ export interface SalesPointProperties {
   name: string
   address: string
   phone: string | null
-  openingHours: string | null
+  /** Machine readable opening hours. Null if unknown. */
+  openingHours: OpeningRule[] | null
+  /** Free text that the rules cannot express, e.g. "nur nach Terminabsprache". */
+  openingHoursNote: string | null
   waterIds: string[]
   coordinatesApproximate: boolean
 }

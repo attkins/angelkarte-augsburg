@@ -87,12 +87,44 @@ describe('validateData', () => {
       )
     })
 
-    it('requires season and source to be present, null is allowed', () => {
-      const { errors } = validate({ waters: [withoutProperty(withoutProperty(makeWater(), 'season'), 'source')] })
+    it('requires season fields and source to be present, null is allowed', () => {
+      let water = makeWater()
+      for (const key of ['season', 'seasonNote', 'guestPeriod', 'source'] as const) water = withoutProperty(water, key)
+      const { errors } = validate({ waters: [water] })
 
-      expect(errors).toContain('water "water-a": missing season (use null if all year or unknown)')
+      expect(errors).toContain('water "water-a": missing season (use null if not applicable)')
+      expect(errors).toContain('water "water-a": missing seasonNote (use null if not applicable)')
+      expect(errors).toContain('water "water-a": missing guestPeriod (use null if not applicable)')
       expect(errors).toContain('water "water-a": missing source (use null if unknown)')
-      expect(validate({ waters: [makeWater({ season: null })] }).errors).toEqual([])
+      expect(validate({ waters: [makeWater({ season: null, guestPeriod: null })] }).errors).toEqual([])
+    })
+
+    it('accepts valid date ranges, also over New Year', () => {
+      const water = makeWater({ season: { from: '03-16', to: '12-14' }, guestPeriod: { from: '11-01', to: '02-29' } })
+
+      expect(validate({ waters: [water] }).errors).toEqual([])
+    })
+
+    it.each([
+      ['wrong format', { from: '16.03.', to: '12-14' }],
+      ['month out of range', { from: '13-01', to: '12-14' }],
+      ['day out of range', { from: '02-30', to: '12-14' }],
+      ['missing end', { from: '03-16' }],
+      ['text instead of range', '16.03. bis 14.12.'],
+    ])('reports an invalid season (%s)', (_label, season) => {
+      const water = makeWater({ season: season as never })
+
+      expect(validate({ waters: [water] }).errors).toEqual([
+        'water "water-a": season must be null or { from: "MM-DD", to: "MM-DD" }',
+      ])
+    })
+
+    it('reports an invalid guest period', () => {
+      const water = makeWater({ guestPeriod: { from: '07-15', to: '' } })
+
+      expect(validate({ waters: [water] }).errors).toEqual([
+        'water "water-a": guestPeriod must be null or { from: "MM-DD", to: "MM-DD" }',
+      ])
     })
 
     it('warns when the source is null', () => {
@@ -158,6 +190,54 @@ describe('validateData', () => {
       const { errors } = validate({ salesPoints: [makeSalesPoint({ waterIds: ['water-a', 'ghost'] })] })
 
       expect(errors).toEqual(['sales point "shop-a": unknown waterId "ghost"'])
+    })
+
+    it('requires opening hour fields to be present, null is allowed', () => {
+      const salesPoint = makeSalesPoint()
+      const properties: Partial<SalesPointFeature['properties']> = { ...salesPoint.properties }
+      delete properties.openingHours
+      delete properties.openingHoursNote
+      const { errors } = validate({
+        salesPoints: [{ ...salesPoint, properties: properties as SalesPointFeature['properties'] }],
+      })
+
+      expect(errors).toEqual([
+        'sales point "shop-a": missing openingHours (use null if unknown)',
+        'sales point "shop-a": missing openingHoursNote (use null if unknown)',
+      ])
+    })
+
+    it('accepts valid opening rules', () => {
+      const salesPoint = makeSalesPoint({
+        openingHours: [
+          { days: ['mo', 'tu'], open: '09:00', close: '18:00' },
+          { days: ['sa'], open: '08:00', close: '13:00', months: [3, 4, 5, 6, 7, 8, 9, 10] },
+        ],
+      })
+
+      expect(validate({ salesPoints: [salesPoint] }).errors).toEqual([])
+    })
+
+    it.each([
+      ['unknown weekday', { days: ['monday'], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su'],
+      ['no weekday', { days: [], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su'],
+      ['time without leading zero', { days: ['mo'], open: '9:00', close: '18:00' }, 'open and close must be HH:MM'],
+      ['hour out of range', { days: ['mo'], open: '09:00', close: '24:00' }, 'open and close must be HH:MM'],
+      ['close before open', { days: ['mo'], open: '18:00', close: '09:00' }, 'open must be before close'],
+      ['month out of range', { days: ['mo'], open: '09:00', close: '18:00', months: [13] }, 'months must be a non-empty list of numbers from 1 to 12'],
+      ['empty months', { days: ['mo'], open: '09:00', close: '18:00', months: [] }, 'months must be a non-empty list of numbers from 1 to 12'],
+    ])('reports an invalid opening rule (%s)', (_label, rule, message) => {
+      const salesPoint = makeSalesPoint({ openingHours: [rule as never] })
+
+      expect(validate({ salesPoints: [salesPoint] }).errors).toEqual([`sales point "shop-a": openingHours[0]: ${message}`])
+    })
+
+    it('reports opening hours that are not a list', () => {
+      const salesPoint = makeSalesPoint({ openingHours: 'Mo bis Fr 9 bis 18' as never })
+
+      expect(validate({ salesPoints: [salesPoint] }).errors).toEqual([
+        'sales point "shop-a": openingHours must be null or a list of rules',
+      ])
     })
 
     it('warns about approximate coordinates', () => {

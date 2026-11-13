@@ -8,8 +8,13 @@
         "name": "Lech",
         "clubId": "lfv-augsburg",
         "guestAccess": "withMember",
-        "accessNote": "Gäste nur mit volljährigem Mitglied und nur vom 15. Juli bis 31. Oktober.",
+        "accessNote": "Gäste nur zusammen mit einem volljährigen Mitglied.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": {
+          "from": "07-15",
+          "to": "10-31"
+        },
         "prices": {
           "member": 15,
           "guest": 20,
@@ -61,6 +66,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gastkarten gibt es nur mit anwesendem Mitglied, Gäste dürfen nur in Begleitung fischen. Lage der Strecke noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -100,6 +107,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gastkarten gibt es nur mit anwesendem Mitglied, Gäste dürfen nur in Begleitung fischen.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -165,6 +174,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gastkarten gibt es nur mit anwesendem Mitglied, Gäste dürfen nur in Begleitung fischen.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -250,6 +261,8 @@
         "guestAccess": "membersOnly",
         "accessNote": "Lage nur ungefähr (bei Sand, Todtenweis).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "youth": 5
@@ -299,6 +312,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gastkarten gibt es nur mit anwesendem Mitglied, Gäste dürfen nur in Begleitung fischen. Lage nur ungefähr (bei Sand, Todtenweis).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -351,13 +366,15 @@
         "clubId": "fva-augsburg",
         "guestAccess": "membersOnly",
         "accessNote": "Tageskarten seit 30. März 2024 nur für Mitglieder.",
-        "season": "Ab dem Karfreitagsfischen des Vereins bis 14.12.",
+        "season": null,
+        "seasonNote": "Saison beginnt mit dem Karfreitagsfischen des Vereins und endet am 14.12.",
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters."
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters."
         },
         "species": [],
         "rules": [],
@@ -436,12 +453,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -574,13 +593,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "membersOnly",
         "accessNote": "Tageskarten nur für Mitglieder, höchstens 4 pro Tag.",
-        "season": "16.03. bis 30.09.",
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters."
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters."
         },
         "species": [],
         "rules": [],
@@ -673,12 +697,14 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr (bei Zusamaltheim).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -726,12 +752,14 @@
         "guestAccess": "open",
         "accessNote": "Strecke bei Deisenhausen, Grenzen noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -824,13 +852,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "open",
         "accessNote": null,
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -903,13 +936,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "open",
         "accessNote": null,
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
         "species": [],
@@ -1013,12 +1051,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1106,12 +1146,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
         "species": [],
@@ -1382,13 +1424,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "open",
         "accessNote": null,
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
         "species": [],
@@ -1439,13 +1486,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "open",
         "accessNote": null,
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
         "species": [],
@@ -1501,12 +1553,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1568,12 +1622,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1611,12 +1667,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1734,12 +1792,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1821,12 +1881,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1892,12 +1954,14 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -1930,13 +1994,18 @@
         "clubId": "fva-augsburg",
         "guestAccess": "open",
         "accessNote": null,
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 15,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
         "species": [],
@@ -1998,12 +2067,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 15
         },
         "species": [],
@@ -2097,12 +2168,14 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 10,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Preisliste ab Januar 2027. Pfand 5 € laut Liste des Augsburger Angelcenters.",
+          "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
         "species": [],
@@ -2148,6 +2221,8 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 17,
@@ -2251,6 +2326,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -2322,6 +2399,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -2413,6 +2492,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft. Umriss ist der Derchinger Baggersee aus OSM, Zuordnung noch prüfen.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 15,
@@ -2496,6 +2577,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 11,
           "guest": 17,
@@ -2585,6 +2668,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 11,
           "guest": 17,
@@ -2702,6 +2787,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 16,
@@ -2791,6 +2878,8 @@
         "guestAccess": "unknown",
         "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "guest": 16,
@@ -2864,6 +2953,8 @@
         "guestAccess": "membersOnly",
         "accessNote": "Für dieses Gewässer ist keine Tageskarte gelistet.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": null,
         "species": [],
         "rules": [],
@@ -2914,6 +3005,8 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 17,
           "guest": 25,
@@ -2993,6 +3086,8 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 17,
           "guest": 25,
@@ -3048,6 +3143,8 @@
         "guestAccess": "open",
         "accessNote": "Grenzen der Strecke noch nicht geprüft.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 17,
           "guest": 25,
@@ -3106,6 +3203,8 @@
         "guestAccess": "open",
         "accessNote": "Eine Tageskarte gilt für Kring-, Hermann- und Petriweiher.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 8,
@@ -3162,6 +3261,8 @@
         "guestAccess": "open",
         "accessNote": "Eine Tageskarte gilt für Kring-, Hermann- und Petriweiher.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 8,
@@ -3218,6 +3319,8 @@
         "guestAccess": "open",
         "accessNote": "Eine Tageskarte gilt für Kring-, Hermann- und Petriweiher.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 8,
@@ -3274,6 +3377,8 @@
         "guestAccess": "membersOnly",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 8,
@@ -3324,6 +3429,8 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "youth": 8,
@@ -3365,7 +3472,12 @@
         "clubId": "fv-bobingen",
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds, höchstens ein Gast je Mitglied. Der Name des Mitglieds steht auf der Tageskarte.",
-        "season": null,
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": null,
         "species": [
           "Bachforelle",
@@ -3442,6 +3554,8 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr (Grenztafeln km 17,4 bis km 14,6).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 9,
           "youth": 6,
@@ -3490,6 +3604,8 @@
         "guestAccess": "membersOnly",
         "accessNote": "Lage nur ungefähr (Schwabmünchen).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": null,
         "species": [],
         "rules": [
@@ -3538,6 +3654,8 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 14,
           "guest": 20,
@@ -3580,6 +3698,8 @@
         "guestAccess": "membersOnly",
         "accessNote": "Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 12,
           "youth": 8
@@ -3629,6 +3749,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines aktiven, erwachsenen Mitglieds. Karten nur bei einem bestimmten Vereinsmitglied.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 18,
           "guest": 23,
@@ -3709,6 +3831,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "guest": 20,
@@ -3760,6 +3884,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "guest": 20,
@@ -3815,6 +3941,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "guest": 20,
@@ -3890,6 +4018,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "guest": 20,
@@ -3965,6 +4095,8 @@
         "guestAccess": "withMember",
         "accessNote": "Gäste nur in Begleitung eines Mitglieds. Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15,
           "guest": 20,
@@ -4002,6 +4134,8 @@
         "guestAccess": "membersOnly",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15
         },
@@ -4064,6 +4198,8 @@
         "guestAccess": "membersOnly",
         "accessNote": "Lage nur ungefähr.",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 15
         },
@@ -4097,7 +4233,12 @@
         "clubId": "fischergilde-barbara",
         "guestAccess": "open",
         "accessNote": "Bei Online-Kauf ist ein Ausdruck der Karte erforderlich.",
-        "season": "16.03. bis 14.12.",
+        "season": {
+          "from": "03-16",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 11,
           "youth": 9,
@@ -4173,7 +4314,12 @@
         "clubId": "fischergilde-barbara",
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr (Hurlach).",
-        "season": "23.03. bis 14.12.",
+        "season": {
+          "from": "03-23",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 12,
           "youth": 9,
@@ -4229,6 +4375,8 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 10,
           "youth": 8,
@@ -4297,6 +4445,8 @@
         "guestAccess": "open",
         "accessNote": null,
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 14,
           "guest": 14,
@@ -4361,6 +4511,8 @@
         "guestAccess": "open",
         "accessNote": "Lage nur ungefähr (Sand, Todtenweis).",
         "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
         "prices": {
           "member": 12,
           "guest": 15,
@@ -4412,7 +4564,12 @@
         "clubId": "fv-zusmarshausen",
         "guestAccess": "open",
         "accessNote": "Gäste nur freitags, samstags, sonntags und an Feiertagen.",
-        "season": "01.05. bis 31.10. (Gäste)",
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": {
+          "from": "05-01",
+          "to": "10-31"
+        },
         "prices": {
           "guest": 15,
           "deposit": 5

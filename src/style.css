@@ -1,7 +1,78 @@
+/*
+ * Design tokens from the "Morgennebel" design draft.
+ * The theme is set as data-theme on <html> by useTheme().
+ */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --land: #e7ece5;
+  --surface: #f7f9f6;
+  --surface-2: #ffffff;
+  --surface-3: #ebf0eb;
+  --text: #1f2d2b;
+  --text-2: #51625e;
+  --border: #d5ded7;
+  --accent: #1f5c63;
+  --accent-text: #1f5c63;
+  --on-accent: #f4f7f3;
+  --accent-soft: #dce9e8;
+  --glass: rgba(247, 249, 246, 0.92);
+  --shadow: 0 10px 30px rgba(31, 45, 43, 0.14), 0 1px 3px rgba(31, 45, 43, 0.08);
+  --open: #4e8a3b;
+  --open-bg: #dcebd5;
+  --open-text: #2c5520;
+  --member: #c4841a;
+  --member-bg: #f6e6c4;
+  --member-text: #6a4507;
+  --closed: #9a4b3c;
+  --closed-bg: #f1dad3;
+  --closed-text: #6b2e22;
+  --unknown: #8a9590;
+  --unknown-bg: #e4e8e5;
+  --unknown-text: #46524e;
+  --pin: #24332f;
+  --pin-text: #f4f7f3;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --land: #151e1c;
+  --surface: #1b2623;
+  --surface-2: #22302c;
+  --surface-3: #26342f;
+  --text: #e4ece6;
+  --text-2: #a9bab4;
+  --border: #2f3f3a;
+  --accent: #5fa9ab;
+  --accent-text: #8ccbcc;
+  --on-accent: #0d1715;
+  --accent-soft: #1f3a3a;
+  --glass: rgba(27, 38, 35, 0.92);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --open: #7dba67;
+  --open-bg: #263d20;
+  --open-text: #bfe0ae;
+  --member: #e0a845;
+  --member-bg: #3d2f12;
+  --member-text: #f2d29a;
+  --closed: #d07a68;
+  --closed-bg: #40231d;
+  --closed-text: #f0bdb1;
+  --unknown: #8c9692;
+  --unknown-bg: #2a3330;
+  --unknown-text: #c3ccc8;
+  --pin: #e4ece6;
+  --pin-text: #152020;
+}
+
 :root {
-  --color-sales-point: #1f5fa8;
-  --color-highlight: #ffd400;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Figtree Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Vollkorn Variable', Georgia, serif;
+  --panel-width: 420px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--land);
 }
 
 * {
@@ -15,135 +86,384 @@ body,
   height: 100%;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+body {
+  -webkit-font-smoothing: antialiased;
 }
 
-.app-main {
-  flex: 1;
-  min-height: 0;
+a {
+  color: var(--accent-text);
 }
 
-.app-message {
-  margin: 2rem;
-  text-align: center;
-  color: #555;
+a:hover {
+  color: var(--text);
 }
 
-.app-message.is-error {
-  color: #c0392b;
-}
-
-/*
- * Popups. Global on purpose: the content is rendered by Vue but lives inside
- * Leaflet's popup container, and both popup components share these styles.
- */
-
-.popup h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1rem;
-}
-
-.popup p {
-  margin: 0.3rem 0;
-}
-
-.popup .club {
-  margin: 0 0 0.5rem;
-  color: #555;
-}
-
-.popup .access {
-  display: inline-block;
-  padding: 0.1rem 0.45rem;
-  border-radius: 3px;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.popup .note {
-  font-size: 0.85rem;
-}
-
-.popup table.prices {
-  margin: 0.5rem 0;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-
-.popup table.prices td {
-  padding: 0.1rem 0.75rem 0.1rem 0;
-}
-
-.popup table.prices td:last-child {
-  text-align: right;
-  padding-right: 0;
-}
-
-.popup h4 {
-  margin: 0.6rem 0 0.2rem;
-  font-size: 0.85rem;
-}
-
-.popup ul {
-  margin: 0;
-  padding-left: 1.1rem;
-  font-size: 0.85rem;
-}
-
-.popup details {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-}
-
-.popup summary {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.popup .meta {
-  margin-top: 0.4rem;
-  color: #777;
-  font-size: 0.75rem;
-}
-
-.popup .warning {
-  margin-top: 0.4rem;
-  color: #a35d00;
-  font-size: 0.75rem;
-}
-
-.popup button.link {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #0b62c4;
+button {
   font: inherit;
-  text-decoration: underline;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Floating controls on the map share this look. */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 22px;
   cursor: pointer;
 }
 
-/* Sales point marker, rendered by Leaflet as a divIcon. */
+/* --- Leaflet ------------------------------------------------------------- */
 
-.sales-point-icon {
+.leaflet-container {
+  background: var(--land);
+  font-family: var(--font-sans);
+}
+
+.leaflet-control-attribution.leaflet-control {
+  margin: 0 12px 10px 0;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: var(--glass);
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-2);
+}
+
+/* Sales point marker (divIcon). */
+.pin {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  border: 2px solid #fff;
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--surface-2);
   border-radius: 50%;
-  background: var(--color-sales-point);
-  color: #fff;
-  font-size: 13px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  background: var(--pin);
+  color: var(--pin-text);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease;
 }
 
-.sales-point-icon.is-highlighted {
-  background: var(--color-highlight);
-  color: #000;
-  outline: 3px solid var(--color-sales-point);
+.pin svg {
+  width: 15px;
+  height: 15px;
+}
+
+.pin.is-linked::before,
+.pin.is-selected::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.16;
+}
+
+.pin.is-selected {
+  width: 38px;
+  height: 38px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.pin.is-dimmed {
+  opacity: 0.45;
+}
+
+/* Name labels next to highlighted pins and the selected water. */
+.leaflet-tooltip.map-label {
+  padding: 4px 11px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.leaflet-tooltip.map-label::before {
+  display: none;
+}
+
+.leaflet-tooltip.map-label.is-water {
+  border: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* --- Panel content (shared by WaterDetail, SalesPointDetail, WaterList) -- */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.detail h1 {
+  margin: 0;
+  font-size: 31px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.detail-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* Desktop shows the back link, the mobile sheet the close button. */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.close-button {
+  flex: 0 0 44px;
+  margin: -4px -8px 0 0;
+  border: 0;
+  background: var(--surface-3);
+  color: var(--text-2);
+}
+
+@media (min-width: 900px) {
+  .close-button {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .back-link {
+    display: none;
+  }
+
+  .detail h1 {
+    font-size: 27px;
+  }
+}
+
+.muted {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.section-title {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.list-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.list-row:last-child {
+  border-bottom: 0;
+}
+
+.list-row:hover {
+  background: var(--surface-3);
+}
+
+.row-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--pin);
+  color: var(--pin-text);
+}
+
+.row-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.row-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.row-sub {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.row-chevron {
+  flex: 0 0 auto;
+  color: var(--text-2);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 13px;
+}
+
+.accordion {
+  border-top: 1px solid var(--border);
+}
+
+.accordion:empty {
+  display: none;
+}
+
+.accordion details {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary svg {
+  color: var(--text-2);
+  transition: transform 0.15s ease;
+}
+
+.accordion details[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.accordion ul,
+.accordion p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.accordion ul {
+  padding-left: 1.1rem;
+}
+
+.meta p {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.meta .warning {
+  margin-top: 6px;
+  color: var(--member-text);
 }

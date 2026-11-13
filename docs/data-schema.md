@@ -26,8 +26,10 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `name` | string | |
 | `clubId` | string | Must exist in `clubs.json` |
 | `guestAccess` | string | `open`, `withMember`, `membersOnly` or `unknown` |
-| `accessNote` | string or null | Seasonal limits and other access details, shown directly under the access badge |
-| `season` | string or null | Fishing season of the club as free text, e.g. `16.03. bis 14.12.`. `null` if all year or unknown |
+| `accessNote` | string or null | Access details that are not covered by the other fields, e.g. weekday limits. Shown as a notice below the badges |
+| `season` | date range or null | Fishing season, e.g. `{ "from": "03-16", "to": "12-14" }`. `null` if fishing is allowed all year or the season is unknown |
+| `seasonNote` | string or null | Season details that do not fit a fixed range, e.g. a season that starts with a club event |
+| `guestPeriod` | date range or null | Period in which guests may fish, if shorter than the season. `null` if there is no extra limit |
 | `prices` | object or null | Keys `member`, `guest`, `youth`, `guestYouth`, `deposit` (numbers in euros), `note` (text) and `validFrom` (ISO date, when a price list only applies from a certain date). All optional |
 | `species` | string[] | Fish species for this water |
 | `rules` | string[] | Bait, catch limits, night fishing, fly only and so on |
@@ -47,8 +49,33 @@ A GeoJSON FeatureCollection with `Point` geometries.
 | `name` | string | |
 | `address` | string | |
 | `phone` | string or null | |
-| `openingHours` | string or null | Free text |
+| `openingHours` | list of opening rules or null | See below. `null` if unknown |
+| `openingHoursNote` | string or null | What the rules cannot express, e.g. `Nur nach Terminabsprache.` |
 | `waterIds` | string[] | Waters this point sells tickets for. Must exist in `waters.geojson` |
 | `coordinatesApproximate` | boolean | `true` until the address has been geocoded properly |
+
+### Opening rules
+
+Each rule is one opening interval on some weekdays:
+
+```json
+{ "days": ["mo", "tu", "we", "th", "fr"], "open": "09:00", "close": "12:00" }
+```
+
+- `days`: any of `mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`
+- `open` and `close`: `HH:MM` with leading zeros, `open` before `close` on the same day
+- `months` (optional): numbers from 1 to 12 in which the rule applies, for seasonal hours
+
+A lunch break is two rules for the same days. Public holidays are not modelled.
+
+The app uses these rules to show whether a shop is open right now and when it opens next.
+
+## Date ranges
+
+`season` and `guestPeriod` use `{ "from": "MM-DD", "to": "MM-DD" }` without a year, both ends inclusive. A range where `from` is after `to` runs over New Year, e.g. `{ "from": "11-01", "to": "02-28" }`.
+
+The app compares them with today's date to show that a water is closed or not open for guests right now, and from when it opens again.
+
+## Relation between waters and sales points
 
 The relation between waters and sales points is stored only here, in `waterIds`. The app derives the reverse direction (which sales points sell a given water) when it loads the data, so nothing has to be kept in sync by hand.
