@@ -9,10 +9,12 @@
     "build": "vue-tsc --build && vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --build",
-    "validate": "node scripts/validate-data.mjs"
+    "validate": "node scripts/validate-data.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": "^22.13.0 || >=24.0.0"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
@@ -23,9 +25,17 @@
     "@types/leaflet": "^1.9.22",
     "@types/node": "^22.20.5",
     "@vitejs/plugin-vue": "^6.0.11",
+    "@vue/test-utils": "^2.5.1",
     "@vue/tsconfig": "^0.9.1",
+    "jsdom": "^29.1.1",
     "typescript": "~5.9",
     "vite": "^8.3.8",
+    "vitest": "^5.1.0",
     "vue-tsc": "^3.3.14"
+  },
+  "overrides": {
+    "glob": "^14.0.6",
+    "minimatch": "^11.0.8",
+    "nopt": "^9.0.0"
   }
 }
