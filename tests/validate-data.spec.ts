@@ -7,12 +7,16 @@ function validate({
   clubs = [makeClub()],
   waters = [makeWater()],
   salesPoints = [makeSalesPoint()],
-}: { clubs?: Club[]; waters?: WaterFeature[]; salesPoints?: SalesPointFeature[] } = {}) {
-  return validateData({
-    clubs,
-    waters: { type: 'FeatureCollection', features: waters },
-    salesPoints: { type: 'FeatureCollection', features: salesPoints },
-  })
+  now = new Date('2026-11-14T12:00:00Z'),
+}: { clubs?: Club[]; waters?: WaterFeature[]; salesPoints?: SalesPointFeature[]; now?: Date } = {}) {
+  return validateData(
+    {
+      clubs,
+      waters: { type: 'FeatureCollection', features: waters },
+      salesPoints: { type: 'FeatureCollection', features: salesPoints },
+    },
+    { now },
+  )
 }
 
 /** Removes a property completely, which is different from setting it to null. */
@@ -105,6 +109,22 @@ describe('validateData', () => {
       expect(validate({ waters: [makeWater({ lastChecked: null })] }).warnings).toContain(
         'water "water-a": lastChecked is not set',
       )
+    })
+
+    it('warns when lastChecked is older than the stale limit', () => {
+      const water = makeWater({ lastChecked: '2026-01-01' })
+      // 183 days after 2026-01-01 is 2026-07-03, the warning starts one day later.
+      expect(validate({ waters: [water], now: new Date('2026-07-03T23:00:00Z') }).warnings).toEqual([])
+      expect(validate({ waters: [water], now: new Date('2026-07-04T00:30:00Z') }).warnings).toEqual([
+        'water "water-a": last checked 2026-01-01, more than 183 days ago',
+      ])
+    })
+
+    it('reports a lastChecked date in the future', () => {
+      expect(validate({ waters: [makeWater({ lastChecked: '2026-11-15' })] }).errors).toContain(
+        'water "water-a": lastChecked 2026-11-15 is in the future',
+      )
+      expect(validate({ waters: [makeWater({ lastChecked: '2026-11-14' })] }).errors).toEqual([])
     })
 
     it('requires season fields and source to be present, null is allowed', () => {

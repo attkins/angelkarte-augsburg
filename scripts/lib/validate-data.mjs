@@ -13,6 +13,16 @@ export const WEEKDAYS = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
 /** Weekdays plus `ph` for public holidays. */
 export const OPENING_DAYS = [...WEEKDAYS, 'ph']
 const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+/** Data checked longer ago than this is probably out of date (prices, rules, guest access). */
+export const STALE_AFTER_DAYS = 183
+const DAY_MS = 24 * 60 * 60 * 1000
+
+/** Whole days from an ISO date (YYYY-MM-DD, read as UTC) to `now`. Negative for dates in the future. */
+function daysSince(isoDate, now) {
+  const [year, month, day] = isoDate.split('-').map(Number)
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+  return Math.floor((today - Date.UTC(year, month - 1, day)) / DAY_MS)
+}
 
 function isMonthDay(value) {
   const match = typeof value === 'string' ? MONTH_DAY.exec(value) : null
@@ -73,9 +83,10 @@ function checkDepth(p, where, errors) {
 
 /**
  * @param {{ clubs: any[], waters: { type?: string, features: any[] }, salesPoints: { type?: string, features: any[] } }} data
+ * @param {{ now?: Date }} [options] `now` is the reference date for the age of `lastChecked`, mainly for tests
  * @returns {{ errors: string[], warnings: string[] }}
  */
-export function validateData({ clubs, waters, salesPoints }) {
+export function validateData({ clubs, waters, salesPoints }, { now = new Date() } = {}) {
   const errors = []
   const warnings = []
 
@@ -112,6 +123,13 @@ export function validateData({ clubs, waters, salesPoints }) {
     }
     if (p.geometryStatus === 'placeholder') warnings.push(`${where}: geometry is a placeholder`)
     if (p.lastChecked && !ISO_DATE.test(p.lastChecked)) errors.push(`${where}: lastChecked must be YYYY-MM-DD`)
+    else if (p.lastChecked) {
+      const age = daysSince(p.lastChecked, now)
+      if (age < 0) errors.push(`${where}: lastChecked ${p.lastChecked} is in the future`)
+      else if (age > STALE_AFTER_DAYS) {
+        warnings.push(`${where}: last checked ${p.lastChecked}, more than ${STALE_AFTER_DAYS} days ago`)
+      }
+    }
     if (!p.lastChecked) warnings.push(`${where}: lastChecked is not set`)
 
     if (p.prices) {
