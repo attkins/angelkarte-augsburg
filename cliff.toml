@@ -6,9 +6,9 @@ header = """
 # Changelog
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
-
 """
 body = """
+
 {% if version %}\
 ## {{ version | trim_start_matches(pat="v") }} ({{ timestamp | date(format="%Y-%m-%d") }})
 {% else %}\
@@ -42,7 +42,7 @@ commit_parsers = [
   { message = "^(build|ci|chore)", group = "<!-- 6 -->Build and maintenance" },
 ]
 filter_commits = false
-tag_pattern = "v[0-9].*"
+tag_pattern = "v?[0-9].*"
 sort_commits = "oldest"
 
 [bump]
