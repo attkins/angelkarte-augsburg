@@ -4,7 +4,7 @@ import AccessBadge from '@/components/AccessBadge.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import { PRICE_LABELS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
-import { formatDate, formatPrice } from '@/utils/format'
+import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { isAugsburgCity } from '@/utils/holidays'
 import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
 
@@ -100,6 +100,10 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
       <span v-if="p.guestPeriod" class="info-badge">
         <AppIcon name="calendar" :size="15" />Gäste {{ formatRange(p.guestPeriod) }}
       </span>
+      <span v-if="p.maxDepth" class="info-badge"><AppIcon name="depth" :size="15" />bis {{ formatDepth(p.maxDepth) }} tief</span>
+      <a v-if="p.depthMapUrl" class="info-badge is-link" :href="p.depthMapUrl" target="_blank" rel="noopener">
+        Tiefenkarte<AppIcon name="external" :size="14" />
+      </a>
     </div>
 
     <div v-if="closedReason || p.accessNote" class="notice" :class="{ 'is-warning': closedReason }">
@@ -235,6 +239,15 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
   color: var(--text-2);
   font-size: 13px;
   font-weight: 500;
+}
+
+.info-badge.is-link {
+  color: var(--accent-text);
+  text-decoration: none;
+}
+
+.info-badge.is-link:hover {
+  background: var(--accent-soft);
 }
 
 .notice {

@@ -37,6 +37,9 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `onlinePurchase` | object or null | `{ "provider": "hejfish", "url": "..." }`. Provider is the platform name, e.g. `hejfish` or `Angelroute` |
 | `lastChecked` | string or null | ISO date `YYYY-MM-DD` |
 | `source` | string or null | URL of the page or PDF the data comes from, so the next check knows where to look |
+| `maxDepth` | number, null or missing | Optional. Deepest point of a lake in metres |
+| `maxDepthSource` | string, null or missing | URL the depth comes from, required with `maxDepth`. Club or city pages first, angling portals only when nothing better exists |
+| `depthMapUrl` | string, null or missing | Optional. Link to a depth map, e.g. on the club website |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
 
 ## sales-points.geojson

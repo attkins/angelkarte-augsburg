@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatDate, formatPrice, phoneHref } from '@/utils/format'
+import { formatDate, formatDepth, formatPrice, phoneHref } from '@/utils/format'
 
 describe('formatPrice', () => {
   it('formats whole euros without decimals', () => {
@@ -42,5 +42,12 @@ describe('phoneHref', () => {
 
   it('keeps numbers without spaces unchanged', () => {
     expect(phoneHref('0160123')).toBe('tel:0160123')
+  })
+})
+
+describe('formatDepth', () => {
+  it('writes metres with a German decimal comma', () => {
+    expect(formatDepth(14.5)).toBe('14,5 m')
+    expect(formatDepth(4)).toBe('4 m')
   })
 })

@@ -36,7 +36,8 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | D8 | Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam | open |
 | D9 | Missing waters outside the core region: Kirnach (FVA), 1. AAC waters (Mindel, Günz, Höchstädt and others) | open |
 | D10 | Third research pass west of Augsburg: Staudenfischereiverein, hejfish Neufnach and Weiher H5, clubs in Diedorf, Dinkelscherben, Fischach, Welden and others | open |
-| D11 | FVA prices change on 2027-01-01 (`prices.validFrom`). Check all other clubs for 2027 prices in January | open |
+| D11 | FVA prices change on 2027-01-01 (`prices.validFrom`). Check all other clubs for 2027 prices in January | in progress (chat data D11) |
+| D12 | Maximum depth for the remaining 16 lakes (list in `concept.md`, depth maps section). Club pages first, ask the clubs if nothing is online | open |
 
 ## Technical
 
@@ -60,4 +61,4 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F7 | Offline use | Service worker caching the data files and recently viewed tiles | open |
 | F8 | Report an error | Mail link in the water detail with the water ID prefilled | open |
 | F9 | Parking and access points | A few points per water, drawn with the aerial images. Needs a schema extension | open |
-| F10 | Depth maps for lakes | See the assessment in `concept.md`. Probably only links to club maps | open |
+| F10 | Depth maps for lakes | No depth maps to embed, see `concept.md`. Built `maxDepth` (14 lakes so far) and an optional `depthMapUrl` link instead | done 2026-11-14 |

@@ -31,6 +31,7 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
     <template v-else-if="name === 'chevron-right'"><path d="M9 6l6 6-6 6" /></template>
     <template v-else-if="name === 'clock'"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></template>
     <template v-else-if="name === 'close'"><path d="M18 6L6 18M6 6l12 12" /></template>
+    <template v-else-if="name === 'depth'"><path d="M4 5h16" /><path d="M12 9v10M8 15l4 4 4-4" /></template>
     <template v-else-if="name === 'external'">
       <path d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" /><path d="M11 13l9-9M15 4h5v5" />
     </template>

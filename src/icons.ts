@@ -7,6 +7,7 @@ export type AppIconName =
   | 'chevron-right'
   | 'clock'
   | 'close'
+  | 'depth'
   | 'external'
   | 'fish'
   | 'info'

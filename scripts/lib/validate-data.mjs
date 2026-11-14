@@ -54,6 +54,23 @@ function checkOpeningRules(rules, where, errors) {
   })
 }
 
+/** The depth fields are optional, most waters have none. */
+function checkDepth(p, where, errors) {
+  if (p.maxDepth !== undefined && p.maxDepth !== null) {
+    if (typeof p.maxDepth !== 'number' || !(p.maxDepth > 0 && p.maxDepth < 100)) {
+      errors.push(`${where}: maxDepth must be a number of metres between 0 and 100`)
+    } else if (!p.maxDepthSource) {
+      errors.push(`${where}: maxDepth needs a maxDepthSource`)
+    }
+  }
+  for (const key of ['maxDepthSource', 'depthMapUrl']) {
+    const value = p[key]
+    if (value !== undefined && value !== null && !/^https:\/\//.test(value)) {
+      errors.push(`${where}: ${key} must be an https URL`)
+    }
+  }
+}
+
 /**
  * @param {{ clubs: any[], waters: { type?: string, features: any[] }, salesPoints: { type?: string, features: any[] } }} data
  * @returns {{ errors: string[], warnings: string[] }}
@@ -117,6 +134,7 @@ export function validateData({ clubs, waters, salesPoints }) {
     if ('guestPeriod' in p) checkDateRange(p.guestPeriod, `${where}: guestPeriod`, errors)
     if (!('source' in p)) errors.push(`${where}: missing source (use null if unknown)`)
     else if (!p.source) warnings.push(`${where}: source is not set`)
+    checkDepth(p, where, errors)
   }
 
   const referencedWaterIds = new Set()

@@ -581,7 +581,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-10",
         "source": "https://lfv-augsburg.de",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 6,
+        "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=anwaltinger-see-affing-muehlhausen"
       },
       "geometry": {
         "type": "Polygon",
@@ -648,7 +650,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-10",
         "source": "https://lfv-augsburg.de",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 4,
+        "maxDepthSource": "https://de.wikipedia.org/wiki/Kaisersee"
       },
       "geometry": {
         "type": "Polygon",
@@ -964,7 +968,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.fva-ev.de/angelkarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 7,
+        "maxDepthSource": "https://www.fva-ev.de/assets/downloads/67f53835/gb---auensee.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -1051,7 +1057,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.fva-ev.de/angelkarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 4,
+        "maxDepthSource": "https://www.fva-ev.de/assets/downloads/67f53835/gb---autobahnsee.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -1703,7 +1711,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.fva-ev.de/angelkarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 5,
+        "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=fva-see-zusamaltheim"
       },
       "geometry": {
         "type": "Polygon",
@@ -3061,7 +3071,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.fva-ev.de/angelkarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 5,
+        "maxDepthSource": "https://www.augsburg.de/freizeit/baden/badeseen/kuhsee"
       },
       "geometry": {
         "type": "Polygon",
@@ -5959,7 +5971,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 14.5,
+        "maxDepthSource": "https://fv-friedberg.de/gewaesser/friedberger-baggersee/"
       },
       "geometry": {
         "type": "Polygon",
@@ -6064,7 +6078,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 5,
+        "maxDepthSource": "https://fv-friedberg.de/gewaesser/afrasee-i/"
       },
       "geometry": {
         "type": "Polygon",
@@ -7966,7 +7982,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 2,
+        "maxDepthSource": "https://fv-friedberg.de/gewaesser/pfefferminzsee/"
       },
       "geometry": {
         "type": "Polygon",
@@ -8027,7 +8045,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://fischereiverein-haunstetten.de/tageskarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 13,
+        "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=roemersee-oberottmarshausen"
       },
       "geometry": {
         "type": "Polygon",
@@ -8466,7 +8486,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 10,
+        "maxDepthSource": "https://www.fisch-hitparade.de/gewaesser/hintersee-augsburg/"
       },
       "geometry": {
         "type": "Polygon",
@@ -10460,7 +10482,9 @@
         },
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 8,
+        "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=hurlacher-see-hurlach-oberbayern"
       },
       "geometry": {
         "type": "Polygon",
@@ -10668,7 +10692,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 3,
+        "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=altoettinger-weiher-landsberg-lech"
       },
       "geometry": {
         "type": "Polygon",
@@ -10900,7 +10926,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 2.5,
+        "maxDepthSource": "https://www.fischereiverein-zusmarshausen.de/seite/776489/rothsee.html"
       },
       "geometry": {
         "type": "Polygon",

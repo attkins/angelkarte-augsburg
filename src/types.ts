@@ -85,6 +85,12 @@ export interface WaterProperties {
   lastChecked: string | null
   /** URL of the page or document the data was taken from, for the next check. */
   source: string | null
+  /** Deepest point in metres, for lakes. Optional, most waters have none. */
+  maxDepth?: number | null
+  /** Where `maxDepth` comes from, required together with it. */
+  maxDepthSource?: string | null
+  /** Link to a depth map of the lake, e.g. on the club website. Optional. */
+  depthMapUrl?: string | null
   geometryStatus: GeometryStatus
 }
 

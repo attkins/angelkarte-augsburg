@@ -56,6 +56,18 @@ describe('WaterDetail', () => {
       expect(badges).toEqual(['Saison 16.3. bis 14.12.', 'Gäste 1.5. bis 31.10.'])
     })
 
+    it('shows the maximum depth and links a depth map, only when known', () => {
+      const withDepth = mountDetail(
+        makeWater({ maxDepth: 14.5, maxDepthSource: 'https://example.org', depthMapUrl: 'https://example.org/tiefen.pdf' }),
+      )
+      expect(withDepth.findAll('.info-badge').map((b) => b.text())).toEqual(['bis 14,5 m tief', 'Tiefenkarte'])
+      const link = withDepth.find('a.info-badge')
+      expect(link.attributes('href')).toBe('https://example.org/tiefen.pdf')
+      expect(link.attributes('target')).toBe('_blank')
+
+      expect(mountDetail(makeWater()).findAll('.info-badge')).toHaveLength(0)
+    })
+
     it('warns when guests are outside their period, together with the access note', () => {
       const wrapper = mountDetail(
         makeWater({ guestPeriod: { from: '07-15', to: '10-31' }, accessNote: 'Nur mit erwachsenem Mitglied.' }),

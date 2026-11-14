@@ -99,6 +99,10 @@ Show a depth map or depth contours for lakes, for example as an extra layer or i
 
 Assessment: there seems to be no open dataset for the small gravel pit lakes around Augsburg. The open data of the Bavarian water authorities (gkd.bayern.de, LfU) covers measurements at the deepest point of larger lakes, not full bathymetry. Possible sources to check: depth maps published by the clubs themselves, OpenSeaMap depth data (crowdsourced, probably sparse here), or simply a link to an external depth map per water. Needs research before any implementation.
 
+Research result (2026-11-14, backlog F10): there is no depth map to embed. OpenSeaMap only has crowdsourced depths, none for these small lakes. The LfU lake inventory has no bathymetry and is only available on request. Navionics SonarCharts and Deeper Lakebook cover many lakes but are proprietary. The free Navionics chart viewer is gone, webapp.navionics.com now redirects to the Garmin Marine Chart Viewer, whose link format is undocumented and could not be tested. No club publishes a depth map online.
+
+Built instead: optional `maxDepth` with a required `maxDepthSource` per water, shown as a badge "bis 14,5 m tief" in the water detail, and an optional `depthMapUrl` that shows a "Tiefenkarte" link once someone finds a map (a club PDF, a diving club page or a Garmin link). Depths are set for 14 lakes, 7 of them from the club or the city (Kuhsee, Autobahnsee, Auensee, Friedberger Baggersee, Afrasee I, Pfefferminzsee, Rothsee), the others from angling portals or Wikipedia. Still without depth: Lechauensee 1 and 2, Afrasee II, Walter-See, Alemannensee (portals contradict each other), Kringweiher, Hermannweiher, Petriweiher, Paintensee, Rollweiher, Lechwaldsee, Hopfenangersee, Herrentratsee, Bergheimer Baggersee, Baggerseen Sand.
+
 ### Filter: can I fish there today?
 
 Some lakes are only open during a certain period. A filter should show only the waters where fishing is possible today (or on a chosen date).

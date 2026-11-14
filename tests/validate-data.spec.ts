@@ -48,6 +48,26 @@ describe('validateData', () => {
   })
 
   describe('waters', () => {
+    it('accepts waters with and without depth', () => {
+      const waters = [
+        makeWater(),
+        makeWater({ id: 'w2', maxDepth: 14.5, maxDepthSource: 'https://example.org', depthMapUrl: null }),
+      ]
+
+      expect(validate({ waters }).errors).toEqual([])
+    })
+
+    it.each([
+      ['a depth that is not a number', { maxDepth: '5 m', maxDepthSource: 'https://example.org' }, 'maxDepth must be a number of metres between 0 and 100'],
+      ['a depth without source', { maxDepth: 5 }, 'maxDepth needs a maxDepthSource'],
+      ['a source that is no URL', { maxDepth: 5, maxDepthSource: 'Vereinsheft' }, 'maxDepthSource must be an https URL'],
+      ['a depth map that is no https URL', { depthMapUrl: 'http://example.org' }, 'depthMapUrl must be an https URL'],
+    ])('reports %s', (_label, props, message) => {
+      const { errors } = validate({ waters: [makeWater(props as never)] })
+
+      expect(errors).toEqual([`water "water-a": ${message}`])
+    })
+
     it('reports an unknown club', () => {
       const { errors } = validate({ waters: [makeWater({ clubId: 'nope' })] })
 
