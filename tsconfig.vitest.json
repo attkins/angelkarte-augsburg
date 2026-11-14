@@ -7,6 +7,6 @@
     "allowJs": true,
     "checkJs": false
   },
-  "include": ["src/**/*.spec.ts", "tests/**/*.ts", "scripts/lib/**/*.mjs"],
+  "include": ["src/env.d.ts", "src/**/*.spec.ts", "tests/**/*.ts", "scripts/lib/**/*.mjs"],
   "exclude": []
 }

@@ -12,6 +12,7 @@ import WaterList from '@/components/WaterList.vue'
 import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useTheme } from '@/composables/useTheme'
+import { APP_VERSION } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
@@ -153,6 +154,7 @@ watch(router.route, async () => {
 
         <footer v-if="!imprintOpen" class="panel-footer">
           <a :href="IMPRINT_HREF" @click.prevent="openImprint">Impressum und Datenschutz</a>
+          <span class="version">Version {{ APP_VERSION }}</span>
         </footer>
       </div>
     </aside>
@@ -242,10 +244,18 @@ watch(router.route, async () => {
 }
 
 .panel-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
   margin-top: 28px;
   padding-top: 14px;
   border-top: 1px solid var(--border);
   font-size: 13px;
+}
+
+.version {
+  color: var(--text-2);
 }
 
 .panel-footer a {

@@ -1,5 +1,7 @@
 // @vitest-environment jsdom
 import { mount } from '@vue/test-utils'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import ImprintPage from '@/components/ImprintPage.vue'
 import type { Imprint } from '@/config'
@@ -56,5 +58,11 @@ describe('ImprintPage', () => {
     await wrapper.find('.close-button').trigger('click')
 
     expect(wrapper.emitted('close')).toHaveLength(2)
+  })
+
+  it('shows the version from package.json', () => {
+    const { version } = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf8')) as { version: string }
+
+    expect(mount(ImprintPage).find('.version').text()).toBe(`Angelkarte Version ${version}`)
   })
 })

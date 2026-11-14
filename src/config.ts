@@ -130,3 +130,6 @@ export const IMPRINT = readImprint(import.meta.env)
  * Rathausplatz Augsburg, change it to any place that suits the people using the map.
  */
 export const DEFAULT_ORIGIN = { name: 'Augsburg Mitte', lat: 48.3689, lng: 10.8978 }
+
+/** Version from package.json, see `define` in vite.config.ts. */
+export const APP_VERSION = __APP_VERSION__

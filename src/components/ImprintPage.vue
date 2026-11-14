@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
-import { IMPRINT, type Imprint } from '@/config'
+import { APP_VERSION, IMPRINT, type Imprint } from '@/config'
 
 /** The operator comes from the environment, the prop is only for tests. */
 const props = defineProps<{ imprint?: Imprint | null }>()
@@ -170,6 +170,8 @@ const CREDITS: Credit[] = [
         </li>
       </ul>
     </section>
+
+    <p class="muted version">Angelkarte Version {{ APP_VERSION }}</p>
   </article>
 </template>
 
