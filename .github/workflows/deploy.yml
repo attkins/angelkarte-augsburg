@@ -17,6 +17,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Operator for the imprint, kept out of the repository (Settings, Secrets and variables, Actions).
+      VITE_IMPRINT_NAME: ${{ secrets.VITE_IMPRINT_NAME }}
+      VITE_IMPRINT_STREET: ${{ secrets.VITE_IMPRINT_STREET }}
+      VITE_IMPRINT_CITY: ${{ secrets.VITE_IMPRINT_CITY }}
+      VITE_IMPRINT_EMAIL: ${{ secrets.VITE_IMPRINT_EMAIL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,6 +31,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run validate
+      - name: Check imprint secrets
+        # The imprint must not go live empty.
+        run: |
+          for name in VITE_IMPRINT_NAME VITE_IMPRINT_STREET VITE_IMPRINT_CITY VITE_IMPRINT_EMAIL; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Repository secret $name is not set"
+              exit 1
+            fi
+          done
       - run: npm run build
         env:
           VITE_CARTO_API_KEY: ${{ vars.VITE_CARTO_API_KEY }}

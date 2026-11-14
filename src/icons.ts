@@ -9,6 +9,7 @@ export type AppIconName =
   | 'close'
   | 'external'
   | 'fish'
+  | 'info'
   | 'layers'
   | 'locate'
   | 'lock'

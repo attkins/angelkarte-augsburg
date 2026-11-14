@@ -33,6 +33,12 @@ For the GitHub Pages build, add the key as a repository variable `VITE_CARTO_API
           VITE_CARTO_API_KEY: ${{ vars.VITE_CARTO_API_KEY }}
 ```
 
+### Imprint
+
+Name, address and email of the operator for the imprint come from environment variables, so they are not part of the public repository: `VITE_IMPRINT_NAME`, `VITE_IMPRINT_STREET`, `VITE_IMPRINT_CITY` and `VITE_IMPRINT_EMAIL`. Locally put them in `.env.local` (see `.env.example`). Without them the imprint page leaves out the operator section.
+
+For the GitHub Pages build, add them as repository secrets (Settings, Secrets and variables, Actions, Secrets). Secrets instead of variables, because the logs of a public repository are public and secrets are masked there. The deploy workflow stops before the build if one of them is missing, so the site never goes live without an imprint. The values are of course visible on the published site.
+
 Other scripts:
 
 ```sh

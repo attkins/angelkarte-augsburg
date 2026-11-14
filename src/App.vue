@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { computed, nextTick, reactive, ref, useTemplateRef, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import ImprintPage from '@/components/ImprintPage.vue'
 import MapView from '@/components/MapView.vue'
 import SalesPointDetail from '@/components/SalesPointDetail.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
 import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
+import { useHashPage } from '@/composables/useHashPage'
 import { useMapData } from '@/composables/useMapData'
 import { useTheme } from '@/composables/useTheme'
+import { IMPRINT_HASH } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
@@ -16,6 +19,7 @@ useTheme()
 const { data, error } = useMapData()
 const selection = ref<Selection | null>(null)
 const filter = reactive(emptyFilter())
+const imprint = useHashPage(IMPRINT_HASH)
 
 /** Ids of the waters passing the filter, or null when no filter is active (all shown). */
 const matchingIds = computed(() =>
@@ -31,7 +35,7 @@ const selectedWater = computed(() =>
 const selectedSalesPoint = computed(() =>
   selection.value?.kind === 'salesPoint' ? data.value?.salesPointsById.get(selection.value.id) : undefined,
 )
-const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value)
+const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value || imprint.active.value)
 
 function selectWater(id: string) {
   selection.value = { kind: 'water', id }
@@ -45,8 +49,18 @@ function closeDetail() {
   selection.value = null
 }
 
-// Start every new detail at the top.
-watch(selection, async () => {
+function openImprint() {
+  selection.value = null
+  imprint.open()
+}
+
+// Selecting something on the map leaves the imprint.
+watch(selection, (value) => {
+  if (value) imprint.close()
+})
+
+// Start every new detail and the imprint at the top.
+watch([selection, imprint.active], async () => {
   await nextTick()
   panel.value?.querySelector('.panel-body')?.scrollTo({ top: 0 })
   panel.value?.scrollTo({ top: 0 })
@@ -66,7 +80,7 @@ watch(selection, async () => {
       </header>
 
       <button
-        v-if="!selection"
+        v-if="!selection && !imprint.active.value"
         type="button"
         class="sheet-handle"
         :aria-expanded="listOpen"
@@ -78,7 +92,8 @@ watch(selection, async () => {
       <div v-else class="sheet-handle is-static" aria-hidden="true"><span class="grip" /></div>
 
       <div class="panel-body">
-        <template v-if="data">
+        <ImprintPage v-if="imprint.active.value" @close="imprint.close" />
+        <template v-else-if="data">
           <WaterDetail
             v-if="selectedWater"
             :key="selectedWater.properties.id"
@@ -100,6 +115,10 @@ watch(selection, async () => {
             <WaterList :data="data" :matching-ids="matchingIds" @select-water="selectWater" />
           </div>
         </template>
+
+        <footer v-if="!imprint.active.value" class="panel-footer">
+          <a :href="IMPRINT_HASH" @click.prevent="openImprint">Impressum und Datenschutz</a>
+        </footer>
       </div>
     </aside>
 
@@ -113,7 +132,17 @@ watch(selection, async () => {
           <AppIcon name="fish" :size="20" :stroke-width="1.9" />
           <span class="serif">Angelkarte</span>
         </div>
-        <ThemeToggle floating />
+        <div class="mobile-actions">
+          <a
+            class="icon-button glass imprint-button"
+            :href="IMPRINT_HASH"
+            aria-label="Impressum und Datenschutz"
+            @click.prevent="openImprint"
+          >
+            <AppIcon name="info" />
+          </a>
+          <ThemeToggle floating />
+        </div>
       </div>
     </main>
   </div>
@@ -177,6 +206,21 @@ watch(selection, async () => {
   gap: 16px;
 }
 
+.panel-footer {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.panel-footer a {
+  color: var(--text-2);
+}
+
+.panel-footer a:hover {
+  color: var(--accent-text);
+}
+
 .map-area {
   position: relative;
   flex: 1;
@@ -224,10 +268,20 @@ watch(selection, async () => {
   color: var(--accent-text);
 }
 
-.mobile-bar .theme-toggle {
+.mobile-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-bar .theme-toggle,
+.mobile-bar .imprint-button {
   width: 48px;
   height: 48px;
   border-radius: 24px;
+}
+
+.imprint-button {
+  color: var(--text);
 }
 
 .sheet-handle {

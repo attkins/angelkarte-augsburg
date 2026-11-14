@@ -68,3 +68,35 @@ export const DATA_FILES = {
   waters: `${base}data/waters.geojson`,
   salesPoints: `${base}data/sales-points.geojson`,
 }
+
+/** URL hash of the imprint and privacy page. */
+export const IMPRINT_HASH = '#/impressum'
+
+/** Operator of the site, shown in the imprint (§ 5 DDG) and as the controller in the privacy note. */
+export interface Imprint {
+  name: string
+  street: string
+  city: string
+  email: string
+}
+
+/**
+ * Reads the operator from the environment, so name and address stay out of the public
+ * repository. They still end up in the built site, which is the point of an imprint.
+ * Returns null when a value is missing.
+ */
+export function readImprint(env: Record<string, unknown>): Imprint | null {
+  const read = (key: string) => {
+    const value = env[key]
+    return typeof value === 'string' ? value.trim() : ''
+  }
+  const imprint = {
+    name: read('VITE_IMPRINT_NAME'),
+    street: read('VITE_IMPRINT_STREET'),
+    city: read('VITE_IMPRINT_CITY'),
+    email: read('VITE_IMPRINT_EMAIL'),
+  }
+  return Object.values(imprint).every(Boolean) ? imprint : null
+}
+
+export const IMPRINT = readImprint(import.meta.env)

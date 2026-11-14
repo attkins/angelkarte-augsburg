@@ -39,6 +39,7 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
       <path d="M3 12L1 9.5M3 12l-2 2.5" />
       <circle cx="16.5" cy="11" r="0.8" fill="currentColor" />
     </template>
+    <template v-else-if="name === 'info'"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></template>
     <template v-else-if="name === 'layers'">
       <path d="M12 4l8 4-8 4-8-4z" /><path d="M4 12l8 4 8-4" /><path d="M4 16l8 4 8-4" />
     </template>

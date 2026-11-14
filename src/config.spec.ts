@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { cartoTileUrl, GUEST_ACCESS, PRICE_LABELS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
+import { cartoTileUrl, GUEST_ACCESS, PRICE_LABELS, readImprint, REGION_BOUNDS, TILE_LAYERS } from '@/config'
 import { GUEST_ACCESS as VALIDATOR_GUEST_ACCESS, PRICE_KEYS } from '../scripts/lib/validate-data.mjs'
 
 const css = readFileSync(fileURLToPath(new URL('./style.css', import.meta.url)), 'utf8')
@@ -76,5 +76,29 @@ describe('config', () => {
     expect(48.37).toBeLessThan(north)
     expect(10.9).toBeGreaterThan(west)
     expect(10.9).toBeLessThan(east)
+  })
+
+  describe('readImprint', () => {
+    const env = {
+      VITE_IMPRINT_NAME: ' Erika Mustermann ',
+      VITE_IMPRINT_STREET: 'Seeweg 1',
+      VITE_IMPRINT_CITY: '86150 Augsburg',
+      VITE_IMPRINT_EMAIL: 'erika@example.org',
+    }
+
+    it('reads and trims all values', () => {
+      expect(readImprint(env)).toEqual({
+        name: 'Erika Mustermann',
+        street: 'Seeweg 1',
+        city: '86150 Augsburg',
+        email: 'erika@example.org',
+      })
+    })
+
+    it('returns null when a value is missing or blank', () => {
+      expect(readImprint({ ...env, VITE_IMPRINT_STREET: undefined })).toBeNull()
+      expect(readImprint({ ...env, VITE_IMPRINT_EMAIL: '  ' })).toBeNull()
+      expect(readImprint({})).toBeNull()
+    })
   })
 })
