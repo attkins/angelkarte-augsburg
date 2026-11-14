@@ -4,6 +4,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice, phoneHref } from '@/utils/format'
+import { isAugsburgCity } from '@/utils/holidays'
 import { describeOpeningStatus, formatOpeningHours, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
@@ -20,7 +21,17 @@ const emit = defineEmits<{ selectWater: [id: string]; selectClub: [id: string]; 
 
 const p = computed(() => props.salesPoint.properties)
 
-const opening = computed(() => (p.value.openingHours ? openingStatus(p.value.openingHours, props.now) : null))
+const opening = computed(() =>
+  p.value.openingHours
+    ? openingStatus(p.value.openingHours, props.now, { augsburgCity: isAugsburgCity(p.value.address) })
+    : null,
+)
+/** CSS modifier and label for the status line. */
+const openingState = computed(() => {
+  if (!opening.value) return null
+  if (opening.value.open === null) return { modifier: 'is-unknown', label: 'Feiertag' }
+  return opening.value.open ? { modifier: 'is-open', label: 'Geöffnet' } : { modifier: 'is-closed', label: 'Geschlossen' }
+})
 const openingLines = computed(() =>
   p.value.openingHours ? formatOpeningHours(p.value.openingHours, props.now.getMonth() + 1) : [],
 )
@@ -80,9 +91,9 @@ function guestPrice(water: WaterFeature): string | null {
     </header>
 
     <div v-if="opening || p.openingHoursNote" class="opening">
-      <div v-if="opening" class="opening-status">
-        <span class="dot" :class="opening.open ? 'is-open' : 'is-closed'" />
-        <strong :class="opening.open ? 'is-open' : 'is-closed'">{{ opening.open ? 'Geöffnet' : 'Geschlossen' }}</strong>
+      <div v-if="opening && openingState" class="opening-status">
+        <span class="dot" :class="openingState.modifier" />
+        <strong :class="openingState.modifier">{{ openingState.label }}</strong>
         <span class="visually-hidden">, </span>
         <span class="muted-inline">{{ describeOpeningStatus(opening) }}</span>
       </div>
@@ -171,6 +182,14 @@ strong.is-open {
 
 strong.is-closed {
   color: var(--closed-text);
+}
+
+.dot.is-unknown {
+  background: var(--unknown);
+}
+
+strong.is-unknown {
+  color: var(--unknown-text);
 }
 
 .muted-inline {

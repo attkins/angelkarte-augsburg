@@ -1,4 +1,5 @@
 import type { DateRange, MonthDay, OpeningRule, Weekday } from '@/types'
+import { type HolidayOptions, publicHoliday } from '@/utils/holidays'
 
 // Date logic for seasons, guest periods and opening hours.
 // Everything works on local time and takes `now` as a parameter, so it is easy to test.
@@ -113,11 +114,12 @@ export function formatTime(time: string): string {
   return m === '00' ? String(Number(h)) : `${Number(h)}:${m}`
 }
 
-function rulesFor(rules: OpeningRule[], date: Date): OpeningRule[] {
-  const weekday = WEEKDAYS[date.getDay()]!
+/** Rules for that date. On a public holiday these are the `ph` rules instead of the weekday's. */
+function rulesFor(rules: OpeningRule[], date: Date, holiday: boolean): OpeningRule[] {
+  const day = holiday ? 'ph' : WEEKDAYS[date.getDay()]!
   const month = date.getMonth() + 1
   return rules
-    .filter((r) => r.days.includes(weekday) && (!r.months || r.months.includes(month)))
+    .filter((r) => r.days.includes(day) && (!r.months || r.months.includes(month)))
     .sort((a, b) => minutes(a.open) - minutes(b.open))
 }
 
@@ -125,10 +127,22 @@ export type OpeningStatus =
   | { open: true; closesAt: string }
   | { open: false; opensAt: string; opensOn: 'today' | 'tomorrow' | Weekday }
   | { open: false; opensAt: null; opensOn: null }
+  /** Public holiday and the shop has no holiday hours: it may well be closed, but nobody knows. */
+  | { open: null; holiday: string }
 
-export function openingStatus(rules: OpeningRule[], now: Date): OpeningStatus {
+/**
+ * Whether the shop is open at `now` and when it opens next.
+ *
+ * Public holidays use the `ph` rules. A shop without them is reported as unknown on the
+ * holiday itself and skipped when looking for the next opening, as most shops close then.
+ */
+export function openingStatus(rules: OpeningRule[], now: Date, holidays: HolidayOptions = {}): OpeningStatus {
   const nowMinutes = now.getHours() * 60 + now.getMinutes()
-  const today = rulesFor(rules, now)
+  const hasHolidayRules = rules.some((r) => r.days.includes('ph'))
+  const holidayToday = publicHoliday(now, holidays)
+  if (holidayToday && !hasHolidayRules) return { open: null, holiday: holidayToday }
+
+  const today = rulesFor(rules, now, holidayToday !== null)
 
   const current = today.find((r) => minutes(r.open) <= nowMinutes && nowMinutes < minutes(r.close))
   if (current) return { open: true, closesAt: current.close }
@@ -138,7 +152,9 @@ export function openingStatus(rules: OpeningRule[], now: Date): OpeningStatus {
 
   for (let offset = 1; offset <= 7; offset++) {
     const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset)
-    const first = rulesFor(rules, day)[0]
+    const holiday = publicHoliday(day, holidays) !== null
+    if (holiday && !hasHolidayRules) continue
+    const first = rulesFor(rules, day, holiday)[0]
     if (first) {
       return {
         open: false,
@@ -152,6 +168,7 @@ export function openingStatus(rules: OpeningRule[], now: Date): OpeningStatus {
 
 /** Short German description, e.g. "heute bis 18 Uhr" or "öffnet Mittwoch um 14 Uhr". */
 export function describeOpeningStatus(status: OpeningStatus): string {
+  if (status.open === null) return `heute ${status.holiday}, Zeiten können abweichen`
   if (status.open) return `heute bis ${formatTime(status.closesAt)} Uhr`
   if (!status.opensAt) return 'keine Öffnungszeiten bekannt'
   const time = `${formatTime(status.opensAt)} Uhr`
@@ -206,5 +223,13 @@ export function formatOpeningHours(rules: OpeningRule[], month: number): Opening
     if (existing) existing.days.push(day)
     else lines.push({ days: [day], hours })
   }
-  return lines.map((l) => ({ days: formatDays(l.days), hours: l.hours }))
+  const result = lines.map((l) => ({ days: formatDays(l.days), hours: l.hours }))
+
+  // Holiday hours always get their own line at the end.
+  const holiday = applicable
+    .filter((r) => r.days.includes('ph'))
+    .sort((a, b) => minutes(a.open) - minutes(b.open))
+    .map((r) => `${formatTime(r.open)} bis ${formatTime(r.close)}`)
+  if (holiday.length) result.push({ days: 'Feiertage', hours: `${holiday.join(' und ')} Uhr` })
+  return result
 }

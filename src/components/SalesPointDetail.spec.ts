@@ -49,6 +49,34 @@ describe('SalesPointDetail', () => {
       expect(status.text()).toBe('Geschlossen, öffnet Montag um 16 Uhr')
     })
 
+    it('says a holiday without holiday hours is uncertain instead of open or closed', () => {
+      const salesPoint = makeSalesPoint({ openingHours: rules })
+      // Allerheiligen, a Sunday in 2026, so take Christmas Day, a Friday.
+      const status = mount(SalesPointDetail, {
+        props: { salesPoint, data: makeMapData(undefined, undefined, [salesPoint]), now: new Date(2026, 11, 25, 15) },
+      }).find('.opening-status')
+
+      expect(status.text()).toBe('Feiertag, heute 1. Weihnachtstag, Zeiten können abweichen')
+      expect(status.find('strong').classes()).toContain('is-unknown')
+    })
+
+    it('treats the Friedensfest as a holiday for shops in Augsburg only', () => {
+      // Saturday 8 August 2026.
+      const saturday = [{ days: ['sa' as const], open: '08:00', close: '13:00' }]
+      const now = new Date(2026, 7, 8, 10)
+      const status = (address: string) => {
+        const salesPoint = makeSalesPoint({ address, openingHours: saturday })
+        return mount(SalesPointDetail, {
+          props: { salesPoint, data: makeMapData(undefined, undefined, [salesPoint]), now },
+        })
+          .find('.opening-status strong')
+          .text()
+      }
+
+      expect(status('Kurzes Geländ 8a, 86156 Augsburg')).toBe('Feiertag')
+      expect(status('Augsburger Str. 72, 86316 Friedberg')).toBe('Geöffnet')
+    })
+
     it('lists the opening hours of the current month only', () => {
       const lines = mountDetail(makeSalesPoint({ openingHours: rules }))
         .findAll('.opening-times dt, .opening-times dd')

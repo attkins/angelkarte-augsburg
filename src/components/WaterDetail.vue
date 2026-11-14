@@ -5,6 +5,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { PRICE_LABELS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatDate, formatPrice } from '@/utils/format'
+import { isAugsburgCity } from '@/utils/holidays'
 import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
@@ -52,12 +53,16 @@ const salesPoints = computed(() =>
     .filter((sp): sp is SalesPointFeature => Boolean(sp))
     .map((sp) => {
       const rules = sp.properties.openingHours
-      const opening = rules ? openingStatus(rules, props.now) : null
+      const opening = rules
+        ? openingStatus(rules, props.now, { augsburgCity: isAugsburgCity(sp.properties.address) })
+        : null
       return {
         id: sp.properties.id,
         name: sp.properties.name,
         address: sp.properties.address,
-        open: opening?.open ?? null,
+        // Holidays without holiday hours have no "Geöffnet" or "Geschlossen", only the text.
+        openingLabel: !opening || opening.open === null ? null : opening.open ? 'Geöffnet' : 'Geschlossen',
+        openingModifier: !opening ? null : opening.open === null ? 'is-unknown' : opening.open ? 'is-open' : 'is-closed',
         openingText: opening ? describeOpeningStatus(opening) : null,
       }
     }),
@@ -144,8 +149,9 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
           <span class="row-text">
             <span class="row-title">{{ sp.name }}</span>
             <span class="row-sub">{{ sp.address }}</span>
-            <span v-if="sp.openingText" class="row-sub" :class="sp.open ? 'is-open' : 'is-closed'">
-              {{ sp.open ? 'Geöffnet' : 'Geschlossen' }}, {{ sp.openingText }}
+            <span v-if="sp.openingText" class="row-sub" :class="sp.openingModifier">
+              <template v-if="sp.openingLabel">{{ sp.openingLabel }}, {{ sp.openingText }}</template>
+              <template v-else>{{ sp.openingText.charAt(0).toUpperCase() + sp.openingText.slice(1) }}</template>
             </span>
           </span>
           <AppIcon name="chevron-right" :size="18" class="row-chevron" />
@@ -328,5 +334,9 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
 
 .is-closed {
   color: var(--closed-text);
+}
+
+.is-unknown {
+  color: var(--unknown-text);
 }
 </style>

@@ -10,6 +10,8 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 const MONTH_DAY = /^(\d{2})-(\d{2})$/
 const TIME = /^([01]\d|2[0-3]):[0-5]\d$/
 export const WEEKDAYS = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
+/** Weekdays plus `ph` for public holidays. */
+export const OPENING_DAYS = [...WEEKDAYS, 'ph']
 const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 function isMonthDay(value) {
@@ -36,8 +38,8 @@ function checkOpeningRules(rules, where, errors) {
   }
   rules.forEach((rule, index) => {
     const label = `${where}: openingHours[${index}]`
-    if (!Array.isArray(rule.days) || rule.days.length === 0 || rule.days.some((d) => !WEEKDAYS.includes(d))) {
-      errors.push(`${label}: days must be a non-empty list of ${WEEKDAYS.join(', ')}`)
+    if (!Array.isArray(rule.days) || rule.days.length === 0 || rule.days.some((d) => !OPENING_DAYS.includes(d))) {
+      errors.push(`${label}: days must be a non-empty list of ${OPENING_DAYS.join(', ')}`)
     }
     if (!TIME.test(rule.open ?? '') || !TIME.test(rule.close ?? '')) {
       errors.push(`${label}: open and close must be HH:MM`)

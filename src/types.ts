@@ -25,9 +25,13 @@ export interface DateRange {
 
 export type Weekday = 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa' | 'su'
 
+/** A weekday or `ph` for public holidays. */
+export type OpeningDay = Weekday | 'ph'
+
 /** One opening interval on the given weekdays, optionally only in some months (1 to 12). */
 export interface OpeningRule {
-  days: Weekday[]
+  /** On a public holiday only the `ph` rules apply. */
+  days: OpeningDay[]
   /** `HH:MM` */
   open: string
   /** `HH:MM`, later than `open` on the same day. */

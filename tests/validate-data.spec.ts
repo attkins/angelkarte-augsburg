@@ -212,6 +212,7 @@ describe('validateData', () => {
         openingHours: [
           { days: ['mo', 'tu'], open: '09:00', close: '18:00' },
           { days: ['sa'], open: '08:00', close: '13:00', months: [3, 4, 5, 6, 7, 8, 9, 10] },
+          { days: ['su', 'ph'], open: '08:00', close: '19:00' },
         ],
       })
 
@@ -219,8 +220,8 @@ describe('validateData', () => {
     })
 
     it.each([
-      ['unknown weekday', { days: ['monday'], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su'],
-      ['no weekday', { days: [], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su'],
+      ['unknown weekday', { days: ['monday'], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su, ph'],
+      ['no weekday', { days: [], open: '09:00', close: '18:00' }, 'days must be a non-empty list of mo, tu, we, th, fr, sa, su, ph'],
       ['time without leading zero', { days: ['mo'], open: '9:00', close: '18:00' }, 'open and close must be HH:MM'],
       ['hour out of range', { days: ['mo'], open: '09:00', close: '24:00' }, 'open and close must be HH:MM'],
       ['close before open', { days: ['mo'], open: '18:00', close: '09:00' }, 'open must be before close'],

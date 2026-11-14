@@ -132,6 +132,35 @@ describe('openingStatus', () => {
   it('handles rules that never apply', () => {
     expect(openingStatus([], at(11, 13))).toEqual({ open: false, opensAt: null, opensOn: null })
   })
+
+  describe('public holidays', () => {
+    // 1 Nov 2026 (Allerheiligen) is a Sunday, 25 Dec 2026 a Friday.
+    const shop: OpeningRule[] = [{ days: ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'], open: '09:00', close: '18:00' }]
+    const station: OpeningRule[] = [
+      { days: ['mo', 'tu', 'we', 'th', 'fr', 'sa'], open: '06:00', close: '22:00' },
+      { days: ['su', 'ph'], open: '07:00', close: '20:00' },
+    ]
+
+    it('is unknown on a holiday when the shop has no holiday hours', () => {
+      expect(openingStatus(shop, at(12, 25, 12))).toEqual({ open: null, holiday: '1. Weihnachtstag' })
+    })
+
+    it('uses the holiday hours instead of the weekday on a holiday', () => {
+      expect(openingStatus(station, at(12, 25, 6, 30))).toEqual({ open: false, opensAt: '07:00', opensOn: 'today' })
+      expect(openingStatus(station, at(12, 25, 21))).toEqual({ open: false, opensAt: '07:00', opensOn: 'tomorrow' })
+    })
+
+    it('skips holidays without holiday hours when looking for the next opening', () => {
+      // Thursday 24 Dec 20:00, then two holidays, then Sunday 27 Dec.
+      expect(openingStatus(shop, at(12, 24, 20))).toEqual({ open: false, opensAt: '09:00', opensOn: 'su' })
+    })
+
+    it('knows the Friedensfest only inside Augsburg', () => {
+      // 8 Aug 2026 is a Saturday.
+      expect(openingStatus(shop, at(8, 8, 12)).open).toBe(true)
+      expect(openingStatus(shop, at(8, 8, 12), { augsburgCity: true })).toEqual({ open: null, holiday: 'Friedensfest' })
+    })
+  })
 })
 
 describe('describeOpeningStatus', () => {
@@ -141,6 +170,7 @@ describe('describeOpeningStatus', () => {
     expect(describeOpeningStatus({ open: false, opensAt: '09:00', opensOn: 'tomorrow' })).toBe('öffnet morgen um 9 Uhr')
     expect(describeOpeningStatus({ open: false, opensAt: '16:00', opensOn: 'mo' })).toBe('öffnet Montag um 16 Uhr')
     expect(describeOpeningStatus({ open: false, opensAt: null, opensOn: null })).toBe('keine Öffnungszeiten bekannt')
+    expect(describeOpeningStatus({ open: null, holiday: 'Allerheiligen' })).toBe('heute Allerheiligen, Zeiten können abweichen')
   })
 })
 
@@ -169,5 +199,17 @@ describe('formatOpeningHours', () => {
     ]
     expect(formatOpeningHours(rules, 11)).toEqual([{ days: 'Sa', hours: '10 bis 13 Uhr' }])
     expect(formatOpeningHours(rules, 5)).toEqual([{ days: 'Sa', hours: '8 bis 13 Uhr' }])
+  })
+
+  it('puts holiday hours on their own line at the end', () => {
+    const rules: OpeningRule[] = [
+      { days: ['mo', 'tu', 'we', 'th', 'fr', 'sa'], open: '06:00', close: '22:00' },
+      { days: ['su', 'ph'], open: '07:00', close: '22:00' },
+    ]
+    expect(formatOpeningHours(rules, 6)).toEqual([
+      { days: 'Mo bis Sa', hours: '6 bis 22 Uhr' },
+      { days: 'So', hours: '7 bis 22 Uhr' },
+      { days: 'Feiertage', hours: '7 bis 22 Uhr' },
+    ])
   })
 })
