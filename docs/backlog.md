@@ -18,8 +18,8 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 
 | ID | Task | Status |
 |----|------|--------|
-| C1 | Remove stale "Lage nur ungefähr" and "Grenzen noch nicht geprüft" from the `accessNote` of waters that are now traced: Lechauensee 1 and 2, FVA-See, Paintensee, Rollweiher, Hurlacher See, Baggerseen Sand, Günz, Lochbach Haunstetten | open |
-| C2 | Update step 6 in `concept.md`: Paintensee, Rollweiher and Hurlacher See are traced by now | open |
+| C1 | Remove stale "Lage nur ungefähr" and "Grenzen noch nicht geprüft" from the `accessNote` of waters that are now traced: Lechauensee 1 and 2, FVA-See, Paintensee, Rollweiher, Hurlacher See, Baggerseen Sand, Günz, Lochbach Haunstetten | done 2026-11-14 for the seven lakes. Günz and Lochbach Haunstetten keep their note because the stretch limits are still unchecked, moved to D6 |
+| C2 | Update step 6 in `concept.md`: Paintensee, Rollweiher and Hurlacher See are traced by now | done 2026-11-14 |
 | C3 | Run `npm test` in the GitHub Actions workflow before the build. `.github/` can only be edited by Thomas | open |
 
 ## Data
@@ -31,7 +31,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | D3 | Clarify the 7 waters with `guestAccess: unknown` | open |
 | D4 | Singold Bobingen is open for guests but has no guest price. Bobingen prices are not online at all | open |
 | D5 | Singold Wehringen has no sales point and no online purchase. Wehringen sales points are unknown | open |
-| D6 | Real extent of the placeholder stretches: Lech (LFV), Wertach Großaitingen, Wehringen, Siebnach, Göggingen. Club water maps help most | open |
+| D6 | Real extent of the placeholder stretches: Lech (LFV), Wertach Großaitingen, Wehringen, Siebnach, Göggingen. Also check the limits of Günz (Deisenhausen) and Lochbach Haunstetten. Club water maps help most | open |
 | D7 | Fish species: only 5 of 62 waters have species. Start with FVA and LFV | open |
 | D8 | Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam | open |
 | D9 | Missing waters outside the core region: Kirnach (FVA), 1. AAC waters (Mindel, Günz, Höchstädt and others) | open |
