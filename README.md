@@ -39,6 +39,27 @@ Name, address and email of the operator for the imprint come from environment va
 
 For the GitHub Pages build, add them as repository secrets (Settings, Secrets and variables, Actions, Secrets). Secrets instead of variables, because the logs of a public repository are public and secrets are masked there. The deploy workflow stops before the build if one of them is missing, so the site never goes live without an imprint. The values are of course visible on the published site.
 
+### Changelog
+
+`CHANGELOG.md` is generated from the commit messages with [git-cliff](https://git-cliff.org), configured in `cliff.toml`. It only works if commits follow [Conventional Commits](https://www.conventionalcommits.org): `feat:` for new features, `fix:` for fixes, `feat(data):` and `fix(data):` for changes to the data files, plus `docs:`, `test:`, `refactor:`, `build:` and `chore:`. Commits that do not follow the convention are left out.
+
+```sh
+npm run changelog                     # update CHANGELOG.md, new commits go under "Unreleased"
+npm run changelog -- --tag v0.3.0     # file the unreleased commits under version 0.3.0, then commit and tag
+npm run changelog -- --bump           # same, with the next version worked out from the commits
+```
+
+The file is not generated in the deploy workflow, run the script before a commit when the changelog should be up to date.
+
+git-cliff takes the versions from the git tags (`v0.3.0` and so on), not from `package.json`. Without any tag `--bump` starts at `v0.3.0` (`[bump]` in `cliff.toml`). A release therefore looks like this:
+
+```sh
+npm run changelog -- --bump                  # changelog with the next version
+npm version 0.3.0 --no-git-tag-version       # same version in package.json
+git commit -am "chore(release): 0.3.0"
+git tag v0.3.0
+```
+
 Other scripts:
 
 ```sh
@@ -142,3 +163,9 @@ Lakes that exist in OpenStreetMap under their name use the OSM outline (`geometr
 `.github/workflows/deploy.yml` validates the data, builds the site and publishes `dist/` to GitHub Pages on every push to `main`. In the repository settings set Pages to "GitHub Actions" as source. The build uses a relative base path, so it works under `/<repo>/` without further configuration.
 
 The page sets `noindex` so it stays out of search engines, but anyone with the link can open it.
+
+### Link preview
+
+`index.html` has Open Graph tags, so a shared link shows a card with title, text and the image `public/og-image.png` in messengers. Crawlers need absolute URLs, so `og:url` and `og:image` contain the GitHub Pages address. Change both if the site moves. They also ignore the `#/...` routes, so a link to a single water shows the same card.
+
+The image is a small map of all waters in their access colours. After larger data changes it can be rendered again with `python3 scripts/og-image.py` (needs Python with Playwright and the installed npm packages for the fonts). Messengers cache previews, so a changed image may take a while to show up.

@@ -47,6 +47,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | T2 | Show prices with `validFrom` automatically once the date is reached, keep the old prices until then | open |
 | T3 | Decide how data is maintained later: hand-edited GeoJSON with docs, or a small editor | open |
 | T4 | Decide whether the site needs a password or an unlisted link is enough | open |
+| T5 | Changelog generated from the Conventional Commits | done 2026-11-14 with git-cliff: `cliff.toml`, `npm run changelog`, usage in the README. Not part of the deploy workflow, could be added there later (needs Thomas, see C3) |
 
 ## Feature ideas
 
