@@ -27,7 +27,8 @@ const container = useTemplateRef<HTMLElement>('container')
 const map = shallowRef<L.Map | null>(null)
 
 const showWaters = ref(true)
-const showSalesPoints = ref(true)
+// Sales points are hidden by default, the waters are what matters first.
+const showSalesPoints = ref(false)
 const baseLayer = ref<BaseLayer>('map')
 const layersOpen = ref(false)
 const locateMessage = ref<string | null>(null)
@@ -43,6 +44,8 @@ let tileLayer: L.TileLayer | null = null
 let aerialLayer: L.TileLayer.WMS | null = null
 let aerialLabels: L.TileLayer | null = null
 let locationMarker: L.CircleMarker | null = null
+// Markers shown on their own while the sales point layer is hidden (the selected sales point).
+let pinnedMarkers = new Set<string>()
 let locateMessageTimer: ReturnType<typeof setTimeout> | undefined
 let limit: L.LatLngBounds | null = null
 
@@ -171,7 +174,8 @@ onMounted(() => {
       })
       return marker
     },
-  }).addTo(m)
+  })
+  if (showSalesPoints.value) salesPointsLayer.addTo(m)
 
   m.on('click', () => {
     selection.value = null
@@ -264,6 +268,8 @@ function applyHighlight() {
     layer.setStyle(waterStyle(feature, state))
   })
 
+  syncPinnedMarkers(selectedSalesPoint)
+
   markersById.forEach((marker, id) => {
     const state = !sel ? 'default' : id === selectedSalesPoint ? 'selected' : linkedSalesPoints.has(id) ? 'linked' : 'dimmed'
     marker.setIcon(pinIcon(state))
@@ -283,9 +289,12 @@ function applyHighlight() {
     const center = waterCenter(selectedWater)
     if (!layer || !feature || !center) return
 
-    for (const id of linkedSalesPoints) {
-      const marker = markersById.get(id)
-      if (marker) line(center, marker.getLatLng()).addTo(overlay)
+    // With the sales point layer hidden there are no markers to connect to.
+    if (showSalesPoints.value) {
+      for (const id of linkedSalesPoints) {
+        const marker = markersById.get(id)
+        if (marker) line(center, marker.getLatLng()).addTo(overlay)
+      }
     }
     // White halo below the selected water so it stands out from its neighbours.
     L.geoJSON(feature, {
@@ -303,7 +312,7 @@ function applyHighlight() {
         className: 'map-label is-water',
       })
       .openTooltip(L.latLng(layer.getBounds().getNorth(), center.lng))
-    if (linkedSalesPoints.size <= MAX_LABELS) {
+    if (showSalesPoints.value && linkedSalesPoints.size <= MAX_LABELS) {
       for (const id of linkedSalesPoints) labelMarker(id)
     }
   } else if (selectedSalesPoint) {
@@ -322,6 +331,21 @@ function applyHighlight() {
       for (const id of linkedWaters) labelWater(id)
     }
   }
+}
+
+/**
+ * While the sales point layer is hidden, a selected sales point (e.g. picked in the water detail)
+ * is still shown on its own, so the connection lines and the label have something to point at.
+ */
+function syncPinnedMarkers(selectedSalesPoint: string | null) {
+  const m = map.value
+  if (!m) return
+  const wanted = new Set(!showSalesPoints.value && selectedSalesPoint ? [selectedSalesPoint] : [])
+  for (const id of pinnedMarkers) {
+    if (!wanted.has(id)) markersById.get(id)?.remove()
+  }
+  for (const id of wanted) markersById.get(id)?.addTo(m)
+  pinnedMarkers = wanted
 }
 
 function labelWater(id: string) {
@@ -352,9 +376,12 @@ function fitToSelection() {
   if (sel.kind === 'water') {
     const layer = waterLayersById.get(sel.id)
     if (layer) bounds.extend(layer.getBounds())
-    for (const id of props.data.salesPointIdsByWater.get(sel.id) ?? []) {
-      const marker = markersById.get(id)
-      if (marker) bounds.extend(marker.getLatLng())
+    // Hidden sales points would only zoom the map out for nothing.
+    if (showSalesPoints.value) {
+      for (const id of props.data.salesPointIdsByWater.get(sel.id) ?? []) {
+        const marker = markersById.get(id)
+        if (marker) bounds.extend(marker.getLatLng())
+      }
     }
   } else if (sel.kind === 'club') {
     // Only the waters: a shop selling for the club can be far away and would zoom out too much.
@@ -438,8 +465,15 @@ watch(showWaters, (visible) => {
 
 watch(showSalesPoints, (visible) => {
   if (!map.value || !salesPointsLayer) return
-  if (visible) salesPointsLayer.addTo(map.value)
-  else salesPointsLayer.remove()
+  if (visible) {
+    // Pinned markers are part of the layer, adding it again keeps them in place.
+    pinnedMarkers = new Set()
+    salesPointsLayer.addTo(map.value)
+  } else {
+    salesPointsLayer.remove()
+  }
+  // Connection lines, labels and the pinned marker depend on the layer.
+  applyHighlight()
 })
 </script>
 

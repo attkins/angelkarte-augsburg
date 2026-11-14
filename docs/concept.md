@@ -33,6 +33,8 @@ Expandable "more info" section:
 
 Shown as their own markers on the map, visually distinct from the waters (e.g. a shop icon).
 
+Hidden by default (decided 2026-11-14): in the first step the waters matter, the sales points are a second step. The layer toggle shows them. While the layer is hidden, selecting a water draws no connection lines and fits the map to the water only. The sales points stay listed in the water detail, and selecting one there shows that single marker with its connection lines.
+
 Detail view content:
 - Name, address, phone
 - Opening hours if known
@@ -42,7 +44,7 @@ Clicking a water should also highlight its sales points, so the connection works
 
 Sales points are a separate entity because one shop often sells tickets for several clubs (e.g. Jafispo in Augsburg).
 
-Sales points outside the region are shown like all others. The initial map view stays focused on the region, so they only appear when zooming out or when a water's sales points are highlighted (the map then fits its bounds to include them).
+Sales points outside the region are shown like all others. The initial map view stays focused on the region, so with the sales point layer switched on they only appear when zooming out or when a water's sales points are highlighted (the map then fits its bounds to include them).
 
 ## Design (decided 2026-11-13)
 
@@ -64,7 +66,7 @@ Seasons, guest periods and opening hours are stored in a structured form since 2
 - Waters drawn as polygons (lakes) and as polygons or line segments (river stretches). River stretches will mostly need custom geometry because club boundaries do not match OSM objects.
 - Sales points as point markers
 - Colour coding for waters: open to guests, guests only with member, members only, unknown
-- Layer toggle: waters, sales points
+- Layer toggle: waters (on by default), sales points (off by default)
 - Own zoom and location buttons, legend with icons
 - Filters as chips from the design: guests welcome, online purchase, season open, fly fishing, fish species (not built yet)
 

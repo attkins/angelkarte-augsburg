@@ -62,3 +62,4 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F8 | Report an error | Mail link in the water detail with the water ID prefilled | open |
 | F9 | Parking and access points | A few points per water, drawn with the aerial images. Needs a schema extension | open |
 | F10 | Depth maps for lakes | No depth maps to embed, see `concept.md`. Built `maxDepth` (14 lakes so far) and an optional `depthMapUrl` link instead | done 2026-11-14 |
+| F12 | Hide sales points by default | Layer toggle starts off. A sales point selected in the water detail is still shown on its own with its connection lines. Selecting a water fits only to the water while the layer is off | done 2026-11-14 |
