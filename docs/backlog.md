@@ -55,7 +55,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F1 | Filter "Karte heute noch bekommen" | Waters where a sales point is open right now or online purchase exists. Needs D1 | open |
 | F2 | Plan for a date | Date picker instead of only "today": seasons, guest periods and opening hours on that day. `availability()` and `openingStatus()` already take a date | open |
 | F3 | Fish species filter | Chip or selector, needs D7 | open |
-| F4 | Sort by distance | Distance from the own location or a fixed start (e.g. Friedberg), optionally rough driving time | in progress (chat F4) |
+| F4 | Sort by distance | Toggle "Name / Entfernung" in the water list, straight-line distance to the nearest point of the water from the own location, fallback `DEFAULT_ORIGIN` (Augsburg Mitte) in `src/config.ts`. Driving time left out, a guess from straight-line distance would mislead | done 2026-11-14 |
 | F5 | Share button | Web Share API with the existing hash routes, fallback copy link | open |
 | F6 | Water level and temperature | Open data of the Hochwassernachrichtendienst Bayern for Lech, Wertach, Schmutter, Paar. First check which gauges fit which stretches | open |
 | F7 | Offline use | Service worker caching the data files and recently viewed tiles | open |

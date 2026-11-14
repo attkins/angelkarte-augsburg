@@ -129,6 +129,13 @@ const CREDITS: Credit[] = [
         <a href="https://www.ldbv.bayern.de" target="_blank" rel="noopener">Seite des Landesamts</a>.
       </p>
 
+      <h3 class="sub-title">Dein Standort</h3>
+      <p>
+        Wenn du „Mein Standort“ antippst oder die Liste nach Entfernung sortierst, fragt dein Browser, ob er den
+        Standort freigeben darf. Er wird nur in deinem Browser verwendet, um die Karte zu zentrieren und Entfernungen zu
+        berechnen, und weder gespeichert noch übertragen.
+      </p>
+
       <h3 class="sub-title">Gespeicherte Einstellung</h3>
       <p>
         Wenn du zwischen hellem und dunklem Design wechselst, merkt sich dein Browser die Wahl im lokalen Speicher. Sie

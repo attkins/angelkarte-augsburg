@@ -1,16 +1,43 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { GUEST_ACCESS } from '@/config'
+import { computed, ref } from 'vue'
+import { useLocation } from '@/composables/useLocation'
+import { DEFAULT_ORIGIN, GUEST_ACCESS } from '@/config'
 import type { MapData } from '@/types'
+import { distanceToWaterKm, formatDistance } from '@/utils/distance'
 import { formatPrice } from '@/utils/format'
 
 const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
 
-const waters = computed(() =>
-  [...props.data.waters.features]
+const sortBy = ref<'name' | 'distance'>('name')
+const location = useLocation()
+
+/** Own location once known, otherwise the configured start. */
+const origin = computed(() =>
+  sortBy.value === 'distance' ? (location.position.value ?? DEFAULT_ORIGIN) : null,
+)
+
+const originNote = computed(() => {
+  if (sortBy.value !== 'distance') return null
+  switch (location.status.value) {
+    case 'found':
+      return 'Luftlinie von deinem Standort'
+    case 'locating':
+      return `Standort wird ermittelt, bis dahin Luftlinie von ${DEFAULT_ORIGIN.name}`
+    default:
+      return `Luftlinie von ${DEFAULT_ORIGIN.name}, dein Standort ist nicht freigegeben`
+  }
+})
+
+function sortByDistance() {
+  sortBy.value = 'distance'
+  location.request()
+}
+
+const waters = computed(() => {
+  const from = origin.value
+  return props.data.waters.features
     .filter((w) => !props.matchingIds || props.matchingIds.has(w.properties.id))
-    .sort((a, b) => a.properties.name.localeCompare(b.properties.name, 'de'))
     .map((water) => {
       const p = water.properties
       const club = props.data.clubsById.get(p.clubId)
@@ -21,9 +48,14 @@ const waters = computed(() =>
         clubName: club ? (club.shortName ?? club.name) : null,
         token: (GUEST_ACCESS[p.guestAccess] ?? GUEST_ACCESS.unknown).token,
         price: p.guestAccess === 'membersOnly' ? null : typeof guest === 'number' ? formatPrice(guest) : null,
+        km: from ? distanceToWaterKm(from, water.geometry) : null,
       }
-    }),
-)
+    })
+    .sort((a, b) =>
+      a.km !== null && b.km !== null && a.km !== b.km ? a.km - b.km : a.name.localeCompare(b.name, 'de'),
+    )
+    .map((row) => ({ ...row, distance: row.km === null ? null : formatDistance(row.km) }))
+})
 </script>
 
 <template>
@@ -35,6 +67,23 @@ const waters = computed(() =>
         der Karte oder in der Liste.
       </p>
     </div>
+    <div v-if="waters.length > 1" class="sort">
+      <div class="sort-toggle" role="group" aria-label="Sortieren">
+        <button type="button" :class="{ 'is-active': sortBy === 'name' }" :aria-pressed="sortBy === 'name'" @click="sortBy = 'name'">
+          Name
+        </button>
+        <button
+          type="button"
+          :class="{ 'is-active': sortBy === 'distance' }"
+          :aria-pressed="sortBy === 'distance'"
+          @click="sortByDistance"
+        >
+          Entfernung
+        </button>
+      </div>
+      <p v-if="originNote" class="muted origin-note" role="status">{{ originNote }}</p>
+    </div>
+
     <p v-if="matchingIds && waters.length === 0" class="muted empty">Keine Gewässer passen zu den Filtern.</p>
     <ul v-else>
       <li v-for="water in waters" :key="water.id">
@@ -42,7 +91,9 @@ const waters = computed(() =>
           <span class="dot" :style="{ background: `var(--${water.token})` }" />
           <span class="name">
             {{ water.name }}
-            <span v-if="water.clubName" class="club">{{ water.clubName }}</span>
+            <span v-if="water.clubName || water.distance" class="club">
+              {{ [water.clubName, water.distance].filter(Boolean).join(' · ') }}
+            </span>
           </span>
           <span v-if="water.price" class="price">{{ water.price }}</span>
         </button>
@@ -110,6 +161,43 @@ ul {
 
 .empty {
   padding: 8px 0;
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sort-toggle {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 12px;
+  background: var(--surface-3);
+}
+
+.sort-toggle button {
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sort-toggle button.is-active {
+  background: var(--surface-2);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.origin-note {
+  font-size: 12px;
 }
 
 .price {

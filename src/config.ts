@@ -124,3 +124,9 @@ export function readImprint(env: Record<string, unknown>): Imprint | null {
 }
 
 export const IMPRINT = readImprint(import.meta.env)
+
+/**
+ * Start for "sort by distance" when the browser does not share the location.
+ * Rathausplatz Augsburg, change it to any place that suits the people using the map.
+ */
+export const DEFAULT_ORIGIN = { name: 'Augsburg Mitte', lat: 48.3689, lng: 10.8978 }
