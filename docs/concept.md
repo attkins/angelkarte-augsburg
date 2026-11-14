@@ -153,6 +153,8 @@ Assessment: already in the data are the FVA Schmutter stretches, the Rothsee (FV
 
 ## Next steps
 
+Open tasks and new feature ideas are tracked in [backlog.md](backlog.md) so several chats can work on them in parallel.
+
 1. ~~Finish club research~~ (second pass done 2026-11-13, see research-clubs.md. Open: Friedberg guest rules, Bobingen prices, Wehringen sales points)
 2. ~~Collect sales points with addresses~~ (done for FVA, Friedberg, Haunstetten, Königsbrunn, Bobingen)
 3. ~~Define the data schema in detail~~ (done, see data-schema.md)
@@ -163,4 +165,4 @@ Assessment: already in the data are the FVA Schmutter stretches, the Rothsee (FV
 8. ~~Extend the schema where the research showed gaps~~ (done 2026-11-13: `season`, `source`, `prices.validFrom`. Deposit deadlines and weekday limits stay free text in `prices.note` and `accessNote`)
 9. ~~Enter the researched clubs into the data files~~ (done 2026-11-13. Left out for now: Kirnach, LFV Paar, Schmutter and Zusam, 1. AAC waters outside the core region)
 10. ~~Implement the design "Morgennebel"~~ (done 2026-11-13: themes, fonts, CARTO, side panel and bottom sheet, structured seasons and opening hours)
-11. Structure the remaining opening hours (most shops only have an address so far) and check holidays
+11. ~~Structure the remaining opening hours and check holidays~~ (done 2026-11-14: 24 of 27 sales points have hours now, from the shops' own pages where possible, otherwise from several directories that agree, the more conservative hours where they differ. Still open: Osetskiy (directories contradict each other), Fischerheim FV Friedberg and Holland Blumen. Holidays: `ph` rules, Bavarian holidays plus Friedensfest in Augsburg. Found on the way: Angel-Zoo-Ernst moved to Industriestr. 44 in Kissing and Zum Isarfischer (Sonnleitner) to Sachsenkamer Str. 6 in Bad Tölz, both need new coordinates)
