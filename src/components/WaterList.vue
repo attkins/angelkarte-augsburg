@@ -4,11 +4,12 @@ import { GUEST_ACCESS } from '@/config'
 import type { MapData } from '@/types'
 import { formatPrice } from '@/utils/format'
 
-const props = defineProps<{ data: MapData }>()
+const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
 
 const waters = computed(() =>
   [...props.data.waters.features]
+    .filter((w) => !props.matchingIds || props.matchingIds.has(w.properties.id))
     .sort((a, b) => a.properties.name.localeCompare(b.properties.name, 'de'))
     .map((water) => {
       const p = water.properties
@@ -27,14 +28,15 @@ const waters = computed(() =>
 
 <template>
   <section class="water-list" aria-label="Alle Gewässer">
-    <div>
+    <div v-if="!matchingIds">
       <h1 class="serif">Alle Gewässer</h1>
       <p class="muted">
         {{ waters.length }} Gewässer und {{ data.salesPoints.features.length }} Verkaufsstellen. Wähle ein Gewässer auf
         der Karte oder in der Liste.
       </p>
     </div>
-    <ul>
+    <p v-if="matchingIds && waters.length === 0" class="muted empty">Keine Gewässer passen zu den Filtern.</p>
+    <ul v-else>
       <li v-for="water in waters" :key="water.id">
         <button type="button" class="row" @click="emit('selectWater', water.id)">
           <span class="dot" :style="{ background: `var(--${water.token})` }" />
@@ -104,6 +106,10 @@ ul {
 .club {
   font-size: 12px;
   color: var(--text-2);
+}
+
+.empty {
+  padding: 8px 0;
 }
 
 .price {

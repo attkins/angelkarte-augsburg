@@ -7,7 +7,7 @@ import { useTheme } from '@/composables/useTheme'
 import { GUEST_ACCESS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
 import type { MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
 
-const props = defineProps<{ data: MapData }>()
+const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const selection = defineModel<Selection | null>('selection', { default: null })
 
 const { theme } = useTheme()
@@ -206,10 +206,19 @@ function applyHighlight() {
     selectedSalesPoint ? (props.data.salesPointsById.get(selectedSalesPoint)?.properties.waterIds ?? []) : [],
   )
 
+  const filtered = props.matchingIds ?? null
   waterLayersById.forEach((layer, id) => {
     const feature = props.data.watersById.get(id)
     if (!feature) return
-    const state = !sel ? 'default' : id === selectedWater ? 'selected' : linkedWaters.has(id) ? 'linked' : 'dimmed'
+    const state = sel
+      ? id === selectedWater
+        ? 'selected'
+        : linkedWaters.has(id)
+          ? 'linked'
+          : 'dimmed'
+      : filtered && !filtered.has(id)
+        ? 'dimmed'
+        : 'default'
     layer.setStyle(waterStyle(feature, state))
   })
 
@@ -303,6 +312,27 @@ watch([selection, map], () => {
   applyHighlight()
   fitToSelection()
 })
+
+// Re-dim the map when the filter changes. Only fit bounds when nothing is selected.
+watch(
+  () => props.matchingIds,
+  () => {
+    applyHighlight()
+    if (!selection.value) fitToFilter()
+  },
+)
+
+function fitToFilter() {
+  const m = map.value
+  const ids = props.matchingIds
+  if (!m || !ids) return
+  const bounds = L.latLngBounds([])
+  for (const id of ids) {
+    const layer = waterLayersById.get(id)
+    if (layer) bounds.extend(layer.getBounds())
+  }
+  if (bounds.isValid()) m.fitBounds(bounds, fitOptions())
+}
 
 // The theme watcher in useTheme sets data-theme first, post flush reads the new colours.
 watch(

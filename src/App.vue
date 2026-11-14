@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, reactive, ref, useTemplateRef, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import MapView from '@/components/MapView.vue'
 import SalesPointDetail from '@/components/SalesPointDetail.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
+import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
 import { useMapData } from '@/composables/useMapData'
 import { useTheme } from '@/composables/useTheme'
 import type { Selection } from '@/types'
+import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
 useTheme()
 const { data, error } = useMapData()
 const selection = ref<Selection | null>(null)
+const filter = reactive(emptyFilter())
+
+/** Ids of the waters passing the filter, or null when no filter is active (all shown). */
+const matchingIds = computed(() =>
+  data.value && isFilterActive(filter) ? matchingWaterIds(data.value, filter, new Date()) : null,
+)
 /** Only used on small screens: whether the list is shown in the bottom sheet. */
 const listOpen = ref(false)
 const panel = useTemplateRef<HTMLElement>('panel')
@@ -87,13 +95,16 @@ watch(selection, async () => {
             @select-water="selectWater"
             @close="closeDetail"
           />
-          <WaterList v-else :data="data" @select-water="selectWater" />
+          <div v-else class="list-view">
+            <WaterFilters :data="data" :filter="filter" :count="matchingIds ? matchingIds.size : data.waters.features.length" />
+            <WaterList :data="data" :matching-ids="matchingIds" @select-water="selectWater" />
+          </div>
         </template>
       </div>
     </aside>
 
     <main class="map-area">
-      <MapView v-if="data" v-model:selection="selection" :data="data" />
+      <MapView v-if="data" v-model:selection="selection" :data="data" :matching-ids="matchingIds" />
       <p v-else-if="error" class="app-message is-error">Die Kartendaten konnten nicht geladen werden.</p>
       <p v-else class="app-message">Karte wird geladen …</p>
 
@@ -158,6 +169,12 @@ watch(selection, async () => {
 
 .panel-body {
   padding: 16px 24px 28px;
+}
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .map-area {

@@ -131,7 +131,7 @@ Assessment: feasible as a second tile layer with a switch in the map controls. C
 4. ~~Build a map prototype with a few sample waters and sales points~~ (done, placeholder geometry)
 5. ~~Set up Vue 3 + Vite + TypeScript project and migrate the prototype~~ (done 2026-11-13)
 6. Replace placeholder geometries and geocode sales point addresses (sales points geocoded and lake outlines from OSM on 2026-11-13. Still open: exact river stretches, lakes without OSM match, Wertach and Lech geometry)
-7. Search and filter chips from the design (guests welcome, online purchase, season open, fly fishing, club). Fish species only once more waters have species data
+7. ~~Search and filter chips from the design~~ (done 2026-11-14: search box plus chips for guests welcome, online purchase, season open, fly fishing and a club selector. Filtering dims the map and fits bounds to the matches. Fish species chip still open until more waters have species data)
 8. ~~Extend the schema where the research showed gaps~~ (done 2026-11-13: `season`, `source`, `prices.validFrom`. Deposit deadlines and weekday limits stay free text in `prices.note` and `accessNote`)
 9. ~~Enter the researched clubs into the data files~~ (done 2026-11-13. Left out for now: Kirnach, LFV Paar, Schmutter and Zusam, 1. AAC waters outside the core region)
 10. ~~Implement the design "Morgennebel"~~ (done 2026-11-13: themes, fonts, CARTO, side panel and bottom sheet, structured seasons and opening hours)
