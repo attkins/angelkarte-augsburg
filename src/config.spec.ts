@@ -1,7 +1,16 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { cartoTileUrl, GUEST_ACCESS, PRICE_LABELS, readImprint, REGION_BOUNDS, TILE_LAYERS } from '@/config'
+import {
+  AERIAL_LABELS,
+  AERIAL_LAYER,
+  cartoTileUrl,
+  GUEST_ACCESS,
+  PRICE_LABELS,
+  readImprint,
+  REGION_BOUNDS,
+  TILE_LAYERS,
+} from '@/config'
 import { GUEST_ACCESS as VALIDATOR_GUEST_ACCESS, PRICE_KEYS } from '../scripts/lib/validate-data.mjs'
 
 const css = readFileSync(fileURLToPath(new URL('./style.css', import.meta.url)), 'utf8')
@@ -46,6 +55,15 @@ describe('config', () => {
       expect(layer.options.attribution).toContain('OpenStreetMap')
       expect(layer.options.attribution).toContain('CARTO')
     }
+  })
+
+  it('credits the Bayerische Vermessungsverwaltung as its CC BY licence requires', () => {
+    expect(AERIAL_LAYER.url).toMatch(/^https:\/\//)
+    expect(AERIAL_LAYER.options.attribution).toContain('Bayerische Vermessungsverwaltung')
+    expect(AERIAL_LAYER.options.attribution).toContain('www.geodaten.bayern.de')
+    expect(AERIAL_LAYER.options.attribution).toContain('CC BY 4.0')
+    expect(AERIAL_LABELS.url).toContain('dark_only_labels')
+    expect(AERIAL_LABELS.options.attribution).toContain('OpenStreetMap')
   })
 
   describe('cartoTileUrl', () => {

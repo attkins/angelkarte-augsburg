@@ -1,4 +1,4 @@
-import type { LatLngBoundsLiteral, TileLayerOptions } from 'leaflet'
+import type { LatLngBoundsLiteral, TileLayerOptions, WMSOptions } from 'leaflet'
 import type { Theme } from './composables/useTheme'
 import type { AppIconName } from './icons'
 import type { GuestAccess, PriceKey } from './types'
@@ -18,7 +18,7 @@ const CARTO_ATTRIBUTION =
  * URL of a CARTO raster base map. CARTO requires a free API key and puts an
  * "API KEY REQUIRED" watermark on tiles requested without one.
  */
-export function cartoTileUrl(style: 'light_all' | 'dark_all', apiKey: string | undefined): string {
+export function cartoTileUrl(style: 'light_all' | 'dark_all' | 'dark_only_labels', apiKey: string | undefined): string {
   const url = `https://basemaps.cartocdn.com/rastertiles/${style}/{z}/{x}/{y}{r}.png`
   const key = apiKey?.trim()
   return key ? `${url}?key=${encodeURIComponent(key)}` : url
@@ -40,6 +40,33 @@ export const TILE_LAYERS: Record<Theme, { url: string; options: TileLayerOptions
     url: cartoTileUrl('dark_all', CARTO_API_KEY),
     options: { maxZoom: 20, attribution: CARTO_ATTRIBUTION },
   },
+}
+
+/** Base map below the waters: the CARTO map in the current theme, or aerial images. */
+export type BaseLayer = 'map' | 'aerial'
+
+/**
+ * Official aerial images of Bavaria (DOP20, 20 cm per pixel) from the Bayerische
+ * Vermessungsverwaltung, open data under CC BY 4.0 with this attribution. Free WMS
+ * without registration. Covers Bavaria only, which is where all the waters are.
+ */
+export const AERIAL_LAYER: { url: string; options: WMSOptions } = {
+  url: 'https://geoservices.bayern.de/od/wms/dop/v1/dop20',
+  options: {
+    layers: 'by_dop20c',
+    format: 'image/jpeg',
+    maxZoom: 20,
+    attribution:
+      'Luftbild: Datenquelle: Bayerische Vermessungsverwaltung – ' +
+      '<a href="https://www.geodaten.bayern.de">www.geodaten.bayern.de</a>, ' +
+      '<a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a>',
+  },
+}
+
+/** Place names on top of the aerial images, light text that stays readable on photos. */
+export const AERIAL_LABELS: { url: string; options: TileLayerOptions } = {
+  url: cartoTileUrl('dark_only_labels', CARTO_API_KEY),
+  options: { maxZoom: 20, attribution: CARTO_ATTRIBUTION },
 }
 
 /** Name of the colour tokens in style.css, e.g. `--open`, `--open-bg` and `--open-text`. */

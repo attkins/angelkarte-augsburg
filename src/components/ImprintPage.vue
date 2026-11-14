@@ -28,6 +28,11 @@ const CREDITS: Credit[] = [
     note: 'Kartenstile Positron und Dark Matter',
   },
   {
+    name: 'Bayerische Vermessungsverwaltung',
+    url: 'https://www.geodaten.bayern.de',
+    note: 'Luftbilder (DOP20), Creative Commons Namensnennung 4.0 (CC BY 4.0)',
+  },
+  {
     name: 'Nominatim',
     url: 'https://nominatim.org',
     note: 'Koordinaten der Verkaufsstellen aus ihren Adressen',
@@ -113,6 +118,15 @@ const CREDITS: Credit[] = [
         Angaben zu deinem Browser. Ohne diese Anfrage lässt sich die Karte nicht anzeigen. Rechtsgrundlage ist das
         berechtigte Interesse an einer funktionierenden Karte (Art. 6 Abs. 1 lit. f DSGVO). Mehr dazu in der
         <a href="https://carto.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von CARTO</a>.
+      </p>
+
+      <h3 class="sub-title">Luftbilder der Bayerischen Vermessungsverwaltung</h3>
+      <p>
+        Erst wenn du das Luftbild einschaltest, lädt dein Browser die Bilder direkt von den Servern des Landesamts für
+        Digitalisierung, Breitband und Vermessung in München. Dabei erhält das Landesamt deine IP-Adresse und
+        technische Angaben zu deinem Browser. Rechtsgrundlage ist wieder das berechtigte Interesse (Art. 6 Abs. 1 lit. f
+        DSGVO). Mehr dazu auf der
+        <a href="https://www.ldbv.bayern.de" target="_blank" rel="noopener">Seite des Landesamts</a>.
       </p>
 
       <h3 class="sub-title">Gespeicherte Einstellung</h3>

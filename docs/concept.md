@@ -119,6 +119,8 @@ A toggle between the current map style and aerial imagery, useful to see access 
 
 Assessment: feasible as a second tile layer with a switch in the map controls. Candidate sources are Esri World Imagery (free to use with attribution, global) and the official Bavarian aerial images (DOP) from the Landesamt für Digitalisierung, Breitband und Vermessung, which are open data as far as known (to be verified, including license and tile service URL). The satellite mode is independent of the light and dark theme. Labels could be added on top with a transparent label layer.
 
+Status: done 2026-11-14 with the official Bavarian aerial images. Free WMS without registration `https://geoservices.bayern.de/od/wms/dop/v1/dop20`, layer `by_dop20c` (colour, 20 cm), CC BY 4.0, required attribution "Datenquelle: Bayerische Vermessungsverwaltung – www.geodaten.bayern.de". Esri World Imagery was dropped: its terms for use outside ArcGIS apps are unclear. CARTO `dark_only_labels` sits on top in its own pane for place names. Toggle "Luftbild" next to the layer buttons on desktop and in the layers popover on phones. The choice is not stored. Aerial tiles are only requested after switching, the privacy note mentions the LDBV. Not tested against the live service yet (the dev environment had no network access to it).
+
 ### Imprint and credits page (added 2026-11-14)
 
 A page with an imprint and links to all services, libraries, fonts and data sources the map uses.

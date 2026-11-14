@@ -33,10 +33,8 @@ describe('ImprintPage', () => {
     expect(wrapper.text()).not.toContain('VITE_')
   })
 
-  it('credits OpenStreetMap', () => {
-    const link = mount(ImprintPage).find('a[href="https://www.openstreetmap.org/copyright"]')
-
-    expect(link.exists()).toBe(true)
+  it.each(['https://www.openstreetmap.org/copyright', 'https://www.geodaten.bayern.de'])('credits %s', (href) => {
+    expect(mount(ImprintPage).find(`a[href="${href}"]`).exists()).toBe(true)
   })
 
   it('opens external links in a new tab without opener', () => {

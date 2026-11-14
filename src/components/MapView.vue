@@ -4,7 +4,7 @@ import { onBeforeUnmount, onMounted, ref, shallowRef, useTemplateRef, watch } fr
 import AppIcon from '@/components/AppIcon.vue'
 import MapLegend from '@/components/MapLegend.vue'
 import { useTheme } from '@/composables/useTheme'
-import { GUEST_ACCESS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
+import { AERIAL_LABELS, AERIAL_LAYER, type BaseLayer, GUEST_ACCESS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
 import type { MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
 import { dataBounds } from '@/utils/bounds'
 
@@ -28,6 +28,7 @@ const map = shallowRef<L.Map | null>(null)
 
 const showWaters = ref(true)
 const showSalesPoints = ref(true)
+const baseLayer = ref<BaseLayer>('map')
 const layersOpen = ref(false)
 const locateMessage = ref<string | null>(null)
 
@@ -38,6 +39,9 @@ const overlay = L.layerGroup()
 let watersLayer: L.GeoJSON<WaterProperties, WaterGeometry> | null = null
 let salesPointsLayer: L.GeoJSON | null = null
 let tileLayer: L.TileLayer | null = null
+// Created on first use, so nothing is requested from the aerial service until someone switches.
+let aerialLayer: L.TileLayer.WMS | null = null
+let aerialLabels: L.TileLayer | null = null
 let locationMarker: L.CircleMarker | null = null
 let locateMessageTimer: ReturnType<typeof setTimeout> | undefined
 let limit: L.LatLngBounds | null = null
@@ -130,6 +134,11 @@ onMounted(() => {
 
   const tiles = TILE_LAYERS[theme.value]
   tileLayer = L.tileLayer(tiles.url, tiles.options).addTo(m)
+
+  // Place names for the aerial images sit above the waters but let clicks through.
+  const labelsPane = m.createPane('labels')
+  labelsPane.style.zIndex = '450'
+  labelsPane.style.pointerEvents = 'none'
 
   watersLayer = L.geoJSON<WaterProperties, WaterGeometry>(props.data.waters, {
     // Leaflet types the callback with a generic geometry, the data only contains water geometries.
@@ -400,6 +409,22 @@ watch(
   { flush: 'post' },
 )
 
+watch(baseLayer, (value) => {
+  const m = map.value
+  if (!m || !tileLayer) return
+  if (value === 'aerial') {
+    aerialLayer ??= L.tileLayer.wms(AERIAL_LAYER.url, AERIAL_LAYER.options)
+    aerialLabels ??= L.tileLayer(AERIAL_LABELS.url, { ...AERIAL_LABELS.options, pane: 'labels' })
+    tileLayer.remove()
+    aerialLayer.addTo(m)
+    aerialLabels.addTo(m)
+  } else {
+    aerialLayer?.remove()
+    aerialLabels?.remove()
+    tileLayer.addTo(m)
+  }
+})
+
 watch(showWaters, (visible) => {
   if (!map.value || !watersLayer) return
   if (visible) {
@@ -434,6 +459,15 @@ watch(showSalesPoints, (visible) => {
       >
         Verkaufsstellen
       </button>
+      <span class="divider" aria-hidden="true" />
+      <button
+        type="button"
+        :class="{ 'is-active': baseLayer === 'aerial' }"
+        :aria-pressed="baseLayer === 'aerial'"
+        @click="baseLayer = baseLayer === 'aerial' ? 'map' : 'aerial'"
+      >
+        Luftbild
+      </button>
     </div>
 
     <div class="controls">
@@ -456,6 +490,7 @@ watch(showSalesPoints, (visible) => {
       <div v-if="layersOpen" class="layers-popover glass mobile-only">
         <label><input v-model="showWaters" type="checkbox" /> Gewässer</label>
         <label><input v-model="showSalesPoints" type="checkbox" /> Verkaufsstellen</label>
+        <label><input v-model="baseLayer" type="checkbox" true-value="aerial" false-value="map" /> Luftbild</label>
         <MapLegend embedded />
       </div>
     </div>
@@ -503,6 +538,12 @@ watch(showSalesPoints, (visible) => {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.layer-toggle .divider {
+  width: 1px;
+  margin: 6px 2px;
+  background: var(--border);
 }
 
 .layer-toggle button.is-active {
