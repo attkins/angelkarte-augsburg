@@ -91,66 +91,6 @@ See [data-schema.md](data-schema.md) for the detailed schema.
 
 This replaces the earlier plan of a static site without build step. The plain Leaflet prototype was migrated on 2026-11-13.
 
-## Ideas (collected 2026-11-13)
-
-Not scheduled yet. Each idea has a first assessment.
-
-### Depth maps for lakes
-
-Show a depth map or depth contours for lakes, for example as an extra layer or in the water detail.
-
-Assessment: there seems to be no open dataset for the small gravel pit lakes around Augsburg. The open data of the Bavarian water authorities (gkd.bayern.de, LfU) covers measurements at the deepest point of larger lakes, not full bathymetry. Possible sources to check: depth maps published by the clubs themselves, OpenSeaMap depth data (crowdsourced, probably sparse here), or simply a link to an external depth map per water. Needs research before any implementation.
-
-Research result (2026-11-14, backlog F10): there is no depth map to embed. OpenSeaMap only has crowdsourced depths, none for these small lakes. The LfU lake inventory has no bathymetry and is only available on request. Navionics SonarCharts and Deeper Lakebook cover many lakes but are proprietary. The free Navionics chart viewer is gone, webapp.navionics.com now redirects to the Garmin Marine Chart Viewer, whose link format is undocumented and could not be tested. No club publishes a depth map online.
-
-Built instead: optional `maxDepth` with a required `maxDepthSource` per water, shown as a badge "bis 14,5 m tief" in the water detail, and an optional `depthMapUrl` that shows a "Tiefenkarte" link once someone finds a map (a club PDF, a diving club page or a Garmin link). Depths are set for 14 lakes, 7 of them from the club or the city (Kuhsee, Autobahnsee, Auensee, Friedberger Baggersee, Afrasee I, Pfefferminzsee, Rothsee), the others from angling portals or Wikipedia. Still without depth: Lechauensee 1 and 2, Afrasee II, Walter-See, Alemannensee (portals contradict each other), Kringweiher, Hermannweiher, Petriweiher, Paintensee, Rollweiher, Lechwaldsee, Hopfenangersee, Herrentratsee, Bergheimer Baggersee, Baggerseen Sand.
-
-### Filter: can I fish there today?
-
-Some lakes are only open during a certain period. A filter should show only the waters where fishing is possible today (or on a chosen date).
-
-Assessment: the data already supports this. `season` and `guestPeriod` are part of the schema and `availability()` in `src/utils/time.ts` already computes whether a guest can fish today. The filter chip "season open" in next step 7 covers it. Open point: whether "today" is enough or a date picker is wanted, e.g. to plan a trip for the weekend.
-
-### Restrict panning to the data area
-
-The user should not be able to scroll the map away from the area with data, so there is always something to see.
-
-Assessment: Leaflet supports this out of the box with `maxBounds` plus `maxBoundsViscosity: 1.0` (hard stop at the edge) and a `minZoom` so the user cannot zoom out past the area. The bounds should be computed from the loaded data (all waters and sales points plus some padding) instead of the fixed `REGION_BOUNDS`, otherwise sales points outside the core region would be cut off. Highlighting with `fitBounds` stays inside these bounds automatically.
-
-Status: done 2026-11-14. `dataBounds()` in `src/utils/bounds.ts` computes the box from all waters and sales points (currently roughly Schongau to north of Aichach), always including `REGION_BOUNDS`, plus 10 % of the larger side as margin. MapView sets it as `maxBounds` with viscosity 1 and updates `minZoom` on resize, so zooming out stops once the whole area is visible. "Mein Standort" only moves the map when the location is inside the area, otherwise it shows a short notice.
-
-### Switch between normal map and satellite
-
-A toggle between the current map style and aerial imagery, useful to see access points, parking and the shore.
-
-Assessment: feasible as a second tile layer with a switch in the map controls. Candidate sources are Esri World Imagery (free to use with attribution, global) and the official Bavarian aerial images (DOP) from the Landesamt für Digitalisierung, Breitband und Vermessung, which are open data as far as known (to be verified, including license and tile service URL). The satellite mode is independent of the light and dark theme. Labels could be added on top with a transparent label layer.
-
-Status: done 2026-11-14 with the official Bavarian aerial images. Free WMS without registration `https://geoservices.bayern.de/od/wms/dop/v1/dop20`, layer `by_dop20c` (colour, 20 cm), CC BY 4.0, required attribution "Datenquelle: Bayerische Vermessungsverwaltung – www.geodaten.bayern.de". Esri World Imagery was dropped: its terms for use outside ArcGIS apps are unclear. CARTO `dark_only_labels` sits on top in its own pane for place names. Toggle "Luftbild" next to the layer buttons on desktop and in the layers popover on phones. The choice is not stored. Aerial tiles are only requested after switching, the privacy note mentions the LDBV. Not tested against the live service yet (the dev environment had no network access to it).
-
-### Imprint and credits page (added 2026-11-14)
-
-A page with an imprint and links to all services, libraries, fonts and data sources the map uses.
-
-Assessment (not legal advice): § 5 DDG only requires an imprint for business-like digital services, and § 18 MStV exempts sites that serve purely personal or family purposes. A map for the owner and a few friends probably falls under that exemption, but it is interpreted narrowly and the page is publicly reachable, so a simple imprint (name and an address for contact) is the safe choice. An address in the imprint is public, a c/o or service address is an option. A short privacy note matters at least as much: every CARTO tile request sends the visitor's IP address to CARTO, and GitHub Pages logs IP addresses as well.
-
-Credits to list with links: OpenStreetMap contributors (ODbL), CARTO base maps, Leaflet (BSD 2-Clause), Vue (MIT), the fonts Figtree and Vollkorn (SIL Open Font License 1.1, bundled with the app, nothing is loaded from Google), Nominatim for geocoding, and the data sources (club websites, hejfish, Augsburger Angelcenter). Implementation: a link in the panel footer and in the mobile bar that opens the page in the panel. Fits well together with hash routes, see club pages.
-
-Status: done 2026-11-14. `ImprintPage.vue` opens in the panel via `#/impressum` (`useHashRoute`), with a link in the panel footer and an info button in the mobile bar. Contains imprint, a note that all data is without guarantee, a short privacy note (GitHub Pages, CARTO, theme in local storage, external links) and the credits. The operator details come from the `VITE_IMPRINT_*` environment variables (repository secrets for the deploy), so they stay out of the public repository.
-
-### Club detail pages (added 2026-11-14)
-
-A page per club with name, website and contact, an overview of all its waters (access, guest price, season) and the sales points that sell tickets for the club. On the map all waters of the club are highlighted and the view fits to them.
-
-Assessment: the data is already there (`clubs.json` and `clubId` on every water). Needs a new selection kind `club` in `App.vue` and `MapView.vue` and a `ClubDetail` component similar to `SalesPointDetail`. Entry points: the club name in the water detail, the club selector of the filters and the club headings in the sales point detail. Good moment to introduce hash routes such as `#/gewaesser/<id>`, `#/verein/<id>` and `#/impressum`, so links can be sent to friends and the back button works on phones. GitHub Pages needs no extra setup for hash routes.
-
-Status: done 2026-11-14. `ClubDetail.vue` shows contact, website, all waters of the club (guest price, season, online purchase, closed right now) and the sales points that sell for them, most waters first. On the map the club's waters are highlighted with name labels (up to 8) together with their sales points, the view fits to the waters only. Entry points: the club name in the water detail, the club headings in the sales point detail and a "Zum Verein" chip next to the club selector. All pages now have hash routes (`#/gewaesser/<id>`, `#/verkaufsstelle/<id>`, `#/verein/<id>`, `#/impressum`) via `useHashRoute`. Every page opened in the app adds a history entry, closing goes back to where the app was opened. Links to ids that no longer exist fall back to the list.
-
-### More waters west of Augsburg (added 2026-11-14)
-
-Cover the area west of Augsburg better: the Westliche Wälder nature park, the Stauden and the valleys of Schmutter, Zusam, Neufnach and Roth, around Neusäß, Diedorf, Gessertshausen, Horgau, Fischach, Dinkelscherben, Zusmarshausen and Welden.
-
-Assessment: already in the data are the FVA Schmutter stretches, the Rothsee (FV Zusmarshausen) and the Bergheimer Baggersee. Leads from the first research that are not in the data yet: Staudenfischereiverein (Neufnach) and the hejfish listings Neufnach and Weiher H5 (Reinhartshofen). Needs a third research pass focused on the west: which local clubs exist in the towns above and whether they sell day tickets, more hejfish listings and the sales points in the area. Same workflow as before: research into `research-clubs.md`, then data with OSM outlines. The western edge of `REGION_BOUNDS` (10.6) already reaches Dinkelscherben, so the start view probably does not need to change.
-
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)
@@ -159,16 +99,4 @@ Assessment: already in the data are the FVA Schmutter stretches, the Rothsee (FV
 
 ## Next steps
 
-Open tasks and new feature ideas are tracked in [backlog.md](backlog.md) so several chats can work on them in parallel.
-
-1. ~~Finish club research~~ (second pass done 2026-11-13, see research-clubs.md. Open: Friedberg guest rules, Bobingen prices, Wehringen sales points)
-2. ~~Collect sales points with addresses~~ (done for FVA, Friedberg, Haunstetten, Königsbrunn, Bobingen)
-3. ~~Define the data schema in detail~~ (done, see data-schema.md)
-4. ~~Build a map prototype with a few sample waters and sales points~~ (done, placeholder geometry)
-5. ~~Set up Vue 3 + Vite + TypeScript project and migrate the prototype~~ (done 2026-11-13)
-6. Replace placeholder geometries and geocode sales point addresses (sales points geocoded on 2026-11-13. All lakes have OSM outlines since 2026-11-14, including Paintensee, Rollweiher and Hurlacher See after their spots were corrected. River stretches snapped to the OSM waterway relations on 2026-11-14, Wertach Bobingen cut from river km 14.6 to 17.4, Lechstaustufe 22/23 extended with the river areas from km 62.2 to 56.7, Stadtwasser (LFV) and Lechkanäle (1. AAC) traced from the club maps and descriptions. Still open, see D6 in backlog.md: Lech (LFV) and the Wertach stretches Großaitingen, Wehringen, Siebnach and Göggingen with unknown extent)
-7. ~~Search and filter chips from the design~~ (done 2026-11-14: search box plus chips for guests welcome, online purchase, season open, fly fishing and a club selector. Filtering dims the map and fits bounds to the matches. Fish species chip still open until more waters have species data)
-8. ~~Extend the schema where the research showed gaps~~ (done 2026-11-13: `season`, `source`, `prices.validFrom`. Deposit deadlines and weekday limits stay free text in `prices.note` and `accessNote`)
-9. ~~Enter the researched clubs into the data files~~ (done 2026-11-13. Left out for now: Kirnach, LFV Paar, Schmutter and Zusam, 1. AAC waters outside the core region)
-10. ~~Implement the design "Morgennebel"~~ (done 2026-11-13: themes, fonts, CARTO, side panel and bottom sheet, structured seasons and opening hours)
-11. ~~Structure the remaining opening hours and check holidays~~ (done 2026-11-14: 24 of 27 sales points have hours now, from the shops' own pages where possible, otherwise from several directories that agree, the more conservative hours where they differ. Still open: Osetskiy (directories contradict each other), Fischerheim FV Friedberg and Holland Blumen. Holidays: `ph` rules, Bavarian holidays plus Friedensfest in Augsburg. Found on the way: Angel-Zoo-Ernst moved to Industriestr. 44 in Kissing and Zum Isarfischer (Sonnleitner) to Sachsenkamer Str. 6 in Bad Tölz, both need new coordinates)
+Open tasks, feature ideas and the build milestones are tracked in [backlog.md](backlog.md) so several chats can work on them in parallel.
