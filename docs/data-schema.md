@@ -25,7 +25,7 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `id` | string | Unique. Prefix with the club, e.g. `lfv-lech` |
 | `name` | string | |
 | `clubId` | string | Must exist in `clubs.json` |
-| `guestAccess` | string | `open`, `withMember`, `membersOnly` or `unknown` |
+| `guestAccess` | string | `open`, `withMember`, `membersOnly`, `restricted`, `prohibited` or `unknown`. `restricted` for waters open only under a condition the badge cannot show (hotel guests, a booked hut); the price stays visible and the detail goes in `accessNote`. `prohibited` where fishing is banned |
 | `accessNote` | string or null | Access details that are not covered by the other fields, e.g. weekday limits. Shown as a notice below the badges |
 | `season` | date range or null | Fishing season, e.g. `{ "from": "03-16", "to": "12-14" }`. `null` if fishing is allowed all year or the season is unknown |
 | `seasonNote` | string or null | Season details that do not fit a fixed range, e.g. a season that starts with a club event |
@@ -42,6 +42,15 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `maxDepthSource` | string, null or missing | URL the depth comes from, required with `maxDepth`. Club or city pages first, angling portals only when nothing better exists |
 | `depthMapUrl` | string, null or missing | Optional. Link to a depth map, e.g. on the club website |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
+
+### Waters in Austria (Tyrol)
+
+A few destination waters sit in Tyrol, outside the Augsburg core region. They reuse the schema with two conventions instead of new fields:
+
+- **Two-license system:** besides the per-water day ticket (`prices.guest`), Tyrol needs a state Gastfischerkarte (about 25 €, 14 days, whole of Tyrol, a valid German Angelschein required). Put that as a sentence in `prices.note`, e.g. "Zusätzlich Tiroler Gastfischerkarte (25 €, 14 Tage, ganz Tirol), gültiger deutscher Angelschein erforderlich." When a water has no `prices` (the fee is bundled, e.g. with a booked hut), put it in `accessNote` instead.
+- **Operator instead of club:** these waters have a Bewirtschafter, not a club. Add it to `clubs.json` like any other club, with `(Bewirtschafter)` in the `name` so the "Verein" labels read sensibly.
+
+The map keeps its Augsburg start view; `dataBounds()` widens on its own so Tyrol is reachable by panning out.
 
 ## sales-points.geojson
 

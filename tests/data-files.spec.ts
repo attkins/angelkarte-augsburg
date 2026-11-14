@@ -14,22 +14,22 @@ const clubs = readJson<Club[]>('clubs.json')
 const waters = readJson<MapData['waters']>('waters.geojson')
 const salesPoints = readJson<MapData['salesPoints']>('sales-points.geojson')
 
-// Generous box around Bavaria. Sales points in Munich or Bad Tölz are fine, a swapped lat/lon is not.
-const BAVARIA = { south: 47.2, north: 50.6, west: 8.9, east: 13.9 }
+// Generous box around Bavaria plus Tyrol (destination waters in Austria). A swapped lat/lon is not.
+const REGION_BOX = { south: 46.8, north: 50.6, west: 8.9, east: 13.9 }
 
 function positions(coordinates: unknown): Position[] {
   if (Array.isArray(coordinates) && typeof coordinates[0] === 'number') return [coordinates as Position]
   return (coordinates as unknown[]).flatMap(positions)
 }
 
-function isInBavaria([lon, lat]: Position): boolean {
+function isInRegion([lon, lat]: Position): boolean {
   return (
     lon !== undefined &&
     lat !== undefined &&
-    lat > BAVARIA.south &&
-    lat < BAVARIA.north &&
-    lon > BAVARIA.west &&
-    lon < BAVARIA.east
+    lat > REGION_BOX.south &&
+    lat < REGION_BOX.north &&
+    lon > REGION_BOX.west &&
+    lon < REGION_BOX.east
   )
 }
 
@@ -47,17 +47,17 @@ describe('data files', () => {
   })
 
   it.each(waters.features.map((f) => [f.properties.id, f] as const))(
-    'water %s has all coordinates in Bavaria in lon, lat order',
+    'water %s has all coordinates in the region in lon, lat order',
     (_id, feature) => {
-      const outside = positions(feature.geometry.coordinates).filter((p) => !isInBavaria(p))
+      const outside = positions(feature.geometry.coordinates).filter((p) => !isInRegion(p))
       expect(outside).toEqual([])
     },
   )
 
   it.each(salesPoints.features.map((f) => [f.properties.id, f] as const))(
-    'sales point %s is in Bavaria in lon, lat order',
+    'sales point %s is in the region in lon, lat order',
     (_id, feature) => {
-      expect(isInBavaria(feature.geometry.coordinates)).toBe(true)
+      expect(isInRegion(feature.geometry.coordinates)).toBe(true)
     },
   )
 

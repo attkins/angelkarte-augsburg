@@ -1,7 +1,7 @@
 // Checks the data files against the schema described in docs/data-schema.md.
 // Pure function without file access, so it can be used by the CLI script and by the tests.
 
-export const GUEST_ACCESS = ['open', 'withMember', 'membersOnly', 'unknown']
+export const GUEST_ACCESS = ['open', 'withMember', 'membersOnly', 'restricted', 'prohibited', 'unknown']
 export const GEOMETRY_STATUS = ['placeholder', 'traced', 'verified']
 export const WATER_GEOMETRIES = ['Polygon', 'MultiPolygon', 'LineString', 'MultiLineString']
 export const PRICE_KEYS = ['member', 'guest', 'youth', 'guestYouth', 'deposit', 'note', 'validFrom']
@@ -187,7 +187,8 @@ export function validateData({ clubs, waters, salesPoints }, { now = new Date() 
 
   for (const feature of waters.features) {
     const p = feature.properties
-    if (p.guestAccess !== 'membersOnly' && !referencedWaterIds.has(p.id) && !p.onlinePurchase) {
+    const noSaleExpected = p.guestAccess === 'membersOnly' || p.guestAccess === 'prohibited'
+    if (!noSaleExpected && !referencedWaterIds.has(p.id) && !p.onlinePurchase) {
       warnings.push(`water "${p.id}": no sales point and no online purchase`)
     }
   }

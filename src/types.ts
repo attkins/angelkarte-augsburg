@@ -10,7 +10,7 @@ import type {
 
 // Types for the data files in public/data. See docs/data-schema.md.
 
-export type GuestAccess = 'open' | 'withMember' | 'membersOnly' | 'unknown'
+export type GuestAccess = 'open' | 'withMember' | 'membersOnly' | 'restricted' | 'prohibited' | 'unknown'
 
 export type GeometryStatus = 'placeholder' | 'traced' | 'verified'
 

@@ -76,6 +76,8 @@ export const GUEST_ACCESS: Record<GuestAccess, { label: string; token: AccessTok
   open: { label: 'Gäste willkommen', token: 'open', icon: 'check' },
   withMember: { label: 'Nur mit Mitglied', token: 'member', icon: 'member' },
   membersOnly: { label: 'Nur Mitglieder', token: 'closed', icon: 'lock' },
+  restricted: { label: 'Eingeschränkt', token: 'member', icon: 'member' },
+  prohibited: { label: 'Fischen verboten', token: 'closed', icon: 'close' },
   unknown: { label: 'Unbekannt', token: 'unknown', icon: 'question' },
 }
 
