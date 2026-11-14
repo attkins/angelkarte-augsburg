@@ -6,6 +6,7 @@ import MapLegend from '@/components/MapLegend.vue'
 import { useTheme } from '@/composables/useTheme'
 import { GUEST_ACCESS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
 import type { MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
+import { dataBounds } from '@/utils/bounds'
 
 const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const selection = defineModel<Selection | null>('selection', { default: null })
@@ -39,6 +40,7 @@ let salesPointsLayer: L.GeoJSON | null = null
 let tileLayer: L.TileLayer | null = null
 let locationMarker: L.CircleMarker | null = null
 let locateMessageTimer: ReturnType<typeof setTimeout> | undefined
+let limit: L.LatLngBounds | null = null
 
 function cssVar(name: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(`--${name}`).trim()
@@ -101,14 +103,29 @@ function fitOptions(): L.FitBoundsOptions {
   return { padding: [70, 70], maxZoom: 14 }
 }
 
+/** Zooming out stops once the whole area with data is visible. */
+function updateMinZoom(m: L.Map) {
+  if (limit) m.setMinZoom(m.getBoundsZoom(limit))
+}
+
 function waterCenter(id: string): L.LatLng | null {
   return waterLayersById.get(id)?.getBounds().getCenter() ?? null
 }
 
 onMounted(() => {
+  // The map cannot be panned or zoomed out away from the area with data, so there is always something to see.
+  limit = L.latLngBounds(dataBounds(props.data, REGION_BOUNDS))
+
   // Popups are not used, the details live in the side panel.
-  const m = L.map(container.value!, { zoomControl: false, closePopupOnClick: false })
+  const m = L.map(container.value!, {
+    zoomControl: false,
+    closePopupOnClick: false,
+    maxBounds: limit,
+    maxBoundsViscosity: 1,
+  })
   m.attributionControl.setPrefix(false)
+  updateMinZoom(m)
+  m.on('resize', () => updateMinZoom(m))
   m.fitBounds(REGION_BOUNDS)
 
   const tiles = TILE_LAYERS[theme.value]
@@ -154,6 +171,12 @@ onMounted(() => {
 
   m.on('locationfound', (event: L.LocationEvent) => {
     locationMarker?.remove()
+    locationMarker = null
+    if (limit && !limit.contains(event.latlng)) {
+      showLocateMessage('Du bist gerade außerhalb des Kartenbereichs.')
+      return
+    }
+    m.setView(event.latlng, Math.max(m.getZoom(), 13))
     locationMarker = L.circleMarker(event.latlng, {
       radius: 8,
       color: '#ffffff',
@@ -182,7 +205,8 @@ function showLocateMessage(message: string) {
 }
 
 function locate() {
-  map.value?.locate({ setView: true, maxZoom: 13 })
+  // The view is set in the locationfound handler, only when the location is inside the limits.
+  map.value?.locate()
 }
 
 function zoom(delta: number) {

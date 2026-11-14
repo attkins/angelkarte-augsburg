@@ -111,6 +111,8 @@ The user should not be able to scroll the map away from the area with data, so t
 
 Assessment: Leaflet supports this out of the box with `maxBounds` plus `maxBoundsViscosity: 1.0` (hard stop at the edge) and a `minZoom` so the user cannot zoom out past the area. The bounds should be computed from the loaded data (all waters and sales points plus some padding) instead of the fixed `REGION_BOUNDS`, otherwise sales points outside the core region would be cut off. Highlighting with `fitBounds` stays inside these bounds automatically.
 
+Status: done 2026-11-14. `dataBounds()` in `src/utils/bounds.ts` computes the box from all waters and sales points (currently roughly Schongau to north of Aichach), always including `REGION_BOUNDS`, plus 10 % of the larger side as margin. MapView sets it as `maxBounds` with viscosity 1 and updates `minZoom` on resize, so zooming out stops once the whole area is visible. "Mein Standort" only moves the map when the location is inside the area, otherwise it shows a short notice.
+
 ### Switch between normal map and satellite
 
 A toggle between the current map style and aerial imagery, useful to see access points, parking and the shore.
@@ -125,7 +127,7 @@ Assessment (not legal advice): § 5 DDG only requires an imprint for business-li
 
 Credits to list with links: OpenStreetMap contributors (ODbL), CARTO base maps, Leaflet (BSD 2-Clause), Vue (MIT), the fonts Figtree and Vollkorn (SIL Open Font License 1.1, bundled with the app, nothing is loaded from Google), Nominatim for geocoding, and the data sources (club websites, hejfish, Augsburger Angelcenter). Implementation: a link in the panel footer and in the mobile bar that opens the page in the panel. Fits well together with hash routes, see club pages.
 
-Status: done 2026-11-14. `ImprintPage.vue` opens in the panel via `#/impressum` (`useHashPage`), with a link in the panel footer and an info button in the mobile bar. Contains imprint, a note that all data is without guarantee, a short privacy note (GitHub Pages, CARTO, theme in local storage, external links) and the credits. The operator details come from the `VITE_IMPRINT_*` environment variables (repository secrets for the deploy), so they stay out of the public repository.
+Status: done 2026-11-14. `ImprintPage.vue` opens in the panel via `#/impressum` (`useHashRoute`), with a link in the panel footer and an info button in the mobile bar. Contains imprint, a note that all data is without guarantee, a short privacy note (GitHub Pages, CARTO, theme in local storage, external links) and the credits. The operator details come from the `VITE_IMPRINT_*` environment variables (repository secrets for the deploy), so they stay out of the public repository.
 
 ### Club detail pages (added 2026-11-14)
 
