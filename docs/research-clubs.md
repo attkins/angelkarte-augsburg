@@ -88,6 +88,8 @@ Known restrictions:
 - 16 Mar to 30 Sep: Brunnenbach
 - Auensee: from the club's Good Friday opening event to 14 Dec
 
+Lech 22/23 (water map provided by Thomas on 2026-11-14): the stretch runs from river km 62.2 above Staustufe 22 to the dam of Staustufe 23 at km 56.7, about 5.5 km including roughly 2 km of flowing river between the two reservoirs. Species: Salmoniden, Hecht, Zander, Barsch, Waller, Karpfen, Rutte, Aal, Weißfische. Boat fishing limit at km 60.0, no boat fishing in the safety zones at both dams, no boat fishing in the bay at Staustufe 23 from 1 Jun to 30 Sep, no fishing at the fish passes, the island at Staustufe 23 must not be entered.
+
 Extra closures are listed in "Sperrzeiten 2026" and "Sperrfristen" PDFs on the same page.
 
 ### Sales points (as of 15 Jun 2026)

@@ -112,6 +112,21 @@ describe('SalesPointDetail', () => {
     expect(wrapper.emitted('selectWater')).toEqual([['w-kuhsee']])
   })
 
+  it('links the club headings to the club page, but not an unknown club', async () => {
+    const salesPoint = makeSalesPoint({ waterIds: ['w1', 'w2'] })
+    const data = makeMapData(
+      [makeClub({ id: 'fva', name: 'Fischereiverein Augsburg' })],
+      [makeWater({ id: 'w1', clubId: 'fva' }), makeWater({ id: 'w2', clubId: 'missing' })],
+      [salesPoint],
+    )
+    const wrapper = mountDetail(salesPoint, data)
+
+    const links = wrapper.findAll('.club-link')
+    expect(links).toHaveLength(1)
+    await links[0]!.trigger('click')
+    expect(wrapper.emitted('selectClub')).toEqual([['fva']])
+  })
+
   it('skips water ids that do not exist', () => {
     const salesPoint = makeSalesPoint({ waterIds: ['water-a', 'gone'] })
 

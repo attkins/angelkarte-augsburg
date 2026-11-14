@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, reactive, ref, useTemplateRef, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import ClubDetail from '@/components/ClubDetail.vue'
 import ImprintPage from '@/components/ImprintPage.vue'
 import MapView from '@/components/MapView.vue'
 import SalesPointDetail from '@/components/SalesPointDetail.vue'
@@ -8,18 +9,27 @@ import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
 import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
-import { useHashPage } from '@/composables/useHashPage'
+import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useTheme } from '@/composables/useTheme'
-import { IMPRINT_HASH } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
 useTheme()
 const { data, error } = useMapData()
-const selection = ref<Selection | null>(null)
 const filter = reactive(emptyFilter())
-const imprint = useHashPage(IMPRINT_HASH)
+
+// The URL hash is the single source of truth for what the panel shows.
+const router = useHashRoute()
+const IMPRINT_HREF = routeHash({ kind: 'imprint' })
+const imprintOpen = computed(() => router.route.value?.kind === 'imprint')
+const selection = computed<Selection | null>({
+  get: () => {
+    const route = router.route.value
+    return route && route.kind !== 'imprint' ? route : null
+  },
+  set: (value) => router.navigate(value),
+})
 
 /** Ids of the waters passing the filter, or null when no filter is active (all shown). */
 const matchingIds = computed(() =>
@@ -35,32 +45,41 @@ const selectedWater = computed(() =>
 const selectedSalesPoint = computed(() =>
   selection.value?.kind === 'salesPoint' ? data.value?.salesPointsById.get(selection.value.id) : undefined,
 )
-const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value || imprint.active.value)
+const selectedClub = computed(() =>
+  selection.value?.kind === 'club' ? data.value?.clubsById.get(selection.value.id) : undefined,
+)
+const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value || imprintOpen.value)
 
 function selectWater(id: string) {
-  selection.value = { kind: 'water', id }
+  router.navigate({ kind: 'water', id })
 }
 
 function selectSalesPoint(id: string) {
-  selection.value = { kind: 'salesPoint', id }
+  router.navigate({ kind: 'salesPoint', id })
 }
 
-function closeDetail() {
-  selection.value = null
+function selectClub(id: string) {
+  router.navigate({ kind: 'club', id })
 }
 
 function openImprint() {
-  selection.value = null
-  imprint.open()
+  router.navigate({ kind: 'imprint' })
 }
 
-// Selecting something on the map leaves the imprint.
-watch(selection, (value) => {
-  if (value) imprint.close()
+// A shared link can point to something that is no longer in the data, show the list instead.
+watch([data, selection], ([mapData, sel]) => {
+  if (!mapData || !sel) return
+  const exists =
+    sel.kind === 'water'
+      ? mapData.watersById.has(sel.id)
+      : sel.kind === 'salesPoint'
+        ? mapData.salesPointsById.has(sel.id)
+        : mapData.clubsById.has(sel.id)
+  if (!exists) router.replace(null)
 })
 
-// Start every new detail and the imprint at the top.
-watch([selection, imprint.active], async () => {
+// Start every new page at the top.
+watch(router.route, async () => {
   await nextTick()
   panel.value?.querySelector('.panel-body')?.scrollTo({ top: 0 })
   panel.value?.scrollTo({ top: 0 })
@@ -80,7 +99,7 @@ watch([selection, imprint.active], async () => {
       </header>
 
       <button
-        v-if="!selection && !imprint.active.value"
+        v-if="!selection && !imprintOpen"
         type="button"
         class="sheet-handle"
         :aria-expanded="listOpen"
@@ -92,7 +111,7 @@ watch([selection, imprint.active], async () => {
       <div v-else class="sheet-handle is-static" aria-hidden="true"><span class="grip" /></div>
 
       <div class="panel-body">
-        <ImprintPage v-if="imprint.active.value" @close="imprint.close" />
+        <ImprintPage v-if="imprintOpen" @close="router.close" />
         <template v-else-if="data">
           <WaterDetail
             v-if="selectedWater"
@@ -100,7 +119,8 @@ watch([selection, imprint.active], async () => {
             :water="selectedWater"
             :data="data"
             @select-sales-point="selectSalesPoint"
-            @close="closeDetail"
+            @select-club="selectClub"
+            @close="router.close"
           />
           <SalesPointDetail
             v-else-if="selectedSalesPoint"
@@ -108,16 +128,31 @@ watch([selection, imprint.active], async () => {
             :sales-point="selectedSalesPoint"
             :data="data"
             @select-water="selectWater"
-            @close="closeDetail"
+            @select-club="selectClub"
+            @close="router.close"
+          />
+          <ClubDetail
+            v-else-if="selectedClub"
+            :key="selectedClub.id"
+            :club="selectedClub"
+            :data="data"
+            @select-water="selectWater"
+            @select-sales-point="selectSalesPoint"
+            @close="router.close"
           />
           <div v-else class="list-view">
-            <WaterFilters :data="data" :filter="filter" :count="matchingIds ? matchingIds.size : data.waters.features.length" />
+            <WaterFilters
+              :data="data"
+              :filter="filter"
+              :count="matchingIds ? matchingIds.size : data.waters.features.length"
+              @select-club="selectClub"
+            />
             <WaterList :data="data" :matching-ids="matchingIds" @select-water="selectWater" />
           </div>
         </template>
 
-        <footer v-if="!imprint.active.value" class="panel-footer">
-          <a :href="IMPRINT_HASH" @click.prevent="openImprint">Impressum und Datenschutz</a>
+        <footer v-if="!imprintOpen" class="panel-footer">
+          <a :href="IMPRINT_HREF" @click.prevent="openImprint">Impressum und Datenschutz</a>
         </footer>
       </div>
     </aside>
@@ -135,7 +170,7 @@ watch([selection, imprint.active], async () => {
         <div class="mobile-actions">
           <a
             class="icon-button glass imprint-button"
-            :href="IMPRINT_HASH"
+            :href="IMPRINT_HREF"
             aria-label="Impressum und Datenschutz"
             @click.prevent="openImprint"
           >

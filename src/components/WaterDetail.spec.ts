@@ -21,11 +21,20 @@ describe('WaterDetail', () => {
     expect(wrapper.find('.access-badge').text()).toBe('Nur mit Mitglied')
   })
 
+  it('links the club to its page', async () => {
+    const wrapper = mountDetail(makeWater())
+
+    await wrapper.find('.club-link').trigger('click')
+
+    expect(wrapper.emitted('selectClub')).toEqual([['club-a']])
+  })
+
   it('falls back to "Verein unbekannt" for an unknown club', () => {
     const water = makeWater({ clubId: 'missing' })
     const wrapper = mountDetail(water, makeMapData([], [water], []))
 
     expect(wrapper.find('.subtitle').text()).toBe('Verein unbekannt')
+    expect(wrapper.find('.club-link').exists()).toBe(false)
   })
 
   it('emits close from the back link and the close button', async () => {

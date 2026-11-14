@@ -17,7 +17,7 @@ const props = withDefaults(
   { now: () => new Date() },
 )
 
-const emit = defineEmits<{ selectSalesPoint: [id: string]; close: [] }>()
+const emit = defineEmits<{ selectSalesPoint: [id: string]; selectClub: [id: string]; close: [] }>()
 
 const p = computed(() => props.water.properties)
 const club = computed(() => props.data.clubsById.get(p.value.clubId))
@@ -77,7 +77,12 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
     <header class="detail-header">
       <div class="detail-title">
         <h1 class="serif">{{ p.name }}</h1>
-        <p class="subtitle">{{ club?.name ?? 'Verein unbekannt' }}</p>
+        <p class="subtitle">
+          <button v-if="club" type="button" class="club-link" @click="emit('selectClub', club.id)">
+            {{ club.name }}<AppIcon name="chevron-right" :size="16" />
+          </button>
+          <template v-else>Verein unbekannt</template>
+        </p>
       </div>
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
@@ -190,6 +195,23 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
 </template>
 
 <style scoped>
+.club-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font-size: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.club-link:hover {
+  color: var(--text);
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;

@@ -112,9 +112,9 @@ export interface MapData {
   salesPointsById: Map<string, SalesPointFeature>
   /** Reverse lookup derived from SalesPointProperties.waterIds. */
   salesPointIdsByWater: Map<string, string[]>
+  /** Ids of the waters of each club, derived from WaterProperties.clubId. */
+  waterIdsByClub: Map<string, string[]>
 }
 
-/** What is currently selected on the map. Drives highlighting and the popup. */
-export type Selection =
-  | { kind: 'water'; id: string; latlng?: { lat: number; lng: number } }
-  | { kind: 'salesPoint'; id: string }
+/** What is currently selected. Drives the panel, the highlighting on the map and the URL hash. */
+export type Selection = { kind: 'water' | 'salesPoint' | 'club'; id: string }

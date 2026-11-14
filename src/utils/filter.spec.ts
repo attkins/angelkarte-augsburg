@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { buildMapData } from '@/composables/useMapData'
 import type { Club, MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
@@ -29,15 +30,11 @@ function water(id: string, props: Partial<WaterFeature['properties']>): WaterFea
 }
 
 function build(waters: WaterFeature[], clubs: Club[] = [{ id: 'c1', name: 'Club One', shortName: 'C1', website: null, contact: null }]): MapData {
-  return {
+  return buildMapData(
     clubs,
-    waters: { type: 'FeatureCollection', features: waters },
-    salesPoints: { type: 'FeatureCollection', features: [] as SalesPointFeature[] },
-    clubsById: new Map(clubs.map((c) => [c.id, c])),
-    watersById: new Map(waters.map((w) => [w.properties.id, w])),
-    salesPointsById: new Map(),
-    salesPointIdsByWater: new Map(),
-  }
+    { type: 'FeatureCollection', features: waters },
+    { type: 'FeatureCollection', features: [] as SalesPointFeature[] },
+  )
 }
 
 const NOW = new Date(2026, 6, 1) // 1 July 2026

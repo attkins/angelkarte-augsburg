@@ -16,7 +16,7 @@ const props = withDefaults(
   { now: () => new Date() },
 )
 
-const emit = defineEmits<{ selectWater: [id: string]; close: [] }>()
+const emit = defineEmits<{ selectWater: [id: string]; selectClub: [id: string]; close: [] }>()
 
 const p = computed(() => props.salesPoint.properties)
 
@@ -32,13 +32,15 @@ const routeUrl = computed(() => {
 
 /** Waters grouped by club, clubs in the order they first appear. */
 const groups = computed(() => {
-  const byClub = new Map<string, { clubName: string; waters: WaterFeature[] }>()
+  const byClub = new Map<string, { clubId: string; clubName: string; known: boolean; waters: WaterFeature[] }>()
   for (const id of p.value.waterIds ?? []) {
     const water = props.data.watersById.get(id)
     if (!water) continue
     const clubId = water.properties.clubId
     const club = props.data.clubsById.get(clubId)
-    if (!byClub.has(clubId)) byClub.set(clubId, { clubName: club?.name ?? 'Verein unbekannt', waters: [] })
+    if (!byClub.has(clubId)) {
+      byClub.set(clubId, { clubId, clubName: club?.name ?? 'Verein unbekannt', known: Boolean(club), waters: [] })
+    }
     byClub.get(clubId)!.waters.push(water)
   }
   for (const group of byClub.values()) {
@@ -109,8 +111,13 @@ function guestPrice(water: WaterFeature): string | null {
         <span v-if="waterCount" class="muted">Gastpreis</span>
       </div>
       <p v-if="!waterCount" class="muted">Noch keine Gewässer zugeordnet.</p>
-      <div v-for="group in groups" :key="group.clubName" class="club-group">
-        <p class="section-label">{{ group.clubName }}</p>
+      <div v-for="group in groups" :key="group.clubId" class="club-group">
+        <p class="section-label">
+          <button v-if="group.known" type="button" class="club-link" @click="emit('selectClub', group.clubId)">
+            {{ group.clubName }}<AppIcon name="chevron-right" :size="15" />
+          </button>
+          <template v-else>{{ group.clubName }}</template>
+        </p>
         <button
           v-for="water in group.waters"
           :key="water.properties.id"
@@ -235,6 +242,24 @@ strong.is-closed {
 
 .club-group + .club-group {
   margin-top: 14px;
+}
+
+.club-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.club-link:hover {
+  color: var(--accent-text);
 }
 
 .club-group .section-label {

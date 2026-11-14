@@ -133,6 +133,8 @@ A page per club with name, website and contact, an overview of all its waters (a
 
 Assessment: the data is already there (`clubs.json` and `clubId` on every water). Needs a new selection kind `club` in `App.vue` and `MapView.vue` and a `ClubDetail` component similar to `SalesPointDetail`. Entry points: the club name in the water detail, the club selector of the filters and the club headings in the sales point detail. Good moment to introduce hash routes such as `#/gewaesser/<id>`, `#/verein/<id>` and `#/impressum`, so links can be sent to friends and the back button works on phones. GitHub Pages needs no extra setup for hash routes.
 
+Status: done 2026-11-14. `ClubDetail.vue` shows contact, website, all waters of the club (guest price, season, online purchase, closed right now) and the sales points that sell for them, most waters first. On the map the club's waters are highlighted with name labels (up to 8) together with their sales points, the view fits to the waters only. Entry points: the club name in the water detail, the club headings in the sales point detail and a "Zum Verein" chip next to the club selector. All pages now have hash routes (`#/gewaesser/<id>`, `#/verkaufsstelle/<id>`, `#/verein/<id>`, `#/impressum`) via `useHashRoute`. Every page opened in the app adds a history entry, closing goes back to where the app was opened. Links to ids that no longer exist fall back to the list.
+
 ### More waters west of Augsburg (added 2026-11-14)
 
 Cover the area west of Augsburg better: the Westliche Wälder nature park, the Stauden and the valleys of Schmutter, Zusam, Neufnach and Roth, around Neusäß, Diedorf, Gessertshausen, Horgau, Fischach, Dinkelscherben, Zusmarshausen and Welden.

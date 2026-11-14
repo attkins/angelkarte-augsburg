@@ -122,7 +122,7 @@ onMounted(() => {
       waterLayersById.set(id, layer as L.Polyline)
       layer.on('click', (event: L.LeafletMouseEvent) => {
         L.DomEvent.stopPropagation(event)
-        selection.value = { kind: 'water', id, latlng: event.latlng }
+        selection.value = { kind: 'water', id }
       })
     },
   }).addTo(m)
@@ -201,9 +201,18 @@ function applyHighlight() {
   const sel = selection.value
   const selectedWater = sel?.kind === 'water' ? sel.id : null
   const selectedSalesPoint = sel?.kind === 'salesPoint' ? sel.id : null
-  const linkedSalesPoints = new Set(selectedWater ? (props.data.salesPointIdsByWater.get(selectedWater) ?? []) : [])
+  const selectedClub = sel?.kind === 'club' ? sel.id : null
   const linkedWaters = new Set(
-    selectedSalesPoint ? (props.data.salesPointsById.get(selectedSalesPoint)?.properties.waterIds ?? []) : [],
+    selectedSalesPoint
+      ? (props.data.salesPointsById.get(selectedSalesPoint)?.properties.waterIds ?? [])
+      : selectedClub
+        ? (props.data.waterIdsByClub.get(selectedClub) ?? [])
+        : [],
+  )
+  const linkedSalesPoints = new Set(
+    selectedWater
+      ? (props.data.salesPointIdsByWater.get(selectedWater) ?? [])
+      : [...linkedWaters].flatMap((id) => (selectedClub ? (props.data.salesPointIdsByWater.get(id) ?? []) : [])),
   )
 
   const filtered = props.matchingIds ?? null
@@ -273,6 +282,23 @@ function applyHighlight() {
       waterLayersById.get(id)?.bringToFront()
     }
     labelMarker(selectedSalesPoint)
+  } else if (selectedClub) {
+    // No connection lines, the club's waters are what matters. Names only while they fit.
+    for (const id of linkedWaters) waterLayersById.get(id)?.bringToFront()
+    if (linkedWaters.size <= MAX_LABELS) {
+      for (const id of linkedWaters) labelWater(id)
+    }
+  }
+}
+
+function labelWater(id: string) {
+  const layer = waterLayersById.get(id)
+  const name = props.data.watersById.get(id)?.properties.name
+  const center = waterCenter(id)
+  if (layer && name && center) {
+    layer
+      .bindTooltip(name, { permanent: true, direction: 'top', offset: [0, -10], className: 'map-label' })
+      .openTooltip(L.latLng(layer.getBounds().getNorth(), center.lng))
   }
 }
 
@@ -296,6 +322,12 @@ function fitToSelection() {
     for (const id of props.data.salesPointIdsByWater.get(sel.id) ?? []) {
       const marker = markersById.get(id)
       if (marker) bounds.extend(marker.getLatLng())
+    }
+  } else if (sel.kind === 'club') {
+    // Only the waters: a shop selling for the club can be far away and would zoom out too much.
+    for (const id of props.data.waterIdsByClub.get(sel.id) ?? []) {
+      const layer = waterLayersById.get(id)
+      if (layer) bounds.extend(layer.getBounds())
     }
   } else {
     const marker = markersById.get(sel.id)

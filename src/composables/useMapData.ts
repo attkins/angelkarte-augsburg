@@ -31,6 +31,13 @@ export function buildMapData(
     }
   }
 
+  const waterIdsByClub = new Map<string, string[]>()
+  for (const feature of waters.features) {
+    const ids = waterIdsByClub.get(feature.properties.clubId) ?? []
+    ids.push(feature.properties.id)
+    waterIdsByClub.set(feature.properties.clubId, ids)
+  }
+
   return {
     clubs,
     waters,
@@ -39,6 +46,7 @@ export function buildMapData(
     watersById: new Map(waters.features.map((f) => [f.properties.id, f])),
     salesPointsById: new Map(salesPoints.features.map((f) => [f.properties.id, f])),
     salesPointIdsByWater,
+    waterIdsByClub,
   }
 }
 

@@ -69,9 +69,6 @@ export const DATA_FILES = {
   salesPoints: `${base}data/sales-points.geojson`,
 }
 
-/** URL hash of the imprint and privacy page. */
-export const IMPRINT_HASH = '#/impressum'
-
 /** Operator of the site, shown in the imprint (§ 5 DDG) and as the controller in the privacy note. */
 export interface Imprint {
   name: string

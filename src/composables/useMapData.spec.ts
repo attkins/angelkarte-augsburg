@@ -28,6 +28,17 @@ describe('buildMapData', () => {
     expect(data.salesPointIdsByWater.get('w2')).toEqual(['s1', 's2'])
   })
 
+  it('groups the waters by club', () => {
+    const data = makeMapData(
+      [makeClub({ id: 'c1' }), makeClub({ id: 'c2' })],
+      [makeWater({ id: 'w1', clubId: 'c1' }), makeWater({ id: 'w2', clubId: 'c2' }), makeWater({ id: 'w3', clubId: 'c1' })],
+      [],
+    )
+
+    expect(data.waterIdsByClub.get('c1')).toEqual(['w1', 'w3'])
+    expect(data.waterIdsByClub.get('c2')).toEqual(['w2'])
+  })
+
   it('has no entry for waters without sales points', () => {
     const data = makeMapData([makeClub()], [makeWater({ id: 'w1' })], [])
 

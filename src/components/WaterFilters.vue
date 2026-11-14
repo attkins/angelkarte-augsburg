@@ -5,6 +5,7 @@ import type { MapData } from '@/types'
 import { type FixedChip, isFilterActive, type WaterFilter } from '@/utils/filter'
 
 const props = defineProps<{ data: MapData; filter: WaterFilter; count: number }>()
+const emit = defineEmits<{ selectClub: [id: string] }>()
 
 const CHIPS: { key: FixedChip; label: string }[] = [
   { key: 'guests', label: 'Gäste willkommen' },
@@ -70,6 +71,14 @@ function reset() {
         <option :value="null">Alle Vereine</option>
         <option v-for="club in clubs" :key="club.id" :value="club.id">{{ club.name }}</option>
       </select>
+      <button
+        v-if="props.filter.clubId"
+        type="button"
+        class="chip club-page"
+        @click="emit('selectClub', props.filter.clubId)"
+      >
+        Zum Verein<AppIcon name="chevron-right" :size="14" />
+      </button>
     </div>
 
     <div v-if="active" class="result-row">
@@ -144,6 +153,12 @@ function reset() {
   border-color: var(--accent);
   background-color: var(--accent);
   color: var(--on-accent);
+}
+
+.club-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .club-select {
