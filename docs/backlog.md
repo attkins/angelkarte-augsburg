@@ -36,7 +36,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | D8 | Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam | open |
 | D9 | Missing waters outside the core region: Kirnach (FVA), 1. AAC waters (Mindel, Günz, Höchstädt and others) | open |
 | D10 | Third research pass west of Augsburg: Staudenfischereiverein, hejfish Neufnach and Weiher H5, clubs in Diedorf, Dinkelscherben, Fischach, Welden and others | open |
-| D11 | FVA prices change on 2027-01-01 (`prices.validFrom`). Check all other clubs for 2027 prices in January | in progress (chat data D11) |
+| D11 | FVA prices change on 2027-01-01 (`prices.validFrom`). Check all other clubs for 2027 prices in January. First pass 2026-11-14: Königsbrunn published 2027 prices (entered with `validFrom`). LFV, Friedberg, Haunstetten, Wehringen and the Augsburger Angelcenter list show no 2027 prices yet, Bobingen has no prices online. Recheck in January, and switch Hintersee (Königsbrunn) to guests with a member on 2027-01-01 | open (recheck January 2027) |
 | D12 | Maximum depth for the remaining 16 lakes (list in `concept.md`, depth maps section). Club pages first, ask the clubs if nothing is online | open |
 
 ## Technical
@@ -55,7 +55,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F1 | Filter "Karte heute noch bekommen" | Waters where a sales point is open right now or online purchase exists. Needs D1 | open |
 | F2 | Plan for a date | Date picker instead of only "today": seasons, guest periods and opening hours on that day. `availability()` and `openingStatus()` already take a date | open |
 | F3 | Fish species filter | Chip or selector, needs D7 | open |
-| F4 | Sort by distance | Distance from the own location or a fixed start (e.g. Friedberg), optionally rough driving time | open |
+| F4 | Sort by distance | Distance from the own location or a fixed start (e.g. Friedberg), optionally rough driving time | in progress (chat F4) |
 | F5 | Share button | Web Share API with the existing hash routes, fallback copy link | open |
 | F6 | Water level and temperature | Open data of the Hochwassernachrichtendienst Bayern for Lech, Wertach, Schmutter, Paar. First check which gauges fit which stretches | open |
 | F7 | Offline use | Service worker caching the data files and recently viewed tiles | open |

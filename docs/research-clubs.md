@@ -191,6 +191,15 @@ Sales points:
 
 Wertach Siebnach is in Landkreis Unterallgäu, outside the core region.
 
+### Day ticket prices 2027 (checked 2026-11-14)
+
+The price page now shows an image "Tageskartenpreise 2027". Assumed valid from 1 Jan 2027, the page gives no exact date.
+
+- Members: three ponds (Hermann, Kring, Petri) and Hintersee 20 €, youth 12 €. Wertach with Mühlbach 20 €, youth 12 €
+- Guests and passive members: three ponds 25 €, youth 17 €. Wertach without Mühlbach 25 €, youth 17 €
+- New: guests accompanied by a member for all four waters including Hintersee 25 €, youth 17 €, at most one guest per angler, only at the Fischerhütte or via the host on Angelroute
+- Deposit 5 € on paper tickets, refund only at the issuing sales point. 1 € handling fee at the free sales points
+
 ## Fischereiverein Bobingen – official (no prices online)
 
 Website: https://fischereivereinbobingen.de
