@@ -117,6 +117,28 @@ A toggle between the current map style and aerial imagery, useful to see access 
 
 Assessment: feasible as a second tile layer with a switch in the map controls. Candidate sources are Esri World Imagery (free to use with attribution, global) and the official Bavarian aerial images (DOP) from the Landesamt für Digitalisierung, Breitband und Vermessung, which are open data as far as known (to be verified, including license and tile service URL). The satellite mode is independent of the light and dark theme. Labels could be added on top with a transparent label layer.
 
+### Imprint and credits page (added 2026-11-14)
+
+A page with an imprint and links to all services, libraries, fonts and data sources the map uses.
+
+Assessment (not legal advice): § 5 DDG only requires an imprint for business-like digital services, and § 18 MStV exempts sites that serve purely personal or family purposes. A map for the owner and a few friends probably falls under that exemption, but it is interpreted narrowly and the page is publicly reachable, so a simple imprint (name and an address for contact) is the safe choice. An address in the imprint is public, a c/o or service address is an option. A short privacy note matters at least as much: every CARTO tile request sends the visitor's IP address to CARTO, and GitHub Pages logs IP addresses as well.
+
+Credits to list with links: OpenStreetMap contributors (ODbL), CARTO base maps, Leaflet (BSD 2-Clause), Vue (MIT), the fonts Figtree and Vollkorn (SIL Open Font License 1.1, bundled with the app, nothing is loaded from Google), Nominatim for geocoding, and the data sources (club websites, hejfish, Augsburger Angelcenter). Implementation: a link in the panel footer and in the mobile bar that opens the page in the panel. Fits well together with hash routes, see club pages.
+
+Status: done 2026-11-14. `ImprintPage.vue` opens in the panel via `#/impressum` (`useHashPage`), with a link in the panel footer and an info button in the mobile bar. Contains imprint, a note that all data is without guarantee, a short privacy note (GitHub Pages, CARTO, theme in local storage, external links) and the credits. The operator details come from the `VITE_IMPRINT_*` environment variables (repository secrets for the deploy), so they stay out of the public repository.
+
+### Club detail pages (added 2026-11-14)
+
+A page per club with name, website and contact, an overview of all its waters (access, guest price, season) and the sales points that sell tickets for the club. On the map all waters of the club are highlighted and the view fits to them.
+
+Assessment: the data is already there (`clubs.json` and `clubId` on every water). Needs a new selection kind `club` in `App.vue` and `MapView.vue` and a `ClubDetail` component similar to `SalesPointDetail`. Entry points: the club name in the water detail, the club selector of the filters and the club headings in the sales point detail. Good moment to introduce hash routes such as `#/gewaesser/<id>`, `#/verein/<id>` and `#/impressum`, so links can be sent to friends and the back button works on phones. GitHub Pages needs no extra setup for hash routes.
+
+### More waters west of Augsburg (added 2026-11-14)
+
+Cover the area west of Augsburg better: the Westliche Wälder nature park, the Stauden and the valleys of Schmutter, Zusam, Neufnach and Roth, around Neusäß, Diedorf, Gessertshausen, Horgau, Fischach, Dinkelscherben, Zusmarshausen and Welden.
+
+Assessment: already in the data are the FVA Schmutter stretches, the Rothsee (FV Zusmarshausen) and the Bergheimer Baggersee. Leads from the first research that are not in the data yet: Staudenfischereiverein (Neufnach) and the hejfish listings Neufnach and Weiher H5 (Reinhartshofen). Needs a third research pass focused on the west: which local clubs exist in the towns above and whether they sell day tickets, more hejfish listings and the sales points in the area. Same workflow as before: research into `research-clubs.md`, then data with OSM outlines. The western edge of `REGION_BOUNDS` (10.6) already reaches Dinkelscherben, so the start view probably does not need to change.
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)
