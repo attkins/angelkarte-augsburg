@@ -23,6 +23,7 @@ Day ticket prices (Tageskarten page):
 Guest rules:
 - Guest tickets are only issued with a member present, and guests may only fish with a member present
 - Lech: guests only with an adult member, only 15 Jul to 31 Oct
+- Stadtwasser: guests may fish alone without a member (confirmed by Thomas on 2026-11-14, overrides the general rule above)
 - Paar 3, Paar 4, Schmutter: guests only with a member
 - Lechauensee 1: members only
 
