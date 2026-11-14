@@ -64,6 +64,16 @@ function checkOpeningRules(rules, where, errors) {
   })
 }
 
+function checkPrices(prices, label, errors) {
+  for (const [key, value] of Object.entries(prices)) {
+    if (!PRICE_KEYS.includes(key)) errors.push(`${label}: unknown price key "${key}"`)
+    else if (!TEXT_PRICE_KEYS.includes(key) && typeof value !== 'number') {
+      errors.push(`${label}: price "${key}" must be a number`)
+    }
+  }
+  if (prices.validFrom && !ISO_DATE.test(prices.validFrom)) errors.push(`${label}.validFrom must be YYYY-MM-DD`)
+}
+
 /** The depth fields are optional, most waters have none. */
 function checkDepth(p, where, errors) {
   if (p.maxDepth !== undefined && p.maxDepth !== null) {
@@ -132,15 +142,14 @@ export function validateData({ clubs, waters, salesPoints }, { now = new Date() 
     }
     if (!p.lastChecked) warnings.push(`${where}: lastChecked is not set`)
 
-    if (p.prices) {
-      for (const [key, value] of Object.entries(p.prices)) {
-        if (!PRICE_KEYS.includes(key)) errors.push(`${where}: unknown price key "${key}"`)
-        else if (!TEXT_PRICE_KEYS.includes(key) && typeof value !== 'number') {
-          errors.push(`${where}: price "${key}" must be a number`)
-        }
-      }
-      if (p.prices.validFrom && !ISO_DATE.test(p.prices.validFrom)) {
-        errors.push(`${where}: prices.validFrom must be YYYY-MM-DD`)
+    if (p.prices) checkPrices(p.prices, `${where}: prices`, errors)
+    if (p.previousPrices) {
+      checkPrices(p.previousPrices, `${where}: previousPrices`, errors)
+      const validFrom = p.prices?.validFrom
+      if (!validFrom) {
+        errors.push(`${where}: previousPrices need prices.validFrom, the date the new prices start`)
+      } else if (ISO_DATE.test(validFrom) && daysSince(validFrom, now) >= 0) {
+        warnings.push(`${where}: prices are valid since ${validFrom}, previousPrices can be removed`)
       }
     }
 

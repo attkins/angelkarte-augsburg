@@ -126,6 +126,32 @@ describe('WaterDetail', () => {
       )
     })
 
+    it('keeps the old prices until the new list starts and announces it', () => {
+      // NOW is 13 November 2026.
+      const water = makeWater({
+        prices: { guest: 25, member: 20, validFrom: '2027-01-01', note: 'Neue Preisliste.' },
+        previousPrices: { guest: 20, member: 15, note: 'Alte Preisliste.' },
+      })
+      const wrapper = mountDetail(water)
+
+      expect(wrapper.findAll('.price-value').map((v) => v.text())).toEqual(['20 €', '15 €'])
+      expect(wrapper.find('.price-note').text()).toBe('Alte Preisliste.')
+      expect(wrapper.find('.upcoming-prices').text()).toBe('Ab 1.1.2027: Gast 25 €, Mitglied 20 €.')
+    })
+
+    it('shows the new prices once they apply', () => {
+      const water = makeWater({
+        prices: { guest: 25, member: 20, validFrom: '2026-11-01' },
+        previousPrices: { guest: 20, member: 15 },
+      })
+      const wrapper = mountDetail(water)
+
+      expect(wrapper.findAll('.price-value').map((v) => v.text())).toEqual(['25 €', '20 €'])
+      expect(wrapper.find('.upcoming-prices').exists()).toBe(false)
+      // The start date lies in the past, no need to mention it.
+      expect(wrapper.find('.price-note').exists()).toBe(false)
+    })
+
     it('says so when no prices are known', () => {
       const wrapper = mountDetail(makeWater({ prices: null }))
 

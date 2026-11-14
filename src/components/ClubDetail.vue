@@ -4,6 +4,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { Club, MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice } from '@/utils/format'
+import { guestPriceOn } from '@/utils/prices'
 import { availability, formatRange } from '@/utils/time'
 
 const props = withDefaults(
@@ -27,7 +28,7 @@ const waters = computed(() =>
       const p = water.properties
       const membersOnly = p.guestAccess === 'membersOnly'
       const closed = !membersOnly && !availability(p.season, p.guestPeriod, props.now).openForGuestsToday
-      const guest = p.prices?.guest
+      const guest = guestPriceOn(p, props.now)
       const details = [
         closed ? null : p.season ? `Saison ${formatRange(p.season)}` : null,
         p.onlinePurchase?.url ? 'online buchbar' : null,

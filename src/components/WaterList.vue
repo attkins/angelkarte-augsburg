@@ -5,6 +5,7 @@ import { DEFAULT_ORIGIN, GUEST_ACCESS } from '@/config'
 import type { MapData } from '@/types'
 import { distanceToWaterKm, formatDistance } from '@/utils/distance'
 import { formatPrice } from '@/utils/format'
+import { guestPriceOn } from '@/utils/prices'
 
 const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
@@ -36,12 +37,13 @@ function sortByDistance() {
 
 const waters = computed(() => {
   const from = origin.value
+  const today = new Date()
   return props.data.waters.features
     .filter((w) => !props.matchingIds || props.matchingIds.has(w.properties.id))
     .map((water) => {
       const p = water.properties
       const club = props.data.clubsById.get(p.clubId)
-      const guest = p.prices?.guest
+      const guest = guestPriceOn(p, today)
       return {
         id: p.id,
         name: p.name,

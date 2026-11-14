@@ -4,6 +4,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice, phoneHref } from '@/utils/format'
+import { guestPriceOn } from '@/utils/prices'
 import { isAugsburgCity } from '@/utils/holidays'
 import { describeOpeningStatus, formatOpeningHours, openingStatus } from '@/utils/time'
 
@@ -68,7 +69,7 @@ function accessToken(water: WaterFeature) {
 
 function guestPrice(water: WaterFeature): string | null {
   if (water.properties.guestAccess === 'membersOnly') return null
-  const price = water.properties.prices?.guest
+  const price = guestPriceOn(water.properties, props.now)
   return typeof price === 'number' ? formatPrice(price) : '–'
 }
 </script>

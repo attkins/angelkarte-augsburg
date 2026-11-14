@@ -30,7 +30,8 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `season` | date range or null | Fishing season, e.g. `{ "from": "03-16", "to": "12-14" }`. `null` if fishing is allowed all year or the season is unknown |
 | `seasonNote` | string or null | Season details that do not fit a fixed range, e.g. a season that starts with a club event |
 | `guestPeriod` | date range or null | Period in which guests may fish, if shorter than the season. `null` if there is no extra limit |
-| `prices` | object or null | Keys `member`, `guest`, `youth`, `guestYouth`, `deposit` (numbers in euros), `note` (text) and `validFrom` (ISO date, when a price list only applies from a certain date). All optional |
+| `prices` | object or null | Keys `member`, `guest`, `youth`, `guestYouth`, `deposit` (numbers in euros), `note` (text) and `validFrom` (ISO date, when a price list only applies from a certain date). All optional. Always the newest known list |
+| `previousPrices` | object, null or missing | Optional. Same keys as `prices` without `validFrom`: the list that applies until `prices.validFrom`. The app shows it until that day and announces the new prices below, then switches on its own. Without it a future list is shown right away with "Preise gültig ab". Remove it after the switch, the validator warns |
 | `species` | string[] | Fish species for this water |
 | `rules` | string[] | Bait, catch limits, night fishing, fly only and so on |
 | `closedSeasons` | string[] | Only where they differ from the state rules |

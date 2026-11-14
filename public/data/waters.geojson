@@ -8308,7 +8308,15 @@
           "guestYouth": 17,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Bis Ende 2026 Mitglied 15 €, Jugend 8 €, Gast 20 €, Gast Jugend 12 €. An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+        },
+        "previousPrices": {
+          "member": 15,
+          "youth": 8,
+          "guest": 20,
+          "guestYouth": 12,
+          "deposit": 5,
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
         "species": [],
         "rules": [],
@@ -8367,7 +8375,15 @@
           "guestYouth": 17,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Bis Ende 2026 Mitglied 15 €, Jugend 8 €, Gast 20 €, Gast Jugend 12 €. An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+        },
+        "previousPrices": {
+          "member": 15,
+          "youth": 8,
+          "guest": 20,
+          "guestYouth": 12,
+          "deposit": 5,
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
         "species": [],
         "rules": [],
@@ -8426,7 +8442,15 @@
           "guestYouth": 17,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Bis Ende 2026 Mitglied 15 €, Jugend 8 €, Gast 20 €, Gast Jugend 12 €. An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+        },
+        "previousPrices": {
+          "member": 15,
+          "youth": 8,
+          "guest": 20,
+          "guestYouth": 12,
+          "deposit": 5,
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
         "species": [],
         "rules": [],
@@ -8482,7 +8506,12 @@
           "member": 20,
           "youth": 12,
           "validFrom": "2027-01-01",
-          "note": "Mitgliederkarte gilt für alle vier Weiher. Bis Ende 2026 Mitglied 15 €, Jugend 8 €."
+          "note": "Mitgliederkarte gilt für alle vier Weiher."
+        },
+        "previousPrices": {
+          "member": 15,
+          "youth": 8,
+          "note": "Mitgliederkarte gilt für alle vier Weiher."
         },
         "species": [],
         "rules": [],
@@ -8540,7 +8569,15 @@
           "guestYouth": 17,
           "deposit": 5,
           "validFrom": "2027-01-01",
-          "note": "Mitgliederkarte mit Mühlbach. Bis Ende 2026 Mitglied 15 €, Jugend 8 €, Gast 20 €, Gast Jugend 12 €, Pfand 3 €. An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+          "note": "Mitgliederkarte mit Mühlbach. An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand nur bei Papierkarten, Erstattung nur bei der jeweiligen Ausgabestelle."
+        },
+        "previousPrices": {
+          "member": 15,
+          "youth": 8,
+          "guest": 20,
+          "guestYouth": 12,
+          "deposit": 3,
+          "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
         "species": [],
         "rules": [],

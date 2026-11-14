@@ -26,7 +26,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 
 | ID | Task | Status |
 |----|------|--------|
-| D1 | Opening hours of the sales points (20 of 27 have none) and holidays, see step 11 in `concept.md` | in progress (other chat) |
+| D1 | Opening hours of the sales points and holidays, see step 11 in `concept.md` | done 2026-11-14: 24 of 27 have hours, `ph` rules for holidays. Open: Osetskiy, Fischerheim FV Friedberg, Holland Blumen |
 | D2 | Friedberg: can guests fish the Paar and Friedberger Ach stretches without a member? | open |
 | D3 | Clarify the 7 waters with `guestAccess: unknown` | open |
 | D4 | Singold Bobingen is open for guests but has no guest price. Bobingen prices are not online at all | open |
@@ -44,7 +44,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | ID | Task | Status |
 |----|------|--------|
 | T1 | Validator warning when `lastChecked` is older than about 6 months | done 2026-11-14 (warning after 183 days, error for future dates) |
-| T2 | Show prices with `validFrom` automatically once the date is reached, keep the old prices until then | open |
+| T2 | Show prices with `validFrom` automatically once the date is reached, keep the old prices until then | done 2026-11-14: new optional `previousPrices` next to `prices`, the app switches on `prices.validFrom` and announces the new list until then. Set for the five Königsbrunn waters. FVA has no known 2026 prices, so its 2027 list stays visible with its date. Guest access changes on a date (Hintersee, see D11) are not covered |
 | T3 | Decide how data is maintained later: hand-edited GeoJSON with docs, or a small editor | open |
 | T4 | Decide whether the site needs a password or an unlisted link is enough | open |
 | T5 | Changelog generated from the Conventional Commits | done 2026-11-14 with git-cliff: `cliff.toml`, `npm run changelog`, usage in the README. Not part of the deploy workflow, could be added there later (needs Thomas, see C3) |

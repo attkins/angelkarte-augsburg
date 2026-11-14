@@ -192,19 +192,48 @@ describe('validateData', () => {
     it('reports unknown keys', () => {
       const water = makeWater({ prices: { senior: 10 } as never })
 
-      expect(validate({ waters: [water] }).errors).toContain('water "water-a": unknown price key "senior"')
+      expect(validate({ waters: [water] }).errors).toContain('water "water-a": prices: unknown price key "senior"')
     })
 
     it('requires numbers for price values', () => {
       const water = makeWater({ prices: { guest: '20 €' } as never })
 
-      expect(validate({ waters: [water] }).errors).toContain('water "water-a": price "guest" must be a number')
+      expect(validate({ waters: [water] }).errors).toContain('water "water-a": prices: price "guest" must be a number')
     })
 
     it('checks the date format of validFrom', () => {
       const water = makeWater({ prices: { guest: 20, validFrom: 'Januar 2027' } })
 
       expect(validate({ waters: [water] }).errors).toContain('water "water-a": prices.validFrom must be YYYY-MM-DD')
+    })
+
+    describe('previousPrices', () => {
+      const check = (props: object) => validate({ waters: [makeWater({ lastChecked: '2026-11-01', ...props })] })
+
+      it('accepts old prices next to an announced new list', () => {
+        const result = check({ prices: { guest: 25, validFrom: '2027-01-01' }, previousPrices: { guest: 20 } })
+
+        expect(result.errors).toEqual([])
+        expect(result.warnings.filter((w) => w.includes('previousPrices'))).toEqual([])
+      })
+
+      it('needs the date the new prices start', () => {
+        expect(check({ prices: { guest: 25 }, previousPrices: { guest: 20 } }).errors).toEqual([
+          'water "water-a": previousPrices need prices.validFrom, the date the new prices start',
+        ])
+      })
+
+      it('checks the old prices like the new ones', () => {
+        expect(check({ prices: { guest: 25, validFrom: '2027-01-01' }, previousPrices: { guest: '20' } }).errors).toEqual([
+          'water "water-a": previousPrices: price "guest" must be a number',
+        ])
+      })
+
+      it('suggests removing them once the new prices apply', () => {
+        expect(check({ prices: { guest: 25, validFrom: '2026-01-01' }, previousPrices: { guest: 20 } }).warnings).toContain(
+          'water "water-a": prices are valid since 2026-01-01, previousPrices can be removed',
+        )
+      })
     })
   })
 

@@ -78,6 +78,8 @@ export interface WaterProperties {
   /** Period in which guests may fish, if shorter than the season. Null if no extra limit. */
   guestPeriod: DateRange | null
   prices: Prices | null
+  /** The list that applies until `prices.validFrom`, while the new prices are only announced. */
+  previousPrices?: Prices | null
   species: string[]
   rules: string[]
   closedSeasons: string[]

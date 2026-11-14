@@ -5,6 +5,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { PRICE_LABELS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatDate, formatDepth, formatPrice } from '@/utils/format'
+import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
 import { isAugsburgCity } from '@/utils/holidays'
 import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
 
@@ -27,8 +28,10 @@ const status = computed(() => availability(p.value.season, p.value.guestPeriod, 
 // Members-only waters are closed for guests anyway, a "wieder ab" date would be misleading.
 const closedReason = computed(() => (p.value.guestAccess === 'membersOnly' ? null : status.value.reason))
 
+const priceList = computed(() => pricesOn(p.value, props.now))
+
 const priceTiles = computed(() => {
-  const prices = p.value.prices
+  const prices = priceList.value.current
   if (!prices) return []
   return (Object.keys(PRICE_LABELS) as (keyof typeof PRICE_LABELS)[]).flatMap((key) => {
     const value = prices[key]
@@ -37,15 +40,20 @@ const priceTiles = computed(() => {
 })
 
 const priceNotes = computed(() => {
-  const prices = p.value.prices
+  const prices = priceList.value.current
   if (!prices) return []
   const notes: string[] = []
   if (typeof prices.deposit === 'number') notes.push(`Plus ${formatPrice(prices.deposit)} Pfand pro Karte.`)
+  // Only worth saying while the date lies ahead, e.g. a new list without the old one.
   const validFrom = formatDate(prices.validFrom)
-  if (validFrom) notes.push(`Preise gültig ab ${validFrom}.`)
+  if (validFrom && prices.validFrom! > isoDay(props.now)) notes.push(`Preise gültig ab ${validFrom}.`)
   if (prices.note) notes.push(prices.note)
   return notes
 })
+
+const upcomingPrices = computed(() =>
+  priceList.value.upcoming ? describeUpcoming(priceList.value.upcoming) : null,
+)
 
 const salesPoints = computed(() =>
   (props.data.salesPointIdsByWater.get(p.value.id) ?? [])
@@ -124,6 +132,7 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
       </div>
       <p v-else class="muted">Preise noch nicht erfasst.</p>
       <p v-if="priceNotes.length" class="muted price-note">{{ priceNotes.join(' ') }}</p>
+      <p v-if="upcomingPrices" class="upcoming-prices">{{ upcomingPrices }}</p>
     </section>
 
     <a
@@ -316,6 +325,16 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
 .price-tile.is-main .price-value {
   font-weight: 700;
   color: var(--accent-text);
+}
+
+.upcoming-prices {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .price-note {
