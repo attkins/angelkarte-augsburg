@@ -82,5 +82,40 @@
     "shortName": "FV Zusmarshausen",
     "website": null,
     "contact": null
+  },
+  {
+    "id": "karl2o-walchsee",
+    "name": "Karl Karl & Co KG (Bewirtschafter)",
+    "shortName": "Walchsee",
+    "website": "https://www.karl2o.at",
+    "contact": "+43 676 78 76 129, kontakt@karl2o.at, Kirchgasse, 6344 Walchsee"
+  },
+  {
+    "id": "fv-pillersee",
+    "name": "Fischereiverein Pillersee (Bewirtschafter)",
+    "shortName": "Pillersee",
+    "website": "https://fischereiverein-pillersee.at",
+    "contact": "+43 664 4457616, info@fischereiverein-pillersee.at, Strass 40, 6393 St. Ulrich am Pillersee. Kartenausgabe: Seerestaurant Blattl"
+  },
+  {
+    "id": "land-tirol-seen",
+    "name": "Land Tirol – Seeverwaltung (Bewirtschafter)",
+    "shortName": "Land Tirol",
+    "website": "https://www.plansee-tirol.at",
+    "contact": "+43 512 508 2303, liegenschaftsverwaltung@tirol.gv.at. Kartenausgabe: Campingplatz Seespitze / Sennalpe, Breitenwang"
+  },
+  {
+    "id": "achensee-revier",
+    "name": "Achensee (Bewirtschafter unbekannt)",
+    "shortName": "Achensee",
+    "website": null,
+    "contact": "Auskunft: Tourismusverband Achensee, +43 5 95300-0, info@achensee.com"
+  },
+  {
+    "id": "fv-tannheimertal",
+    "name": "Fischereiverein Tannheimer Tal (Bewirtschafter)",
+    "shortName": "Tannheimer Tal",
+    "website": "https://www.tannheimertal.com",
+    "contact": "+43 676 6182963 (Obmann Wöber), fischereivereintannheimertal@gmx.at, Haldensee, 6673 Grän"
   }
 ]

@@ -11,7 +11,7 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 | Release | Theme | Target | Status |
 |---------|-------|--------|--------|
 | 0.7 | Ready for friends | week of 2026-11-16 | planned |
-| 0.8 | Austria | end of November 2026 | in progress (D13 research) |
+| 0.8 | Austria | end of November 2026 | in progress (D13 data done, map handling open) |
 | 0.9 | Core region complete | mid December 2026 | planned |
 | 0.10 | More waters | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
