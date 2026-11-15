@@ -4,7 +4,9 @@ export function formatPrice(value: number): string {
 
 export function formatDate(isoDate: string | null | undefined): string | null {
   if (!isoDate) return null
-  return new Date(isoDate).toLocaleDateString('de-DE')
+  // new Date('2027-01-01') would be midnight UTC, which is still 31 December west of Greenwich.
+  const [year, month, day] = isoDate.split('-').map(Number)
+  return new Date(year!, month! - 1, day!).toLocaleDateString('de-DE')
 }
 
 export function phoneHref(phone: string): string {
