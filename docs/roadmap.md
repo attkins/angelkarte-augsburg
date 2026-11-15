@@ -35,6 +35,7 @@ Done when the deploy runs the tests and a friend can open and use the map withou
 Goal: the holiday regions Fernpass and Wilder Kaiser are on the map.
 
 - D13 Research clubs and ticket offers, then waters with OSM outlines
+- D15 Four more lakes around Kufstein and Kitzbühel (done), D16 the remaining lakes and the first rivers
 - Start view and `dataBounds()` handle two areas far apart (e.g. a region switch instead of one box from Augsburg to Tyrol)
 - Waters with restricted or prohibited access shown correctly (already supported in the schema)
 

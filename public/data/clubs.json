@@ -117,5 +117,33 @@
     "shortName": "Tannheimer Tal",
     "website": "https://www.tannheimertal.com",
     "contact": "+43 676 6182963 (Obmann Wöber), fischereivereintannheimertal@gmx.at, Haldensee, 6673 Grän"
+  },
+  {
+    "id": "fg-hechtsee",
+    "name": "Fischereigemeinschaft Hechtsee (Bewirtschafter)",
+    "shortName": "Hechtsee",
+    "website": "https://hechtsee-fischen.jimdofree.com",
+    "contact": "+43 664 88530596, hechtsee.fischen@gmail.com. Bootsschlüssel an der OMV Tankstelle Ravanelli, Oskar-Pirlo-Straße 32, 6330 Kufstein"
+  },
+  {
+    "id": "gemeinde-thiersee",
+    "name": "Gemeinde Thiersee (Bewirtschafter)",
+    "shortName": "Thiersee",
+    "website": null,
+    "contact": "Michele Celentano, +43 664 2436323. Karten auch im Platzl/Pizzeria am See, +43 5376 20444"
+  },
+  {
+    "id": "reintaler-see-revier",
+    "name": "Reintaler See (Bewirtschafter unbekannt)",
+    "shortName": "Reintaler See",
+    "website": "https://www.fischerstube.eu",
+    "contact": "Kartenausgabe: Fischerstube Kramsach, +43 676 5560228, info@fischerstube.at"
+  },
+  {
+    "id": "stadt-kitzbuehel",
+    "name": "Stadtgemeinde Kitzbühel (Bewirtschafter)",
+    "shortName": "Kitzbühel",
+    "website": "https://www.kitzbuehel.at",
+    "contact": "+43 664 2824363, fischen@kitzbuehel.at. Tageskarten auch bei der Stadtpolizei Kitzbühel, +43 5356 62161-10"
   }
 ]
