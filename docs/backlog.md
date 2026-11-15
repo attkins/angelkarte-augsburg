@@ -11,6 +11,7 @@ This file is the shared work list for parallel chats and agents.
 - When an item is done, set its status to `done` with the date and move on. Keep done items here until the next cleanup so others can see what changed.
 - New findings go to the matching section with the next free ID.
 - Larger decisions and the reasoning behind them still belong in `concept.md`, research results in `research-clubs.md`.
+- Which release an item is planned for is in `roadmap.md`. When you add an item, add it to a release there or to "Later".
 
 Status values: `open`, `in progress`, `done`, `blocked`.
 
@@ -37,6 +38,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | C1 | Remove stale "Lage nur ungefähr" and "Grenzen noch nicht geprüft" from the `accessNote` of waters that are now traced: Lechauensee 1 and 2, FVA-See, Paintensee, Rollweiher, Hurlacher See, Baggerseen Sand, Günz, Lochbach Haunstetten | ✅ done 2026-11-14 for the seven lakes. Günz and Lochbach Haunstetten keep their note because the stretch limits are still unchecked, moved to D6 |
 | C2 | Update step 6 in `concept.md`: Paintensee, Rollweiher and Hurlacher See are traced by now | ✅ done 2026-11-14 |
 | C3 | Run `npm test` in the GitHub Actions workflow before the build. `.github/` can only be edited by Thomas | ⬜ open |
+| C4 | Clean up release tags: `v0.6.1` and `v0.7.0` come from testing the release script (author "test", commits not on `main`) and must go before the next release. `v0.5.0` points to the commit "chore(release): 0.3.0", which is the right commit with a wrong message, so it stays | ⬜ open |
 
 ## Data
 
@@ -55,6 +57,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | D11 | FVA prices change on 2027-01-01 (`prices.validFrom`). Check all other clubs for 2027 prices in January. First pass 2026-11-14: Königsbrunn published 2027 prices (entered with `validFrom`). LFV, Friedberg, Haunstetten, Wehringen and the Augsburger Angelcenter list show no 2027 prices yet, Bobingen has no prices online. Recheck in January, and switch Hintersee (Königsbrunn) to guests with a member on 2027-01-01 | ⬜ open (recheck January 2027) |
 | D12 | Maximum depth for the remaining 16 lakes (list in `concept.md`, depth maps section). Club pages first, ask the clubs if nothing is online | ⬜ open |
 | D13 | Add waters in Austria: Fernpass area and Wilder Kaiser. Research which clubs/holiday regions sell guest or day tickets there and how (Fischereikarte Tirol, hejfish, local Tourismusverband), then geometry with OSM outlines. Outside the core region, so widen `REGION_BOUNDS`/`dataBounds()` handling | 🔄 **relevant**, in progress (chat D13: research pass) |
+| D14 | Sales point leftovers from D1: opening hours for Osetskiy, Fischerheim FV Friedberg and Holland Blumen, new coordinates for Angel-Zoo-Ernst (Industriestr. 44, Kissing) and Zum Isarfischer (Sachsenkamer Str. 6, Bad Tölz) | ⬜ open |
 
 ## Technical
 
