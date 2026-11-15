@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { buildMapData } from '@/composables/useMapData'
 import type { Club, MapData, SalesPointFeature, WaterFeature } from '@/types'
-import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
+import { canGetTicketToday, emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
+import { makeClub, makeMapData, makeSalesPoint, makeWater } from '../../tests/fixtures'
 
 function water(id: string, props: Partial<WaterFeature['properties']>): WaterFeature {
   return {
@@ -90,5 +91,59 @@ describe('matchingWaterIds', () => {
     )
     const f = { ...emptyFilter(), clubId: 'c1', chips: new Set(['guests' as const]) }
     expect([...matchingWaterIds(data, f, NOW)]).toEqual(['a'])
+  })
+})
+
+describe('canGetTicketToday', () => {
+  // Friday 13 November 2026. Shop hours Monday to Friday 14 to 18.
+  const at = (hour: number, day = 13, month = 11) => new Date(2026, month - 1, day, hour)
+  const weekdays = [{ days: ['mo' as const, 'tu' as const, 'we' as const, 'th' as const, 'fr' as const], open: '14:00', close: '18:00' }]
+
+  function setup(salesPoint = makeSalesPoint({ openingHours: weekdays }), water = makeWater()) {
+    const data = makeMapData([makeClub()], [water], [salesPoint])
+    return (now: Date) => canGetTicketToday(water, data, now)
+  }
+
+  it('is true while a sales point is open', () => {
+    expect(setup()(at(15))).toBe(true)
+  })
+
+  it('is true when a sales point still opens today', () => {
+    expect(setup()(at(9))).toBe(true)
+  })
+
+  it('is false after the last sales point has closed', () => {
+    expect(setup()(at(19))).toBe(false)
+  })
+
+  it('is false on a weekend without hours', () => {
+    expect(setup()(at(10, 14))).toBe(false)
+  })
+
+  it('does not count sales points with unknown hours', () => {
+    expect(setup(makeSalesPoint({ openingHours: null }))(at(15))).toBe(false)
+  })
+
+  it('does not count a holiday without holiday hours', () => {
+    // Friday 25 December 2026.
+    expect(setup()(at(15, 25, 12))).toBe(false)
+  })
+
+  it('is always true with online purchase', () => {
+    const water = makeWater({ onlinePurchase: { provider: 'hejfish', url: 'https://example.org' } })
+    expect(setup(makeSalesPoint({ waterIds: [] }), water)(at(23))).toBe(true)
+  })
+})
+
+describe('ticketToday chip', () => {
+  it('keeps only waters where a ticket can still be bought today', () => {
+    const data = makeMapData(
+      [makeClub()],
+      [makeWater({ id: 'shop' }), makeWater({ id: 'none' })],
+      [makeSalesPoint({ waterIds: ['shop'], openingHours: [{ days: ['fr'], open: '14:00', close: '18:00' }] })],
+    )
+    const f = { ...emptyFilter(), chips: new Set(['ticketToday' as const]) }
+
+    expect([...matchingWaterIds(data, f, new Date(2026, 10, 13, 10))]).toEqual(['shop'])
   })
 })

@@ -11,6 +11,7 @@ const CHIPS: { key: FixedChip; label: string }[] = [
   { key: 'guests', label: 'Gäste willkommen' },
   { key: 'online', label: 'Online buchbar' },
   { key: 'seasonOpen', label: 'Saison offen' },
+  { key: 'ticketToday', label: 'Karte heute noch' },
   { key: 'flyFishing', label: 'Fliegenfischen' },
 ]
 

@@ -1,10 +1,11 @@
 import type { MapData, WaterFeature } from '@/types'
-import { availability } from '@/utils/time'
+import { isAugsburgCity } from '@/utils/holidays'
+import { availability, openingStatus } from '@/utils/time'
 
 // Filtering for the water list and the map. Pure functions, `now` is a parameter so it is testable.
 
 /** Fixed chips from the design, plus the dynamic `club:<id>` chips built at runtime. */
-export type FixedChip = 'guests' | 'online' | 'seasonOpen' | 'flyFishing'
+export type FixedChip = 'guests' | 'online' | 'seasonOpen' | 'ticketToday' | 'flyFishing'
 
 export interface WaterFilter {
   /** Free text, matched against water and club name. */
@@ -27,6 +28,21 @@ function isFlyFishing(water: WaterFeature): boolean {
   return water.properties.rules.some((r) => r.toLowerCase().includes('fliegen'))
 }
 
+/**
+ * Whether a ticket can still be bought today: online, or at a sales point that is open now or
+ * opens later today. Sales points without known hours, and holidays without holiday hours,
+ * do not count, the app cannot promise anything there.
+ */
+export function canGetTicketToday(water: WaterFeature, data: MapData, now: Date): boolean {
+  if (water.properties.onlinePurchase) return true
+  return (data.salesPointIdsByWater.get(water.properties.id) ?? []).some((id) => {
+    const salesPoint = data.salesPointsById.get(id)?.properties
+    if (!salesPoint?.openingHours) return false
+    const status = openingStatus(salesPoint.openingHours, now, { augsburgCity: isAugsburgCity(salesPoint.address) })
+    return status.open === true || (status.open === false && status.opensOn === 'today')
+  })
+}
+
 function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: Date): boolean {
   const p = water.properties
 
@@ -44,6 +60,7 @@ function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: D
     if (chip === 'online' && !p.onlinePurchase) return false
     if (chip === 'flyFishing' && !isFlyFishing(water)) return false
     if (chip === 'seasonOpen' && !availability(p.season, p.guestPeriod, now).openForGuestsToday) return false
+    if (chip === 'ticketToday' && !canGetTicketToday(water, data, now)) return false
   }
 
   return true

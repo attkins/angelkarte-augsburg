@@ -70,7 +70,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 
 | ID | Idea | Notes | Status |
 |----|------|-------|--------|
-| F1 | Filter "Karte heute noch bekommen" | Waters where a sales point is open right now or online purchase exists. Needs D1 | ⬜ open |
+| F1 | Filter "Karte heute noch bekommen" | Chip "Karte heute noch": online purchase, or a sales point that is open now or opens later today (`canGetTicketToday()` in `src/utils/filter.ts`). Sales points without hours and holidays without `ph` rules do not count | ✅ done 2026-11-15 |
 | F2 | Plan for a date | Date picker instead of only "today": seasons, guest periods and opening hours on that day. `availability()` and `openingStatus()` already take a date | ⬜ open |
 | F3 | Fish species filter | Chip or selector, needs D7 | ⬜ open |
 | F4 | Sort by distance | Toggle "Name / Entfernung" in the water list, straight-line distance to the nearest point of the water from the own location, fallback `DEFAULT_ORIGIN` (Augsburg Mitte) in `src/config.ts`. Driving time left out, a guess from straight-line distance would mislead | ✅ done 2026-11-14 |
