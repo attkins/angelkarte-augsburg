@@ -33,8 +33,15 @@
           "Hecht",
           "Zander"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Vom 1. Oktober bis 14. Februar nur Kunstköder und toter Köderfisch am Einzelhaken, ab 17 Uhr auch Naturköder am Einzelhaken für Rutten",
+          "Mais als Köder nur flussabwärts der Wertach-Mündung",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zwischen der Brücke Friedberger Straße (B300) und der MAN-Brücke Hans-Böckler-Straße zusätzlich 1. bis 14. Juni und 20. September bis 4. Oktober gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -226,8 +233,16 @@
           "Rotauge",
           "Rotfeder"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Innerer Stadtgraben nur mit Kunstköder, vom Stephinger Berg bis zur Villa Haindl alle Köder",
+          "Kein Fischen von Brücken und im Ein- und Auslaufkanal",
+          "Nur eine Rute",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Äußerer Stadtgraben zusätzlich 1. bis 30. April und 11. September bis 9. Oktober gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -636,8 +651,15 @@
           "Schleie",
           "Aal"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Vom 1. November bis 31. Dezember nur Kunstköder und toter Köderfisch",
+          "Kein Bootsfischen",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zusätzlich 20. September bis 4. Oktober gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -713,8 +735,14 @@
           "Aal",
           "Wels"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Nachtangeln nur für Mitglieder und Gäste in Begleitung eines Mitglieds",
+          "Bootsfischen für Mitglieder und Gäste in Begleitung eines Mitglieds erlaubt",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "15. Februar bis 23. März und 11. bis 24. September gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -805,8 +833,15 @@
           "Schleie",
           "Regenbogenforelle"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Vom 1. November bis 31. Dezember nur Kunstköder und toter Köderfisch",
+          "Bootsfischen erlaubt",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zusätzlich 20. September bis 4. Oktober gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -923,8 +958,15 @@
           "Schleie",
           "Regenbogenforelle"
         ],
-        "rules": [],
-        "closedSeasons": [],
+        "rules": [
+          "Vom 1. November bis 31. Dezember nur Kunstköder und toter Köderfisch",
+          "Bootsfischen erlaubt",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zusätzlich 20. September bis 4. Oktober gesperrt"
+        ],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
@@ -35878,6 +35920,1117 @@
             ]
           ]
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.10963,
+            48.44487
+          ],
+          [
+            11.11202,
+            48.44532
+          ],
+          [
+            11.11332,
+            48.4462
+          ],
+          [
+            11.11532,
+            48.44866
+          ],
+          [
+            11.11528,
+            48.44893
+          ],
+          [
+            11.11556,
+            48.44928
+          ],
+          [
+            11.1161,
+            48.44926
+          ],
+          [
+            11.11671,
+            48.44888
+          ],
+          [
+            11.1177,
+            48.44871
+          ],
+          [
+            11.11802,
+            48.4489
+          ],
+          [
+            11.11763,
+            48.44939
+          ],
+          [
+            11.118,
+            48.44983
+          ],
+          [
+            11.1182,
+            48.44989
+          ],
+          [
+            11.11857,
+            48.4497
+          ],
+          [
+            11.11822,
+            48.44936
+          ],
+          [
+            11.11834,
+            48.44924
+          ],
+          [
+            11.11915,
+            48.44949
+          ],
+          [
+            11.11937,
+            48.45017
+          ],
+          [
+            11.11872,
+            48.45045
+          ],
+          [
+            11.11944,
+            48.45082
+          ],
+          [
+            11.12061,
+            48.45104
+          ],
+          [
+            11.1219,
+            48.45045
+          ],
+          [
+            11.12238,
+            48.45085
+          ],
+          [
+            11.12311,
+            48.45064
+          ],
+          [
+            11.12393,
+            48.45098
+          ],
+          [
+            11.12464,
+            48.45231
+          ],
+          [
+            11.12435,
+            48.45286
+          ],
+          [
+            11.1247,
+            48.45328
+          ]
+        ]
+      },
+      "properties": {
+        "id": "lfv-paar-3",
+        "name": "Paar 3",
+        "clubId": "lfv-augsburg",
+        "guestAccess": "withMember",
+        "accessNote": "Gäste nur in Begleitung eines Mitglieds. Laut Verein reicht die Strecke von der Beck'schen Mühle bei Unterschnaitbach bis zur Einmündung der Ecknach. Lage nur ungefähr, die Linie reicht von Unterschneitbach bis zur Ecknach-Mündung in Aichach.",
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "prices": {
+          "member": 10,
+          "guest": 15,
+          "youth": 5,
+          "guestYouth": 10,
+          "deposit": 5,
+          "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
+        },
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Barbe",
+          "Döbel",
+          "Hecht",
+          "Karpfen"
+        ],
+        "rules": [
+          "Nur eine Rute",
+          "Vom 1. Januar bis 30. April nur Kunstköder und toter Köderfisch oder Fetzen am Einzelhaken",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zusätzlich 11. bis 24. September gesperrt"
+        ],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-16",
+        "source": "https://lfv-augsburg.de/Gewaesser/Paar-3/",
+        "geometryStatus": "placeholder"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.33351,
+            48.58172
+          ],
+          [
+            11.33383,
+            48.5823
+          ],
+          [
+            11.33365,
+            48.5826
+          ],
+          [
+            11.33322,
+            48.58287
+          ],
+          [
+            11.33373,
+            48.58365
+          ],
+          [
+            11.33415,
+            48.58366
+          ],
+          [
+            11.33481,
+            48.583
+          ],
+          [
+            11.33578,
+            48.58347
+          ],
+          [
+            11.33632,
+            48.58344
+          ],
+          [
+            11.33689,
+            48.58375
+          ],
+          [
+            11.3368,
+            48.58418
+          ],
+          [
+            11.33597,
+            48.58425
+          ],
+          [
+            11.33583,
+            48.58485
+          ],
+          [
+            11.33613,
+            48.58495
+          ],
+          [
+            11.33717,
+            48.58487
+          ],
+          [
+            11.3376,
+            48.58528
+          ],
+          [
+            11.33799,
+            48.58541
+          ],
+          [
+            11.33753,
+            48.58578
+          ],
+          [
+            11.33751,
+            48.58633
+          ],
+          [
+            11.3377,
+            48.58669
+          ],
+          [
+            11.33815,
+            48.58678
+          ],
+          [
+            11.33847,
+            48.58662
+          ],
+          [
+            11.33876,
+            48.58601
+          ],
+          [
+            11.33927,
+            48.58567
+          ],
+          [
+            11.33988,
+            48.58557
+          ],
+          [
+            11.34056,
+            48.58576
+          ],
+          [
+            11.34158,
+            48.58645
+          ],
+          [
+            11.34161,
+            48.58754
+          ],
+          [
+            11.34208,
+            48.58792
+          ],
+          [
+            11.34256,
+            48.58802
+          ],
+          [
+            11.34264,
+            48.58742
+          ],
+          [
+            11.34304,
+            48.587
+          ],
+          [
+            11.34349,
+            48.58684
+          ],
+          [
+            11.34398,
+            48.58689
+          ],
+          [
+            11.34494,
+            48.58769
+          ],
+          [
+            11.34628,
+            48.58818
+          ],
+          [
+            11.34734,
+            48.58883
+          ],
+          [
+            11.34755,
+            48.58928
+          ],
+          [
+            11.34685,
+            48.58941
+          ],
+          [
+            11.34682,
+            48.5895
+          ],
+          [
+            11.34712,
+            48.58985
+          ],
+          [
+            11.34804,
+            48.59022
+          ],
+          [
+            11.34901,
+            48.58994
+          ],
+          [
+            11.34976,
+            48.58997
+          ],
+          [
+            11.34998,
+            48.59061
+          ],
+          [
+            11.35057,
+            48.59039
+          ],
+          [
+            11.35147,
+            48.58984
+          ],
+          [
+            11.35206,
+            48.59027
+          ],
+          [
+            11.35195,
+            48.59111
+          ],
+          [
+            11.35221,
+            48.59122
+          ],
+          [
+            11.35274,
+            48.59113
+          ],
+          [
+            11.35306,
+            48.59093
+          ],
+          [
+            11.35318,
+            48.59065
+          ],
+          [
+            11.35296,
+            48.59038
+          ],
+          [
+            11.35312,
+            48.59022
+          ],
+          [
+            11.35367,
+            48.59022
+          ],
+          [
+            11.3539,
+            48.59038
+          ],
+          [
+            11.35411,
+            48.59151
+          ],
+          [
+            11.35457,
+            48.59196
+          ],
+          [
+            11.35478,
+            48.59195
+          ],
+          [
+            11.35477,
+            48.59179
+          ],
+          [
+            11.35518,
+            48.59147
+          ],
+          [
+            11.35573,
+            48.59158
+          ],
+          [
+            11.35751,
+            48.59126
+          ],
+          [
+            11.35977,
+            48.59134
+          ],
+          [
+            11.36069,
+            48.59106
+          ],
+          [
+            11.36103,
+            48.59165
+          ],
+          [
+            11.36045,
+            48.59185
+          ],
+          [
+            11.36036,
+            48.59208
+          ],
+          [
+            11.36073,
+            48.59218
+          ],
+          [
+            11.3616,
+            48.59181
+          ],
+          [
+            11.36182,
+            48.59127
+          ],
+          [
+            11.36304,
+            48.59073
+          ],
+          [
+            11.36306,
+            48.59031
+          ],
+          [
+            11.36329,
+            48.59024
+          ],
+          [
+            11.3638,
+            48.59041
+          ],
+          [
+            11.36416,
+            48.59126
+          ],
+          [
+            11.36512,
+            48.59122
+          ],
+          [
+            11.36645,
+            48.59253
+          ],
+          [
+            11.36728,
+            48.59274
+          ],
+          [
+            11.36771,
+            48.59304
+          ],
+          [
+            11.3679,
+            48.59352
+          ],
+          [
+            11.36744,
+            48.59407
+          ],
+          [
+            11.36984,
+            48.59463
+          ],
+          [
+            11.37196,
+            48.59465
+          ],
+          [
+            11.37233,
+            48.59455
+          ],
+          [
+            11.37258,
+            48.594
+          ],
+          [
+            11.37335,
+            48.59416
+          ],
+          [
+            11.37334,
+            48.59401
+          ],
+          [
+            11.37284,
+            48.59366
+          ],
+          [
+            11.37296,
+            48.59343
+          ],
+          [
+            11.37359,
+            48.59324
+          ],
+          [
+            11.37409,
+            48.59323
+          ],
+          [
+            11.37464,
+            48.59354
+          ],
+          [
+            11.37494,
+            48.59314
+          ],
+          [
+            11.37517,
+            48.59315
+          ],
+          [
+            11.37546,
+            48.59385
+          ],
+          [
+            11.37504,
+            48.59423
+          ],
+          [
+            11.3753,
+            48.5946
+          ],
+          [
+            11.37593,
+            48.59469
+          ],
+          [
+            11.37692,
+            48.59452
+          ],
+          [
+            11.37709,
+            48.59459
+          ],
+          [
+            11.37728,
+            48.59509
+          ],
+          [
+            11.37856,
+            48.59555
+          ],
+          [
+            11.37883,
+            48.59576
+          ],
+          [
+            11.37966,
+            48.59591
+          ],
+          [
+            11.38202,
+            48.59594
+          ],
+          [
+            11.38488,
+            48.59558
+          ],
+          [
+            11.38516,
+            48.59533
+          ],
+          [
+            11.38515,
+            48.59495
+          ],
+          [
+            11.38537,
+            48.5948
+          ],
+          [
+            11.38614,
+            48.59466
+          ],
+          [
+            11.38625,
+            48.59449
+          ],
+          [
+            11.38582,
+            48.59412
+          ],
+          [
+            11.38581,
+            48.59395
+          ],
+          [
+            11.38626,
+            48.59388
+          ]
+        ]
+      },
+      "properties": {
+        "id": "lfv-paar-4",
+        "name": "Paar 4",
+        "clubId": "lfv-augsburg",
+        "guestAccess": "withMember",
+        "accessNote": "Gäste nur in Begleitung eines Mitglieds. Laut Verein liegt die Strecke zwischen Waidhofen, Wangen und Hohenwart. Lage nur ungefähr, die Linie reicht von Waidhofen bis Hohenwart.",
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "prices": {
+          "member": 10,
+          "guest": 15,
+          "youth": 5,
+          "guestYouth": 10,
+          "deposit": 5,
+          "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
+        },
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Barbe",
+          "Döbel",
+          "Hecht",
+          "Zander",
+          "Karpfen",
+          "Aal"
+        ],
+        "rules": [
+          "Regeln zum Schutz der Wiesenbrüter beachten",
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt",
+          "Zusätzlich 11. bis 24. September gesperrt"
+        ],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-16",
+        "source": "https://lfv-augsburg.de/Gewaesser/Paar-4/",
+        "geometryStatus": "placeholder"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.77178,
+            48.35781
+          ],
+          [
+            10.77204,
+            48.35836
+          ],
+          [
+            10.77163,
+            48.35862
+          ],
+          [
+            10.77199,
+            48.35905
+          ],
+          [
+            10.77185,
+            48.35937
+          ],
+          [
+            10.77173,
+            48.35948
+          ],
+          [
+            10.771,
+            48.35943
+          ],
+          [
+            10.77084,
+            48.35963
+          ],
+          [
+            10.7709,
+            48.35987
+          ],
+          [
+            10.77185,
+            48.36011
+          ],
+          [
+            10.77242,
+            48.36006
+          ],
+          [
+            10.77254,
+            48.36057
+          ],
+          [
+            10.77271,
+            48.36067
+          ],
+          [
+            10.77338,
+            48.36025
+          ],
+          [
+            10.77453,
+            48.36049
+          ],
+          [
+            10.77402,
+            48.36088
+          ],
+          [
+            10.77346,
+            48.36085
+          ],
+          [
+            10.77331,
+            48.36136
+          ],
+          [
+            10.77283,
+            48.36123
+          ],
+          [
+            10.77257,
+            48.36139
+          ],
+          [
+            10.77354,
+            48.36174
+          ],
+          [
+            10.7736,
+            48.36198
+          ],
+          [
+            10.77428,
+            48.36218
+          ],
+          [
+            10.775,
+            48.36216
+          ],
+          [
+            10.77533,
+            48.36159
+          ],
+          [
+            10.7756,
+            48.36151
+          ],
+          [
+            10.77595,
+            48.36167
+          ],
+          [
+            10.77603,
+            48.36186
+          ],
+          [
+            10.77575,
+            48.36241
+          ],
+          [
+            10.7761,
+            48.36257
+          ],
+          [
+            10.77612,
+            48.363
+          ],
+          [
+            10.77644,
+            48.363
+          ],
+          [
+            10.77709,
+            48.3624
+          ],
+          [
+            10.77726,
+            48.36253
+          ],
+          [
+            10.77725,
+            48.36286
+          ],
+          [
+            10.77786,
+            48.36317
+          ],
+          [
+            10.7793,
+            48.36319
+          ],
+          [
+            10.77979,
+            48.36334
+          ],
+          [
+            10.77995,
+            48.3636
+          ],
+          [
+            10.77956,
+            48.36405
+          ],
+          [
+            10.77999,
+            48.36426
+          ],
+          [
+            10.78103,
+            48.36563
+          ],
+          [
+            10.78145,
+            48.36574
+          ],
+          [
+            10.78197,
+            48.36526
+          ],
+          [
+            10.78294,
+            48.36542
+          ],
+          [
+            10.78268,
+            48.36627
+          ],
+          [
+            10.78287,
+            48.36649
+          ],
+          [
+            10.78384,
+            48.36658
+          ],
+          [
+            10.78403,
+            48.36672
+          ],
+          [
+            10.78419,
+            48.3682
+          ],
+          [
+            10.7839,
+            48.36828
+          ],
+          [
+            10.78273,
+            48.3679
+          ],
+          [
+            10.7827,
+            48.36834
+          ],
+          [
+            10.78344,
+            48.36842
+          ],
+          [
+            10.78344,
+            48.36867
+          ],
+          [
+            10.78325,
+            48.36901
+          ],
+          [
+            10.78298,
+            48.36913
+          ],
+          [
+            10.78221,
+            48.3689
+          ],
+          [
+            10.7823,
+            48.36928
+          ],
+          [
+            10.78314,
+            48.36985
+          ],
+          [
+            10.78328,
+            48.37021
+          ],
+          [
+            10.78356,
+            48.37038
+          ],
+          [
+            10.78564,
+            48.37109
+          ],
+          [
+            10.7865,
+            48.37248
+          ],
+          [
+            10.787,
+            48.37287
+          ],
+          [
+            10.78727,
+            48.37297
+          ],
+          [
+            10.78897,
+            48.37279
+          ],
+          [
+            10.78979,
+            48.37303
+          ],
+          [
+            10.78965,
+            48.37334
+          ],
+          [
+            10.78907,
+            48.37353
+          ],
+          [
+            10.78856,
+            48.37411
+          ],
+          [
+            10.78907,
+            48.37507
+          ]
+        ]
+      },
+      "properties": {
+        "id": "lfv-schmutter",
+        "name": "Schmutter Diedorf",
+        "clubId": "lfv-augsburg",
+        "guestAccess": "withMember",
+        "accessNote": "Gäste nur in Begleitung eines Mitglieds. Der Verein nennt nur Strecken im nördlichen Landkreis Augsburg. Lage nur ungefähr, die Linie folgt Angelportalen, die dem Verein die Schmutter bei Diedorf und Kreppen-Schlipsheim zuordnen.",
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "prices": {
+          "member": 10,
+          "guest": 15,
+          "youth": 5,
+          "guestYouth": 10,
+          "deposit": 5,
+          "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
+        },
+        "species": [
+          "Bachforelle",
+          "Barbe",
+          "Döbel",
+          "Hecht",
+          "Flussbarsch"
+        ],
+        "rules": [
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt"
+        ],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-16",
+        "source": "https://lfv-augsburg.de/Gewaesser/Schmutter/",
+        "geometryStatus": "placeholder"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.77304,
+            48.69809
+          ],
+          [
+            10.77318,
+            48.69829
+          ],
+          [
+            10.77327,
+            48.69846
+          ],
+          [
+            10.77333,
+            48.6986
+          ],
+          [
+            10.77349,
+            48.69897
+          ],
+          [
+            10.77371,
+            48.69943
+          ],
+          [
+            10.77415,
+            48.70045
+          ],
+          [
+            10.77429,
+            48.70067
+          ],
+          [
+            10.77453,
+            48.70084
+          ],
+          [
+            10.77485,
+            48.70151
+          ],
+          [
+            10.77535,
+            48.70218
+          ],
+          [
+            10.77609,
+            48.7034
+          ],
+          [
+            10.77601,
+            48.70374
+          ],
+          [
+            10.77581,
+            48.70402
+          ],
+          [
+            10.77562,
+            48.70423
+          ],
+          [
+            10.77563,
+            48.70429
+          ]
+        ]
+      },
+      "properties": {
+        "id": "lfv-zusam",
+        "name": "Zusam Donauwörth",
+        "clubId": "lfv-augsburg",
+        "guestAccess": "withMember",
+        "accessNote": "Gäste nur in Begleitung eines Mitglieds. Laut Verein reicht die Strecke von der Vereinsgrenze bis zur Brücke der B16 bei Donauwörth. Lage nur ungefähr, die obere Grenze ist hier das Ende der FVA-Strecke Heißesheim.",
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "prices": {
+          "member": 10,
+          "guest": 15,
+          "youth": 5,
+          "guestYouth": 10,
+          "deposit": 5,
+          "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
+        },
+        "species": [
+          "Hecht",
+          "Zander",
+          "Wels",
+          "Flussbarsch",
+          "Aal",
+          "Karpfen",
+          "Döbel"
+        ],
+        "rules": [
+          "Höchstens 3 Fische mit Fanglimit pro Tag (davon nur 2 Karpfen, Äschen, Hechte oder Zander) und 6 pro Woche"
+        ],
+        "closedSeasons": [
+          "Alle Gewässer des Vereins 15. Februar bis 15. März gesperrt"
+        ],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-16",
+        "source": "https://lfv-augsburg.de/Gewaesser/Zusam/",
+        "geometryStatus": "placeholder"
       }
     }
   ]

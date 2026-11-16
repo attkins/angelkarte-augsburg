@@ -46,14 +46,15 @@ Done when the researched Austrian waters are in the data and the map stays usabl
 
 Goal: for Augsburg, Landkreis Augsburg and Aichach-Friedberg the information is correct and complete.
 
-- D2 Friedberg guest rules for Paar and Friedberger Ach
-- D3 The 7 waters with `guestAccess: unknown`
-- D4 Bobingen prices
-- D5 Wehringen sales points
-- D6 Real extent of the placeholder stretches
-- D14 Remaining opening hours (Osetskiy, Fischerheim FV Friedberg, Holland Blumen) and new coordinates for Angel-Zoo-Ernst and Zum Isarfischer
-- D7 Fish species, starting with FVA and LFV
-- F3 Fish species filter (after D7)
+- D2 Friedberg guest rules for Paar and Friedberger Ach (done)
+- D3 The 7 waters with `guestAccess: unknown` (done, Walter-See to confirm with the club)
+- D4 Bobingen prices (done)
+- D5 Wehringen sales points (done)
+- D6 Real extent of the placeholder stretches (done)
+- D14 Remaining opening hours (Osetskiy, Fischerheim FV Friedberg, Holland Blumen) and new coordinates for Angel-Zoo-Ernst and Zum Isarfischer (coordinates done, hours need a phone call)
+- D7 Fish species, starting with FVA and LFV (done, 81 of 87 waters)
+- F3 Fish species filter (after D7) (done)
+- D19 PFC warning for the Friedberger Ach (done, added 2026-11-16)
 
 Done when the acceptance criteria below hold for the core region.
 
@@ -61,7 +62,7 @@ Done when the acceptance criteria below hold for the core region.
 
 Goal: the map covers the waters around the core region that friends actually drive to.
 
-- D8 Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam
+- D8 Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam (entered as placeholders, real limits still open)
 - D10 Third research pass west of Augsburg
 - D9 Waters outside the core region: Kirnach, 1. AAC waters
 
