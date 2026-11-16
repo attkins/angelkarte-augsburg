@@ -173,5 +173,26 @@
     "shortName": "Rosswildalm",
     "website": "https://www.ffmh.at",
     "contact": "Martin Schoissengeier, +43 650 9194771, fischen@ffmh.at"
+  },
+  {
+    "id": "ausserferner-fv",
+    "name": "1. Außerferner Fischereiverein (Bewirtschafter)",
+    "shortName": "Außerferner FV",
+    "website": "https://www.lech-plansee.at",
+    "contact": "Seilbahnweg 4, 6604 Höfen, +43 676 4294653"
+  },
+  {
+    "id": "fischwasser-weissenbach",
+    "name": "Fischwasser Weißenbach, Roland Schweißgut (Bewirtschafter)",
+    "shortName": "Weißenbach",
+    "website": null,
+    "contact": "Roland Schweißgut, Dürrenhof 10, 6671 Weißenbach am Lech, +43 688 868 2769, roland.schweissgut@aon.at. Karten auch im Hotel Goldenes Lamm, Oberbach 14, +43 5678 5216"
+  },
+  {
+    "id": "grossache-kirchdorf",
+    "name": "Fliegenfischen Großache Kirchdorf, Markus Gruber (Bewirtschafter)",
+    "shortName": "Großache Kirchdorf",
+    "website": null,
+    "contact": "Pächter Markus Gruber, Feldweg 2, 6382 Kirchdorf in Tirol, +43 660 3446310"
   }
 ]
