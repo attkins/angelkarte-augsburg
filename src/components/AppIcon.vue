@@ -65,6 +65,7 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
     <template v-else-if="name === 'plus'"><path d="M12 5v14M5 12h14" /></template>
     <template v-else-if="name === 'question'"><path d="M9 9a3 3 0 1 1 4 2.8c-.8.4-1 1-1 1.7V14" /><path d="M12 18h.01" /></template>
     <template v-else-if="name === 'route'"><path d="M3 11l18-8-8 18-2-8z" /></template>
+    <template v-else-if="name === 'share'"><path d="M12 3v12M8 7l4-4 4 4" /><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8" /></template>
     <template v-else-if="name === 'shop'">
       <path d="M3 21h18" /><path d="M5 21V11M19 21V11" />
       <path d="M3 8l2-5h14l2 5c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3S3 9.7 3 8z" />

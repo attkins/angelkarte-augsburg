@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import ShareButton from '@/components/ShareButton.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { Club, MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice } from '@/utils/format'
@@ -74,6 +75,7 @@ const websiteLabel = computed(() => props.club.website?.replace(/^https?:\/\/(ww
         <h1 class="serif">{{ club.name }}</h1>
         <p v-if="club.contact" class="subtitle">{{ club.contact }}</p>
       </div>
+      <ShareButton :route="{ kind: 'club', id: club.id }" :title="club.name" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
       </button>

@@ -23,5 +23,6 @@ export type AppIconName =
   | 'plus'
   | 'question'
   | 'route'
+  | 'share'
   | 'shop'
   | 'sun'

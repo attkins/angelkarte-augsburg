@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import ShareButton from '@/components/ShareButton.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice, phoneHref } from '@/utils/format'
@@ -86,6 +87,7 @@ function guestPrice(water: WaterFeature): string | null {
         <h1 class="serif">{{ p.name }}</h1>
         <p class="subtitle">{{ p.address }}</p>
       </div>
+      <ShareButton :route="{ kind: 'salesPoint', id: p.id }" :title="p.name" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
       </button>

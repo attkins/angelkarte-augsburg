@@ -87,7 +87,7 @@ Goal: a stable version with the new prices at the turn of the year.
 Ideas without a release yet. Pick from here when planning the next release after 1.0.
 
 - F2 Plan for a date
-- F5 Share button (moved out of 0.7 on 2026-11-15)
+- F5 Share button (moved out of 0.7 on 2026-11-15, done 2026-11-16)
 - F8 Report an error (moved out of 0.7 on 2026-11-15, done 2026-11-16)
 - F6 Water level and temperature
 - F7 Offline use
