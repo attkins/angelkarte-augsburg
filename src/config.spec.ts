@@ -9,6 +9,7 @@ import {
   PRICE_LABELS,
   readImprint,
   REGION_BOUNDS,
+  REGIONS,
   TILE_LAYERS,
 } from '@/config'
 import { GUEST_ACCESS as VALIDATOR_GUEST_ACCESS, PRICE_KEYS } from '../scripts/lib/validate-data.mjs'
@@ -94,6 +95,40 @@ describe('config', () => {
     expect(48.37).toBeLessThan(north)
     expect(10.9).toBeGreaterThan(west)
     expect(10.9).toBeLessThan(east)
+  })
+
+  describe('REGIONS', () => {
+    const boxes = REGIONS.map((region) => region.bounds as [[number, number], [number, number]])
+
+    it('starts with Augsburg and its start view', () => {
+      expect(REGIONS[0]?.id).toBe('augsburg')
+      expect(REGIONS[0]?.bounds).toBe(REGION_BOUNDS)
+    })
+
+    it('has a description for the region dialog', () => {
+      for (const region of REGIONS) expect(region.description.length).toBeGreaterThan(10)
+    })
+
+    it('has unique ids and labels', () => {
+      expect(new Set(REGIONS.map((r) => r.id)).size).toBe(REGIONS.length)
+      expect(new Set(REGIONS.map((r) => r.label)).size).toBe(REGIONS.length)
+    })
+
+    it('uses bounds with south-west before north-east', () => {
+      for (const [[south, west], [north, east]] of boxes) {
+        expect(south).toBeLessThan(north)
+        expect(west).toBeLessThan(east)
+      }
+    })
+
+    it('has no overlapping regions, so the active one is always clear', () => {
+      for (const [i, [[s1, w1], [n1, e1]]] of boxes.entries()) {
+        for (const [[s2, w2], [n2, e2]] of boxes.slice(i + 1)) {
+          const overlaps = s1 < n2 && s2 < n1 && w1 < e2 && w2 < e1
+          expect(overlaps).toBe(false)
+        }
+      }
+    })
   })
 
   describe('readImprint', () => {

@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import type { Position } from 'geojson'
 import { describe, expect, it } from 'vitest'
+import { REGIONS } from '../src/config'
+import { regionAt } from '../src/utils/bounds'
 import { validateData } from '../scripts/lib/validate-data.mjs'
 import type { Club, MapData } from '../src/types'
 
@@ -58,6 +60,15 @@ describe('data files', () => {
     'sales point %s is in the region in lon, lat order',
     (_id, feature) => {
       expect(isInRegion(feature.geometry.coordinates)).toBe(true)
+    },
+  )
+
+  it.each(waters.features.filter((f) => f.properties.id.startsWith('at-')).map((f) => [f.properties.id, f] as const))(
+    'Austrian water %s lies in one Tyrolean region of the region switch',
+    (_id, feature) => {
+      const regions = new Set(positions(feature.geometry.coordinates).map(([lng, lat]) => regionAt(REGIONS, lat!, lng!)))
+      expect([...regions]).toHaveLength(1)
+      expect(['fernpass', 'wilder-kaiser']).toContain([...regions][0])
     },
   )
 

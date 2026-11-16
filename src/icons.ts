@@ -13,6 +13,7 @@ export type AppIconName =
   | 'info'
   | 'layers'
   | 'locate'
+  | 'map'
   | 'lock'
   | 'member'
   | 'minus'

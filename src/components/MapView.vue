@@ -4,12 +4,25 @@ import { onBeforeUnmount, onMounted, ref, shallowRef, useTemplateRef, watch } fr
 import AppIcon from '@/components/AppIcon.vue'
 import MapLegend from '@/components/MapLegend.vue'
 import { useTheme } from '@/composables/useTheme'
-import { AERIAL_LABELS, AERIAL_LAYER, type BaseLayer, GUEST_ACCESS, REGION_BOUNDS, TILE_LAYERS } from '@/config'
+import {
+  AERIAL_LABELS,
+  AERIAL_LAYER,
+  type BaseLayer,
+  GUEST_ACCESS,
+  type Region,
+  REGION_BOUNDS,
+  REGIONS,
+  type RegionId,
+  TILE_LAYERS,
+} from '@/config'
 import type { MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
-import { dataBounds } from '@/utils/bounds'
+import { dataBounds, regionAt } from '@/utils/bounds'
 
 const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
 const selection = defineModel<Selection | null>('selection', { default: null })
+/** The region the map centre is in, null while it is somewhere in between. */
+const region = defineModel<RegionId | null>('region', { default: null })
+const emit = defineEmits<{ openRegions: [] }>()
 
 const { theme } = useTheme()
 
@@ -133,7 +146,13 @@ onMounted(() => {
   m.attributionControl.setPrefix(false)
   updateMinZoom(m)
   m.on('resize', () => updateMinZoom(m))
+  const updateRegion = () => {
+    const center = m.getCenter()
+    region.value = regionAt(REGIONS, center.lat, center.lng)
+  }
+  m.on('moveend', updateRegion)
   m.fitBounds(REGION_BOUNDS)
+  updateRegion()
 
   const tiles = TILE_LAYERS[theme.value]
   tileLayer = L.tileLayer(tiles.url, tiles.options).addTo(m)
@@ -220,6 +239,28 @@ function showLocateMessage(message: string) {
 function locate() {
   // The view is set in the locationfound handler, only when the location is inside the limits.
   map.value?.locate()
+}
+
+/** Called from the region dialog in App.vue. */
+function showRegion(target: Region) {
+  layersOpen.value = false
+  const m = map.value
+  if (!m || !limit) return
+  const bounds = L.latLngBounds(target.bounds)
+  const center = bounds.getCenter()
+  const zoom = m.getBoundsZoom(bounds)
+  // On a narrow, tall screen the region's view reaches further north and south than the data.
+  // Without room for it, maxBounds pushes the map away from the region.
+  const half = m.getSize().divideBy(2)
+  const middle = m.project(center, zoom)
+  const view = L.latLngBounds(m.unproject(middle.subtract(half), zoom), m.unproject(middle.add(half), zoom))
+  if (!limit.contains(view)) {
+    limit.extend(view)
+    m.setMaxBounds(limit)
+    updateMinZoom(m)
+  }
+  // Not flyToBounds: with maxBounds and the min zoom Leaflet stops the flight halfway, zoomed out.
+  m.setView(center, zoom)
 }
 
 function zoom(delta: number) {
@@ -475,6 +516,7 @@ watch(showSalesPoints, (visible) => {
   // Connection lines, labels and the pinned marker depend on the layer.
   applyHighlight()
 })
+defineExpose({ showRegion })
 </script>
 
 <template>
@@ -511,6 +553,14 @@ watch(showSalesPoints, (visible) => {
       </div>
       <button type="button" class="icon-button control-button glass" aria-label="Mein Standort" @click="locate">
         <AppIcon name="locate" />
+      </button>
+      <button
+        type="button"
+        class="icon-button control-button glass mobile-only"
+        aria-label="Region wählen"
+        @click="emit('openRegions')"
+      >
+        <AppIcon name="map" />
       </button>
       <button
         type="button"

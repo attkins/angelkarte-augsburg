@@ -4,6 +4,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import ClubDetail from '@/components/ClubDetail.vue'
 import ImprintPage from '@/components/ImprintPage.vue'
 import MapView from '@/components/MapView.vue'
+import RegionDialog from '@/components/RegionDialog.vue'
 import SalesPointDetail from '@/components/SalesPointDetail.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
@@ -12,7 +13,7 @@ import WaterList from '@/components/WaterList.vue'
 import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useTheme } from '@/composables/useTheme'
-import { APP_VERSION } from '@/config'
+import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 
@@ -39,6 +40,19 @@ const matchingIds = computed(() =>
 /** Only used on small screens: whether the list is shown in the bottom sheet. */
 const listOpen = ref(false)
 const panel = useTemplateRef<HTMLElement>('panel')
+const mapView = useTemplateRef<InstanceType<typeof MapView>>('mapView')
+
+/** Reported by the map: the region its centre is in, null between regions. */
+const region = ref<RegionId | null>(REGIONS[0]!.id)
+const regionDialogOpen = ref(false)
+const regionLabel = computed(() => REGIONS.find((r) => r.id === region.value)?.label ?? 'Region wählen')
+
+function selectRegion(target: Region) {
+  regionDialogOpen.value = false
+  // On small screens the list would cover the region that was just picked.
+  listOpen.value = false
+  mapView.value?.showRegion(target)
+}
 
 const selectedWater = computed(() =>
   selection.value?.kind === 'water' ? data.value?.watersById.get(selection.value.id) : undefined,
@@ -96,6 +110,17 @@ watch(router.route, async () => {
           <div class="brand-title serif">Angelkarte</div>
           <div class="brand-sub">Augsburg und Umland</div>
         </div>
+        <button
+          type="button"
+          class="region-button"
+          aria-haspopup="dialog"
+          :aria-label="`Region wählen, aktuell ${regionLabel}`"
+          @click="regionDialogOpen = true"
+        >
+          <AppIcon name="map" :size="18" />
+          <span>{{ regionLabel }}</span>
+          <AppIcon name="chevron-down" :size="16" />
+        </button>
         <ThemeToggle />
       </header>
 
@@ -160,7 +185,15 @@ watch(router.route, async () => {
     </aside>
 
     <main class="map-area">
-      <MapView v-if="data" v-model:selection="selection" :data="data" :matching-ids="matchingIds" />
+      <MapView
+        v-if="data"
+        ref="mapView"
+        v-model:selection="selection"
+        v-model:region="region"
+        :data="data"
+        :matching-ids="matchingIds"
+        @open-regions="regionDialogOpen = true"
+      />
       <p v-else-if="error" class="app-message is-error">Die Kartendaten konnten nicht geladen werden.</p>
       <p v-else class="app-message">Karte wird geladen …</p>
 
@@ -182,6 +215,14 @@ watch(router.route, async () => {
         </div>
       </div>
     </main>
+
+    <RegionDialog
+      v-if="regionDialogOpen"
+      :regions="REGIONS"
+      :current="region"
+      @select="selectRegion"
+      @close="regionDialogOpen = false"
+    />
   </div>
 </template>
 
@@ -231,6 +272,30 @@ watch(router.route, async () => {
 .brand-sub {
   font-size: 13px;
   color: var(--text-2);
+}
+
+.region-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 10px 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.region-button:hover {
+  border-color: var(--accent);
+}
+
+.region-button svg {
+  color: var(--accent-text);
 }
 
 .panel-body {

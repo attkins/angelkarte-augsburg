@@ -50,7 +50,7 @@ A few destination waters sit in Tyrol, outside the Augsburg core region. They re
 - **Two-license system:** besides the per-water day ticket (`prices.guest`), Tyrol needs a state Gastfischerkarte (about 25 €, 14 days, whole of Tyrol, a valid German Angelschein required). Put that as a sentence in `prices.note`, e.g. "Zusätzlich Tiroler Gastfischerkarte (25 €, 14 Tage, ganz Tirol), gültiger deutscher Angelschein erforderlich." When a water has no `prices` (the fee is bundled, e.g. with a booked hut), put it in `accessNote` instead.
 - **Operator instead of club:** these waters have a Bewirtschafter, not a club. Add it to `clubs.json` like any other club, with `(Bewirtschafter)` in the `name` so the "Verein" labels read sensibly.
 
-The map keeps its Augsburg start view; `dataBounds()` widens on its own so Tyrol is reachable by panning out.
+The map keeps its Augsburg start view. `dataBounds()` widens on its own, and the region switch (`REGIONS` in `src/config.ts`) jumps to the Fernpass and the Wilder Kaiser. A new Austrian water must lie inside one of these two regions, `npm test` checks this for every id starting with `at-`.
 
 ## sales-points.geojson
 

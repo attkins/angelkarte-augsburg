@@ -11,7 +11,7 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 | Release | Theme | Target | Status |
 |---------|-------|--------|--------|
 | 0.7 | Ready for friends | week of 2026-11-16 | planned |
-| 0.8 | Austria | end of November 2026 | in progress (D13 data done, map handling open) |
+| 0.8 | Austria | end of November 2026 | in progress (data and region switch done) |
 | 0.9 | Core region complete | mid December 2026 | planned |
 | 0.10 | More waters | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
@@ -36,7 +36,7 @@ Goal: the holiday regions Fernpass and Wilder Kaiser are on the map.
 
 - D13 Research clubs and ticket offers, then waters with OSM outlines
 - D15 Four more lakes around Kufstein and Kitzbühel (done), D16 the remaining lakes and the first rivers
-- Start view and `dataBounds()` handle two areas far apart (e.g. a region switch instead of one box from Augsburg to Tyrol)
+- T6 Region switch Augsburg, Fernpass and Wilder Kaiser instead of one box from Augsburg to Tyrol (done)
 - Waters with restricted or prohibited access shown correctly (already supported in the schema)
 
 Done when the researched Austrian waters are in the data and the map stays usable around Augsburg.

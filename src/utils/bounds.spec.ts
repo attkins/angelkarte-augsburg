@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { LatLngBoundsLiteral } from 'leaflet'
-import { dataBounds } from '@/utils/bounds'
+import { dataBounds, regionAt } from '@/utils/bounds'
 import { makeClub, makeMapData, makeSalesPoint, makeWater } from '../../tests/fixtures'
 
 const START: LatLngBoundsLiteral = [
@@ -56,5 +56,32 @@ describe('dataBounds', () => {
 
   it('keeps the start view when all data lies inside it', () => {
     expect(rounded(dataBounds(makeMapData(), START, 0))).toEqual(rounded(START))
+  })
+})
+
+describe('regionAt', () => {
+  const regions = [
+    { id: 'north', bounds: START },
+    {
+      id: 'south',
+      bounds: [
+        [47.0, 10.0],
+        [47.5, 12.0],
+      ] as LatLngBoundsLiteral,
+    },
+  ]
+
+  it('returns the region that contains the point', () => {
+    expect(regionAt(regions, 48.3, 10.8)).toBe('north')
+    expect(regionAt(regions, 47.2, 11.5)).toBe('south')
+  })
+
+  it('counts the edge as inside', () => {
+    expect(regionAt(regions, 48.5, 11.0)).toBe('north')
+  })
+
+  it('returns null between and outside the regions', () => {
+    expect(regionAt(regions, 47.8, 10.8)).toBeNull()
+    expect(regionAt(regions, 52.5, 13.4)).toBeNull()
   })
 })

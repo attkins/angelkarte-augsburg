@@ -72,6 +72,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | T3 | Decide how data is maintained later: hand-edited GeoJSON with docs, or a small editor | ⬜ open |
 | T4 | Decide whether the site needs a password or an unlisted link is enough | ⬜ open |
 | T5 | Changelog generated from the Conventional Commits | ✅ done 2026-11-14 with git-cliff: `cliff.toml`, `npm run changelog`, usage in the README. Not part of the deploy workflow, could be added there later (needs Thomas, see C3) |
+| T6 | Region switch for the map: Augsburg, Fernpass and Wilder Kaiser (roadmap 0.8) | ✅ done 2026-11-16. `REGIONS` in `config.ts`, a region dialog (`RegionDialog.vue`), opened from a button in the panel header on desktop and a map button next to the location button on mobile. The active region follows the map centre (`regionAt()`). Tyrol is split in two because one box from the Tannheimer Tal to Kitzbühel only fits the lowest zoom. The jump uses `setView` instead of `flyToBounds`, which Leaflet stops halfway together with `maxBounds`, and widens `maxBounds` when a narrow screen needs more room. A data test checks that every `at-` water lies in one Tyrolean region |
 
 ## Feature ideas
 

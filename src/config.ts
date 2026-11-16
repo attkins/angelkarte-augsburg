@@ -10,6 +10,50 @@ export const REGION_BOUNDS: LatLngBoundsLiteral = [
   [48.6, 11.3], // north-east
 ]
 
+export type RegionId = 'augsburg' | 'fernpass' | 'wilder-kaiser'
+
+export interface Region {
+  id: RegionId
+  label: string
+  /** One line in the region dialog, the places a visitor would look for. */
+  description: string
+  bounds: LatLngBoundsLiteral
+}
+
+/**
+ * Areas the map can jump to, far enough apart that one view cannot show them together.
+ * Augsburg comes first and is the start view. Tyrol is split in two: from the Tannheimer Tal
+ * to Kitzbühel it is too wide for one view, the map would stop at its lowest zoom.
+ */
+export const REGIONS: readonly Region[] = [
+  {
+    id: 'augsburg',
+    label: 'Augsburg',
+    description: 'Stadt und Landkreis Augsburg, Aichach-Friedberg',
+    bounds: REGION_BOUNDS,
+  },
+  // Außerfern: Tannheimer Tal, Reutte, Plansee and the Fernpass.
+  {
+    id: 'fernpass',
+    label: 'Fernpass',
+    description: 'Tannheimer Tal, Reutte, Plansee und Fernpass',
+    bounds: [
+      [47.28, 10.44],
+      [47.56, 10.95],
+    ],
+  },
+  // Achensee, Kufstein, Kössen and Kitzbühel.
+  {
+    id: 'wilder-kaiser',
+    label: 'Wilder Kaiser',
+    description: 'Achensee, Kufstein, Kössen und Kitzbühel',
+    bounds: [
+      [47.28, 11.6],
+      [47.72, 12.62],
+    ],
+  },
+]
+
 const CARTO_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, ' +
   '&copy; <a href="https://carto.com/attributions">CARTO</a>'

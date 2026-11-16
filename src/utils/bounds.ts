@@ -39,3 +39,16 @@ export function dataBounds(data: MapData, include: LatLngBoundsLiteral, margin =
     [north + pad, east + pad],
   ]
 }
+
+/** Id of the first region whose bounds contain the point, or null outside all of them. */
+export function regionAt<T extends { id: string; bounds: LatLngBoundsLiteral }>(
+  regions: readonly T[],
+  lat: number,
+  lng: number,
+): T['id'] | null {
+  for (const region of regions) {
+    const [[south, west], [north, east]] = region.bounds as [[number, number], [number, number]]
+    if (lat >= south && lat <= north && lng >= west && lng <= east) return region.id
+  }
+  return null
+}

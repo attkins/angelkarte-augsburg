@@ -44,6 +44,9 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
     <template v-else-if="name === 'layers'">
       <path d="M12 4l8 4-8 4-8-4z" /><path d="M4 12l8 4 8-4" /><path d="M4 16l8 4 8-4" />
     </template>
+    <template v-else-if="name === 'map'">
+      <path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z" /><path d="M9 4v13.5M15 6.5V20" />
+    </template>
     <template v-else-if="name === 'locate'">
       <circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7.5" />
       <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22" />
