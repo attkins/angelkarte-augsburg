@@ -85,7 +85,7 @@ See [data-schema.md](data-schema.md) for the detailed schema.
 - Vite as build tool
 - Leaflet used directly (no vue-leaflet wrapper), encapsulated in the MapView component so highlighting and fitBounds stay fully under our control
 - Still a static site without backend: data as GeoJSON (waters, sales points) plus a small JSON for clubs, loaded at runtime from `public/data/`
-- Hosting on GitHub Pages, built and deployed via a GitHub Action, unlisted link for friends
+- Hosting on GitHub Pages, built and deployed via a GitHub Action, unlisted link for friends. No password for now (decided 2026-11-16, T4)
 - Geometry drawn with geojson.io or traced from OSM via Overpass
 - Sales point coordinates via geocoding the address once (e.g. Nominatim) and stored in the data
 
@@ -94,7 +94,6 @@ This replaces the earlier plan of a static site without build step. The plain Le
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)
-- Whether access should be restricted (password) or an unlisted link is enough
 - State management: plain composables or Pinia (composables are enough so far)
 
 ## Next steps

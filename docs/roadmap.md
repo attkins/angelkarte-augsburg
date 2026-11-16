@@ -10,8 +10,8 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 
 | Release | Theme | Target | Status |
 |---------|-------|--------|--------|
-| 0.7 | Ready for friends | week of 2026-11-16 | planned |
-| 0.8 | Austria | end of November 2026 | in progress (data and region switch done) |
+| 0.7 | Ready for friends | week of 2026-11-16 | ready to release |
+| 0.8 | Austria | end of November 2026 | ready to release |
 | 0.9 | Core region complete | mid December 2026 | planned |
 | 0.10 | More waters | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
@@ -23,10 +23,10 @@ Already released: 0.1.0 to 0.6.0, see [CHANGELOG.md](../CHANGELOG.md).
 
 Goal: the link can be passed on to friends without worries.
 
-- C4 Clean up the release tags (test tags `v0.6.1` and `v0.7.0` from trying out the release script)
-- F1 "Karte heute noch" filter (done, not committed yet)
-- C3 Run `npm test` in the deploy workflow
-- T4 Decide between password and unlisted link
+- C4 Clean up the release tags (test tags `v0.6.1` and `v0.7.0` from trying out the release script) (done locally, check GitHub once)
+- F1 "Karte heute noch" filter (done)
+- C3 Run `npm test` in the deploy workflow (done)
+- T4 Decide between password and unlisted link (decided: no password for now, unlisted link)
 
 Done when the deploy runs the tests and a friend can open and use the map without explanation. F5 (share button) and F8 (report an error) were moved to "Later" on 2026-11-15.
 
@@ -37,7 +37,8 @@ Goal: the holiday regions Fernpass and Wilder Kaiser are on the map.
 - D13 Research clubs and ticket offers, then waters with OSM outlines
 - D15 Four more lakes around Kufstein and Kitzbühel (done), D16 the remaining lakes and the first rivers
 - T6 Region switch Augsburg, Fernpass and Wilder Kaiser instead of one box from Augsburg to Tyrol (done)
-- Waters with restricted or prohibited access shown correctly (already supported in the schema)
+- Waters with restricted or prohibited access shown correctly (done, e.g. Fernsteinsee as `restricted`)
+- Austrian public holidays for the opening hours of sales points in Tyrol (done)
 
 Done when the researched Austrian waters are in the data and the map stays usable around Augsburg.
 
