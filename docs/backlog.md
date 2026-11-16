@@ -50,7 +50,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | D4 | Singold Bobingen is open for guests but has no guest price. Bobingen prices are not online at all | ⬜ open |
 | D5 | Singold Wehringen has no sales point and no online purchase. Wehringen sales points are unknown | ⬜ open |
 | D6 | Real extent of the placeholder stretches: Lech (LFV), Wertach Großaitingen, Wehringen, Siebnach, Göggingen. Also check the limits of Günz (Deisenhausen) and Lochbach Haunstetten. Club water maps help most | ⬜ open |
-| D7 | Fish species: only 5 of 62 waters have species. Start with FVA and LFV | ⬜ open |
+| D7 | Fish species: only 5 of 62 waters have species. Start with FVA and LFV | ✅ done 2026-11-16 for FVA and LFV: all 26 waters have species now (54 of 87 in total). FVA from the "Hauptfische" line of each Gewässerbeschreibung PDF plus species named in the water articles, LFV from the "Fischarten" box of each water page. Names follow the existing data (Döbel for Aitel, Wels for Waller, Flussbarsch for Barsch). Where the source only says "Forellen" or "Salmoniden" it stays generic. The two Kammel PDFs did not load, species there come from the article. Still without species: 33 waters of the other clubs |
 | D8 | Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam | ⬜ open |
 | D9 | Missing waters outside the core region: Kirnach (FVA), 1. AAC waters (Mindel, Günz, Höchstädt and others) | ⬜ open |
 | D10 | Third research pass west of Augsburg: Staudenfischereiverein, hejfish Neufnach and Weiher H5, clubs in Diedorf, Dinkelscherben, Fischach, Welden and others | ⬜ open |

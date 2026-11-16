@@ -23,11 +23,20 @@
           "deposit": 5,
           "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
         },
-        "species": [],
+        "species": [
+          "Äsche",
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Huchen",
+          "Barbe",
+          "Döbel",
+          "Hecht",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-10",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "placeholder"
       },
@@ -172,11 +181,23 @@
           "deposit": 5,
           "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
         },
-        "species": [],
+        "species": [
+          "Äsche",
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Barbe",
+          "Döbel",
+          "Hecht",
+          "Zander",
+          "Karpfen",
+          "Schleie",
+          "Rotauge",
+          "Rotfeder"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "traced"
       },
@@ -575,11 +596,18 @@
           "deposit": 5,
           "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
         },
-        "species": [],
+        "species": [
+          "Hecht",
+          "Zander",
+          "Flussbarsch",
+          "Karpfen",
+          "Schleie",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-10",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "traced",
         "maxDepth": 6,
@@ -644,11 +672,19 @@
           "deposit": 5,
           "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
         },
-        "species": [],
+        "species": [
+          "Hecht",
+          "Zander",
+          "Flussbarsch",
+          "Karpfen",
+          "Schleie",
+          "Aal",
+          "Wels"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-10",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "traced",
         "maxDepth": 4,
@@ -729,11 +765,18 @@
           "member": 10,
           "youth": 5
         },
-        "species": [],
+        "species": [
+          "Hecht",
+          "Zander",
+          "Flussbarsch",
+          "Karpfen",
+          "Schleie",
+          "Regenbogenforelle"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-10",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "traced"
       },
@@ -840,11 +883,18 @@
           "deposit": 5,
           "note": "Pfand wird bei Rückgabe bis 31. Januar des Folgejahres erstattet."
         },
-        "species": [],
+        "species": [
+          "Hecht",
+          "Zander",
+          "Flussbarsch",
+          "Karpfen",
+          "Schleie",
+          "Regenbogenforelle"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-10",
+        "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
         "geometryStatus": "traced"
       },
@@ -962,11 +1012,15 @@
           "validFrom": "2027-01-01",
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters."
         },
-        "species": [],
+        "species": [
+          "Salmoniden",
+          "Karpfen",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced",
         "maxDepth": 7,
@@ -1051,11 +1105,17 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Regenbogenforelle",
+          "Karpfen",
+          "Hecht",
+          "Aal",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced",
         "maxDepth": 4,
@@ -1196,11 +1256,17 @@
           "validFrom": "2027-01-01",
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters."
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Äsche",
+          "Döbel",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -1705,11 +1771,16 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Schleie",
+          "Hecht",
+          "Wels"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced",
         "maxDepth": 5,
@@ -1834,11 +1905,17 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Flussbarsch",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -2118,11 +2195,17 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Äsche",
+          "Barbe",
+          "Döbel",
+          "Karpfen"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -2498,13 +2581,18 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Äsche",
+          "Barbe",
+          "Döbel"
+        ],
         "rules": [
           "Nur Fliegenfischen"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -3065,11 +3153,17 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Regenbogenforelle",
+          "Karpfen",
+          "Schleie",
+          "Hecht",
+          "Flussbarsch"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced",
         "maxDepth": 5,
@@ -3846,13 +3940,16 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
-        "species": [],
+        "species": [
+          "Salmoniden",
+          "Weißfische"
+        ],
         "rules": [
           "Nur Spinn- und Fliegenfischen (laut Liste des Augsburger Angelcenters)"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -3956,13 +4053,19 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Äsche",
+          "Barbe",
+          "Weißfische"
+        ],
         "rules": [
           "Nur Fliegenfischen"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -4087,11 +4190,18 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Hecht",
+          "Karpfen",
+          "Aal",
+          "Rutte",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -4256,11 +4366,16 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Hecht",
+          "Karpfen",
+          "Aal",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -4313,11 +4428,19 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Karpfen",
+          "Hecht",
+          "Aal",
+          "Döbel",
+          "Rotauge",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -4970,11 +5093,17 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Aal",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -5363,11 +5492,19 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Hecht",
+          "Aal",
+          "Rutte",
+          "Flussbarsch",
+          "Karpfen",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -5532,11 +5669,23 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Huchen",
+          "Hecht",
+          "Wels",
+          "Flussbarsch",
+          "Karpfen",
+          "Rutte",
+          "Aal",
+          "Brachse",
+          "Döbel",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "placeholder"
       },
@@ -5600,11 +5749,14 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 22
         },
-        "species": [],
+        "species": [
+          "Salmoniden",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -5681,11 +5833,16 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 15
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Aal",
+          "Wels",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
@@ -5906,11 +6063,20 @@
           "note": "Pfand 5 € laut Liste des Augsburger Angelcenters.",
           "guest": 20
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Hecht",
+          "Zander",
+          "Wels",
+          "Brachse",
+          "Döbel",
+          "Rotauge",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
         "geometryStatus": "traced"
       },
