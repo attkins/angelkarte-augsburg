@@ -57,6 +57,7 @@
           "fvk-kringweiher",
           "fvk-petriweiher",
           "fvk-wertach-siebnach",
+          "fvw-wertach",
           "lfv-anwaltinger-see",
           "lfv-kaisersee",
           "lfv-lech",
@@ -1890,6 +1891,43 @@
           12.37583,
           47.65112
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.78828,
+          48.25385
+        ]
+      },
+      "properties": {
+        "id": "fvw-fischerheim",
+        "name": "Fischerheim FV Wehringen",
+        "address": "Aue 4, 86517 Wehringen",
+        "phone": null,
+        "openingHours": [
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "17:00",
+            "close": "19:00"
+          },
+          {
+            "days": [
+              "su"
+            ],
+            "open": "09:00",
+            "close": "12:00"
+          }
+        ],
+        "openingHoursNote": "Hier gibt es nur Tageskarten für die Wertach.",
+        "waterIds": [
+          "fvw-wertach"
+        ],
+        "coordinatesApproximate": false
       }
     }
   ]

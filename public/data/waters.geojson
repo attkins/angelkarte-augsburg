@@ -9014,14 +9014,21 @@
         "name": "Singold Bobingen",
         "clubId": "fv-bobingen",
         "guestAccess": "withMember",
-        "accessNote": "Gäste nur in Begleitung eines Mitglieds, höchstens ein Gast je Mitglied. Der Name des Mitglieds steht auf der Tageskarte.",
+        "accessNote": "Gäste nur in Begleitung eines Mitglieds, höchstens ein Gast je Mitglied. Der Name des Mitglieds steht auf der Tageskarte. Tageskarten für die Singold gibt es außerdem nach Terminabsprache bei einem Vereinsmitglied in Diedorf-Anhausen, Kontakt auf der Vereinsseite.",
         "season": {
           "from": "03-16",
           "to": "09-30"
         },
         "seasonNote": null,
         "guestPeriod": null,
-        "prices": null,
+        "prices": {
+          "member": 15,
+          "youth": 10,
+          "guest": 25,
+          "guestYouth": 20,
+          "deposit": 5,
+          "note": "Laut Gebührenordnung 2026 des Vereins. Dazu 5 € Pfand für die Karte."
+        },
         "species": [
           "Bachforelle",
           "Regenbogenforelle",
@@ -9034,7 +9041,7 @@
           "Gesperrt 01.10. bis 15.03. und an einzelnen Tagen, siehe Vereinsseite"
         ],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereivereinbobingen.de/gewaesser-2/",
         "geometryStatus": "traced"
       },
@@ -9204,11 +9211,12 @@
         "seasonNote": null,
         "guestPeriod": null,
         "prices": {
-          "member": 9,
-          "youth": 6,
-          "guest": 15,
-          "guestYouth": 13,
-          "note": "Preise aus einer älteren Community-Quelle, auf der Vereinsseite stehen keine Preise."
+          "member": 10,
+          "youth": 7,
+          "guest": 20,
+          "guestYouth": 15,
+          "deposit": 5,
+          "note": "Laut Gebührenordnung 2026 des Vereins. Dazu 5 € Pfand für die Karte."
         },
         "species": [
           "Karpfen",
@@ -9265,7 +9273,12 @@
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
-        "prices": null,
+        "prices": {
+          "member": 18,
+          "youth": 12,
+          "deposit": 5,
+          "note": "Laut Gebührenordnung 2026 des Vereins. Dazu 5 € Pfand für die Karte."
+        },
         "species": [
           "Karpfen",
           "Zander",
@@ -9515,7 +9528,7 @@
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-wehringen.de/mitgliederbeitraege-karten.html",
         "geometryStatus": "traced"
       },
@@ -9602,7 +9615,7 @@
         "name": "Singold Wehringen",
         "clubId": "fv-wehringen",
         "guestAccess": "withMember",
-        "accessNote": "Gäste nur in Begleitung eines aktiven, erwachsenen Mitglieds. Karten nur bei einem bestimmten Vereinsmitglied.",
+        "accessNote": "Gäste nur in Begleitung eines aktiven, erwachsenen Mitglieds. Karten gibt es nur bei einem Vereinsmitglied in Wehringen, Montag bis Samstag nach telefonischer Absprache, Kontakt auf der Vereinsseite.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
