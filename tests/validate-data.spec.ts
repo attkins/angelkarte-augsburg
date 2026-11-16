@@ -52,10 +52,11 @@ describe('validateData', () => {
   })
 
   describe('waters', () => {
-    it('accepts waters with and without depth', () => {
+    it('accepts waters with and without depth or warning', () => {
       const waters = [
         makeWater(),
         makeWater({ id: 'w2', maxDepth: 14.5, maxDepthSource: 'https://example.org', depthMapUrl: null }),
+        makeWater({ id: 'w3', warning: { text: 'Fische nicht essen.', url: 'https://example.org' } }),
       ]
 
       expect(validate({ waters }).errors).toEqual([])
@@ -66,6 +67,8 @@ describe('validateData', () => {
       ['a depth without source', { maxDepth: 5 }, 'maxDepth needs a maxDepthSource'],
       ['a source that is no URL', { maxDepth: 5, maxDepthSource: 'Vereinsheft' }, 'maxDepthSource must be an https URL'],
       ['a depth map that is no https URL', { depthMapUrl: 'http://example.org' }, 'depthMapUrl must be an https URL'],
+      ['a warning without text', { warning: { text: ' ' } }, 'warning needs a text'],
+      ['a warning link that is no https URL', { warning: { text: 'Achtung', url: 'http://example.org' } }, 'warning.url must be an https URL'],
     ])('reports %s', (_label, props, message) => {
       const { errors } = validate({ waters: [makeWater(props as never)] })
 

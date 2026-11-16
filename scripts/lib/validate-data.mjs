@@ -91,6 +91,17 @@ function checkDepth(p, where, errors) {
   }
 }
 
+/** The warning is optional. If present it needs a text, the link must be https. */
+function checkWarning(p, where, errors) {
+  if (p.warning === undefined || p.warning === null) return
+  if (typeof p.warning !== 'object' || typeof p.warning.text !== 'string' || !p.warning.text.trim()) {
+    errors.push(`${where}: warning needs a text`)
+    return
+  }
+  const url = p.warning.url
+  if (url !== undefined && url !== null && !/^https:\/\//.test(url)) errors.push(`${where}: warning.url must be an https URL`)
+}
+
 /**
  * @param {{ clubs: any[], waters: { type?: string, features: any[] }, salesPoints: { type?: string, features: any[] } }} data
  * @param {{ now?: Date }} [options] `now` is the reference date for the age of `lastChecked`, mainly for tests
@@ -162,6 +173,7 @@ export function validateData({ clubs, waters, salesPoints }, { now = new Date() 
     if (!('source' in p)) errors.push(`${where}: missing source (use null if unknown)`)
     else if (!p.source) warnings.push(`${where}: source is not set`)
     checkDepth(p, where, errors)
+    checkWarning(p, where, errors)
   }
 
   const referencedWaterIds = new Set()

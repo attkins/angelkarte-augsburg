@@ -65,6 +65,13 @@ export interface OnlinePurchase {
   url: string
 }
 
+/** An important warning for a water, e.g. a health advisory. Shown in bold above all other notices. */
+export interface WaterWarning {
+  text: string
+  /** Page with the details, shown as a "Mehr dazu" link. */
+  url?: string | null
+}
+
 export interface WaterProperties {
   id: string
   name: string
@@ -93,6 +100,8 @@ export interface WaterProperties {
   maxDepthSource?: string | null
   /** Link to a depth map of the lake, e.g. on the club website. Optional. */
   depthMapUrl?: string | null
+  /** Important warning, e.g. not to eat the fish. Optional, most waters have none. */
+  warning?: WaterWarning | null
   geometryStatus: GeometryStatus
 }
 

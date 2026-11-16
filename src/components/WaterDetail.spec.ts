@@ -21,6 +21,18 @@ describe('WaterDetail', () => {
     expect(wrapper.find('.access-badge').text()).toBe('Nur mit Mitglied')
   })
 
+  it('shows a warning in bold with its link', () => {
+    const wrapper = mountDetail(makeWater({ warning: { text: 'Fische nicht essen.', url: 'https://example.org/pfc' } }))
+
+    const alert = wrapper.find('.notice.is-alert')
+    expect(alert.find('strong').text()).toBe('Fische nicht essen.')
+    expect(alert.find('a').attributes('href')).toBe('https://example.org/pfc')
+  })
+
+  it('shows no warning when the water has none', () => {
+    expect(mountDetail(makeWater()).find('.notice.is-alert').exists()).toBe(false)
+  })
+
   it('links the club to its page', async () => {
     const wrapper = mountDetail(makeWater())
 

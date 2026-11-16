@@ -7616,6 +7616,10 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "warning": {
+          "text": "PFC-Belastung: Laut BUND Naturschutz ist die Friedberger Ach von den Quellen bis zur Mündung in die Donau mit PFC belastet. Für Fische aus der Ach gibt es eine Verzehrwarnung, gefangene Fische also besser nicht essen.",
+          "url": "https://neuburg-schrobenhausen.bund-naturschutz.de/aktuelle-meldungen/artikel/pfc-belastung-friedberger-ach"
+        },
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -7867,6 +7871,10 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "warning": {
+          "text": "PFC-Belastung: Laut BUND Naturschutz ist die Friedberger Ach von den Quellen bis zur Mündung in die Donau mit PFC belastet. Für Fische aus der Ach gibt es eine Verzehrwarnung, gefangene Fische also besser nicht essen.",
+          "url": "https://neuburg-schrobenhausen.bund-naturschutz.de/aktuelle-meldungen/artikel/pfc-belastung-friedberger-ach"
+        },
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -9994,6 +10002,10 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "warning": {
+          "text": "PFC-Belastung: Laut BUND Naturschutz ist die Friedberger Ach von den Quellen bis zur Mündung in die Donau mit PFC belastet. Für Fische aus der Ach gibt es eine Verzehrwarnung, gefangene Fische also besser nicht essen.",
+          "url": "https://neuburg-schrobenhausen.bund-naturschutz.de/aktuelle-meldungen/artikel/pfc-belastung-friedberger-ach"
+        },
         "geometryStatus": "traced"
       },
       "geometry": {

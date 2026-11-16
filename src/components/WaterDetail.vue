@@ -114,6 +114,16 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
       </a>
     </div>
 
+    <div v-if="p.warning" class="notice is-alert" role="alert">
+      <AppIcon name="info" :size="20" class="notice-icon" />
+      <span>
+        <strong>{{ p.warning.text }}</strong>
+        <template v-if="p.warning.url">
+          {{ ' ' }}<a :href="p.warning.url" target="_blank" rel="noopener">Mehr dazu</a>
+        </template>
+      </span>
+    </div>
+
     <div v-if="closedReason || p.accessNote" class="notice" :class="{ 'is-warning': closedReason }">
       <AppIcon :name="closedReason ? 'clock' : 'member'" :size="20" class="notice-icon" />
       <span>
@@ -273,6 +283,16 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
 .notice.is-warning {
   background: var(--member-bg);
   color: var(--member-text);
+}
+
+.notice.is-alert {
+  background: var(--closed-bg);
+  color: var(--closed-text);
+}
+
+.notice.is-alert a {
+  color: inherit;
+  font-weight: 600;
 }
 
 .notice-icon {

@@ -41,6 +41,7 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `maxDepth` | number, null or missing | Optional. Deepest point of a lake in metres |
 | `maxDepthSource` | string, null or missing | URL the depth comes from, required with `maxDepth`. Club or city pages first, angling portals only when nothing better exists |
 | `depthMapUrl` | string, null or missing | Optional. Link to a depth map, e.g. on the club website |
+| `warning` | object or null | Optional. `{ "text": "...", "url": "https://..." }`, shown in bold above all other notices, e.g. a health advisory. Used for the PFC warning on the Friedberger Ach |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
 
 ### Waters in Austria (Tyrol)
