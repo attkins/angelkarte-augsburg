@@ -2,6 +2,38 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.9.0 (2026-11-16)
+
+### Features
+
+- Add fish species filter (F3) ([12cb6c5](https://github.com/attkins/angelkarte-augsburg/commit/12cb6c540b048ca2d05d04702043368e0b56c137))
+- Add bold warning notice, PFC warning for the Friedberger Ach (D19) ([c936bb8](https://github.com/attkins/angelkarte-augsburg/commit/c936bb8bcfe5258c3d079b804fc0c4a7d63aadf7))
+- Add error report mail link to water detail (F8) ([4b1923f](https://github.com/attkins/angelkarte-augsburg/commit/4b1923f65d0cbba7b9f77a58013521df4259eb2f))
+- Add share button to water, sales point and club pages (F5) ([91496fb](https://github.com/attkins/angelkarte-augsburg/commit/91496fbe9a2b25794e72beb5aa450148fc0fc881))
+- Plan for a later day instead of only today (F2) ([3217562](https://github.com/attkins/angelkarte-augsburg/commit/32175625c99675b9cc68fbd530d0ed606d91b0fd))
+- Add service worker for offline use (F7) ([9dfb904](https://github.com/attkins/angelkarte-augsburg/commit/9dfb9045d2421c86799bc2b1ee13cac4efd27f96))
+
+### Data
+
+- Add fish species for all FVA and LFV waters (D7) ([a78eb2f](https://github.com/attkins/angelkarte-augsburg/commit/a78eb2f448bd1b8dcbfd25ea25e606f3c4175808))
+- Add fish species for 27 more waters and clarify Friedberg guest access (D7, D2, D3) ([1f4fc0c](https://github.com/attkins/angelkarte-augsburg/commit/1f4fc0c349f16fbb55e01000bfd2049d86e0636e))
+- Trace the placeholder stretches on Wertach and Lech from OSM (D6) ([88512b8](https://github.com/attkins/angelkarte-augsburg/commit/88512b8f03d54533ca29ab67cd370e9f01e2e472))
+- Trace Günz Deisenhausen and Lochbach Haunstetten, open Walter-See for guests (D6, D3) ([045db21](https://github.com/attkins/angelkarte-augsburg/commit/045db212b48a1cb0e34423687c9038a3edf0c198))
+- Bobingen prices 2026 and Wehringen sales points (D4, D5) ([8670a7d](https://github.com/attkins/angelkarte-augsburg/commit/8670a7d664b006470d01b619386689408297f20b))
+- Add LFV waters Paar 3, Paar 4, Schmutter Diedorf and Zusam Donauwörth as placeholders (D8) ([98ab219](https://github.com/attkins/angelkarte-augsburg/commit/98ab21932ae65adad7f9062f718b22b82b42060c))
+- Add Kirnach (FVA) outside the core region (D9) ([faad7f7](https://github.com/attkins/angelkarte-augsburg/commit/faad7f7e65d08ef979f540df30675e9ea3a2c7b9))
+- Add 1. AAC waters west of Augsburg from the club map, fix Wertach Göggingen limits (D9) ([055f286](https://github.com/attkins/angelkarte-augsburg/commit/055f286af2b6138ed4e42a60dfa2c44fc7bfa899))
+- Add FV Großaitingen and Staudenfischereiverein waters (D10) ([cfd3cb4](https://github.com/attkins/angelkarte-augsburg/commit/cfd3cb49a60babfbac162cc085ea8a43f67141e2))
+- Add St. Anglwirt revier of the Stanglwirt in Going (D18) ([b636152](https://github.com/attkins/angelkarte-augsburg/commit/b6361526b71af5ec7d3c435a637451ff325b4e8f))
+
+### Fixes
+
+- Geocode Angel-Zoo-Ernst, Sonnleitner and Holland Blumen (D14) ([b28825f](https://github.com/attkins/angelkarte-augsburg/commit/b28825f649865e24ffc504e646d2def6943c1511))
+
+### Documentation
+
+- Replan releases, 0.9 ready with all finished work, 0.10 for club answers ([50dfde2](https://github.com/attkins/angelkarte-augsburg/commit/50dfde2c8dabe82bf6d6220f4b53d9def24c6a19))
+
 ## 0.8.0 (2026-11-16)
 
 ### Features
