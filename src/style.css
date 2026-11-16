@@ -467,3 +467,7 @@ button {
   margin-top: 6px;
   color: var(--member-text);
 }
+
+.meta .report {
+  margin-top: 6px;
+}

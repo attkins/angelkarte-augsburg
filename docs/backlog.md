@@ -86,7 +86,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F5 | Share button | Web Share API with the existing hash routes, fallback copy link | ⬜ open |
 | F6 | Water level and temperature | Open data of the Hochwassernachrichtendienst Bayern for Lech, Wertach, Schmutter, Paar. First check which gauges fit which stretches | ⬜ open |
 | F7 | Offline use | Service worker caching the data files and recently viewed tiles | ⬜ open |
-| F8 | Report an error | Mail link in the water detail with the water ID prefilled | ⬜ open |
+| F8 | Report an error | Mail link in the water detail with the water ID prefilled | ✅ done 2026-11-16. "Fehler melden" below the check date in the water detail opens a mail to the imprint address (`VITE_IMPRINT_EMAIL`), subject with the water name, body with name, ID and the link to the water page. Without an imprint address the link is hidden (`reportEmail` prop, `src/utils/report.ts`) |
 | F9 | Parking and access points | A few points per water, drawn with the aerial images. Needs a schema extension | ⬜ open |
 | F10 | Depth maps for lakes | No depth maps to embed, see `concept.md`. Built `maxDepth` (14 lakes so far) and an optional `depthMapUrl` link instead | ✅ done 2026-11-14 |
 | F11 | Link previews | `og:title`, `og:description`, `og:image` and `og:locale` in `index.html` so a shared link shows a card in messengers. Only one preview for the whole site: crawlers do not run JavaScript and ignore the `#/...` hash, so a link to a water shows the same card. Per-water cards would need prerendered pages per route. Needs an absolute URL for `og:image` (GitHub Pages domain) | ✅ done 2026-11-14 (tags in index.html, image public/og-image.png from scripts/og-image.py) |

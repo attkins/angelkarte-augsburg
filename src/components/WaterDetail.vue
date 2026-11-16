@@ -2,10 +2,12 @@
 import { computed } from 'vue'
 import AccessBadge from '@/components/AccessBadge.vue'
 import AppIcon from '@/components/AppIcon.vue'
-import { PRICE_LABELS } from '@/config'
+import { IMPRINT, PRICE_LABELS } from '@/config'
+import { routeHash } from '@/composables/useHashRoute'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
+import { reportMailto } from '@/utils/report'
 import { holidayOptions } from '@/utils/holidays'
 import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
 
@@ -15,6 +17,8 @@ const props = withDefaults(
     data: MapData
     /** Injected for tests. */
     now?: Date
+    /** Address for error reports, null hides the link. Defaults to the imprint mail. */
+    reportEmail?: string | null
   }>(),
   { now: () => new Date() },
 )
@@ -79,6 +83,13 @@ const salesPoints = computed(() =>
 const lastChecked = computed(() => formatDate(p.value.lastChecked))
 const hasRules = computed(() => p.value.rules.length > 0 || Boolean(p.value.seasonNote))
 const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.contact))
+
+const reportHref = computed(() => {
+  const email = props.reportEmail === undefined ? (IMPRINT?.email ?? null) : props.reportEmail
+  if (!email) return null
+  const pageUrl = `${window.location.origin}${window.location.pathname}${routeHash({ kind: 'water', id: p.value.id })}`
+  return reportMailto(email, p.value, pageUrl)
+})
 </script>
 
 <template>
@@ -219,6 +230,10 @@ const hasClubInfo = computed(() => Boolean(club.value?.website || club.value?.co
           <a :href="p.source" target="_blank" rel="noopener">Quelle</a></template>
       </p>
       <p v-if="p.geometryStatus === 'placeholder'" class="warning">Die Lage auf der Karte ist nur ungefähr.</p>
+      <p v-if="reportHref" class="report">
+        <AppIcon name="mail" :size="15" />Etwas stimmt nicht?
+        <a :href="reportHref">Fehler melden</a>
+      </p>
     </footer>
   </article>
 </template>

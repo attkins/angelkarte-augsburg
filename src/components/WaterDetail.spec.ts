@@ -9,7 +9,8 @@ import { makeClub, makeMapData, makeSalesPoint, makeWater } from '../../tests/fi
 const NOW = new Date(2026, 10, 13, 15, 0)
 
 function mountDetail(water: WaterFeature, data = makeMapData([makeClub()], [water])) {
-  return mount(WaterDetail, { props: { water, data, now: NOW } })
+  // No report address, so the result does not depend on the imprint in the local .env.
+  return mount(WaterDetail, { props: { water, data, now: NOW, reportEmail: null } })
 }
 
 describe('WaterDetail', () => {
@@ -288,5 +289,31 @@ describe('WaterDetail', () => {
   it('mentions placeholder geometry only', () => {
     expect(mountDetail(makeWater({ geometryStatus: 'placeholder' })).find('.warning').exists()).toBe(true)
     expect(mountDetail(makeWater({ geometryStatus: 'traced' })).find('.warning').exists()).toBe(false)
+  })
+
+  describe('error report link', () => {
+    it('opens a mail with the water name and ID', () => {
+      const water = makeWater({ id: 'fva-kuhsee', name: 'Kuhsee' })
+      const wrapper = mount(WaterDetail, {
+        props: { water, data: makeMapData([makeClub()], [water]), now: NOW, reportEmail: 'team@example.org' },
+      })
+
+      const link = wrapper.find('.meta .report a')
+      expect(link.text()).toBe('Fehler melden')
+      const href = link.attributes('href')!
+      expect(href.startsWith('mailto:team@example.org?')).toBe(true)
+      const body = new URLSearchParams(href.split('?')[1]).get('body')!
+      expect(body).toContain('ID: fva-kuhsee')
+      expect(body).toContain('#/gewaesser/fva-kuhsee')
+    })
+
+    it('is hidden without a report address', () => {
+      const water = makeWater()
+      const wrapper = mount(WaterDetail, {
+        props: { water, data: makeMapData([makeClub()], [water]), now: NOW, reportEmail: null },
+      })
+
+      expect(wrapper.find('.meta .report').exists()).toBe(false)
+    })
   })
 })
