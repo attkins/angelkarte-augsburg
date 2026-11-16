@@ -1771,6 +1771,50 @@
           47.5027
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bp-tankstelle-koessen",
+        "name": "BP Tankstelle Kössen",
+        "address": "Hütte 15, 6345 Kössen, Österreich",
+        "phone": "+43 5375 6394",
+        "openingHours": null,
+        "openingHoursNote": "Mo bis Sa 7 bis 20 Uhr, So und feiertags 8 bis 20 Uhr. Karten für Kohl- und Weißenbach vorher telefonisch reservieren, nur Barzahlung.",
+        "waterIds": [
+          "at-kohl-weissenbach-koessen"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.41294,
+          47.66173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "vereinshuette-fv-koessen",
+        "name": "Vereinshütte FV Kössen am Aufeldteich",
+        "address": "Bichlach, 6345 Kössen, Österreich",
+        "phone": "+43 676 848536366",
+        "openingHours": null,
+        "openingHoursNote": "Mittwoch ganztags geschlossen.",
+        "waterIds": [
+          "at-aufeldteich"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.37583,
+          47.65112
+        ]
+      }
     }
   ]
 }

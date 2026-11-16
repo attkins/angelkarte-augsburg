@@ -154,13 +154,6 @@
     "contact": "+43 5265 5210, hotel@schloss-fernsteinsee.at, Fernstein 475, 6465 Nassereith"
   },
   {
-    "id": "taubensee-koessen",
-    "name": "Taubensee Kössen (Bewirtschafter unbekannt)",
-    "shortName": "Taubensee",
-    "website": "https://www.taubensee.at",
-    "contact": "Kartenausgabe: Taubenseehütte, Mühlbergweg 54, 6345 Kössen, +43 664 1246925, info@taubensee.at"
-  },
-  {
     "id": "aubad-lauchsee",
     "name": "Aubad Lauchsee Fieberbrunn (Bewirtschafter)",
     "shortName": "Lauchsee",
@@ -208,5 +201,12 @@
     "shortName": "Fischteich Tannheim",
     "website": "https://fischteich-tannheim.at",
     "contact": "Untergschwend 13, 6675 Tannheim, +43 676 4809363, info@fischteich-tannheim.at"
+  },
+  {
+    "id": "fv-koessen",
+    "name": "Fischerverein Kössen",
+    "shortName": "FV Kössen",
+    "website": "https://www.fischerverein-koessen.at",
+    "contact": "info@fischerverein-koessen.at, +43 676 848536366. Vereinshütte am Aufeldteich, Bichlach, 6345 Kössen"
   }
 ]
