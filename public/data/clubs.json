@@ -222,5 +222,12 @@
     "shortName": "Staudenfischereiverein",
     "website": "https://staudenfischereiverein.de",
     "contact": "vorstand@staudenfischereiverein.de, +49 176 50635696"
+  },
+  {
+    "id": "hotel-stanglwirt",
+    "name": "Biohotel Stanglwirt (St. Anglwirt)",
+    "shortName": "Stanglwirt",
+    "website": "https://stanglwirt.com/en/sport/offer/fishing.html",
+    "contact": "Concierge +43 5358 2000 902, concierge@stanglwirt.com, Kaiserweg 1, 6353 Going am Wilden Kaiser"
   }
 ]

@@ -2056,6 +2056,28 @@
         ],
         "coordinatesApproximate": false
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "stanglwirt-concierge",
+        "name": "Concierge Hotel Stanglwirt",
+        "address": "Kaiserweg 1, 6353 Going am Wilden Kaiser, Österreich",
+        "phone": "+43 5358 2000 902",
+        "openingHours": null,
+        "openingHoursNote": "Tageskarte und Tiroler Gastfischerkarte, Guide vorher anfragen.",
+        "waterIds": [
+          "at-stanglwirt-going"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.34378,
+          47.51568
+        ]
+      }
     }
   ]
 }
