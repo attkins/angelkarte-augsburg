@@ -63,7 +63,7 @@ Done when the acceptance criteria below hold for the core region.
 Goal: the map covers the waters around the core region that friends actually drive to.
 
 - D8 Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam (entered as placeholders, real limits still open)
-- D10 Third research pass west of Augsburg
+- D10 Third research pass west of Augsburg ✅
 - D9 Waters outside the core region: Kirnach, 1. AAC waters (done for Kirnach, Kringsee and the western ring)
 
 ## 1.0 Season 2027

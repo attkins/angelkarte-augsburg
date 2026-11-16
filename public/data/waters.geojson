@@ -40786,6 +40786,880 @@
         "source": "https://1aac.de/portfolio-items/flossach-kirchheim-moergen/",
         "geometryStatus": "traced"
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "01-15",
+          "to": "12-31"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/14898-weiher-h5-reinhartshofer-weiher"
+        },
+        "lastChecked": "2026-11-16",
+        "id": "fvg-weiher-h5",
+        "name": "Weiher H5 (Angerweiher), Großaitingen",
+        "clubId": "fv-grossaitingen",
+        "guestAccess": "open",
+        "accessNote": "Gäste dürfen hier allein fischen. Papierkarten gibt es bei Fisherman's Partner Augsburg und Jafispo, digitale Karten über hejfish.",
+        "prices": {
+          "member": 11,
+          "guest": 16,
+          "youth": 8,
+          "deposit": 5,
+          "note": "Digital über hejfish 18 € zuzüglich Gebühr."
+        },
+        "species": [
+          "Forelle",
+          "Hecht",
+          "Karpfen",
+          "Schleie",
+          "Zander",
+          "Giebel",
+          "Brachse",
+          "Rotauge",
+          "Rotfeder",
+          "Flussbarsch",
+          "Wels",
+          "Weißfische",
+          "Graskarpfen",
+          "Döbel"
+        ],
+        "rules": [
+          "Vom 15. Februar bis 30. April kein Raubfischangeln",
+          "Kein Nachtfischen",
+          "Höchstens zwei Handangeln, davon eine für Raubfisch",
+          "Nur vom Ufer aus",
+          "Kein lebender Köderfisch",
+          "Kein Anfüttern, kein Feeder und kein PVA",
+          "Höchstens 3 Edelfische (davon 1 Hecht oder Zander) und 5 Friedfische pro Tag, Wels ohne Limit"
+        ],
+        "source": "https://www.fischereiverein-grossaitingen.de",
+        "geometryStatus": "traced"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.73325,
+              48.23662
+            ],
+            [
+              10.73264,
+              48.23692
+            ],
+            [
+              10.73249,
+              48.23758
+            ],
+            [
+              10.73212,
+              48.23818
+            ],
+            [
+              10.73208,
+              48.23852
+            ],
+            [
+              10.73212,
+              48.23864
+            ],
+            [
+              10.73238,
+              48.2388
+            ],
+            [
+              10.73337,
+              48.23913
+            ],
+            [
+              10.73345,
+              48.23909
+            ],
+            [
+              10.73382,
+              48.23914
+            ],
+            [
+              10.734,
+              48.23897
+            ],
+            [
+              10.734,
+              48.23811
+            ],
+            [
+              10.73424,
+              48.23693
+            ],
+            [
+              10.73414,
+              48.23684
+            ],
+            [
+              10.7335,
+              48.23674
+            ],
+            [
+              10.7334,
+              48.23662
+            ],
+            [
+              10.73325,
+              48.23662
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "05-01",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": null,
+        "lastChecked": "2026-11-16",
+        "id": "fvg-singold",
+        "name": "Singold Großaitingen",
+        "clubId": "fv-grossaitingen",
+        "guestAccess": "withMember",
+        "accessNote": "Gastkarten gibt nur der Gewässerwart aus, Kontakt über die Vereinsseite. Die Strecke reicht von der Gemeindegrenze zu Schwabmünchen bis zur Grenze zu Wehringen.",
+        "prices": {
+          "member": 15,
+          "guest": 20,
+          "deposit": 5
+        },
+        "species": [
+          "Forelle"
+        ],
+        "rules": [
+          "Nur Fliegenfischen und Spinnfischen mit Kunstköder",
+          "Nur eine Handangel",
+          "Höchstens 3 Edelfische pro Tag und 6 pro Woche"
+        ],
+        "source": "https://www.fischereiverein-grossaitingen.de",
+        "geometryStatus": "traced"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.76873,
+            48.21289
+          ],
+          [
+            10.77046,
+            48.21441
+          ],
+          [
+            10.77135,
+            48.21541
+          ],
+          [
+            10.77337,
+            48.21651
+          ],
+          [
+            10.77383,
+            48.21693
+          ],
+          [
+            10.77405,
+            48.21759
+          ],
+          [
+            10.7749,
+            48.21893
+          ],
+          [
+            10.77503,
+            48.21931
+          ],
+          [
+            10.77497,
+            48.22006
+          ],
+          [
+            10.7751,
+            48.22042
+          ],
+          [
+            10.77587,
+            48.2213
+          ],
+          [
+            10.77622,
+            48.2227
+          ],
+          [
+            10.77647,
+            48.22321
+          ],
+          [
+            10.77688,
+            48.22357
+          ],
+          [
+            10.77701,
+            48.22398
+          ],
+          [
+            10.77692,
+            48.22486
+          ],
+          [
+            10.77759,
+            48.22655
+          ],
+          [
+            10.77843,
+            48.22715
+          ],
+          [
+            10.77813,
+            48.22842
+          ],
+          [
+            10.77933,
+            48.22997
+          ],
+          [
+            10.77982,
+            48.23038
+          ],
+          [
+            10.77998,
+            48.23126
+          ],
+          [
+            10.78055,
+            48.23206
+          ],
+          [
+            10.78137,
+            48.23247
+          ],
+          [
+            10.78165,
+            48.2328
+          ],
+          [
+            10.78249,
+            48.23316
+          ],
+          [
+            10.7837,
+            48.23348
+          ],
+          [
+            10.78445,
+            48.23351
+          ],
+          [
+            10.78546,
+            48.23406
+          ],
+          [
+            10.78596,
+            48.2345
+          ],
+          [
+            10.78682,
+            48.23458
+          ],
+          [
+            10.78812,
+            48.23573
+          ],
+          [
+            10.78886,
+            48.23668
+          ],
+          [
+            10.79185,
+            48.23836
+          ],
+          [
+            10.79227,
+            48.23881
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [
+          "Zwischen Bahnbrücke und Wehr ganzjährig gesperrt"
+        ],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15592"
+        },
+        "lastChecked": "2026-11-16",
+        "id": "sfv-neufnach",
+        "name": "Neufnach Langenneufnach",
+        "clubId": "staudenfischereiverein",
+        "guestAccess": "open",
+        "accessNote": "Karten ab 2026 nur über hejfish oder im Angelladen Kempf in Krumbach. Die Strecke reicht von der Schweizerbrücke bis vor Wollmetshofen. Zwischen Bahnbrücke und Wehr ganzjährig gesperrt.",
+        "prices": {
+          "member": 16,
+          "guest": 20,
+          "youth": 12,
+          "guestYouth": 16
+        },
+        "species": [
+          "Forelle",
+          "Hecht",
+          "Äsche",
+          "Barbe",
+          "Karpfen",
+          "Rotauge",
+          "Rotfeder",
+          "Döbel",
+          "Aal"
+        ],
+        "rules": [
+          "Kein Boot",
+          "Kein Nachtfischen",
+          "Einzelne Abschnitte haben eigene Sperrzeiten, siehe hejfish"
+        ],
+        "source": "https://staudenfischereiverein.de",
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.59524,
+            48.24379
+          ],
+          [
+            10.59547,
+            48.24416
+          ],
+          [
+            10.59528,
+            48.24418
+          ],
+          [
+            10.59526,
+            48.24427
+          ],
+          [
+            10.59548,
+            48.24454
+          ],
+          [
+            10.59576,
+            48.24455
+          ],
+          [
+            10.59594,
+            48.24495
+          ],
+          [
+            10.59612,
+            48.24507
+          ],
+          [
+            10.59658,
+            48.24527
+          ],
+          [
+            10.59733,
+            48.2453
+          ],
+          [
+            10.59742,
+            48.24549
+          ],
+          [
+            10.59773,
+            48.24561
+          ],
+          [
+            10.598,
+            48.2456
+          ],
+          [
+            10.59815,
+            48.24538
+          ],
+          [
+            10.59877,
+            48.24557
+          ],
+          [
+            10.59876,
+            48.24583
+          ],
+          [
+            10.59847,
+            48.24587
+          ],
+          [
+            10.59837,
+            48.24616
+          ],
+          [
+            10.59862,
+            48.24638
+          ],
+          [
+            10.59909,
+            48.24656
+          ],
+          [
+            10.59874,
+            48.24669
+          ],
+          [
+            10.59881,
+            48.24688
+          ],
+          [
+            10.5986,
+            48.24701
+          ],
+          [
+            10.59867,
+            48.24709
+          ],
+          [
+            10.59895,
+            48.24708
+          ],
+          [
+            10.59891,
+            48.2472
+          ],
+          [
+            10.59947,
+            48.24731
+          ],
+          [
+            10.59933,
+            48.24756
+          ],
+          [
+            10.5997,
+            48.24788
+          ],
+          [
+            10.59958,
+            48.24817
+          ],
+          [
+            10.59962,
+            48.24845
+          ],
+          [
+            10.59997,
+            48.24859
+          ],
+          [
+            10.59998,
+            48.24869
+          ],
+          [
+            10.60023,
+            48.24884
+          ],
+          [
+            10.60054,
+            48.24939
+          ],
+          [
+            10.60111,
+            48.24992
+          ],
+          [
+            10.60098,
+            48.25055
+          ],
+          [
+            10.60103,
+            48.25111
+          ],
+          [
+            10.60132,
+            48.25149
+          ],
+          [
+            10.60142,
+            48.25274
+          ],
+          [
+            10.60161,
+            48.25314
+          ],
+          [
+            10.60164,
+            48.25383
+          ],
+          [
+            10.60149,
+            48.2546
+          ],
+          [
+            10.60166,
+            48.25538
+          ],
+          [
+            10.6015,
+            48.25591
+          ],
+          [
+            10.60155,
+            48.25657
+          ],
+          [
+            10.60166,
+            48.2568
+          ],
+          [
+            10.6029,
+            48.25735
+          ],
+          [
+            10.60311,
+            48.25754
+          ],
+          [
+            10.60332,
+            48.25823
+          ],
+          [
+            10.60328,
+            48.25855
+          ],
+          [
+            10.60342,
+            48.25863
+          ],
+          [
+            10.60334,
+            48.25874
+          ],
+          [
+            10.60349,
+            48.25912
+          ],
+          [
+            10.60378,
+            48.25933
+          ],
+          [
+            10.60372,
+            48.25951
+          ],
+          [
+            10.60402,
+            48.26003
+          ],
+          [
+            10.60498,
+            48.26063
+          ],
+          [
+            10.60509,
+            48.26168
+          ],
+          [
+            10.60528,
+            48.26213
+          ],
+          [
+            10.60551,
+            48.26222
+          ],
+          [
+            10.60575,
+            48.26267
+          ],
+          [
+            10.60573,
+            48.26299
+          ],
+          [
+            10.60588,
+            48.26327
+          ],
+          [
+            10.60571,
+            48.2635
+          ],
+          [
+            10.60626,
+            48.26373
+          ],
+          [
+            10.60659,
+            48.26427
+          ],
+          [
+            10.6064,
+            48.26549
+          ],
+          [
+            10.60654,
+            48.26607
+          ],
+          [
+            10.60638,
+            48.26647
+          ],
+          [
+            10.60594,
+            48.26677
+          ],
+          [
+            10.60611,
+            48.26736
+          ],
+          [
+            10.60603,
+            48.26761
+          ],
+          [
+            10.6051,
+            48.26831
+          ],
+          [
+            10.60509,
+            48.26846
+          ],
+          [
+            10.60537,
+            48.26918
+          ],
+          [
+            10.60752,
+            48.27183
+          ],
+          [
+            10.6076,
+            48.2721
+          ],
+          [
+            10.60747,
+            48.27264
+          ],
+          [
+            10.6066,
+            48.27412
+          ],
+          [
+            10.60654,
+            48.2744
+          ],
+          [
+            10.60677,
+            48.27457
+          ],
+          [
+            10.60694,
+            48.27529
+          ],
+          [
+            10.60814,
+            48.27659
+          ],
+          [
+            10.60865,
+            48.27737
+          ],
+          [
+            10.60937,
+            48.27816
+          ],
+          [
+            10.6094,
+            48.27839
+          ],
+          [
+            10.60986,
+            48.27849
+          ],
+          [
+            10.61057,
+            48.27898
+          ],
+          [
+            10.6105,
+            48.27907
+          ],
+          [
+            10.61012,
+            48.27908
+          ],
+          [
+            10.61015,
+            48.27932
+          ],
+          [
+            10.6107,
+            48.2793
+          ],
+          [
+            10.61094,
+            48.27918
+          ],
+          [
+            10.61114,
+            48.27919
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "05-01",
+          "to": "12-14"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15591"
+        },
+        "lastChecked": "2026-11-16",
+        "id": "sfv-kleine-mindel",
+        "name": "Kleine Mindel, Mindelzell",
+        "clubId": "staudenfischereiverein",
+        "guestAccess": "open",
+        "accessNote": "Karten ab 2026 nur über hejfish oder im Angelladen Kempf in Krumbach. Die Strecke reicht vom weißen Stein nördlich vor Mindelzell bis zur Teilung von Großer und Kleiner Mindel. Der Stocketgraben darf nicht befischt werden.",
+        "prices": {
+          "member": 18,
+          "guest": 25,
+          "youth": 13,
+          "guestYouth": 20
+        },
+        "species": [
+          "Forelle",
+          "Hecht",
+          "Äsche",
+          "Barbe"
+        ],
+        "rules": [
+          "Nur eine Handangel",
+          "Kein Boot",
+          "Kein Nachtfischen",
+          "Das Gelände der Fischzucht darf nicht betreten werden"
+        ],
+        "source": "https://staudenfischereiverein.de",
+        "geometryStatus": "placeholder"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.45344,
+            48.22267
+          ],
+          [
+            10.45352,
+            48.22313
+          ],
+          [
+            10.45386,
+            48.22367
+          ],
+          [
+            10.45417,
+            48.22455
+          ],
+          [
+            10.45413,
+            48.22555
+          ],
+          [
+            10.45399,
+            48.22586
+          ],
+          [
+            10.45404,
+            48.22629
+          ],
+          [
+            10.45379,
+            48.22659
+          ],
+          [
+            10.45279,
+            48.22985
+          ],
+          [
+            10.45262,
+            48.23001
+          ],
+          [
+            10.45196,
+            48.23014
+          ],
+          [
+            10.45176,
+            48.23041
+          ],
+          [
+            10.45121,
+            48.23209
+          ],
+          [
+            10.45184,
+            48.23281
+          ],
+          [
+            10.45218,
+            48.23294
+          ],
+          [
+            10.45257,
+            48.23295
+          ],
+          [
+            10.45407,
+            48.23263
+          ],
+          [
+            10.45429,
+            48.23265
+          ],
+          [
+            10.45465,
+            48.23291
+          ],
+          [
+            10.45531,
+            48.23369
+          ],
+          [
+            10.45677,
+            48.23461
+          ]
+        ]
+      }
     }
   ]
 }

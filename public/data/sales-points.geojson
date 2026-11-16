@@ -67,6 +67,7 @@
           "fva-wertach-stadt",
           "fva-zusam-heissesheim",
           "fva-zusam-unterthuerheim",
+          "fvg-weiher-h5",
           "fvh-alemannensee",
           "fvh-lochbach",
           "fvh-roemersee",
@@ -172,6 +173,7 @@
           "fvb-paintensee",
           "fvb-singold",
           "fvb-wertach",
+          "fvg-weiher-h5",
           "fvh-alemannensee",
           "fvh-lochbach",
           "fvh-roemersee",
@@ -1013,7 +1015,9 @@
           "fva-guenz",
           "fva-kammel-billenhausen",
           "fva-kammel-loppenhausen",
-          "fva-lech-22-23"
+          "fva-lech-22-23",
+          "sfv-kleine-mindel",
+          "sfv-neufnach"
         ],
         "coordinatesApproximate": false
       },

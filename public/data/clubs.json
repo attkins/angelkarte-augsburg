@@ -208,5 +208,19 @@
     "shortName": "FV Kössen",
     "website": "https://www.fischerverein-koessen.at",
     "contact": "info@fischerverein-koessen.at, +43 676 848536366. Vereinshütte am Aufeldteich, Bichlach, 6345 Kössen"
+  },
+  {
+    "id": "fv-grossaitingen",
+    "name": "Fischereiverein Großaitingen e.V.",
+    "shortName": "FV Großaitingen",
+    "website": "https://www.fischereiverein-grossaitingen.de",
+    "contact": "Info@fischereiverein-grossaitingen.de, +49 8203 6010"
+  },
+  {
+    "id": "staudenfischereiverein",
+    "name": "Staudenfischereiverein Langenneufnach e.V.",
+    "shortName": "Staudenfischereiverein",
+    "website": "https://staudenfischereiverein.de",
+    "contact": "vorstand@staudenfischereiverein.de, +49 176 50635696"
   }
 ]
