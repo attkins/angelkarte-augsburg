@@ -1550,6 +1550,183 @@
           48.27151
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tabaktrafik-tannheim",
+        "name": "Tabaktrafik Tannheim",
+        "address": "Geist 45, 6675 Tannheim, Österreich",
+        "phone": "+43 5675 6266",
+        "openingHours": null,
+        "openingHoursNote": "Mo bis Fr 7:30 bis 12 und 14:30 bis 18 Uhr, Sa 7:30 bis 12 Uhr. Sonn- und feiertags gibt es Karten bei Markus Wöber, +43 676 618 2963.",
+        "waterIds": [
+          "at-vilsalpsee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.51588,
+          47.49915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "thierseer-platzl",
+        "name": "Pizzeria-Restaurant Zum Thierseer Platzl",
+        "address": "Vorderthiersee 71, 6335 Thiersee, Österreich",
+        "phone": "+43 5376 20444",
+        "openingHours": null,
+        "openingHoursNote": "Dienstag Ruhetag. Karten auch bei der Gemeinde Thiersee (Michele Celentano, +43 664 2436323).",
+        "waterIds": [
+          "at-thiersee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.11728,
+          47.59373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fischerstube-kramsach",
+        "name": "Fischerstube Kramsach",
+        "address": "Moosen 1, 6233 Kramsach, Österreich",
+        "phone": "+43 676 5560228",
+        "openingHours": null,
+        "openingHoursNote": null,
+        "waterIds": [
+          "at-reintaler-see"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.89111,
+          47.4609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "taubenseehuette",
+        "name": "Taubenseehütte",
+        "address": "Mühlbergweg 54, 6345 Kössen, Österreich",
+        "phone": "+43 664 1246925",
+        "openingHours": null,
+        "openingHoursNote": "Hütte auf 1165 m, dienstags und mittwochs Ruhetag (Stand Herbst 2026). Nur Barzahlung.",
+        "waterIds": [
+          "at-taubensee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.41998,
+          47.69355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aubad-lauchsee",
+        "name": "Aubad Lauchsee",
+        "address": "Lauchseeweg 19, 6391 Fieberbrunn, Österreich",
+        "phone": "+43 5354 57016",
+        "openingHours": null,
+        "openingHoursNote": "Karten auch bei Wolfgang Schneider (Landhaus Schneider), +43 664 8763178.",
+        "waterIds": [
+          "at-lauchsee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.53393,
+          47.47184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hotel-goldenes-lamm-weissenbach",
+        "name": "Hotel Goldenes Lamm",
+        "address": "Oberbach 14, 6671 Weißenbach am Lech, Österreich",
+        "phone": "+43 5678 5216",
+        "openingHours": null,
+        "openingHoursNote": "Karten auch bei Roland Schweißgut, +43 688 868 2769.",
+        "waterIds": [
+          "at-weissenbach-zone1",
+          "at-weissenbach-zone2"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6383,
+          47.44132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kartenausgabe-grossache-kirchdorf",
+        "name": "Kartenausgabe Großache (Markus Gruber)",
+        "address": "Feldweg 2, 6382 Kirchdorf in Tirol, Österreich",
+        "phone": "+43 660 3446310",
+        "openingHours": null,
+        "openingHoursNote": "Öffnungszeiten nicht veröffentlicht, vorher anrufen.",
+        "waterIds": [
+          "at-grossache-kirchdorf"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.44158,
+          47.53772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hotel-schloss-fernsteinsee",
+        "name": "Hotel Schloss Fernsteinsee",
+        "address": "Fernstein 475, 6465 Nassereith, Österreich",
+        "phone": "+43 5265 5210",
+        "openingHours": null,
+        "openingHoursNote": "Fischen nur für Hausgäste. Das Hotel hat von Mai bis Oktober geöffnet.",
+        "waterIds": [
+          "at-fernsteinsee"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.81853,
+          47.34563
+        ]
+      }
     }
   ]
 }
