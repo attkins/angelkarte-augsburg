@@ -1,5 +1,7 @@
 # Angelkarte Augsburg
 
+![Angelkarte with the water list on the left and the waters around Augsburg on the map, coloured by guest access](docs/screenshot.png)
+
 Interactive map for Augsburg and the surrounding area that shows which angling clubs sell day tickets (Tageskarten), for which waters, and where to buy them.
 
 Built with [Vue 3](https://vuejs.org), TypeScript, [Vite](https://vite.dev) and [Leaflet](https://leafletjs.com) on [CARTO](https://carto.com/basemaps) base maps (OpenStreetMap data). There is no backend. The data lives in plain GeoJSON and JSON files that are fetched at runtime.
