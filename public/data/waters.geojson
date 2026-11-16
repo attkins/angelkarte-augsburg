@@ -6131,11 +6131,23 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Aal",
+          "Rutte",
+          "Döbel",
+          "Flussbarsch",
+          "Hecht",
+          "Karausche",
+          "Karpfen",
+          "Regenbogenforelle",
+          "Saibling",
+          "Weißfische",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced",
         "maxDepth": 14.5,
@@ -6227,8 +6239,8 @@
         "id": "fvf-afrasee-1",
         "name": "Afrasee I",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -6238,11 +6250,22 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Döbel",
+          "Aal",
+          "Flussbarsch",
+          "Graskarpfen",
+          "Hecht",
+          "Karpfen",
+          "Schleie",
+          "Regenbogenforelle",
+          "Weißfische",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced",
         "maxDepth": 5,
@@ -6302,8 +6325,8 @@
         "id": "fvf-afrasee-2",
         "name": "Afrasee II",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -6313,11 +6336,19 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Döbel",
+          "Flussbarsch",
+          "Karpfen",
+          "Schleie",
+          "Weißfische",
+          "Zander",
+          "Wels"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -6406,11 +6437,22 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Aal",
+          "Döbel",
+          "Flussbarsch",
+          "Giebel",
+          "Hecht",
+          "Karpfen",
+          "Schleie",
+          "Regenbogenforelle",
+          "Weißfische",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -6480,8 +6522,8 @@
         "id": "fvf-paar-ottmaring",
         "name": "Paar Ottmaring / Hügelshart",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -6491,11 +6533,18 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Rutte",
+          "Döbel",
+          "Äsche",
+          "Bachforelle",
+          "Barbe",
+          "Karpfen"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -6911,8 +6960,8 @@
         "id": "fvf-paar-dasing",
         "name": "Paar Harthausen / Dasing",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -6922,11 +6971,18 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Döbel",
+          "Rutte",
+          "Bachforelle",
+          "Barbe",
+          "Karpfen",
+          "Regenbogenforelle"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -7538,8 +7594,8 @@
         "id": "fvf-ach-1",
         "name": "Friedberger Ach I (Lechauen)",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -7549,11 +7605,16 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Döbel",
+          "Äsche",
+          "Bachforelle",
+          "Hecht"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -7785,8 +7846,8 @@
         "id": "fvf-ach-2",
         "name": "Friedberger Ach II (Wulfertshausen / Derching)",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft.",
+        "guestAccess": "withMember",
+        "accessNote": "Laut Gewässerseite des Vereins gibt es Jahres- und Tageskarten nur für Vereinsmitglieder. Die Gebührenordnung hat einen eigenen Preis für Gastfischer mit Vereinsmitglied.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -7796,11 +7857,15 @@
           "deposit": 3,
           "note": "Gastpreis gilt auch für passive Mitglieder. Pfand 3 € laut Liste des Augsburger Angelcenters, Rückgabe bis 31. Dezember."
         },
-        "species": [],
+        "species": [
+          "Döbel",
+          "Äsche",
+          "Bachforelle"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced"
       },
@@ -8137,16 +8202,25 @@
         "name": "Pfefferminzsee",
         "clubId": "fv-friedberg",
         "guestAccess": "membersOnly",
-        "accessNote": "Für dieses Gewässer ist keine Tageskarte gelistet.",
+        "accessNote": "Laut Gewässerseite des Vereins darf hier nur die Fischerjugend fischen.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
         "prices": null,
-        "species": [],
+        "species": [
+          "Aal",
+          "Döbel",
+          "Flussbarsch",
+          "Hecht",
+          "Karpfen",
+          "Regenbogenforelle",
+          "Saibling",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
         "geometryStatus": "traced",
         "maxDepth": 2,
@@ -8202,14 +8276,24 @@
           "guestYouth": 25,
           "note": "Jugendliche zahlen den gleichen Preis wie Erwachsene."
         },
-        "species": [],
+        "species": [
+          "Seeforelle",
+          "Renke",
+          "Saibling",
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Hecht",
+          "Karpfen",
+          "Schleie",
+          "Zander"
+        ],
         "rules": [
           "Nachtangeln vom 1. November bis 31. März nur mit Jahreskarte",
           "Fische über 5 kg kosten 10 € je weiteres Kilo"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-haunstetten.de/tageskarten/",
         "geometryStatus": "traced",
         "maxDepth": 13,
@@ -8285,14 +8369,18 @@
           "guestYouth": 25,
           "note": "Jugendliche zahlen den gleichen Preis wie Erwachsene."
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Hecht",
+          "Wels"
+        ],
         "rules": [
           "Nachtangeln vom 1. November bis 31. März nur mit Jahreskarte",
           "Fische über 5 kg kosten 10 € je weiteres Kilo"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-haunstetten.de/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -8342,11 +8430,20 @@
           "guestYouth": 25,
           "note": "Jugendliche zahlen den gleichen Preis wie Erwachsene."
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Äsche",
+          "Nase",
+          "Barbe",
+          "Rutte",
+          "Hecht",
+          "Flussbarsch"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-haunstetten.de/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -8484,14 +8581,24 @@
           "deposit": 5,
           "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Flussbarsch",
+          "Zander",
+          "Schleie",
+          "Rotauge",
+          "Rotfeder",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": {
           "provider": "Angelroute",
           "url": "https://angelroute.de"
         },
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
         "geometryStatus": "traced"
       },
@@ -8551,14 +8658,24 @@
           "deposit": 5,
           "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Flussbarsch",
+          "Zander",
+          "Schleie",
+          "Rotauge",
+          "Rotfeder",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": {
           "provider": "Angelroute",
           "url": "https://angelroute.de"
         },
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
         "geometryStatus": "traced"
       },
@@ -8618,14 +8735,24 @@
           "deposit": 5,
           "note": "An freien Ausgabestellen kommen 1 € Bearbeitungsgebühr dazu. Pfand laut Liste des Augsburger Angelcenters, Rückgabe innerhalb von 4 Wochen."
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Flussbarsch",
+          "Zander",
+          "Schleie",
+          "Rotauge",
+          "Rotfeder",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": {
           "provider": "Angelroute",
           "url": "https://angelroute.de"
         },
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
         "geometryStatus": "traced"
       },
@@ -8679,11 +8806,22 @@
           "youth": 8,
           "note": "Mitgliederkarte gilt für alle vier Weiher."
         },
-        "species": [],
+        "species": [
+          "Forelle",
+          "Karpfen",
+          "Hecht",
+          "Flussbarsch",
+          "Zander",
+          "Wels",
+          "Schleie",
+          "Rotauge",
+          "Rotfeder",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
         "geometryStatus": "traced",
         "maxDepth": 10,
@@ -9069,13 +9207,17 @@
         "seasonNote": null,
         "guestPeriod": null,
         "prices": null,
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Zander",
+          "Forelle"
+        ],
         "rules": [
           "6 Edelfische pro Kalenderwoche"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereivereinbobingen.de/gewaesser-2/",
         "geometryStatus": "traced"
       },
@@ -9400,13 +9542,15 @@
           "guestYouth": 19,
           "deposit": 5
         },
-        "species": [],
+        "species": [
+          "Forelle"
+        ],
         "rules": [
           "3 Forellen pro Tag, eine Handangel"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-wehringen.de/mitgliederbeitraege-karten.html",
         "geometryStatus": "traced"
       },
@@ -9533,11 +9677,18 @@
           "deposit": 2.5,
           "note": "Laut Liste des Augsburger Angelcenters. Rückgabe bis 1. Dezember."
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Karpfen",
+          "Regenbogenforelle",
+          "Saibling",
+          "Schleie",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -9586,11 +9737,18 @@
           "deposit": 2.5,
           "note": "Laut Liste des Augsburger Angelcenters. Rückgabe bis 1. Dezember."
         },
-        "species": [],
+        "species": [
+          "Aal",
+          "Hecht",
+          "Karpfen",
+          "Regenbogenforelle",
+          "Saibling",
+          "Zander"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -9643,13 +9801,17 @@
           "deposit": 2.5,
           "note": "Laut Liste des Augsburger Angelcenters. Rückgabe bis 1. Dezember."
         },
-        "species": [],
+        "species": [
+          "Äsche",
+          "Bachforelle",
+          "Regenbogenforelle"
+        ],
         "rules": [
           "Nur Fliegenfischen"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -9949,11 +10111,16 @@
           "deposit": 2.5,
           "note": "Laut Liste des Augsburger Angelcenters. Rückgabe bis 1. Dezember."
         },
-        "species": [],
+        "species": [
+          "Äsche",
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -10357,11 +10524,19 @@
         "prices": {
           "member": 15
         },
-        "species": [],
+        "species": [
+          "Aal",
+          "Bachforelle",
+          "Hecht",
+          "Karpfen",
+          "Regenbogenforelle",
+          "Schleie",
+          "Weißfische"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
@@ -10521,11 +10696,16 @@
         "prices": {
           "member": 15
         },
-        "species": [],
+        "species": [
+          "Äsche",
+          "Bachforelle",
+          "Huchen",
+          "Regenbogenforelle"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "placeholder"
       },
@@ -10681,14 +10861,24 @@
           "guestYouth": 12,
           "note": "Preise laut Liste des Augsburger Angelcenters, bei hejfish ab 15 €."
         },
-        "species": [],
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Saibling",
+          "Karpfen",
+          "Schleie",
+          "Zander",
+          "Rotauge",
+          "Rotfeder",
+          "Giebel"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": {
           "provider": "hejfish",
           "url": "https://www.hejfish.com"
         },
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced",
         "maxDepth": 8,
@@ -10894,11 +11084,16 @@
           "guestYouth": 10,
           "note": "Preise laut Liste des Augsburger Angelcenters."
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Hecht",
+          "Zander",
+          "Aal"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced",
         "maxDepth": 3,
@@ -11032,11 +11227,21 @@
           "deposit": 5,
           "note": "Mitgliedspreis gilt für passive Mitglieder. Gast Jugend 8 € mit einer Angel, 15 € mit zwei."
         },
-        "species": [],
+        "species": [
+          "Karpfen",
+          "Regenbogenforelle",
+          "Schleie",
+          "Weißfische",
+          "Hecht",
+          "Zander",
+          "Flussbarsch",
+          "Aal",
+          "Wels"
+        ],
         "rules": [],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
         "geometryStatus": "traced"
       },
