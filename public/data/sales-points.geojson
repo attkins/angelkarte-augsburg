@@ -36,6 +36,7 @@
           "fva-guenz",
           "fva-kammel-billenhausen",
           "fva-kammel-loppenhausen",
+          "fva-kirnach",
           "fva-kuhsee",
           "fva-lech-22-23",
           "fva-lochbach-1",
@@ -120,6 +121,7 @@
           "fva-guenz",
           "fva-kammel-billenhausen",
           "fva-kammel-loppenhausen",
+          "fva-kirnach",
           "fva-kuhsee",
           "fva-lech-22-23",
           "fva-lochbach-1",
@@ -348,6 +350,7 @@
           "fva-guenz",
           "fva-kammel-billenhausen",
           "fva-kammel-loppenhausen",
+          "fva-kirnach",
           "fva-kuhsee",
           "fva-lech-22-23",
           "fva-lochbach-1",
@@ -465,6 +468,7 @@
           "fva-fva-see",
           "fva-guenz",
           "fva-kammel-loppenhausen",
+          "fva-kirnach",
           "fva-kuhsee",
           "fva-lech-22-23",
           "fva-lochbach-1",
@@ -801,6 +805,7 @@
         "openingHoursNote": "Manche Verzeichnisse nennen längere Zeiten, bis 18:30 Uhr und samstags bis 16 Uhr.",
         "waterIds": [
           "fva-kammel-loppenhausen",
+          "fva-kirnach",
           "fva-lech-22-23",
           "fva-lochbach-1",
           "fva-lochbach-2",
@@ -852,6 +857,7 @@
         "openingHoursNote": "Im Winter möglicherweise kürzere Zeiten.",
         "waterIds": [
           "fva-autobahnsee",
+          "fva-kirnach",
           "fva-lech-22-23",
           "fva-lochbach-1",
           "fva-lochbach-2"
@@ -1003,6 +1009,7 @@
         "openingHoursNote": null,
         "waterIds": [
           "fva-guenz",
+          "fva-kirnach",
           "fva-lech-22-23",
           "fvh-alemannensee",
           "fvh-lochbach",
@@ -1107,6 +1114,7 @@
         ],
         "openingHoursNote": null,
         "waterIds": [
+          "fva-kirnach",
           "fva-lech-22-23"
         ],
         "coordinatesApproximate": false
@@ -1153,6 +1161,7 @@
         ],
         "openingHoursNote": "Nach Vereinbarung auch bis 20 Uhr.",
         "waterIds": [
+          "fva-kirnach",
           "fva-lech-22-23"
         ],
         "coordinatesApproximate": false
