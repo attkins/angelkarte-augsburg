@@ -160,6 +160,13 @@ describe('openingStatus', () => {
       expect(openingStatus(shop, at(8, 8, 12)).open).toBe(true)
       expect(openingStatus(shop, at(8, 8, 12), { augsburgCity: true })).toEqual({ open: null, holiday: 'Friedensfest' })
     })
+
+    it('uses the Austrian holidays for a shop in Tyrol', () => {
+      // 26 Oct 2026 is a Monday, 3 Oct 2026 a Saturday.
+      expect(openingStatus(shop, at(10, 26, 12), { austria: true })).toEqual({ open: null, holiday: 'Nationalfeiertag' })
+      expect(openingStatus(shop, at(10, 26, 12)).open).toBe(true)
+      expect(openingStatus(shop, at(10, 3, 12), { austria: true }).open).toBe(true)
+    })
   })
 })
 

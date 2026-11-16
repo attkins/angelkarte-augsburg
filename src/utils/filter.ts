@@ -1,5 +1,5 @@
 import type { MapData, WaterFeature } from '@/types'
-import { isAugsburgCity } from '@/utils/holidays'
+import { holidayOptions } from '@/utils/holidays'
 import { availability, openingStatus } from '@/utils/time'
 
 // Filtering for the water list and the map. Pure functions, `now` is a parameter so it is testable.
@@ -38,7 +38,7 @@ export function canGetTicketToday(water: WaterFeature, data: MapData, now: Date)
   return (data.salesPointIdsByWater.get(water.properties.id) ?? []).some((id) => {
     const salesPoint = data.salesPointsById.get(id)?.properties
     if (!salesPoint?.openingHours) return false
-    const status = openingStatus(salesPoint.openingHours, now, { augsburgCity: isAugsburgCity(salesPoint.address) })
+    const status = openingStatus(salesPoint.openingHours, now, holidayOptions(salesPoint.address))
     return status.open === true || (status.open === false && status.opensOn === 'today')
   })
 }

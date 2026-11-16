@@ -5,7 +5,7 @@ import { GUEST_ACCESS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice, phoneHref } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
-import { isAugsburgCity } from '@/utils/holidays'
+import { holidayOptions } from '@/utils/holidays'
 import { describeOpeningStatus, formatOpeningHours, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
@@ -24,7 +24,7 @@ const p = computed(() => props.salesPoint.properties)
 
 const opening = computed(() =>
   p.value.openingHours
-    ? openingStatus(p.value.openingHours, props.now, { augsburgCity: isAugsburgCity(p.value.address) })
+    ? openingStatus(p.value.openingHours, props.now, holidayOptions(p.value.address))
     : null,
 )
 /** CSS modifier and label for the status line. */

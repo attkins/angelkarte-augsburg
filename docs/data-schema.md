@@ -81,7 +81,7 @@ Each rule is one opening interval on some weekdays:
 
 A lunch break is two rules for the same days.
 
-Public holidays are the Bavarian ones (`src/utils/holidays.ts`), plus the Augsburger Friedensfest on 8 August for addresses in the city of Augsburg (postcodes 86150 to 86199). On a holiday only the `ph` rules apply, e.g. `{ "days": ["su", "ph"], "open": "07:00", "close": "22:00" }` for a petrol station. A shop without `ph` rules shows "Feiertag, Zeiten können abweichen" on the holiday and is treated as closed when the app looks for the next opening.
+Public holidays are the Bavarian ones (`src/utils/holidays.ts`), plus the Augsburger Friedensfest on 8 August for addresses in the city of Augsburg (postcodes 86150 to 86199). Sales points whose address ends with "Österreich" use the 13 Austrian public holidays instead, without Karfreitag and without the Tyrolean Josefitag. On a holiday only the `ph` rules apply, e.g. `{ "days": ["su", "ph"], "open": "07:00", "close": "22:00" }` for a petrol station. A shop without `ph` rules shows "Feiertag, Zeiten können abweichen" on the holiday and is treated as closed when the app looks for the next opening.
 
 The app uses these rules to show whether a shop is open right now and when it opens next.
 

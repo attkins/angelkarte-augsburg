@@ -1558,8 +1558,38 @@
         "name": "Tabaktrafik Tannheim",
         "address": "Geist 45, 6675 Tannheim, Österreich",
         "phone": "+43 5675 6266",
-        "openingHours": null,
-        "openingHoursNote": "Mo bis Fr 7:30 bis 12 und 14:30 bis 18 Uhr, Sa 7:30 bis 12 Uhr. Sonn- und feiertags gibt es Karten bei Markus Wöber, +43 676 618 2963.",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "07:30",
+            "close": "12:00"
+          },
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "14:30",
+            "close": "18:00"
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "07:30",
+            "close": "12:00"
+          }
+        ],
+        "openingHoursNote": "Sonn- und feiertags gibt es Karten bei Markus Wöber, +43 676 618 2963.",
         "waterIds": [
           "at-vilsalpsee"
         ],
@@ -1580,8 +1610,33 @@
         "name": "Pizzeria-Restaurant Zum Thierseer Platzl",
         "address": "Vorderthiersee 71, 6335 Thiersee, Österreich",
         "phone": "+43 5376 20444",
-        "openingHours": null,
-        "openingHoursNote": "Dienstag Ruhetag. Karten auch bei der Gemeinde Thiersee (Michele Celentano, +43 664 2436323).",
+        "openingHours": [
+          {
+            "days": [
+              "mo"
+            ],
+            "open": "16:30",
+            "close": "22:00"
+          },
+          {
+            "days": [
+              "we",
+              "th",
+              "fr",
+              "sa"
+            ],
+            "open": "11:30",
+            "close": "22:00"
+          },
+          {
+            "days": [
+              "su"
+            ],
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "openingHoursNote": "Karten auch bei der Gemeinde Thiersee (Michele Celentano, +43 664 2436323).",
         "waterIds": [
           "at-thiersee"
         ],
@@ -1779,8 +1834,29 @@
         "name": "BP Tankstelle Kössen",
         "address": "Hütte 15, 6345 Kössen, Österreich",
         "phone": "+43 5375 6394",
-        "openingHours": null,
-        "openingHoursNote": "Mo bis Sa 7 bis 20 Uhr, So und feiertags 8 bis 20 Uhr. Karten für Kohl- und Weißenbach vorher telefonisch reservieren, nur Barzahlung.",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr",
+              "sa"
+            ],
+            "open": "07:00",
+            "close": "20:00"
+          },
+          {
+            "days": [
+              "su",
+              "ph"
+            ],
+            "open": "08:00",
+            "close": "20:00"
+          }
+        ],
+        "openingHoursNote": "Karten für Kohl- und Weißenbach vorher telefonisch reservieren, nur Barzahlung.",
         "waterIds": [
           "at-kohl-weissenbach-koessen"
         ],

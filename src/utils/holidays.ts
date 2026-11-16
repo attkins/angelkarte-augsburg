@@ -1,8 +1,10 @@
-// Public holidays in Bavaria, needed for the opening hours of the sales points.
+// Public holidays in Bavaria and Austria, needed for the opening hours of the sales points.
 
 export interface HolidayOptions {
   /** The Augsburger Hohes Friedensfest on 8 August is a holiday in the city of Augsburg only. */
   augsburgCity?: boolean
+  /** Sales points in Tyrol follow the Austrian holidays instead of the Bavarian ones. */
+  austria?: boolean
 }
 
 /** Easter Sunday of the given year (Gregorian calendar, anonymous algorithm). */
@@ -58,9 +60,49 @@ export function bavarianHolidays(year: number, options: HolidayOptions = {}): Ma
   return holidays
 }
 
+/**
+ * Public holidays of a year in Austria, keyed by `M-D`: the 13 days of § 7 Arbeitsruhegesetz.
+ *
+ * Karfreitag is no public holiday since 2019. The Tyrolean Josefitag on 19 March is a day off
+ * for schools and offices only, shops stay open, so it is left out.
+ */
+export function austrianHolidays(year: number): Map<string, string> {
+  const easter = easterSunday(year)
+  const fromEaster = (days: number) =>
+    key(new Date(easter.getFullYear(), easter.getMonth(), easter.getDate() + days))
+
+  return new Map<string, string>([
+    ['1-1', 'Neujahr'],
+    ['1-6', 'Heilige Drei Könige'],
+    [fromEaster(1), 'Ostermontag'],
+    ['5-1', 'Staatsfeiertag'],
+    [fromEaster(39), 'Christi Himmelfahrt'],
+    [fromEaster(50), 'Pfingstmontag'],
+    [fromEaster(60), 'Fronleichnam'],
+    ['8-15', 'Mariä Himmelfahrt'],
+    ['10-26', 'Nationalfeiertag'],
+    ['11-1', 'Allerheiligen'],
+    ['12-8', 'Mariä Empfängnis'],
+    ['12-25', 'Christtag'],
+    ['12-26', 'Stefanitag'],
+  ])
+}
+
 /** Name of the public holiday on that day, or null. */
 export function publicHoliday(date: Date, options: HolidayOptions = {}): string | null {
-  return bavarianHolidays(date.getFullYear(), options).get(key(date)) ?? null
+  const holidays = options.austria ? austrianHolidays(date.getFullYear()) : bavarianHolidays(date.getFullYear(), options)
+  return holidays.get(key(date)) ?? null
+}
+
+/** Whether an address lies in Austria. The sales points there end with "Österreich". */
+export function isAustria(address: string): boolean {
+  // Not \b: without the u flag it does not count Ö as a letter.
+  return /(?<!\p{L})(Österreich|Austria)(?!\p{L})/u.test(address)
+}
+
+/** The holidays that apply to a sales point, going by its address. */
+export function holidayOptions(address: string): HolidayOptions {
+  return { augsburgCity: isAugsburgCity(address), austria: isAustria(address) }
 }
 
 /**

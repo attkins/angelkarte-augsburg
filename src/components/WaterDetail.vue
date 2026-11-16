@@ -6,7 +6,7 @@ import { PRICE_LABELS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
-import { isAugsburgCity } from '@/utils/holidays'
+import { holidayOptions } from '@/utils/holidays'
 import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
@@ -62,7 +62,7 @@ const salesPoints = computed(() =>
     .map((sp) => {
       const rules = sp.properties.openingHours
       const opening = rules
-        ? openingStatus(rules, props.now, { augsburgCity: isAugsburgCity(sp.properties.address) })
+        ? openingStatus(rules, props.now, holidayOptions(sp.properties.address))
         : null
       return {
         id: sp.properties.id,
