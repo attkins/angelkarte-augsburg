@@ -25,7 +25,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | M4 | Build a map prototype with sample waters and sales points | ✅ done (placeholder geometry) |
 | M5 | Set up Vue 3 + Vite + TypeScript project and migrate the prototype | ✅ done 2026-11-13 |
 | M6 | Replace placeholder geometries and geocode sales point addresses | ✅ mostly done 2026-11-14 (sales points geocoded 2026-11-13; all lakes have OSM outlines; river stretches snapped to OSM waterway relations). Remaining extents tracked in D6 |
-| M7 | Search and filter chips from the design | ✅ done 2026-11-14 (search box + chips: guests welcome, online purchase, season open, fly fishing, club selector). Fish species chip still open, see D7 |
+| M7 | Search and filter chips from the design | ✅ done 2026-11-14 (search box + chips: guests welcome, online purchase, season open, fly fishing, club selector). Fish species select added with F3 |
 | M8 | Extend the schema where research showed gaps | ✅ done 2026-11-13 (`season`, `source`, `prices.validFrom`; deposit deadlines and weekday limits stay free text in `prices.note`/`accessNote`) |
 | M9 | Enter the researched clubs into the data files | ✅ done 2026-11-13. Left out: Kirnach, LFV Paar, Schmutter, Zusam, 1. AAC waters outside the core region (see D8, D9) |
 | M10 | Implement the design "Morgennebel" | ✅ done 2026-11-13 (themes, fonts, CARTO, side panel and bottom sheet, structured seasons and opening hours) |
@@ -80,7 +80,7 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 |----|------|-------|--------|
 | F1 | Filter "Karte heute noch bekommen" | Chip "Karte heute noch": online purchase, or a sales point that is open now or opens later today (`canGetTicketToday()` in `src/utils/filter.ts`). Sales points without hours and holidays without `ph` rules do not count | ✅ done 2026-11-15 |
 | F2 | Plan for a date | Date picker instead of only "today": seasons, guest periods and opening hours on that day. `availability()` and `openingStatus()` already take a date | ⬜ open |
-| F3 | Fish species filter | Chip or selector, needs D7 | ⬜ open |
+| F3 | Fish species filter | Chip or selector, needs D7 | ✅ done 2026-11-16: select "Alle Fischarten" next to the club select. `src/utils/species.ts` maps the data names onto filter names (all trout variants and "Salmoniden" are "Forelle", Aitel is Döbel, Waller is Wels, Amur is Graskarpfen) and leaves out Elritze, Koppe and Schmerle. A short hint says that waters without species are missing from the result |
 | F4 | Sort by distance | Toggle "Name / Entfernung" in the water list, straight-line distance to the nearest point of the water from the own location, fallback `DEFAULT_ORIGIN` (Augsburg Mitte) in `src/config.ts`. Driving time left out, a guess from straight-line distance would mislead | ✅ done 2026-11-14 |
 | F5 | Share button | Web Share API with the existing hash routes, fallback copy link | ⬜ open |
 | F6 | Water level and temperature | Open data of the Hochwassernachrichtendienst Bayern for Lech, Wertach, Schmutter, Paar. First check which gauges fit which stretches | ⬜ open |

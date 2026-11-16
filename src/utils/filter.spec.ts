@@ -92,6 +92,20 @@ describe('matchingWaterIds', () => {
     const f = { ...emptyFilter(), clubId: 'c1', chips: new Set(['guests' as const]) }
     expect([...matchingWaterIds(data, f, NOW)]).toEqual(['a'])
   })
+
+  it('species filter matches through the species groups', () => {
+    const data = build([
+      water('a', { species: ['Bachforelle', 'Hecht'] }),
+      water('b', { species: ['Aitel (Döbel)'] }),
+      water('c', { species: [] }),
+    ])
+    expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Forelle' }, NOW)]).toEqual(['a'])
+    expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Döbel' }, NOW)]).toEqual(['b'])
+  })
+
+  it('counts the species filter as active', () => {
+    expect(isFilterActive({ ...emptyFilter(), species: 'Hecht' })).toBe(true)
+  })
 })
 
 describe('canGetTicketToday', () => {

@@ -1,10 +1,11 @@
 import type { MapData, WaterFeature } from '@/types'
 import { holidayOptions } from '@/utils/holidays'
+import { hasSpecies } from '@/utils/species'
 import { availability, openingStatus } from '@/utils/time'
 
 // Filtering for the water list and the map. Pure functions, `now` is a parameter so it is testable.
 
-/** Fixed chips from the design, plus the dynamic `club:<id>` chips built at runtime. */
+/** Fixed chips from the design. Club and fish species are separate selects. */
 export type FixedChip = 'guests' | 'online' | 'seasonOpen' | 'ticketToday' | 'flyFishing'
 
 export interface WaterFilter {
@@ -14,14 +15,18 @@ export interface WaterFilter {
   chips: Set<FixedChip>
   /** Active club id, or null for all clubs. */
   clubId: string | null
+  /** Active fish species as offered by `speciesOptions`, or null for all species. */
+  species: string | null
 }
 
 export function emptyFilter(): WaterFilter {
-  return { search: '', chips: new Set(), clubId: null }
+  return { search: '', chips: new Set(), clubId: null, species: null }
 }
 
 export function isFilterActive(filter: WaterFilter): boolean {
-  return filter.search.trim() !== '' || filter.chips.size > 0 || filter.clubId !== null
+  return (
+    filter.search.trim() !== '' || filter.chips.size > 0 || filter.clubId !== null || filter.species !== null
+  )
 }
 
 function isFlyFishing(water: WaterFeature): boolean {
@@ -47,6 +52,7 @@ function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: D
   const p = water.properties
 
   if (filter.clubId && p.clubId !== filter.clubId) return false
+  if (filter.species && !hasSpecies(water, filter.species)) return false
 
   const search = filter.search.trim().toLowerCase()
   if (search) {

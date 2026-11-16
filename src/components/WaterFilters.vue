@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import type { MapData } from '@/types'
 import { type FixedChip, isFilterActive, type WaterFilter } from '@/utils/filter'
+import { speciesOptions } from '@/utils/species'
 
 const props = defineProps<{ data: MapData; filter: WaterFilter; count: number }>()
 const emit = defineEmits<{ selectClub: [id: string] }>()
@@ -24,6 +25,8 @@ const clubs = computed(() => {
     .sort((a, b) => a.name.localeCompare(b.name, 'de'))
 })
 
+const species = computed(() => speciesOptions(props.data.waters.features))
+
 const active = computed(() => isFilterActive(props.filter))
 
 function toggleChip(key: FixedChip) {
@@ -35,6 +38,7 @@ function reset() {
   props.filter.search = ''
   props.filter.chips.clear()
   props.filter.clubId = null
+  props.filter.species = null
 }
 </script>
 
@@ -72,6 +76,16 @@ function reset() {
         <option :value="null">Alle Vereine</option>
         <option v-for="club in clubs" :key="club.id" :value="club.id">{{ club.name }}</option>
       </select>
+      <select
+        v-if="species.length"
+        v-model="props.filter.species"
+        class="chip species-select"
+        :class="{ 'is-active': props.filter.species !== null }"
+        aria-label="Fischart"
+      >
+        <option :value="null">Alle Fischarten</option>
+        <option v-for="name in species" :key="name" :value="name">{{ name }}</option>
+      </select>
       <button
         v-if="props.filter.clubId"
         type="button"
@@ -83,11 +97,14 @@ function reset() {
     </div>
 
     <div v-if="active" class="result-row">
-      <span>{{ count }} {{ count === 1 ? 'Gewässer' : 'Gewässer' }}</span>
+      <span>{{ count }} Gewässer</span>
       <button type="button" class="reset" @click="reset">
         <AppIcon name="close" :size="14" :stroke-width="2" /> Filter zurücksetzen
       </button>
     </div>
+    <p v-if="props.filter.species" class="species-hint">
+      Fischarten sind nicht für alle Gewässer erfasst. Gewässer ohne Angabe fehlen hier.
+    </p>
   </section>
 </template>
 
@@ -162,7 +179,8 @@ function reset() {
   gap: 2px;
 }
 
-.club-select {
+.club-select,
+.species-select {
   appearance: none;
   padding-right: 28px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
@@ -171,7 +189,8 @@ function reset() {
   background-size: 14px;
 }
 
-.club-select.is-active {
+.club-select.is-active,
+.species-select.is-active {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
@@ -180,6 +199,12 @@ function reset() {
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
+  color: var(--text-2);
+}
+
+.species-hint {
+  margin: 0;
+  font-size: 12.5px;
   color: var(--text-2);
 }
 
