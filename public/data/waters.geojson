@@ -8,7 +8,7 @@
         "name": "Lech",
         "clubId": "lfv-augsburg",
         "guestAccess": "withMember",
-        "accessNote": "Gäste nur zusammen mit einem volljährigen Mitglied.",
+        "accessNote": "Gäste nur zusammen mit einem volljährigen Mitglied. Die Strecke reicht vom Hochablass bis zur Brücke der Gersthofer Straße, etwa 10 km.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": {
@@ -38,18 +38,14 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://lfv-augsburg.de",
-        "geometryStatus": "placeholder"
+        "geometryStatus": "traced"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            10.93545,
-            48.3417
-          ],
-          [
-            10.9359,
-            48.3436
+            10.93622,
+            48.34425
           ],
           [
             10.93679,
@@ -158,6 +154,42 @@
           [
             10.89467,
             48.39399
+          ],
+          [
+            10.89259,
+            48.3975
+          ],
+          [
+            10.89157,
+            48.39993
+          ],
+          [
+            10.8893,
+            48.40332
+          ],
+          [
+            10.88849,
+            48.40516
+          ],
+          [
+            10.88841,
+            48.4065
+          ],
+          [
+            10.88902,
+            48.4119
+          ],
+          [
+            10.88909,
+            48.41438
+          ],
+          [
+            10.8896,
+            48.41891
+          ],
+          [
+            10.89003,
+            48.42476
           ]
         ]
       }
@@ -5657,7 +5689,7 @@
         "name": "Wertach Großaitingen",
         "clubId": "fva-augsburg",
         "guestAccess": "open",
-        "accessNote": "Lage nur ungefähr.",
+        "accessNote": "Die Strecke reicht von der Staumauer des Stausees Leuthau (Stützschwellenkraftwerk Schwabmünchen) bis zur Gemeindegrenze Wehringen bei Fluss-km 20,6, etwa 8 km. Wehre Mittelstetten und Großaitingen liegen dazwischen.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -5687,42 +5719,138 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
-        "geometryStatus": "placeholder"
+        "geometryStatus": "traced"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            10.78353,
-            48.24718
+            10.72838,
+            48.19137
           ],
           [
-            10.78197,
-            48.24211
+            10.7261,
+            48.20475
           ],
           [
-            10.78106,
-            48.24004
+            10.72619,
+            48.20662
           ],
           [
-            10.77993,
-            48.23847
+            10.7266,
+            48.20779
           ],
           [
-            10.77684,
-            48.23564
+            10.72757,
+            48.20914
           ],
           [
-            10.77485,
-            48.23431
+            10.72871,
+            48.21027
+          ],
+          [
+            10.73017,
+            48.21146
+          ],
+          [
+            10.73094,
+            48.21187
+          ],
+          [
+            10.73323,
+            48.21282
+          ],
+          [
+            10.73483,
+            48.21328
+          ],
+          [
+            10.73677,
+            48.21357
+          ],
+          [
+            10.74017,
+            48.21396
+          ],
+          [
+            10.74147,
+            48.21425
+          ],
+          [
+            10.744,
+            48.21511
+          ],
+          [
+            10.7453,
+            48.21586
+          ],
+          [
+            10.74916,
+            48.21889
+          ],
+          [
+            10.75012,
+            48.21956
+          ],
+          [
+            10.75521,
+            48.22359
+          ],
+          [
+            10.7571,
+            48.22499
+          ],
+          [
+            10.75913,
+            48.2267
+          ],
+          [
+            10.76166,
+            48.22844
+          ],
+          [
+            10.7648,
+            48.23022
+          ],
+          [
+            10.767,
+            48.23106
+          ],
+          [
+            10.76907,
+            48.23173
+          ],
+          [
+            10.77095,
+            48.23244
           ],
           [
             10.77243,
             48.23308
           ],
           [
-            10.7704,
-            48.23226
+            10.77485,
+            48.23431
+          ],
+          [
+            10.77684,
+            48.23564
+          ],
+          [
+            10.77993,
+            48.23847
+          ],
+          [
+            10.78106,
+            48.24004
+          ],
+          [
+            10.78197,
+            48.24211
+          ],
+          [
+            10.78219,
+            48.2428
           ]
         ]
       }
@@ -8870,7 +8998,7 @@
         "name": "Wertach Siebnach",
         "clubId": "fv-koenigsbrunn",
         "guestAccess": "open",
-        "accessNote": "Lage nur ungefähr. Laut Preisliste 2027 gilt die Gastkarte nur für die Wertach ohne Mühlbach.",
+        "accessNote": "Die Strecke umfasst Fluss-km 34,65 bis 37,63 bei Siebnach, etwa 3 km. Hinweisschilder markieren die Grenzen. Laut Preisliste 2027 gilt die Gastkarte nur für die Wertach ohne Mühlbach.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -8898,56 +9026,68 @@
           "provider": "Angelroute",
           "url": "https://angelroute.de"
         },
-        "lastChecked": "2026-11-14",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
-        "geometryStatus": "placeholder"
+        "geometryStatus": "traced"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            10.68326,
-            48.13622
-          ],
-          [
-            10.68036,
-            48.13186
-          ],
-          [
-            10.67999,
-            48.13144
-          ],
-          [
-            10.67873,
-            48.13041
-          ],
-          [
-            10.67593,
-            48.1288
-          ],
-          [
-            10.67354,
-            48.12757
+            10.67091,
+            48.1256
           ],
           [
             10.67144,
             48.12609
           ],
           [
-            10.67069,
-            48.1254
+            10.67301,
+            48.12724
           ],
           [
-            10.66994,
-            48.12448
+            10.67593,
+            48.1288
           ],
           [
-            10.66936,
-            48.1235
+            10.67873,
+            48.13041
           ],
           [
-            10.66852,
-            48.12159
+            10.67999,
+            48.13144
+          ],
+          [
+            10.68036,
+            48.13186
+          ],
+          [
+            10.68531,
+            48.13929
+          ],
+          [
+            10.68608,
+            48.14055
+          ],
+          [
+            10.68606,
+            48.14104
+          ],
+          [
+            10.68619,
+            48.14123
+          ],
+          [
+            10.68695,
+            48.14185
+          ],
+          [
+            10.68838,
+            48.14391
+          ],
+          [
+            10.69154,
+            48.14799
           ]
         ]
       }
@@ -9144,7 +9284,7 @@
         "name": "Wertach Bobingen",
         "clubId": "fv-bobingen",
         "guestAccess": "open",
-        "accessNote": "Grenztafeln bei km 17,4 (Bahnbrücke) und km 14,6. Die Linie ist aus der Flusslänge berechnet und kann um einige hundert Meter abweichen.",
+        "accessNote": "Grenztafeln bei km 17,4 (Bahnbrücke) und km 14,6. Die Linie folgt der Wertach in OSM von der Gemeindegrenze Wehringen flussabwärts bis km 14,6.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -9169,7 +9309,7 @@
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereivereinbobingen.de/gewaesser-2/",
         "geometryStatus": "traced"
       },
@@ -9177,28 +9317,24 @@
         "type": "LineString",
         "coordinates": [
           [
-            10.82558,
-            48.28622
-          ],
-          [
-            10.8081,
-            48.27404
-          ],
-          [
-            10.80697,
-            48.27321
-          ],
-          [
-            10.80546,
-            48.27185
+            10.80197,
+            48.26776
           ],
           [
             10.80423,
             48.27064
           ],
           [
-            10.80132,
-            48.26698
+            10.80546,
+            48.27185
+          ],
+          [
+            10.80697,
+            48.27321
+          ],
+          [
+            10.82624,
+            48.28667
           ]
         ]
       }
@@ -9372,7 +9508,7 @@
         "name": "Wertach Wehringen",
         "clubId": "fv-wehringen",
         "guestAccess": "open",
-        "accessNote": "Lage nur ungefähr.",
+        "accessNote": "Die Strecke reicht von der Gemeindegrenze Großaitingen (Fluss-km 20,57) bis zur Gemeindegrenze Bobingen (Fluss-km 17,49), etwa 3 km.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -9391,44 +9527,56 @@
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
-        "lastChecked": "2026-11-13",
+        "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-wehringen.de/mitgliederbeitraege-karten.html",
-        "geometryStatus": "placeholder"
+        "geometryStatus": "traced"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            10.80007,
-            48.26538
+            10.78219,
+            48.2428
           ],
           [
-            10.79749,
-            48.26183
-          ],
-          [
-            10.79577,
-            48.26
-          ],
-          [
-            10.7946,
-            48.25906
-          ],
-          [
-            10.78854,
-            48.25488
-          ],
-          [
-            10.78703,
-            48.25369
+            10.78417,
+            48.24926
           ],
           [
             10.78538,
             48.25183
           ],
           [
-            10.78484,
-            48.25068
+            10.78703,
+            48.25369
+          ],
+          [
+            10.78854,
+            48.25488
+          ],
+          [
+            10.79259,
+            48.25763
+          ],
+          [
+            10.7946,
+            48.25906
+          ],
+          [
+            10.79577,
+            48.26
+          ],
+          [
+            10.79749,
+            48.26183
+          ],
+          [
+            10.80009,
+            48.2654
+          ],
+          [
+            10.80197,
+            48.26776
           ]
         ]
       }
@@ -10701,7 +10849,7 @@
         "name": "Wertach Göggingen",
         "clubId": "aac-augsburg",
         "guestAccess": "membersOnly",
-        "accessNote": "Lage nur ungefähr.",
+        "accessNote": "Die Strecke reicht von Inningen bis zur Kulperhütte in Göggingen, die obere Grenze ist an der Stadtgrenze Augsburg nur ungefähr eingezeichnet. Auf etwa einem Drittel der Strecke kommt der parallele Fabrikkanal dazu.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -10719,54 +10867,154 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
-        "geometryStatus": "placeholder"
+        "geometryStatus": "traced"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            10.86409,
-            48.34878
+            10.83433,
+            48.29187
           ],
           [
-            10.85906,
-            48.34492
+            10.83678,
+            48.29319
           ],
           [
-            10.85743,
-            48.34342
+            10.83752,
+            48.29366
           ],
           [
-            10.85605,
-            48.34138
+            10.83814,
+            48.29432
           ],
           [
-            10.85548,
-            48.33988
+            10.83847,
+            48.29516
           ],
           [
-            10.85533,
-            48.33901
+            10.83993,
+            48.29672
           ],
           [
-            10.85527,
-            48.33799
+            10.84098,
+            48.29827
           ],
           [
-            10.85531,
-            48.33696
+            10.84152,
+            48.29952
           ],
           [
-            10.85496,
-            48.33465
+            10.84188,
+            48.30071
+          ],
+          [
+            10.84387,
+            48.30586
+          ],
+          [
+            10.84518,
+            48.30843
+          ],
+          [
+            10.84534,
+            48.30926
+          ],
+          [
+            10.84565,
+            48.31018
+          ],
+          [
+            10.84682,
+            48.3126
+          ],
+          [
+            10.84752,
+            48.31466
+          ],
+          [
+            10.84834,
+            48.31636
+          ],
+          [
+            10.84939,
+            48.31945
+          ],
+          [
+            10.84944,
+            48.32195
+          ],
+          [
+            10.84923,
+            48.32396
+          ],
+          [
+            10.84942,
+            48.32573
+          ],
+          [
+            10.84922,
+            48.32655
+          ],
+          [
+            10.84949,
+            48.32724
+          ],
+          [
+            10.84944,
+            48.32795
+          ],
+          [
+            10.84971,
+            48.32963
+          ],
+          [
+            10.85027,
+            48.33046
+          ],
+          [
+            10.85145,
+            48.33139
+          ],
+          [
+            10.8525,
+            48.33196
           ],
           [
             10.85428,
             48.33339
           ],
           [
-            10.85357,
-            48.33282
+            10.85496,
+            48.33465
+          ],
+          [
+            10.85531,
+            48.33696
+          ],
+          [
+            10.85533,
+            48.33901
+          ],
+          [
+            10.85548,
+            48.33988
+          ],
+          [
+            10.85605,
+            48.34138
+          ],
+          [
+            10.85743,
+            48.34342
+          ],
+          [
+            10.85906,
+            48.34492
+          ],
+          [
+            10.86738,
+            48.35134
           ]
         ]
       }
