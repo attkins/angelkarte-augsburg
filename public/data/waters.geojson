@@ -1925,7 +1925,7 @@
         "name": "Günz",
         "clubId": "fva-augsburg",
         "guestAccess": "open",
-        "accessNote": "Strecke bei Deisenhausen, Grenzen noch nicht geprüft.",
+        "accessNote": "Strecke bei Deisenhausen, etwa 3,5 km mit Staubereich. Die obere Grenze liegt südlich von Deisenhausen, die untere kurz oberhalb des Wehrs mit Fischpass nördlich der Ulmer Straße. Im Mühlgraben (Schongebiet) ist das Fischen verboten.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -1944,7 +1944,11 @@
           "Flussbarsch",
           "Weißfische"
         ],
-        "rules": [],
+        "rules": [
+          "Im Mühlgraben (Schongebiet) ist das Fischen verboten",
+          "Kein Bootsangeln",
+          "Pro Tag höchstens 1 Äsche, 2 Hechte oder Zander und 3 Karpfen, Schleien, Aitel, Nerflinge, Barben, Nasen oder Salmoniden zusammen"
+        ],
         "closedSeasons": [],
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
@@ -1955,56 +1959,20 @@
         "type": "LineString",
         "coordinates": [
           [
-            10.31477,
-            48.23995
+            10.31911,
+            48.24625
           ],
           [
-            10.3155,
-            48.24083
+            10.31932,
+            48.24705
           ],
           [
-            10.31606,
-            48.242
+            10.31963,
+            48.24738
           ],
           [
-            10.31754,
-            48.24318
-          ],
-          [
-            10.31883,
-            48.24358
-          ],
-          [
-            10.31918,
-            48.2438
-          ],
-          [
-            10.31934,
-            48.24404
-          ],
-          [
-            10.31935,
-            48.2443
-          ],
-          [
-            10.31899,
-            48.24465
-          ],
-          [
-            10.31912,
-            48.24493
-          ],
-          [
-            10.31896,
-            48.24563
-          ],
-          [
-            10.31926,
-            48.24688
-          ],
-          [
-            10.31944,
-            48.24721
+            10.32019,
+            48.24774
           ],
           [
             10.32049,
@@ -2017,10 +1985,6 @@
           [
             10.32121,
             48.24954
-          ],
-          [
-            10.32107,
-            48.24972
           ],
           [
             10.32071,
@@ -2121,86 +2085,6 @@
           [
             10.32054,
             48.26507
-          ],
-          [
-            10.32115,
-            48.26553
-          ],
-          [
-            10.32161,
-            48.26623
-          ],
-          [
-            10.32216,
-            48.26769
-          ],
-          [
-            10.32236,
-            48.26792
-          ],
-          [
-            10.32224,
-            48.26842
-          ],
-          [
-            10.32243,
-            48.2686
-          ],
-          [
-            10.32362,
-            48.26866
-          ],
-          [
-            10.32419,
-            48.26892
-          ],
-          [
-            10.32474,
-            48.26933
-          ],
-          [
-            10.32512,
-            48.2698
-          ],
-          [
-            10.32513,
-            48.27031
-          ],
-          [
-            10.32571,
-            48.27097
-          ],
-          [
-            10.32572,
-            48.27106
-          ],
-          [
-            10.32554,
-            48.2712
-          ],
-          [
-            10.32504,
-            48.27128
-          ],
-          [
-            10.32462,
-            48.27173
-          ],
-          [
-            10.3244,
-            48.27224
-          ],
-          [
-            10.32406,
-            48.27242
-          ],
-          [
-            10.32321,
-            48.27363
-          ],
-          [
-            10.32296,
-            48.27411
           ]
         ]
       }
@@ -3304,7 +3188,10 @@
           "Kein Bootsfischen im Sicherheitsbereich vor beiden Staukronen",
           "In der Bucht an der Staustufe 23 vom 1. Juni bis 30. September kein Fischen von Booten",
           "Fischen an den Fischpässen verboten",
-          "Die Insel an der Staustufe 23 darf nicht betreten werden"
+          "Die Insel an der Staustufe 23 darf nicht betreten werden",
+          "Bootsfischen nur ohne Motorantrieb",
+          "Vom 15. Februar bis 30. April kein Bootsfischen und keine Spinnköder über 6 cm",
+          "Pro Tag höchstens 1 Äsche, 2 Hechte oder Zander und 3 Karpfen, Schleien, Barben, Nasen, Nerflinge, Aitel oder Salmoniden zusammen, dazu 1 Huchen pro Jahr"
         ],
         "closedSeasons": [],
         "onlinePurchase": null,
@@ -6554,8 +6441,8 @@
         "id": "fvf-walter-see",
         "name": "Walter-See und Speckwiesen-See, Derching",
         "clubId": "fv-friedberg",
-        "guestAccess": "unknown",
-        "accessNote": "Laut Gebührenordnung gibt es einen eigenen Preis für Gastfischer mit Vereinsmitglied. Ob Gäste hier allein fischen dürfen, ist noch nicht geprüft. Umriss ist der Derchinger Baggersee aus OSM, Zuordnung noch prüfen.",
+        "guestAccess": "open",
+        "accessNote": "Laut Gewässerseite des Vereins sind nur die Jahreskarten den Mitgliedern vorbehalten, die Gebührenordnung nennt einen Tageskartenpreis für Gastfischer. Umriss ist der Derchinger Baggersee aus OSM, Zuordnung noch prüfen.",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -8555,7 +8442,7 @@
         "name": "Lochbach Haunstetten",
         "clubId": "fv-haunstetten",
         "guestAccess": "open",
-        "accessNote": "Grenzen der Strecke noch nicht geprüft.",
+        "accessNote": "Die Strecke reicht vom Wasserkraftwerk Martini an der Königsbrunner Straße flussabwärts bis zum Werk von Premium Aerotec (heute Airbus Aerostructures).",
         "season": null,
         "seasonNote": null,
         "guestPeriod": null,
@@ -8587,24 +8474,8 @@
         "type": "LineString",
         "coordinates": [
           [
-            10.9093,
-            48.28966
-          ],
-          [
-            10.90852,
-            48.29237
-          ],
-          [
-            10.90735,
-            48.29538
-          ],
-          [
-            10.90761,
-            48.2975
-          ],
-          [
-            10.90783,
-            48.29763
+            10.9077,
+            48.2976
           ],
           [
             10.90854,
@@ -8639,8 +8510,8 @@
             48.30123
           ],
           [
-            10.90964,
-            48.30169
+            10.90959,
+            48.30147
           ],
           [
             10.90972,
@@ -8655,8 +8526,8 @@
             48.30322
           ],
           [
-            10.90933,
-            48.30417
+            10.90924,
+            48.30383
           ],
           [
             10.90962,
@@ -8683,8 +8554,52 @@
             48.30808
           ],
           [
-            10.91177,
-            48.30841
+            10.91174,
+            48.30827
+          ],
+          [
+            10.91167,
+            48.30984
+          ],
+          [
+            10.9112,
+            48.3104
+          ],
+          [
+            10.91132,
+            48.31056
+          ],
+          [
+            10.91158,
+            48.31071
+          ],
+          [
+            10.91139,
+            48.31098
+          ],
+          [
+            10.91137,
+            48.3117
+          ],
+          [
+            10.91259,
+            48.31303
+          ],
+          [
+            10.91321,
+            48.31456
+          ],
+          [
+            10.91402,
+            48.31703
+          ],
+          [
+            10.914,
+            48.31727
+          ],
+          [
+            10.91363,
+            48.3179
           ]
         ]
       }
