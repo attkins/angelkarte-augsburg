@@ -12,12 +12,14 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 |---------|-------|--------|--------|
 | 0.7 | Ready for friends | week of 2026-11-16 | released 2026-11-16 |
 | 0.8 | Austria | end of November 2026 | released 2026-11-16 |
-| 0.9 | Core region complete | mid December 2026 | planned |
-| 0.10 | More waters | end of December 2026 | planned |
+| 0.9 | Core region, more waters and planning | November 2026 | ready to release |
+| 0.10 | Answers from the clubs | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
 | later | Ideas without a date | | |
 
 Already released: 0.1.0 to 0.8.0, see [CHANGELOG.md](../CHANGELOG.md).
+
+Replanned on 2026-11-16: the old 0.9 (core region) and 0.10 (more waters) were done except for items that need a phone call or an answer from a club. Everything finished goes out as 0.9, together with F2, F5, F7 and F8 from "Later". The new 0.10 collects the open questions to the clubs.
 
 ## 0.7 Ready for friends
 
@@ -42,29 +44,49 @@ Goal: the holiday regions Fernpass and Wilder Kaiser are on the map.
 
 Done when the researched Austrian waters are in the data and the map stays usable around Augsburg.
 
-## 0.9 Core region complete
+## 0.9 Core region, more waters and planning
 
-Goal: for Augsburg, Landkreis Augsburg and Aichach-Friedberg the information is correct and complete.
+Goal: the core region is as complete as research without phone calls allows, the waters friends drive to are on the map, and the map helps to plan a trip.
+
+Core region (Augsburg, Landkreis Augsburg, Aichach-Friedberg):
 
 - D2 Friedberg guest rules for Paar and Friedberger Ach (done)
-- D3 The 7 waters with `guestAccess: unknown` (done, Walter-See to confirm with the club)
+- D3 The 7 waters with `guestAccess: unknown` (done, no water left with `unknown`)
 - D4 Bobingen prices (done)
 - D5 Wehringen sales points (done)
 - D6 Real extent of the placeholder stretches (done)
-- D14 Remaining opening hours (Osetskiy, Fischerheim FV Friedberg, Holland Blumen) and new coordinates for Angel-Zoo-Ernst and Zum Isarfischer (coordinates done, hours need a phone call)
-- D7 Fish species, starting with FVA and LFV (done, 81 of 87 waters)
-- F3 Fish species filter (after D7) (done)
-- D19 PFC warning for the Friedberger Ach (done, added 2026-11-16)
+- D7 Fish species (done, 103 of 109 waters)
+- F3 Fish species filter (done)
+- D19 PFC warning for the Friedberger Ach (done)
 
-Done when the acceptance criteria below hold for the core region.
+More waters:
 
-## 0.10 More waters
+- D8 LFV waters Paar 3, Paar 4, Schmutter, Zusam (entered as placeholders)
+- D9 Kirnach, Kringsee and the western ring of the 1. AAC (done)
+- D10 Third research pass west of Augsburg: FV Großaitingen and Staudenfischereiverein (done)
+- D18 Wilder Kaiser: Fischerverein Kössen and St. Anglwirt (done)
 
-Goal: the map covers the waters around the core region that friends actually drive to.
+Features:
 
-- D8 Missing LFV waters: Paar 3, Paar 4, Schmutter, Zusam (entered as placeholders, real limits still open)
-- D10 Third research pass west of Augsburg ✅
-- D9 Waters outside the core region: Kirnach, 1. AAC waters (done for Kirnach, Kringsee and the western ring)
+- F2 Plan for a date (done)
+- F5 Share button (done)
+- F7 Offline use (done)
+- F8 Report an error (done)
+
+Release with `npm run release:minor`.
+
+## 0.10 Answers from the clubs
+
+Goal: the open questions that research alone could not answer are settled. Mostly phone calls and mails.
+
+- D14 Opening hours of Osetskiy, Fischerheim FV Friedberg and Holland Blumen
+- D3 Walter-See: confirm with the club that guests may fish alone
+- D8 Real limits for the LFV waters Paar 3, Paar 4, Schmutter and Zusam
+- D21 Real limits for Neufnach, Kleine Mindel, St. Anglwirt and Fischteich Tannheimer Tal
+- D20 Guest prices for Achensee, Haldensee, Lech Höfen, Bloderteich and Fischteich Tannheimer Tal
+- D7 leftovers: species for Wertach Siebnach, Wertach and Rollweiher (Wehringen), Friedberger Ach Rehling, Rothsee, Fernsteinsee
+
+Done when no placeholder geometry is left and every water open to guests has a guest price.
 
 ## 1.0 Season 2027
 
@@ -76,23 +98,22 @@ Goal: a stable version with the new prices at the turn of the year.
 
 ### Acceptance criteria for 1.0
 
-- No water in the core region with `guestAccess: unknown`
-- No placeholder geometry left
-- `npm run validate` shows no warning for stale `lastChecked` dates
-- Every water open to guests has a guest price and at least one sales point or online purchase
-- Tests run in the deploy workflow
+Status on 2026-11-16 in brackets.
+
+- No water in the core region with `guestAccess: unknown` (met)
+- No placeholder geometry left (8 left: Paar 3, Paar 4, Schmutter, Zusam, Neufnach, Kleine Mindel, St. Anglwirt, Fischteich Tannheimer Tal)
+- `npm run validate` shows no warning for stale `lastChecked` dates (met)
+- Every water open to guests has a guest price and at least one sales point or online purchase (5 without guest price, all in Tyrol, see D20. Singold Großaitingen and Singold Wehringen have no sales point, but guests can only fish them with a member and get the ticket from a private person, which is accepted)
+- Tests run in the deploy workflow (met)
 
 ## Later
 
 Ideas without a release yet. Pick from here when planning the next release after 1.0.
 
-- F2 Plan for a date (done 2026-11-16)
-- F5 Share button (moved out of 0.7 on 2026-11-15, done 2026-11-16)
-- F8 Report an error (moved out of 0.7 on 2026-11-15, done 2026-11-16)
 - F6 Water level and temperature
-- F7 Offline use (done 2026-11-16)
 - F9 Parking and access points
 - D12 Maximum depth for the remaining lakes
+- D22 Candidates found during research (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg, hejfish waters near Fischach)
 
 ## How releases are made
 
