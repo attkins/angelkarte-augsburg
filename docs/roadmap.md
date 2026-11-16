@@ -10,14 +10,14 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 
 | Release | Theme | Target | Status |
 |---------|-------|--------|--------|
-| 0.7 | Ready for friends | week of 2026-11-16 | ready to release |
-| 0.8 | Austria | end of November 2026 | ready to release |
+| 0.7 | Ready for friends | week of 2026-11-16 | released 2026-11-16 |
+| 0.8 | Austria | end of November 2026 | released 2026-11-16 |
 | 0.9 | Core region complete | mid December 2026 | planned |
 | 0.10 | More waters | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
 | later | Ideas without a date | | |
 
-Already released: 0.1.0 to 0.6.0, see [CHANGELOG.md](../CHANGELOG.md).
+Already released: 0.1.0 to 0.8.0, see [CHANGELOG.md](../CHANGELOG.md).
 
 ## 0.7 Ready for friends
 
