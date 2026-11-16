@@ -194,5 +194,19 @@
     "shortName": "Großache Kirchdorf",
     "website": null,
     "contact": "Pächter Markus Gruber, Feldweg 2, 6382 Kirchdorf in Tirol, +43 660 3446310"
+  },
+  {
+    "id": "tauschers-alm",
+    "name": "Tauscher's Alm (Bewirtschafter)",
+    "shortName": "Tauscher's Alm",
+    "website": "https://www.tauschers-alm.at",
+    "contact": "Seewiesenweg 10, 6673 Grän, +43 676 6060209"
+  },
+  {
+    "id": "fischteich-tannheim",
+    "name": "Fischteich Tannheimer Tal (Bewirtschafter)",
+    "shortName": "Fischteich Tannheim",
+    "website": "https://fischteich-tannheim.at",
+    "contact": "Untergschwend 13, 6675 Tannheim, +43 676 4809363, info@fischteich-tannheim.at"
   }
 ]

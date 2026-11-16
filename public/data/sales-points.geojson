@@ -1727,6 +1727,50 @@
           47.34563
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tauschers-alm",
+        "name": "Tauscher's Alm",
+        "address": "Seewiesenweg 10, 6673 Grän, Österreich",
+        "phone": "+43 676 6060209",
+        "openingHours": null,
+        "openingHoursNote": "Ab Anfang oder Mitte Mai.",
+        "waterIds": [
+          "at-bloderteich"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.56538,
+          47.48959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fischteich-tannheim",
+        "name": "Fischerhütte Fischteich Tannheim",
+        "address": "Untergschwend 13, 6675 Tannheim, Österreich",
+        "phone": "+43 676 4809363",
+        "openingHours": null,
+        "openingHoursNote": "Öffnungszeiten nicht veröffentlicht, vorher anrufen.",
+        "waterIds": [
+          "at-fischteich-tannheim"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.48691,
+          47.5027
+        ]
+      }
     }
   ]
 }
