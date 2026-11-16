@@ -2,13 +2,17 @@ import { describe, expect, it } from 'vitest'
 import type { OpeningRule } from '@/types'
 import {
   availability,
+  describeDayHours,
   describeOpeningStatus,
+  formatLongDay,
   formatOpeningHours,
   formatRange,
   formatTime,
+  hoursOnDay,
   isInRange,
   nextStart,
   openingStatus,
+  parseIsoDay,
 } from '@/utils/time'
 
 // Local dates. Month is zero based in the Date constructor.
@@ -220,3 +224,43 @@ describe('formatOpeningHours', () => {
     ])
   })
 })
+
+describe('planning for a day', () => {
+  const shop: OpeningRule[] = [
+    { days: ['mo', 'tu', 'we', 'th', 'fr'], open: '09:00', close: '12:00' },
+    { days: ['mo', 'tu', 'we', 'th', 'fr'], open: '14:00', close: '18:00' },
+  ]
+
+  it('lists the hours of the whole day, whatever the time', () => {
+    const day = hoursOnDay(shop, at(11, 20, 23))
+    expect(day).toEqual({ open: true, hours: '9 bis 12 und 14 bis 18 Uhr' })
+    expect(describeDayHours(day)).toBe('an dem Tag 9 bis 12 und 14 bis 18 Uhr')
+  })
+
+  it('reports a day without hours as closed', () => {
+    const day = hoursOnDay(shop, at(11, 21))
+    expect(day).toEqual({ open: false })
+    expect(describeDayHours(day)).toBe('den ganzen Tag')
+  })
+
+  it('reports a holiday without holiday hours as unknown', () => {
+    const day = hoursOnDay(shop, at(12, 25))
+    expect(day).toEqual({ open: null, holiday: '1. Weihnachtstag' })
+    expect(describeDayHours(day)).toBe('an dem Tag 1. Weihnachtstag, Zeiten können abweichen')
+  })
+
+  it('names the planned day when a water is closed then', () => {
+    const season = { from: '03-16', to: '12-14' }
+    expect(availability(season, null, at(12, 20), true).reason).toBe('Am 20. Dezember Schonzeit, wieder ab 16. März.')
+    expect(availability(null, season, at(12, 20), true).reason).toBe(
+      'Am 20. Dezember für Gäste nicht freigegeben, wieder ab 16. März.',
+    )
+  })
+
+  it('reads ISO days as local midnight and formats them in full', () => {
+    const date = parseIsoDay('2026-11-20')
+    expect([date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()]).toEqual([2026, 10, 20, 0])
+    expect(formatLongDay(date)).toBe('Freitag, 20. November 2026')
+  })
+})
+

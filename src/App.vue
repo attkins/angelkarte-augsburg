@@ -16,6 +16,7 @@ import { useTheme } from '@/composables/useTheme'
 import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
+import { formatLongDay, parseIsoDay } from '@/utils/time'
 
 useTheme()
 const { data, error } = useMapData()
@@ -33,9 +34,21 @@ const selection = computed<Selection | null>({
   set: (value) => router.navigate(value),
 })
 
+/** Day the user plans for as ISO date, null for right now. */
+const planDay = ref<string | null>(null)
+const planned = computed(() => planDay.value !== null)
+/**
+ * The planned day at midnight. Undefined for right now, so the pages read the clock
+ * themselves when they open instead of keeping the time the app was started.
+ */
+const planDate = computed(() => (planDay.value ? parseIsoDay(planDay.value) : undefined))
+const planLabel = computed(() => (planDate.value ? formatLongDay(planDate.value) : null))
+
 /** Ids of the waters passing the filter, or null when no filter is active (all shown). */
 const matchingIds = computed(() =>
-  data.value && isFilterActive(filter) ? matchingWaterIds(data.value, filter, new Date()) : null,
+  data.value && isFilterActive(filter)
+    ? matchingWaterIds(data.value, filter, planDate.value ?? new Date(), planned.value)
+    : null,
 )
 /** Only used on small screens: whether the list is shown in the bottom sheet. */
 const listOpen = ref(false)
@@ -139,11 +152,18 @@ watch(router.route, async () => {
       <div class="panel-body">
         <ImprintPage v-if="imprintOpen" @close="router.close" />
         <template v-else-if="data">
+          <p v-if="planLabel" class="plan-banner" role="status">
+            <AppIcon name="calendar" :size="16" />
+            <span>Geplant für {{ planLabel }}</span>
+            <button type="button" @click="planDay = null">Zurück zu heute</button>
+          </p>
           <WaterDetail
             v-if="selectedWater"
             :key="selectedWater.properties.id"
             :water="selectedWater"
             :data="data"
+            :now="planDate"
+            :planned="planned"
             @select-sales-point="selectSalesPoint"
             @select-club="selectClub"
             @close="router.close"
@@ -153,6 +173,8 @@ watch(router.route, async () => {
             :key="selectedSalesPoint.properties.id"
             :sales-point="selectedSalesPoint"
             :data="data"
+            :now="planDate"
+            :planned="planned"
             @select-water="selectWater"
             @select-club="selectClub"
             @close="router.close"
@@ -162,6 +184,8 @@ watch(router.route, async () => {
             :key="selectedClub.id"
             :club="selectedClub"
             :data="data"
+            :now="planDate"
+            :planned="planned"
             @select-water="selectWater"
             @select-sales-point="selectSalesPoint"
             @close="router.close"
@@ -170,10 +194,11 @@ watch(router.route, async () => {
             <WaterFilters
               :data="data"
               :filter="filter"
+              v-model:plan-day="planDay"
               :count="matchingIds ? matchingIds.size : data.waters.features.length"
               @select-club="selectClub"
             />
-            <WaterList :data="data" :matching-ids="matchingIds" @select-water="selectWater" />
+            <WaterList :data="data" :matching-ids="matchingIds" :day="planDate" @select-water="selectWater" />
           </div>
         </template>
 
@@ -300,6 +325,30 @@ watch(router.route, async () => {
 
 .panel-body {
   padding: 16px 24px 28px;
+}
+
+.plan-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.plan-banner button {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font: inherit;
+  cursor: pointer;
 }
 
 .list-view {

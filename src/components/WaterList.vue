@@ -7,7 +7,12 @@ import { distanceToWaterKm, formatDistance } from '@/utils/distance'
 import { formatPrice } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
 
-const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
+const props = defineProps<{
+  data: MapData
+  matchingIds?: Set<string> | null
+  /** Day the prices are shown for, today when missing. */
+  day?: Date
+}>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
 
 const sortBy = ref<'name' | 'distance'>('name')
@@ -37,7 +42,7 @@ function sortByDistance() {
 
 const waters = computed(() => {
   const from = origin.value
-  const today = new Date()
+  const today = props.day ?? new Date()
   return props.data.waters.features
     .filter((w) => !props.matchingIds || props.matchingIds.has(w.properties.id))
     .map((water) => {

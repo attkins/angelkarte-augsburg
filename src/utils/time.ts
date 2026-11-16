@@ -85,17 +85,20 @@ export function availability(
   season: DateRange | null,
   guestPeriod: DateRange | null,
   now: Date,
+  /** Set when `now` is a day the user plans for, the reason then names that day. */
+  planned = false,
 ): AvailabilityStatus {
+  const when = planned ? `Am ${formatDayMonth(now)}` : 'Gerade'
   if (season && !isInRange(season, now)) {
     return {
       openForGuestsToday: false,
-      reason: `Gerade Schonzeit, wieder ab ${formatDayMonth(nextStart(season, now))}.`,
+      reason: `${when} Schonzeit, wieder ab ${formatDayMonth(nextStart(season, now))}.`,
     }
   }
   if (guestPeriod && !isInRange(guestPeriod, now)) {
     return {
       openForGuestsToday: false,
-      reason: `Für Gäste gerade nicht freigegeben, wieder ab ${formatDayMonth(nextStart(guestPeriod, now))}.`,
+      reason: `${planned ? `Am ${formatDayMonth(now)} für Gäste nicht` : 'Für Gäste gerade nicht'} freigegeben, wieder ab ${formatDayMonth(nextStart(guestPeriod, now))}.`,
     }
   }
   return { openForGuestsToday: true, reason: null }
@@ -232,4 +235,39 @@ export function formatOpeningHours(rules: OpeningRule[], month: number): Opening
     .map((r) => `${formatTime(r.open)} bis ${formatTime(r.close)}`)
   if (holiday.length) result.push({ days: 'Feiertage', hours: `${holiday.join(' und ')} Uhr` })
   return result
+}
+
+// --- planning for a day -----------------------------------------------------
+
+export type DayHours =
+  | { open: true; hours: string }
+  | { open: false }
+  /** Public holiday and the shop has no holiday hours, see `OpeningStatus`. */
+  | { open: null; holiday: string }
+
+/** Opening hours on one whole day, for planning ahead instead of "open right now". */
+export function hoursOnDay(rules: OpeningRule[], date: Date, holidays: HolidayOptions = {}): DayHours {
+  const holiday = publicHoliday(date, holidays)
+  const hasHolidayRules = rules.some((r) => r.days.includes('ph'))
+  if (holiday && !hasHolidayRules) return { open: null, holiday }
+  const intervals = rulesFor(rules, date, holiday !== null).map((r) => `${formatTime(r.open)} bis ${formatTime(r.close)}`)
+  return intervals.length ? { open: true, hours: `${intervals.join(' und ')} Uhr` } : { open: false }
+}
+
+/** Short German description after "Geöffnet" or "Geschlossen", e.g. "an dem Tag 8 bis 18 Uhr". */
+export function describeDayHours(day: DayHours): string {
+  if (day.open === null) return `an dem Tag ${day.holiday}, Zeiten können abweichen`
+  if (day.open) return `an dem Tag ${day.hours}`
+  return 'den ganzen Tag'
+}
+
+/** ISO day (`2026-11-20`) as a local date at midnight. */
+export function parseIsoDay(iso: string): Date {
+  const [year, month, day] = iso.split('-').map(Number)
+  return new Date(year!, month! - 1, day!)
+}
+
+/** `Freitag, 20. November 2026` for the planning notice. */
+export function formatLongDay(date: Date): string {
+  return date.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
 }

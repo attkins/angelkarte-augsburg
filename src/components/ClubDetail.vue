@@ -12,10 +12,12 @@ const props = withDefaults(
   defineProps<{
     club: Club
     data: MapData
-    /** Injected for tests. */
+    /** Injected for tests, or the planned day at midnight. */
     now?: Date
+    /** Whether `now` is a day the user plans for. */
+    planned?: boolean
   }>(),
-  { now: () => new Date() },
+  { now: () => new Date(), planned: false },
 )
 
 const emit = defineEmits<{ selectWater: [id: string]; selectSalesPoint: [id: string]; close: [] }>()
@@ -28,7 +30,7 @@ const waters = computed(() =>
     .map((water) => {
       const p = water.properties
       const membersOnly = p.guestAccess === 'membersOnly'
-      const closed = !membersOnly && !availability(p.season, p.guestPeriod, props.now).openForGuestsToday
+      const closed = !membersOnly && !availability(p.season, p.guestPeriod, props.now, props.planned).openForGuestsToday
       const guest = guestPriceOn(p, props.now)
       const details = [
         closed ? null : p.season ? `Saison ${formatRange(p.season)}` : null,
@@ -101,7 +103,7 @@ const websiteLabel = computed(() => props.club.website?.replace(/^https?:\/\/(ww
         <span class="access-dot" :style="{ background: `var(--${water.token})` }" />
         <span class="water-text">
           <span class="water-name">{{ water.name }}</span>
-          <span v-if="water.closed" class="water-sub is-closed">Gerade geschlossen</span>
+          <span v-if="water.closed" class="water-sub is-closed">{{ planned ? "An dem Tag geschlossen" : "Gerade geschlossen" }}</span>
           <span v-else-if="water.details" class="water-sub">{{ water.details }}</span>
         </span>
         <span v-if="water.membersOnly" class="members-only">nur Mitglieder</span>

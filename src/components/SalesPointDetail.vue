@@ -7,27 +7,36 @@ import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice, phoneHref } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
 import { holidayOptions } from '@/utils/holidays'
-import { describeOpeningStatus, formatOpeningHours, openingStatus } from '@/utils/time'
+import { describeDayHours, describeOpeningStatus, formatOpeningHours, hoursOnDay, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
   defineProps<{
     salesPoint: SalesPointFeature
     data: MapData
-    /** Injected for tests. */
+    /** Injected for tests, or the planned day at midnight. */
     now?: Date
+    /** Whether `now` is a day the user plans for. Then the hours of that whole day are shown. */
+    planned?: boolean
   }>(),
-  { now: () => new Date() },
+  { now: () => new Date(), planned: false },
 )
 
 const emit = defineEmits<{ selectWater: [id: string]; selectClub: [id: string]; close: [] }>()
 
 const p = computed(() => props.salesPoint.properties)
 
-const opening = computed(() =>
-  p.value.openingHours
-    ? openingStatus(p.value.openingHours, props.now, holidayOptions(p.value.address))
-    : null,
-)
+/** Open right now, or on the planned day. */
+const opening = computed(() => {
+  const rules = p.value.openingHours
+  if (!rules) return null
+  const holidays = holidayOptions(p.value.address)
+  if (props.planned) {
+    const day = hoursOnDay(rules, props.now, holidays)
+    return { open: day.open, text: describeDayHours(day) }
+  }
+  const status = openingStatus(rules, props.now, holidays)
+  return { open: status.open, text: describeOpeningStatus(status) }
+})
 /** CSS modifier and label for the status line. */
 const openingState = computed(() => {
   if (!opening.value) return null
@@ -98,7 +107,7 @@ function guestPrice(water: WaterFeature): string | null {
         <span class="dot" :class="openingState.modifier" />
         <strong :class="openingState.modifier">{{ openingState.label }}</strong>
         <span class="visually-hidden">, </span>
-        <span class="muted-inline">{{ describeOpeningStatus(opening) }}</span>
+        <span class="muted-inline">{{ opening.text }}</span>
       </div>
       <details v-if="openingLines.length" class="opening-times">
         <summary>Alle Zeiten<AppIcon name="chevron-down" :size="16" /></summary>

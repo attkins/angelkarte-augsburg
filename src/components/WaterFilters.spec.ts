@@ -43,4 +43,37 @@ describe('WaterFilters', () => {
   it('hides the species select when no water has species', () => {
     expect(mountFilters(null).find('.species-select').exists()).toBe(false)
   })
+
+  describe('planning for a day', () => {
+    it('sets a later day and renames the ticket chip', async () => {
+      const wrapper = mountFilters(null)
+
+      await wrapper.find('.date-chip input').setValue('2099-07-01')
+
+      expect(wrapper.emitted('update:planDay')).toEqual([['2099-07-01']])
+      await wrapper.setProps({ planDay: '2099-07-01' })
+      expect(wrapper.text()).toContain('Karte an dem Tag')
+      expect(wrapper.text()).not.toContain('Karte heute noch')
+    })
+
+    it('treats today or an emptied field as now', async () => {
+      const wrapper = mountFilters(null)
+      await wrapper.setProps({ planDay: '2099-07-01' })
+
+      await wrapper.find('.date-chip input').setValue('')
+
+      expect(wrapper.emitted('update:planDay')).toEqual([[null]])
+    })
+
+    it('goes back to today with the button', async () => {
+      const wrapper = mountFilters(null)
+      await wrapper.setProps({ planDay: '2099-07-01' })
+
+      const back = wrapper.findAll('.date-row button').find((b) => b.text() === 'Heute')!
+      await back.trigger('click')
+
+      expect(wrapper.emitted('update:planDay')).toEqual([[null]])
+    })
+  })
 })
+

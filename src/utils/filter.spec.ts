@@ -118,6 +118,13 @@ describe('canGetTicketToday', () => {
     return (now: Date) => canGetTicketToday(water, data, now)
   }
 
+  it('counts the whole planned day, even late in the evening', () => {
+    const water = makeWater()
+    const data = makeMapData([makeClub()], [water], [makeSalesPoint({ openingHours: weekdays })])
+    expect(canGetTicketToday(water, data, at(0, 20), true)).toBe(true)
+    expect(canGetTicketToday(water, data, at(0, 21), true)).toBe(false)
+  })
+
   it('is true while a sales point is open', () => {
     expect(setup()(at(15))).toBe(true)
   })

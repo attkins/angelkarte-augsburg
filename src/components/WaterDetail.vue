@@ -10,18 +10,20 @@ import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
 import { reportMailto } from '@/utils/report'
 import { holidayOptions } from '@/utils/holidays'
-import { availability, describeOpeningStatus, formatRange, openingStatus } from '@/utils/time'
+import { availability, describeDayHours, describeOpeningStatus, formatRange, hoursOnDay, openingStatus } from '@/utils/time'
 
 const props = withDefaults(
   defineProps<{
     water: WaterFeature
     data: MapData
-    /** Injected for tests. */
+    /** Injected for tests, or the planned day at midnight. */
     now?: Date
+    /** Whether `now` is a day the user plans for. Then opening hours cover the whole day. */
+    planned?: boolean
     /** Address for error reports, null hides the link. Defaults to the imprint mail. */
     reportEmail?: string | null
   }>(),
-  { now: () => new Date() },
+  { now: () => new Date(), planned: false },
 )
 
 const emit = defineEmits<{ selectSalesPoint: [id: string]; selectClub: [id: string]; close: [] }>()
@@ -29,7 +31,7 @@ const emit = defineEmits<{ selectSalesPoint: [id: string]; selectClub: [id: stri
 const p = computed(() => props.water.properties)
 const club = computed(() => props.data.clubsById.get(p.value.clubId))
 
-const status = computed(() => availability(p.value.season, p.value.guestPeriod, props.now))
+const status = computed(() => availability(p.value.season, p.value.guestPeriod, props.now, props.planned))
 // Members-only waters are closed for guests anyway, a "wieder ab" date would be misleading.
 const closedReason = computed(() => (p.value.guestAccess === 'membersOnly' ? null : status.value.reason))
 
@@ -66,9 +68,19 @@ const salesPoints = computed(() =>
     .filter((sp): sp is SalesPointFeature => Boolean(sp))
     .map((sp) => {
       const rules = sp.properties.openingHours
-      const opening = rules
-        ? openingStatus(rules, props.now, holidayOptions(sp.properties.address))
-        : null
+      const holidays = holidayOptions(sp.properties.address)
+      if (rules && props.planned) {
+        const day = hoursOnDay(rules, props.now, holidays)
+        return {
+          id: sp.properties.id,
+          name: sp.properties.name,
+          address: sp.properties.address,
+          openingLabel: day.open === null ? null : day.open ? 'Geöffnet' : 'Geschlossen',
+          openingModifier: day.open === null ? 'is-unknown' : day.open ? 'is-open' : 'is-closed',
+          openingText: describeDayHours(day),
+        }
+      }
+      const opening = rules ? openingStatus(rules, props.now, holidays) : null
       return {
         id: sp.properties.id,
         name: sp.properties.name,

@@ -35,6 +35,16 @@ describe('SalesPointDetail', () => {
       { days: ['sa' as const], open: '08:00', close: '13:00', months: [3, 4, 5, 6, 7, 8, 9, 10] },
     ]
 
+    it('shows the hours of a planned day instead of the current state', () => {
+      const salesPoint = makeSalesPoint({ openingHours: rules })
+      const status = mount(SalesPointDetail, {
+        props: { salesPoint, data: makeMapData(undefined, undefined, [salesPoint]), now: new Date(2026, 10, 16), planned: true },
+      }).find('.opening-status')
+
+      expect(status.text()).toContain('Geöffnet')
+      expect(status.text()).toContain('an dem Tag 14 bis 18 Uhr')
+    })
+
     it('shows whether the shop is open right now', () => {
       const status = mountDetail(makeSalesPoint({ openingHours: rules })).find('.opening-status')
 

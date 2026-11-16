@@ -3,18 +3,31 @@ import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import type { MapData } from '@/types'
 import { type FixedChip, isFilterActive, type WaterFilter } from '@/utils/filter'
+import { isoDay } from '@/utils/prices'
 import { speciesOptions } from '@/utils/species'
 
 const props = defineProps<{ data: MapData; filter: WaterFilter; count: number }>()
 const emit = defineEmits<{ selectClub: [id: string] }>()
 
-const CHIPS: { key: FixedChip; label: string }[] = [
+/** Planned day as ISO date, null for today. */
+const planDay = defineModel<string | null>('planDay', { default: null })
+
+/** Today as ISO date, the earliest day that can be planned. */
+const today = isoDay(new Date())
+
+const CHIPS = computed<{ key: FixedChip; label: string }[]>(() => [
   { key: 'guests', label: 'Gäste willkommen' },
   { key: 'online', label: 'Online buchbar' },
   { key: 'seasonOpen', label: 'Saison offen' },
-  { key: 'ticketToday', label: 'Karte heute noch' },
+  { key: 'ticketToday', label: planDay.value ? 'Karte an dem Tag' : 'Karte heute noch' },
   { key: 'flyFishing', label: 'Fliegenfischen' },
-]
+])
+
+function changeDay(event: Event) {
+  const value = (event.target as HTMLInputElement).value
+  // An emptied field or today itself both mean "now".
+  planDay.value = value && value > today ? value : null
+}
 
 // Only clubs that actually have waters, sorted by their displayed name.
 const clubs = computed(() => {
@@ -52,6 +65,16 @@ function reset() {
         placeholder="Gewässer oder Verein suchen"
         aria-label="Gewässer oder Verein suchen"
       />
+    </div>
+
+    <div class="date-row">
+      <label class="chip date-chip" :class="{ 'is-active': planDay !== null }">
+        <AppIcon name="calendar" :size="15" />
+        <span class="visually-hidden">Datum planen</span>
+        <input type="date" :value="planDay ?? today" :min="today" @change="changeDay" />
+      </label>
+      <button v-if="planDay" type="button" class="chip" @click="planDay = null">Heute</button>
+      <span v-else class="date-hint">Für einen anderen Tag planen</span>
     </div>
 
     <div class="chips" role="group" aria-label="Filter">
@@ -220,5 +243,30 @@ function reset() {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+}
+.date-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-chip input {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  color-scheme: light dark;
+}
+
+.date-hint {
+  font-size: 13px;
+  color: var(--text-2);
 }
 </style>
