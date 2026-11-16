@@ -145,5 +145,33 @@
     "shortName": "Kitzbühel",
     "website": "https://www.kitzbuehel.at",
     "contact": "+43 664 2824363, fischen@kitzbuehel.at. Tageskarten auch bei der Stadtpolizei Kitzbühel, +43 5356 62161-10"
+  },
+  {
+    "id": "hotel-fernsteinsee",
+    "name": "Hotel Schloss Fernsteinsee (Bewirtschafter)",
+    "shortName": "Schloss Fernsteinsee",
+    "website": "http://www.fernsteinsee.at",
+    "contact": "+43 5265 5210, hotel@schloss-fernsteinsee.at, Fernstein 475, 6465 Nassereith"
+  },
+  {
+    "id": "taubensee-koessen",
+    "name": "Taubensee Kössen (Bewirtschafter unbekannt)",
+    "shortName": "Taubensee",
+    "website": "https://www.taubensee.at",
+    "contact": "Kartenausgabe: Taubenseehütte, Mühlbergweg 54, 6345 Kössen, +43 664 1246925, info@taubensee.at"
+  },
+  {
+    "id": "aubad-lauchsee",
+    "name": "Aubad Lauchsee Fieberbrunn (Bewirtschafter)",
+    "shortName": "Lauchsee",
+    "website": "https://aubad.at/lauchsee/",
+    "contact": "Lauchseeweg 19, 6391 Fieberbrunn, +43 5354 57016, aubad@aon.at. Karten auch bei Wolfgang Schneider (Landhaus Schneider), +43 664 8763178"
+  },
+  {
+    "id": "ffmh-rosswildalm",
+    "name": "Fliegenfischen mit Herz, Rosswildalm (Bewirtschafter)",
+    "shortName": "Rosswildalm",
+    "website": "https://www.ffmh.at",
+    "contact": "Martin Schoissengeier, +43 650 9194771, fischen@ffmh.at"
   }
 ]
