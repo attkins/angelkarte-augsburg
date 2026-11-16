@@ -2,6 +2,43 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.8.0 (2026-11-16)
+
+### Features
+
+- Add Austrian destination lakes (D13) ([6ec42ca](https://github.com/attkins/angelkarte-augsburg/commit/6ec42caa9f9ea5852139e857d2f323f9966a59f4))
+- Add four Tyrolean lakes and fix Walchsee prices (D15) ([d053aad](https://github.com/attkins/angelkarte-augsburg/commit/d053aad1cef07cea8fff39cbab66ed87e17b6292))
+- Add five more Tyrolean lakes (D16) ([e18522a](https://github.com/attkins/angelkarte-augsburg/commit/e18522abaa0ec6746c49971e3d41e2b68134a9e3))
+- Add Lech, Weißenbach and Großache stretches in Tyrol (D16) ([c6cba27](https://github.com/attkins/angelkarte-augsburg/commit/c6cba27c399ff27cc270feeb4b3a136adca20e9f))
+- Add sales points for Tyrolean waters (D16) ([f287912](https://github.com/attkins/angelkarte-augsburg/commit/f287912bb34ce5513b957dc420a192d8dc0650ea))
+- Add Tannheimer Tal streams and ponds, Haldensee seasons (D17) ([ea7f866](https://github.com/attkins/angelkarte-augsburg/commit/ea7f866a32ae67dfdc4f7e1d0c11e88f81c60947))
+- Add Fischerverein Kössen waters (D18) ([d78f906](https://github.com/attkins/angelkarte-augsburg/commit/d78f906c68cfa7ecf6668a8f67a9db7d1575de55))
+- Add region dialog for Augsburg, Fernpass and Wilder Kaiser (T6) ([9bf25a3](https://github.com/attkins/angelkarte-augsburg/commit/9bf25a37d83e44dff0606a3b2d6d1006c9d176c5))
+- Use Austrian public holidays for sales points in Tyrol ([144b216](https://github.com/attkins/angelkarte-augsburg/commit/144b216bd4e902e19702e681f8eb9ffe3d003bb2))
+
+### Documentation
+
+- Mark 0.7 and 0.8 as ready to release, decide on no password (T4) ([d04b5d3](https://github.com/attkins/angelkarte-augsburg/commit/d04b5d32c5db83c8f7d5a2cd11830b87b0409999))
+
+## 0.7.0 (2026-11-15)
+
+### Features
+
+- Support Austrian waters with restricted and prohibited access ([85ef172](https://github.com/attkins/angelkarte-augsburg/commit/85ef172ea0ba103eb85ee7a92a3147c7459d7ecc))
+- Filter waters where a ticket can still be bought today (F1) ([66083cf](https://github.com/attkins/angelkarte-augsburg/commit/66083cf2a1963860e9c9d806a9184cf568fdd72c))
+
+### Fixes
+
+- Read ISO dates as local days in formatDate ([9eeda53](https://github.com/attkins/angelkarte-augsburg/commit/9eeda5396b484206c72816e230aa31534161ab9b))
+
+### Documentation
+
+- Add roadmap with planned releases up to 1.0 ([dbe98e9](https://github.com/attkins/angelkarte-augsburg/commit/dbe98e91b0a67c7db429fff1a410d08e057dceca))
+
+### Build and maintenance
+
+- Run the unit tests before the build (C3) ([1e714e8](https://github.com/attkins/angelkarte-augsburg/commit/1e714e87b69f2d06c187b5f2450bc2ead08a642d))
+
 ## 0.6.0 (2026-11-14)
 
 ### Features
