@@ -142,6 +142,13 @@ const CREDITS: Credit[] = [
         bleibt auf deinem Gerät und wird nicht übertragen.
       </p>
 
+      <h3 class="sub-title">Offline-Speicher</h3>
+      <p>
+        Damit die Karte auch ohne Netz funktioniert, legt dein Browser die Seite, die Gewässerdaten und die zuletzt
+        angesehenen Kartenausschnitte in seinem Zwischenspeicher ab. Das bleibt auf deinem Gerät und wird nicht
+        übertragen. Du kannst es jederzeit über die Website-Daten in den Einstellungen deines Browsers löschen.
+      </p>
+
       <h3 class="sub-title">Links zu anderen Seiten</h3>
       <p>
         Der Button „Route“ öffnet Google Maps, außerdem gibt es Links zu den Seiten der Vereine und zu hejfish. Dort

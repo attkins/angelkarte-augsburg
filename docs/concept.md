@@ -91,6 +91,18 @@ See [data-schema.md](data-schema.md) for the detailed schema.
 
 This replaces the earlier plan of a static site without build step. The plain Leaflet prototype was migrated on 2026-11-13.
 
+## Offline use (decided 2026-11-16, F7)
+
+Anglers often stand at the water with bad reception, so the map should keep working there.
+
+- Hand-written service worker in `scripts/service-worker.js`, no extra dependency. The Vite plugin `scripts/lib/service-worker.mjs` fills in the file list and a version and writes `dist/sw.js`. `src/main.ts` registers it only in the build
+- On install it stores the app shell (page, hashed JS and CSS, the Latin fonts) and the three data files
+- Page and data are network first with a 4 second timeout, so a visitor online always gets the newest data and offline the last one seen
+- Hashed assets are cache first. Old app caches are deleted when a new version activates
+- Map tiles (CARTO and the Bavarian aerial images) are kept as they are viewed, up to 1500 tiles, the oldest go first. There is no download of whole regions, only what was looked at
+- The version changes with every change to the bundle or the data, so returning visitors get both
+- While the browser is offline a notice on top of the panel says that the data is from the last visit. The privacy note mentions the offline storage
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)

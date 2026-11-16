@@ -12,6 +12,7 @@ import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
 import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
+import { useOnline } from '@/composables/useOnline'
 import { useTheme } from '@/composables/useTheme'
 import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
@@ -20,6 +21,7 @@ import { formatLongDay, parseIsoDay } from '@/utils/time'
 
 useTheme()
 const { data, error } = useMapData()
+const online = useOnline()
 const filter = reactive(emptyFilter())
 
 // The URL hash is the single source of truth for what the panel shows.
@@ -152,6 +154,10 @@ watch(router.route, async () => {
       <div class="panel-body">
         <ImprintPage v-if="imprintOpen" @close="router.close" />
         <template v-else-if="data">
+          <p v-if="!online" class="plan-banner offline-banner" role="status">
+            <AppIcon name="info" :size="16" />
+            <span>Offline. Du siehst die Daten vom letzten Besuch, die Karte nur dort, wo Du sie schon angesehen hast.</span>
+          </p>
           <p v-if="planLabel" class="plan-banner" role="status">
             <AppIcon name="calendar" :size="16" />
             <span>Geplant für {{ planLabel }}</span>
@@ -339,6 +345,16 @@ watch(router.route, async () => {
   color: var(--text);
   font-size: 14px;
   font-weight: 500;
+}
+
+.offline-banner {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.offline-banner svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
 }
 
 .plan-banner button {

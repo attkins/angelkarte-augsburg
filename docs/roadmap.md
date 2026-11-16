@@ -90,7 +90,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F5 Share button (moved out of 0.7 on 2026-11-15, done 2026-11-16)
 - F8 Report an error (moved out of 0.7 on 2026-11-15, done 2026-11-16)
 - F6 Water level and temperature
-- F7 Offline use
+- F7 Offline use (done 2026-11-16)
 - F9 Parking and access points
 - D12 Maximum depth for the remaining lakes
 
