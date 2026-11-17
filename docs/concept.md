@@ -103,6 +103,10 @@ Anglers often stand at the water with bad reception, so the map should keep work
 - The version changes with every change to the bundle or the data, so returning visitors get both
 - While the browser is offline a notice on top of the panel says that the data is from the last visit. The privacy note mentions the offline storage
 
+## Data maintenance (decided 2026-11-17, T3)
+
+The data stays in the plain GeoJSON and JSON files. Almost all updates are research (club pages, hejfish, OSM) rather than typing, so an editor would not save much and would be one more thing to maintain. A spreadsheet as source was rejected for the same reason plus the extra format. Instead `docs/data-maintenance.md` holds the playbook and `npm run due` lists what to check next. Validator and tests guard the files.
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)

@@ -93,7 +93,7 @@ Done when no placeholder geometry is left and every water open to guests has a g
 Goal: a stable version with the new prices at the turn of the year.
 
 - D11 Check the 2027 prices of all clubs in January, switch Hintersee to guests with a member
-- T3 Decide and document how the data is maintained
+- T3 Decide and document how the data is maintained (done 2026-11-17, plain files plus `docs/data-maintenance.md` and `npm run due`)
 - Final pass over the acceptance criteria
 
 ### Acceptance criteria for 1.0

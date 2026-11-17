@@ -96,9 +96,11 @@ src/components/AccessBadge.vue, AppIcon.vue, ThemeToggle.vue  small building blo
 public/data/                    clubs.json, waters.geojson, sales-points.geojson
 scripts/validate-data.mjs       checks the data files (CLI)
 scripts/lib/validate-data.mjs   the actual checks, shared by the CLI and the tests
+scripts/due.mjs, lib/due.mjs    lists what in the data should be checked next (npm run due)
+scripts/service-worker.js       offline cache, written to dist/sw.js by scripts/lib/service-worker.mjs
 src/**/*.spec.ts                unit tests, next to the file they test
 tests/                          validator tests, data file tests and shared fixtures
-docs/                           concept, research and data schema
+docs/                           concept, roadmap, backlog, data schema and data maintenance
 ```
 
 ## How the app works
@@ -141,24 +143,19 @@ The deploy workflow runs `npm test` before the build, so a failing test stops th
 
 ## Editing data
 
-The schema is described in [docs/data-schema.md](docs/data-schema.md). The data files are in `public/data/` and are copied unchanged into the build, so they can be edited without touching the code.
-
-Geometry can be drawn on [geojson.io](https://geojson.io) or traced from OSM via [Overpass Turbo](https://overpass-turbo.eu). Paste the result into `public/data/waters.geojson` and set `geometryStatus` to `traced`.
-
-After every change run
+The data stays in plain files in `public/data/`, there is no editor (decided 2026-11-17). The schema is described in [docs/data-schema.md](docs/data-schema.md), the playbook for updates (sources, geometry from OSM, the yearly price check, wording) in [docs/data-maintenance.md](docs/data-maintenance.md). The files are copied unchanged into the build, so they can be edited without touching the code.
 
 ```sh
-npm run validate
+npm run due        # what should be checked next
+npm run validate   # schema and references, run after every change
 npm test
 ```
 
-The validator reports broken references (unknown club or water ids) as errors and placeholders or missing check dates as warnings.
+The validator reports broken references (unknown club or water ids) as errors and placeholders or stale check dates as warnings.
 
 ## Current state
 
-The data covers 12 clubs, 62 waters and 27 sales points from the research in `docs/research-clubs.md` (as of 2026-11-13).
-
-Lakes that exist in OpenStreetMap under their name use the OSM outline (`geometryStatus: traced`). River stretches are cut from the OSM river around the nearest village and are still marked as `placeholder`, because the real club boundaries are not known yet. A few waters without OSM match are small stand-in squares or lines. Sales point coordinates are geocoded from their address via Nominatim.
+The data covers 38 clubs, 115 waters and 46 sales points around Augsburg and in the Tyrolean regions Fernpass and Wilder Kaiser (as of 2026-11-17). `npm run due` shows what is still open, the larger gaps are listed in [docs/backlog.md](docs/backlog.md).
 
 ## Deployment
 
