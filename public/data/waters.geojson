@@ -11612,7 +11612,9 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 21,
+        "maxDepthSource": "https://wassertemperatur.org/?p=19770"
       },
       "geometry": {
         "type": "Polygon",
@@ -13107,7 +13109,9 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://fischereiverein-pillersee.at/karten-und-bestimmungen/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 7,
+        "maxDepthSource": "https://austria-forum.org/af/AustriaWiki/Pillersee"
       },
       "geometry": {
         "type": "Polygon",
@@ -15260,7 +15264,9 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://www.tiroler-fischereiverband.at/wp-content/uploads/2026/02/Info-fuer-Anlger-2026.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 76.5,
+        "maxDepthSource": "https://www.tirol.at/reisefuehrer/natur-gesundheit/badeseen/badegewaesser/a-landschaftsee-kampler-see"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18366,7 +18372,9 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://www.tiroler-fischereiverband.at/fischerei/fischen-in-tageslizenzgewaesser/",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 133,
+        "maxDepthSource": "https://austria-forum.org/af/AustriaWiki/Achensee"
       },
       "geometry": {
         "type": "Polygon",
@@ -21638,7 +21646,9 @@
         },
         "lastChecked": "2026-11-16",
         "source": "https://www.tannheimertal.com/de/fischwasser-haldensee-p2354",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 22,
+        "maxDepthSource": "https://www.wassertemperatur.org/?p=30780"
       },
       "geometry": {
         "type": "Polygon",
@@ -22374,7 +22384,9 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 57,
+        "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -23104,7 +23116,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 12.4,
+        "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -23625,7 +23639,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 10.3,
+        "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -24548,7 +24564,9 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 7,
+        "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
       },
       "geometry": {
         "type": "Polygon",
@@ -25798,7 +25816,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.tannheimertal.com/pdfs/prospekte/angeln-und-fischen_25.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 30,
+        "maxDepthSource": "https://www.tirol.tl/de/highlights/natur-landschaft/seen/vilsalpsee/"
       },
       "geometry": {
         "type": "Polygon",
@@ -26354,7 +26374,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.hotel.de/de/hotel/63070",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 17,
+        "maxDepthSource": "https://www.tirol.at/aktivitaeten/ausflugsziele/pois/fernsteinsee-1"
       },
       "geometry": {
         "type": "Polygon",
@@ -27483,7 +27505,9 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/neues-logo-fischen-angeln-im-pillerseetal-deutsch.pdf",
-        "geometryStatus": "traced"
+        "geometryStatus": "traced",
+        "maxDepth": 4,
+        "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasser/Gewaesseroekologie/30_Jahre_Tiroler_Seenmonitoring_Enbericht_Teil2_Rev3.pdf"
       },
       "geometry": {
         "type": "Polygon",

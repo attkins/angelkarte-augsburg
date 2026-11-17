@@ -77,8 +77,9 @@ function checkPrices(prices, label, errors) {
 /** The depth fields are optional, most waters have none. */
 function checkDepth(p, where, errors) {
   if (p.maxDepth !== undefined && p.maxDepth !== null) {
-    if (typeof p.maxDepth !== 'number' || !(p.maxDepth > 0 && p.maxDepth < 100)) {
-      errors.push(`${where}: maxDepth must be a number of metres between 0 and 100`)
+    // 300 m leaves room for the deepest Alpine lakes (Achensee 133 m) and catches typos like 1450.
+    if (typeof p.maxDepth !== 'number' || !(p.maxDepth > 0 && p.maxDepth < 300)) {
+      errors.push(`${where}: maxDepth must be a number of metres between 0 and 300`)
     } else if (!p.maxDepthSource) {
       errors.push(`${where}: maxDepth needs a maxDepthSource`)
     }

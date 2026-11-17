@@ -63,7 +63,8 @@ describe('validateData', () => {
     })
 
     it.each([
-      ['a depth that is not a number', { maxDepth: '5 m', maxDepthSource: 'https://example.org' }, 'maxDepth must be a number of metres between 0 and 100'],
+      ['a depth that is not a number', { maxDepth: '5 m', maxDepthSource: 'https://example.org' }, 'maxDepth must be a number of metres between 0 and 300'],
+      ['a depth that is too large', { maxDepth: 1450, maxDepthSource: 'https://example.org' }, 'maxDepth must be a number of metres between 0 and 300'],
       ['a depth without source', { maxDepth: 5 }, 'maxDepth needs a maxDepthSource'],
       ['a source that is no URL', { maxDepth: 5, maxDepthSource: 'Vereinsheft' }, 'maxDepthSource must be an https URL'],
       ['a depth map that is no https URL', { depthMapUrl: 'http://example.org' }, 'depthMapUrl must be an https URL'],
