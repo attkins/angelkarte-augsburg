@@ -2,6 +2,18 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.10.0 (2026-11-17)
+
+### Data
+
+- Add six waters south and west of Augsburg (D22) ([803e203](https://github.com/attkins/angelkarte-augsburg/commit/803e203f294620977b910d9958ebe7072e6f2173))
+- Add maximum depth for twelve Tyrolean lakes (D12) ([1427150](https://github.com/attkins/angelkarte-augsburg/commit/1427150f5de4716cae0588db0bb6edb1a01353ab))
+
+### Documentation
+
+- Add screebot cause it looks cool ([2807ce5](https://github.com/attkins/angelkarte-augsburg/commit/2807ce5ad573e3ab836e43ff32824eed42701a20))
+- Decide on plain data files with a maintenance playbook (T3) ([952aef8](https://github.com/attkins/angelkarte-augsburg/commit/952aef8de01f34f6ab374e9119468a278a0763e4))
+
 ## 0.9.0 (2026-11-16)
 
 ### Features
