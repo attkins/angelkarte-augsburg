@@ -229,5 +229,40 @@
     "shortName": "Stanglwirt",
     "website": "https://stanglwirt.com/en/sport/offer/fishing.html",
     "contact": "Concierge +43 5358 2000 902, concierge@stanglwirt.com, Kaiserweg 1, 6353 Going am Wilden Kaiser"
+  },
+  {
+    "id": "fv-ettringen",
+    "name": "Fischereiverein Ettringen e.V.",
+    "shortName": "FV Ettringen",
+    "website": "https://www.fischereiverein-ettringen-wertach.de",
+    "contact": "mayerreinhold1@t-online.de, 08249 961962"
+  },
+  {
+    "id": "fv-schwabmuenchen",
+    "name": "Fischereiverein Schwabmünchen e.V.",
+    "shortName": "FV Schwabmünchen",
+    "website": "https://www.fischereiverein-schwabmuenchen.de",
+    "contact": "erstervorstand@fischereiverein-schwabmuenchen.de, 0171 3733407"
+  },
+  {
+    "id": "lwfv-lechfeld",
+    "name": "Luftwaffenfischereiverein Lechfeld e.V.",
+    "shortName": "LwFV Lechfeld",
+    "website": "https://luftwaffenfischereiverein.de",
+    "contact": "Angerstr. 6, 86937 Scheuring, 08195 998427"
+  },
+  {
+    "id": "fv-kaufering",
+    "name": "Fischereiverein \"Petri Heil\" Kaufering e.V.",
+    "shortName": "Petri Heil Kaufering",
+    "website": "https://www.petriheil.org",
+    "contact": "vorstand@petriheil.org, 0163 3797733"
+  },
+  {
+    "id": "naf-lechfeld",
+    "name": "Natur- und Angelfreunde Lechfeld e.V.",
+    "shortName": "Angelfreunde Lechfeld",
+    "website": "https://angelfreunde-lechfeld.de",
+    "contact": "kontakt@naturfreunde-lechfeld.de"
   }
 ]

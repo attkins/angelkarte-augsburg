@@ -83,7 +83,7 @@ Goal: the open questions that research alone could not answer are settled. Mostl
 - D3 Walter-See: confirm with the club that guests may fish alone
 - D8 Real limits for the LFV waters Paar 3, Paar 4, Schmutter and Zusam
 - D21 Real limits for Neufnach, Kleine Mindel, St. Anglwirt and Fischteich Tannheimer Tal
-- D20 Guest prices for Achensee, Haldensee, Lech Höfen, Bloderteich and Fischteich Tannheimer Tal
+- D20 Guest prices for Achensee, Haldensee, Lech Höfen, Bloderteich and Fischteich Tannheimer Tal, plus Kaiserweiher, Lech Scheuring and Zusam Roppeltshausen once hejfish shows them in spring (D22)
 - D7 leftovers: species for Wertach Siebnach, Wertach and Rollweiher (Wehringen), Friedberger Ach Rehling, Rothsee, Fernsteinsee
 
 Done when no placeholder geometry is left and every water open to guests has a guest price.
@@ -103,7 +103,7 @@ Status on 2026-11-16 in brackets.
 - No water in the core region with `guestAccess: unknown` (met)
 - No placeholder geometry left (8 left: Paar 3, Paar 4, Schmutter, Zusam, Neufnach, Kleine Mindel, St. Anglwirt, Fischteich Tannheimer Tal)
 - `npm run validate` shows no warning for stale `lastChecked` dates (met)
-- Every water open to guests has a guest price and at least one sales point or online purchase (5 without guest price, all in Tyrol, see D20. Singold Großaitingen and Singold Wehringen have no sales point, but guests can only fish them with a member and get the ticket from a private person, which is accepted)
+- Every water open to guests has a guest price and at least one sales point or online purchase (8 without guest price, 5 in Tyrol plus Kaiserweiher, Lech Scheuring and Zusam Roppeltshausen, see D20. Singold Großaitingen and Singold Wehringen have no sales point, but guests can only fish them with a member and get the ticket from a private person, which is accepted)
 - Tests run in the deploy workflow (met)
 
 ## Later
@@ -113,7 +113,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F6 Water level and temperature
 - F9 Parking and access points
 - D12 Maximum depth for the remaining lakes
-- D22 Candidates found during research (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg, hejfish waters near Fischach)
+- D22 Remaining candidates (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg). The six hejfish waters near Fischach were added on 2026-11-16
 
 ## How releases are made
 

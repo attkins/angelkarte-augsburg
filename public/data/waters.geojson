@@ -42443,6 +42443,956 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15738-muehlbach-siebnach"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "fve-muehlbach-siebnach",
+        "name": "Mühlbach Siebnach",
+        "clubId": "fv-ettringen",
+        "guestAccess": "open",
+        "accessNote": "Rund 3,4 km von der oberen Grenze zwischen Ettringen und Siebnach (Waldrand rechts der Verbindungsstraße) bis unterhalb von Siebnach. Tageskarten sind nicht übertragbar.",
+        "prices": {
+          "guest": 17,
+          "deposit": 3,
+          "note": "Online über hejfish zuzüglich Gebühr."
+        },
+        "species": [
+          "Bachforelle",
+          "Regenbogenforelle",
+          "Saibling",
+          "Döbel",
+          "Äsche",
+          "Barbe"
+        ],
+        "rules": [
+          "Fliegenfischen und Spinnfischen",
+          "Kein Boot",
+          "Kein Nachtfischen"
+        ],
+        "source": "https://www.fischereiverein-ettringen-wertach.de/ausgabestellen-und-gew%C3%A4sserordnung"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.6607,
+            48.12148
+          ],
+          [
+            10.66042,
+            48.12168
+          ],
+          [
+            10.6585,
+            48.12208
+          ],
+          [
+            10.65817,
+            48.1223
+          ],
+          [
+            10.65784,
+            48.12262
+          ],
+          [
+            10.65779,
+            48.12279
+          ],
+          [
+            10.65786,
+            48.12319
+          ],
+          [
+            10.65773,
+            48.12395
+          ],
+          [
+            10.65832,
+            48.12544
+          ],
+          [
+            10.65944,
+            48.12713
+          ],
+          [
+            10.6611,
+            48.12999
+          ],
+          [
+            10.66155,
+            48.13036
+          ],
+          [
+            10.66167,
+            48.13146
+          ],
+          [
+            10.66274,
+            48.13236
+          ],
+          [
+            10.66321,
+            48.13245
+          ],
+          [
+            10.66386,
+            48.13307
+          ],
+          [
+            10.66481,
+            48.13344
+          ],
+          [
+            10.66523,
+            48.13384
+          ],
+          [
+            10.66597,
+            48.13427
+          ],
+          [
+            10.66679,
+            48.13454
+          ],
+          [
+            10.66731,
+            48.13462
+          ],
+          [
+            10.67034,
+            48.13446
+          ],
+          [
+            10.67075,
+            48.13452
+          ],
+          [
+            10.671,
+            48.1346
+          ],
+          [
+            10.67194,
+            48.13529
+          ],
+          [
+            10.6726,
+            48.13558
+          ],
+          [
+            10.67486,
+            48.13633
+          ],
+          [
+            10.6756,
+            48.13666
+          ],
+          [
+            10.6765,
+            48.13722
+          ],
+          [
+            10.67748,
+            48.13816
+          ],
+          [
+            10.67806,
+            48.13888
+          ],
+          [
+            10.67842,
+            48.13946
+          ],
+          [
+            10.67887,
+            48.14066
+          ],
+          [
+            10.67893,
+            48.14198
+          ],
+          [
+            10.67945,
+            48.14239
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15739-stoeckleweiher-ettringen"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "fve-stoeckleweiher",
+        "name": "Stöckleweiher Ettringen",
+        "clubId": "fv-ettringen",
+        "guestAccess": "open",
+        "accessNote": "Waldweiher bei Ettringen. Mit dem Auto nur bis zum Waldrand am Ende der Teerstraße, nicht an den Weiher heranfahren. Tageskarten sind nicht übertragbar, online ist das Tageskontingent begrenzt.",
+        "prices": {
+          "guest": 15,
+          "deposit": 3,
+          "note": "Online über hejfish ab 18 € zuzüglich Gebühr."
+        },
+        "species": [
+          "Aal",
+          "Karpfen",
+          "Schleie",
+          "Hecht",
+          "Flussbarsch",
+          "Graskarpfen",
+          "Rotauge",
+          "Rotfeder",
+          "Brachse"
+        ],
+        "rules": [
+          "Kein Boot",
+          "Nachtfischen erlaubt",
+          "Fangmeldung erforderlich"
+        ],
+        "source": "https://www.fischereiverein-ettringen-wertach.de/ausgabestellen-und-gew%C3%A4sserordnung"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.67033,
+              48.0965
+            ],
+            [
+              10.6704,
+              48.0964
+            ],
+            [
+              10.67059,
+              48.09631
+            ],
+            [
+              10.67102,
+              48.09625
+            ],
+            [
+              10.6712,
+              48.09617
+            ],
+            [
+              10.67144,
+              48.09617
+            ],
+            [
+              10.67171,
+              48.09641
+            ],
+            [
+              10.67178,
+              48.09669
+            ],
+            [
+              10.6717,
+              48.09689
+            ],
+            [
+              10.67143,
+              48.09699
+            ],
+            [
+              10.6712,
+              48.09699
+            ],
+            [
+              10.67079,
+              48.09699
+            ],
+            [
+              10.67061,
+              48.09689
+            ],
+            [
+              10.67043,
+              48.0967
+            ],
+            [
+              10.67033,
+              48.0965
+            ]
+          ],
+          [
+            [
+              10.67103,
+              48.09687
+            ],
+            [
+              10.67119,
+              48.09693
+            ],
+            [
+              10.67146,
+              48.0969
+            ],
+            [
+              10.67153,
+              48.09682
+            ],
+            [
+              10.67143,
+              48.09675
+            ],
+            [
+              10.67123,
+              48.0967
+            ],
+            [
+              10.67104,
+              48.09674
+            ],
+            [
+              10.67103,
+              48.09687
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "05-01",
+          "to": "09-06"
+        },
+        "seasonNote": "Laut hejfish 2026 vom 1. Mai bis 6. September, danach gesperrt.",
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15799-kaiserweiher"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "fvs-kaiserweiher",
+        "name": "Kaiserweiher (Salgen)",
+        "clubId": "fv-schwabmuenchen",
+        "guestAccess": "open",
+        "accessNote": "Rund 17 ha großer Baggersee zwischen Mörgen und Salgen. Gastkarten gibt es über hejfish, die Preise stehen dort erst zum Saisonstart. In der Badezeit bitte Rücksicht auf die Badegäste nehmen.",
+        "prices": null,
+        "species": [
+          "Karpfen",
+          "Hecht",
+          "Zander",
+          "Wels",
+          "Flussbarsch",
+          "Regenbogenforelle",
+          "Brachse",
+          "Seeforelle",
+          "Rotauge"
+        ],
+        "rules": [
+          "Boot erlaubt, Slipanlage in der Nordwestecke",
+          "Kein Nachtfischen",
+          "Campen, Zelten und offenes Feuer verboten"
+        ],
+        "source": "https://www.hejfish.com/d/15799-kaiserweiher"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.48502,
+              48.13959
+            ],
+            [
+              10.4864,
+              48.13961
+            ],
+            [
+              10.48789,
+              48.13963
+            ],
+            [
+              10.48845,
+              48.13988
+            ],
+            [
+              10.48953,
+              48.13987
+            ],
+            [
+              10.48988,
+              48.13996
+            ],
+            [
+              10.49003,
+              48.14048
+            ],
+            [
+              10.49031,
+              48.14068
+            ],
+            [
+              10.49051,
+              48.14074
+            ],
+            [
+              10.49055,
+              48.14111
+            ],
+            [
+              10.49079,
+              48.14107
+            ],
+            [
+              10.49121,
+              48.14157
+            ],
+            [
+              10.49124,
+              48.14204
+            ],
+            [
+              10.49193,
+              48.14292
+            ],
+            [
+              10.49159,
+              48.14381
+            ],
+            [
+              10.48508,
+              48.14263
+            ],
+            [
+              10.48557,
+              48.14169
+            ],
+            [
+              10.48555,
+              48.14082
+            ],
+            [
+              10.48502,
+              48.13959
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": null,
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [
+          "Fischruhe vom 15. Februar bis 30. April"
+        ],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/14895-lechstaustufe-20-bei-scheuring"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "lwfv-lech-scheuring",
+        "name": "Lech Staustufe 19 bis 20 (Scheuring)",
+        "clubId": "lwfv-lechfeld",
+        "guestAccess": "open",
+        "accessNote": "Vom Unterwasser der Staustufe 19 bis zur Staustufe 20 bei Scheuring, Flusskilometer 71,9 bis 67,8. Der Verein verkauft Tageskarten über hejfish, im Moment sind dort keine Karten freigeschaltet.",
+        "prices": null,
+        "species": [
+          "Aal",
+          "Rutte",
+          "Äsche",
+          "Bachforelle",
+          "Barbe",
+          "Brachse",
+          "Döbel",
+          "Flussbarsch",
+          "Hecht",
+          "Huchen",
+          "Karpfen",
+          "Ukelei",
+          "Regenbogenforelle",
+          "Rotauge"
+        ],
+        "rules": [
+          "Boot erlaubt, der Verein fährt zum Schutz der Brutvögel freiwillig erst ab August",
+          "Nachtfischen erlaubt",
+          "Schutzzonen laut Vereinskarte beachten"
+        ],
+        "source": "https://luftwaffenfischereiverein.de/gewaesser/"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.86652,
+            48.14845
+          ],
+          [
+            10.86758,
+            48.15004
+          ],
+          [
+            10.86963,
+            48.15166
+          ],
+          [
+            10.87118,
+            48.15258
+          ],
+          [
+            10.87356,
+            48.15373
+          ],
+          [
+            10.87548,
+            48.15511
+          ],
+          [
+            10.87674,
+            48.15643
+          ],
+          [
+            10.87803,
+            48.15903
+          ],
+          [
+            10.87889,
+            48.16011
+          ],
+          [
+            10.87981,
+            48.16108
+          ],
+          [
+            10.88157,
+            48.16243
+          ],
+          [
+            10.88205,
+            48.16317
+          ],
+          [
+            10.88251,
+            48.16412
+          ],
+          [
+            10.88265,
+            48.1649
+          ],
+          [
+            10.88236,
+            48.16583
+          ],
+          [
+            10.88124,
+            48.16747
+          ],
+          [
+            10.88101,
+            48.1692
+          ],
+          [
+            10.88129,
+            48.16988
+          ],
+          [
+            10.88296,
+            48.17152
+          ],
+          [
+            10.88315,
+            48.17225
+          ],
+          [
+            10.88296,
+            48.17336
+          ],
+          [
+            10.88086,
+            48.17717
+          ],
+          [
+            10.88066,
+            48.17788
+          ],
+          [
+            10.88091,
+            48.17858
+          ],
+          [
+            10.88252,
+            48.18035
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/15430-verlorener-bach-pestenacker"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "pfk-verlorener-bach",
+        "name": "Verlorener Bach Pestenacker",
+        "clubId": "fv-kaufering",
+        "guestAccess": "open",
+        "accessNote": "Rund 3 km lange Forellenstrecke bei Pestenacker mit zwei Mühlen und mehreren Wehren.",
+        "prices": {
+          "guest": 20,
+          "guestYouth": 20,
+          "member": 15,
+          "youth": 8,
+          "note": "Im Gastpreis sind 3 € hejfish-Gebühr enthalten."
+        },
+        "species": [
+          "Bachforelle"
+        ],
+        "rules": [
+          "Nur Kunstköder und Fliegenfischen",
+          "Kein Boot",
+          "Kein Nachtfischen"
+        ],
+        "warning": {
+          "text": "Der Bach ist mit PFC belastet. Laut Landratsamt Landsberg sind die Fische nicht für dauerhaften Verzehr geeignet, der Verein rät generell davon ab.",
+          "url": "https://www.landkreis-landsberg.de/infos-pfc-schaden-fliegerhorst-penzing/"
+        },
+        "source": "https://www.petriheil.org/preise/"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.94051,
+            48.13762
+          ],
+          [
+            10.94052,
+            48.13844
+          ],
+          [
+            10.94035,
+            48.1389
+          ],
+          [
+            10.93865,
+            48.14109
+          ],
+          [
+            10.93874,
+            48.14152
+          ],
+          [
+            10.9399,
+            48.14324
+          ],
+          [
+            10.94047,
+            48.14454
+          ],
+          [
+            10.93986,
+            48.14731
+          ],
+          [
+            10.93888,
+            48.14876
+          ],
+          [
+            10.93791,
+            48.14997
+          ],
+          [
+            10.93719,
+            48.15125
+          ],
+          [
+            10.93723,
+            48.15212
+          ],
+          [
+            10.93707,
+            48.15223
+          ],
+          [
+            10.93711,
+            48.1523
+          ],
+          [
+            10.93677,
+            48.1527
+          ],
+          [
+            10.93605,
+            48.15298
+          ],
+          [
+            10.93465,
+            48.15389
+          ],
+          [
+            10.93357,
+            48.15443
+          ],
+          [
+            10.93314,
+            48.15479
+          ],
+          [
+            10.93237,
+            48.15577
+          ],
+          [
+            10.93214,
+            48.15636
+          ],
+          [
+            10.93188,
+            48.15831
+          ],
+          [
+            10.93098,
+            48.16037
+          ],
+          [
+            10.93106,
+            48.16095
+          ],
+          [
+            10.9317,
+            48.16205
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "season": {
+          "from": "03-16",
+          "to": "09-30"
+        },
+        "seasonNote": null,
+        "guestPeriod": null,
+        "closedSeasons": [],
+        "onlinePurchase": {
+          "provider": "hejfish",
+          "url": "https://www.hejfish.com/d/16110-zusam-bei-roppeltshausen"
+        },
+        "lastChecked": "2026-11-16",
+        "geometryStatus": "traced",
+        "id": "naf-zusam-roppeltshausen",
+        "name": "Zusam bei Roppeltshausen",
+        "clubId": "naf-lechfeld",
+        "guestAccess": "open",
+        "accessNote": "Forellenstrecke zwischen Muttershofen und Memmenhausen, 1,1 km. Karten nur über hejfish, im Moment nicht freigeschaltet, die Preise stehen dort erst zum Saisonstart.",
+        "prices": null,
+        "species": [
+          "Bachforelle",
+          "Weißfische"
+        ],
+        "rules": [
+          "Kein Boot",
+          "Kein Nachtfischen"
+        ],
+        "source": "https://angelfreunde-lechfeld.de/gewasserstrecke-zusam"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.51603,
+            48.2605
+          ],
+          [
+            10.516,
+            48.2607
+          ],
+          [
+            10.51568,
+            48.2608
+          ],
+          [
+            10.51572,
+            48.26111
+          ],
+          [
+            10.5154,
+            48.26114
+          ],
+          [
+            10.51532,
+            48.2612
+          ],
+          [
+            10.5152,
+            48.2615
+          ],
+          [
+            10.51503,
+            48.26164
+          ],
+          [
+            10.51499,
+            48.26186
+          ],
+          [
+            10.5152,
+            48.262
+          ],
+          [
+            10.51496,
+            48.26234
+          ],
+          [
+            10.51547,
+            48.26254
+          ],
+          [
+            10.51549,
+            48.26266
+          ],
+          [
+            10.51527,
+            48.26279
+          ],
+          [
+            10.51526,
+            48.26287
+          ],
+          [
+            10.51562,
+            48.2631
+          ],
+          [
+            10.51576,
+            48.26343
+          ],
+          [
+            10.51595,
+            48.26345
+          ],
+          [
+            10.51608,
+            48.26353
+          ],
+          [
+            10.51622,
+            48.26347
+          ],
+          [
+            10.51634,
+            48.26373
+          ],
+          [
+            10.51617,
+            48.26378
+          ],
+          [
+            10.51619,
+            48.26388
+          ],
+          [
+            10.51645,
+            48.26402
+          ],
+          [
+            10.51666,
+            48.26395
+          ],
+          [
+            10.51674,
+            48.26408
+          ],
+          [
+            10.51652,
+            48.2643
+          ],
+          [
+            10.51691,
+            48.26442
+          ],
+          [
+            10.51698,
+            48.26459
+          ],
+          [
+            10.51703,
+            48.26506
+          ],
+          [
+            10.51693,
+            48.26515
+          ],
+          [
+            10.51694,
+            48.26534
+          ],
+          [
+            10.51679,
+            48.26551
+          ],
+          [
+            10.5166,
+            48.266
+          ],
+          [
+            10.51616,
+            48.26619
+          ],
+          [
+            10.516,
+            48.26643
+          ],
+          [
+            10.51585,
+            48.26694
+          ],
+          [
+            10.5158,
+            48.26727
+          ],
+          [
+            10.51586,
+            48.26742
+          ],
+          [
+            10.51613,
+            48.2675
+          ]
+        ]
+      }
     }
   ]
 }

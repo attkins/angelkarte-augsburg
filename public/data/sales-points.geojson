@@ -1078,7 +1078,8 @@
           "fvk-hintersee",
           "fvk-kringweiher",
           "fvk-petriweiher",
-          "fvk-wertach-siebnach"
+          "fvk-wertach-siebnach",
+          "pfk-verlorener-bach"
         ],
         "coordinatesApproximate": false
       },
@@ -2076,6 +2077,229 @@
         "coordinates": [
           12.34378,
           47.51568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "beisszeit-neugablonz",
+        "name": "Beisszeit Neugablonz",
+        "address": "Neuer Markt 22, 87600 Kaufbeuren",
+        "phone": "08341 9344540",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th"
+            ],
+            "open": "16:00",
+            "close": "20:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "13:30",
+            "close": "20:00",
+            "months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "08:00",
+            "close": "16:00"
+          },
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th"
+            ],
+            "open": "16:00",
+            "close": "18:30",
+            "months": [
+              11,
+              12,
+              1,
+              2
+            ]
+          },
+          {
+            "days": [
+              "fr"
+            ],
+            "open": "13:30",
+            "close": "18:30",
+            "months": [
+              11,
+              12,
+              1,
+              2
+            ]
+          }
+        ],
+        "openingHoursNote": null,
+        "waterIds": [
+          "fve-muehlbach-siebnach",
+          "fve-stoeckleweiher"
+        ],
+        "coordinatesApproximate": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.63573,
+          47.91351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hoermanns-laedle-ettringen",
+        "name": "Hoermanns Laedle",
+        "address": "Augsburger Straße 4, 86833 Ettringen",
+        "phone": "040 593551111",
+        "openingHours": [
+          {
+            "days": [
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "08:00",
+            "close": "12:00"
+          },
+          {
+            "days": [
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "14:00",
+            "close": "18:00"
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "08:00",
+            "close": "12:30"
+          }
+        ],
+        "openingHoursNote": null,
+        "waterIds": [
+          "fve-muehlbach-siebnach",
+          "fve-stoeckleweiher"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.65964,
+          48.10723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "elektro-moerz-tuerkheim",
+        "name": "Elektro Mörz",
+        "address": "Maximilian-Philipp-Straße 28a, 86842 Türkheim",
+        "phone": "08245 1416",
+        "openingHours": [
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "08:30",
+            "close": "12:00"
+          },
+          {
+            "days": [
+              "mo",
+              "tu",
+              "we",
+              "th",
+              "fr"
+            ],
+            "open": "14:00",
+            "close": "18:00"
+          },
+          {
+            "days": [
+              "sa"
+            ],
+            "open": "08:30",
+            "close": "12:30"
+          }
+        ],
+        "openingHoursNote": null,
+        "waterIds": [
+          "fve-muehlbach-siebnach",
+          "fve-stoeckleweiher"
+        ],
+        "coordinatesApproximate": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.63986,
+          48.06041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ehrenreich-landsberg",
+        "name": "Ehrenreich Getränkecenter",
+        "address": "Lechwiesenstraße 5, 86899 Landsberg am Lech",
+        "phone": "08191 4284972",
+        "openingHours": null,
+        "openingHoursNote": "Öffnungszeiten nicht bekannt.",
+        "waterIds": [
+          "pfk-verlorener-bach"
+        ],
+        "coordinatesApproximate": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.85876,
+          48.06995
         ]
       }
     }
