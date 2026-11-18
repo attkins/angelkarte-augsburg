@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, useTemplateRef } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import RegionSilhouette from '@/components/RegionSilhouette.vue'
 import type { Region, RegionId } from '@/config'
 
 defineProps<{ regions: readonly Region[]; current: RegionId | null }>()
@@ -46,6 +47,7 @@ function onClick(event: MouseEvent) {
             :aria-current="region.id === current ? 'true' : undefined"
             @click="emit('select', region)"
           >
+            <RegionSilhouette :region="region.id" class="scenery" />
             <span class="text">
               <span class="name">{{ region.label }}</span>
               <span class="description">{{ region.description }}</span>
@@ -111,6 +113,9 @@ function onClick(event: MouseEvent) {
 }
 
 .region {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -126,6 +131,32 @@ function onClick(event: MouseEvent) {
 
 .region:hover {
   border-color: var(--accent);
+}
+
+/* The silhouette sits behind the text on the right and fades out towards the label. */
+.scenery {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 70%;
+  height: 100%;
+  color: var(--accent);
+  opacity: 0.2;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent, #000 45%);
+  transition: opacity 160ms ease;
+}
+
+.region:hover .scenery,
+.region.is-current .scenery {
+  opacity: 0.32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scenery {
+    transition: none;
+  }
 }
 
 .region.is-current {

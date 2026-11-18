@@ -18,6 +18,19 @@ describe('RegionDialog', () => {
     wrapper.unmount()
   })
 
+  it('shows a decorative silhouette in every region button', () => {
+    const wrapper = mountDialog()
+    const buttons = wrapper.findAll('.region')
+    expect(buttons).toHaveLength(REGIONS.length)
+    for (const button of buttons) {
+      const svg = button.find('svg.silhouette')
+      expect(svg.exists()).toBe(true)
+      expect(svg.attributes('aria-hidden')).toBe('true')
+      expect(svg.find('path').exists()).toBe(true)
+    }
+    wrapper.unmount()
+  })
+
   it('marks the current region only', () => {
     const wrapper = mountDialog('fernpass')
     const current = wrapper.findAll('.region[aria-current="true"]')
