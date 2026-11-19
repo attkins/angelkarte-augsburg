@@ -7,6 +7,7 @@ The schema is described in [data-schema.md](data-schema.md). What is still open 
 ## The loop
 
 1. Run `npm run due`. It lists what is worth a look: price lists that start soon, waters open for guests without guest price or without a way to buy the ticket, unclear guest access, placeholder geometry, sales points without opening hours or with approximate coordinates, and the waters that were checked longest ago. `node scripts/due.mjs 30` shows the 30 oldest instead of 10.
+   Now and then, and always before the January round, also run `npm run links`. It checks every external link in the data (club websites, `source`, online purchase, depth sources, warning links) and lists the broken ones, the ones that only work through a redirect to another page, and the ones the server refuses to a script. A moved link usually means the club rebuilt its site, so the price list may have changed too. Refused links (HTTP 401, 403, 429) are often bot protection, open them in a browser before changing anything. `npm run links -- hejfish.com` checks only matching links, `--strict` ends with exit code 1 when a link is broken. Without network every link fails, the script then says so instead of listing them.
 2. Pick a club rather than a single water. Club pages and price lists usually cover all waters of a club at once.
 3. Check the sources (see below), change the files, set `lastChecked` to today on every water whose prices, rules or access you actually checked. Leave it alone when you only added a depth or fixed a typo.
 4. Run `npm run validate` and `npm test`. The validator reports broken references and wrong formats as errors, placeholders and stale dates as warnings.
@@ -16,6 +17,7 @@ The schema is described in [data-schema.md](data-schema.md). What is still open 
 
 Most clubs publish new prices at the turn of the year (see D11).
 
+- Start with `npm run links`, so dead price list links are found first.
 - Go through every club in `clubs.json` and look for the new price list.
 - A list that is known before it applies goes into `prices` with `validFrom`, the old one into `previousPrices`. The app switches on its own. Remove `previousPrices` once the validator says so.
 - Check seasons and guest periods as well, some clubs move them.

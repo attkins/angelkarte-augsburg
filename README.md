@@ -97,6 +97,8 @@ public/data/                    clubs.json, waters.geojson, sales-points.geojson
 scripts/validate-data.mjs       checks the data files (CLI)
 scripts/lib/validate-data.mjs   the actual checks, shared by the CLI and the tests
 scripts/due.mjs, lib/due.mjs    lists what in the data should be checked next (npm run due)
+scripts/check-links.mjs, lib/links.mjs  checks all external links in the data (npm run links)
+scripts/access-candidates.mjs, lib/access-candidates.mjs  OSM parking near a water (npm run access-candidates)
 scripts/service-worker.js       offline cache, written to dist/sw.js by scripts/lib/service-worker.mjs
 src/**/*.spec.ts                unit tests, next to the file they test
 tests/                          validator tests, data file tests and shared fixtures
@@ -147,6 +149,7 @@ The data stays in plain files in `public/data/`, there is no editor (decided 202
 
 ```sh
 npm run due        # what should be checked next
+npm run links      # broken or moved links to club pages and sources, needs network
 npm run validate   # schema and references, run after every change
 npm test
 ```

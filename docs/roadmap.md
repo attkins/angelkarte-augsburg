@@ -92,7 +92,7 @@ Done when no placeholder geometry is left and every water open to guests has a g
 
 Goal: a stable version with the new prices at the turn of the year.
 
-- D11 Check the 2027 prices of all clubs in January, switch Hintersee to guests with a member
+- D11 Check the 2027 prices of all clubs in January, switch Hintersee to guests with a member. Start with `npm run links`
 - T3 Decide and document how the data is maintained (done 2026-11-17, plain files plus `docs/data-maintenance.md` and `npm run due`)
 - Final pass over the acceptance criteria
 
@@ -121,7 +121,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F20 Legal requirements per region (added 2026-11-18)
 - F21 Favourites (added 2026-11-18, done 2026-11-19)
 - F22 Private notes or catch log (added 2026-11-18, open whether wanted)
-- F23 Link check for the external links in the data (added 2026-11-18)
+- F23 Link check for the external links in the data (added 2026-11-18, done 2026-11-19 as `npm run links`)
 - F24 Sort by guest price (added 2026-11-18)
 
 ## How releases are made
