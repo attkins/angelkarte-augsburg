@@ -283,6 +283,24 @@ Augsburger Angelcenter (Thomas Haase), Arberstr. 1, 86179 Augsburg, 0821 593602,
 - Neufnach (Landkreis Augsburg), season 16 Mar to 30 Sep (likely Staudenfischereiverein)
 - Weiher H5 (Reinhartshofer Weiher, Landkreis Augsburg)
 
+## Waters around Kissing – portal only (checked 2026-11-19)
+
+There are two lakes called Auensee. The FVA Auensee is OSM relation 71676, west of Lechstaustufe 22 in the municipality Prittriching (Landkreis Landsberg). The FVA calls it Königsbrunn, Alle Angeln "Auensee (Königsbrunn)". It is the one in our data as `fva-auensee`, which is correct. The second Auensee is OSM relation 147981 at Gut Lindenau in Kissing, east of the Lech.
+
+Fischergilde Kissing (Alle Angeln calls it "Fischergilde Kissing Baggersee Weitmann"), no website found. Alle Angeln lists these waters as members only:
+- Weitmannsee (OSM relation 5820097), also a bathing lake
+- Auensee (Kissing)
+- Lechfischersee, not in OSM under this name, location unknown. A review says the LFV used to have it
+
+Other lakes in Kissing on Alle Angeln, club unknown:
+- Bergersee (OSM way 25609007): guest tickets only with a member
+- Helenensee (OSM relation 273557, Gut Lindenau): a review calls it a club water
+- Wörschingsee (OSM way 25609008, next to the Bergersee): no ticket information
+- Mergenthauer See: private water
+- Paar at Kissing: no information
+
+FV Friedberg "Ach I (Lechauen/Auensee)" is the Friedberger Ach from Kissing to the Luitpoldbrücke in Friedberg, about 4 km. It does not include a lake.
+
 ## Takeaways for the data model
 
 - Ticket availability needs more than yes or no: "open to guests", "guests only with member", "members only", plus seasonal limits (e.g. Lech only 15 Jul to 31 Oct)

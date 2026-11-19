@@ -264,5 +264,12 @@
     "shortName": "Angelfreunde Lechfeld",
     "website": "https://angelfreunde-lechfeld.de",
     "contact": "kontakt@naturfreunde-lechfeld.de"
+  },
+  {
+    "id": "fg-kissing",
+    "name": "Fischergilde Kissing",
+    "shortName": "FG Kissing",
+    "website": null,
+    "contact": null
   }
 ]
