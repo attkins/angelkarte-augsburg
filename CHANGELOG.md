@@ -2,6 +2,26 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.11.0 (2026-11-19)
+
+### Features
+
+- Add landscape silhouettes to region buttons ([97ff5e2](https://github.com/attkins/angelkarte-augsburg/commit/97ff5e2d93f07fb1e5c33c61d216b3205253f8a9))
+- Show parking and access points of the selected water ([dbd3c44](https://github.com/attkins/angelkarte-augsburg/commit/dbd3c443c1f6e055c4543826f9a89e76a0826e93))
+- Show sunrise and sunset for the shown day ([bf47738](https://github.com/attkins/angelkarte-augsburg/commit/bf47738845ee721138f19796993f835865d661a6))
+- Star waters and filter by "Meine Gewässer" ([c1c1116](https://github.com/attkins/angelkarte-augsburg/commit/c1c11163e99482e4bc8a5c3c2debe99b7969cc9d))
+- Add npm run links to check external links in the data ([3704987](https://github.com/attkins/angelkarte-augsburg/commit/3704987edee18ad53333bab0887fc31418211129))
+
+### Data
+
+- Add OSM parking places for 31 lakes ([d45dcf2](https://github.com/attkins/angelkarte-augsburg/commit/d45dcf2c961d9d52d5797ace89d6362f56a0d40c))
+- Add parking from club pages and for Lech stretch 22/23 ([753d2a0](https://github.com/attkins/angelkarte-augsburg/commit/753d2a0068a326b05cdc30822497b2efb44afb4b))
+
+### Documentation
+
+- Add feature ideas F17 to F24 ([100702b](https://github.com/attkins/angelkarte-augsburg/commit/100702b0dfd2d66caf95808150f236680b7abe41))
+- Add release 0.11, move club answers to 0.12 ([863c723](https://github.com/attkins/angelkarte-augsburg/commit/863c72376472051a8b13c99660b5f54d47ee9473))
+
 ## 0.10.0 (2026-11-17)
 
 ### Data
