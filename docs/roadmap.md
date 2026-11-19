@@ -123,6 +123,12 @@ Goal: a stable version with the new prices at the turn of the year.
 
 - D11 Check the 2027 prices of all clubs in January, switch Hintersee to guests with a member. Start with `npm run links`
 - T3 Decide and document how the data is maintained (done 2026-11-17, plain files plus `docs/data-maintenance.md` and `npm run due`)
+- F25 Installable app (manifest, icons, favicon)
+- T7 Test on real phones (iOS Safari, Android Chrome)
+- T8 Smoke tests against the real page in CI
+- T9 Accessibility check
+- F26 Planned day in the share link
+- F27 Short explanation on the first visit
 - Final pass over the acceptance criteria
 
 ### Acceptance criteria for 1.0
@@ -134,6 +140,8 @@ Status on 2026-11-16 in brackets.
 - `npm run validate` shows no warning for stale `lastChecked` dates (met)
 - Every water open to guests has a guest price and at least one sales point or online purchase (8 without guest price, 5 in Tyrol plus Kaiserweiher, Lech Scheuring and Zusam Roppeltshausen, see D20. Singold Großaitingen and Singold Wehringen have no sales point, but guests can only fish them with a member and get the ticket from a private person, which is accepted)
 - Tests run in the deploy workflow (met)
+
+Open decision (2026-11-19): the placeholder and guest price criteria depend on answers from the clubs (0.13). Either 1.0 waits for them, or the criteria change to "the app shows the known gaps openly" (placeholder note and "Preise noch nicht erfasst" are there already), so they no longer hold back 1.0. Decide in December depending on how many answers came in.
 
 ## Later
 
@@ -152,6 +160,16 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F22 Private notes or catch log (added 2026-11-18, open whether wanted)
 - F23 Link check for the external links in the data (added 2026-11-18, done 2026-11-19 as `npm run links`)
 - F24 Sort by guest price (added 2026-11-18, done 2026-11-19)
+- F28 Weather for the shown day (Open-Meteo, to be checked)
+- F29 Moon phase
+- F30 Calendar reminder as `.ics`
+- F31 Structured rules and filters (night fishing, boat, bait)
+- F32 Weekly and annual tickets
+- F33 Show changes in the data
+- F34 Water names on the map
+- F35 Place search
+- F36 Print view
+- T10 Weekly GitHub Action for links and due checks
 
 ## How releases are made
 

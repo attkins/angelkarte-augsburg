@@ -148,6 +148,13 @@ Friends who fish in Tyrol for the first time need to know that a day ticket alon
 - With a fish species chosen in the filter, the list marks the waters where it is protected on the shown day ("Hecht geschont bis 30.4.") and the chip "Nur ohne Schonzeit" leaves them out. A group like "Forelle" counts as protected only when every trout species of the water is
 - Not built: the Bavarian district rules outside Swabia and Upper Bavaria
 
+## Out of scope (decided 2026-11-19)
+
+The map stays a static site without backend and without accounts, so it needs almost no upkeep besides the data.
+
+- No shared catch log and no favourites synced between devices, both would need accounts and a backend
+- No automated reading of prices from hejfish or other shops, that touches their terms of use. Prices come from the club pages and price lists as before
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)
