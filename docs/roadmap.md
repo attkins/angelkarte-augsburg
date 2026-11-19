@@ -12,14 +12,18 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 |---------|-------|--------|--------|
 | 0.7 | Ready for friends | week of 2026-11-16 | released 2026-11-16 |
 | 0.8 | Austria | end of November 2026 | released 2026-11-16 |
-| 0.9 | Core region, more waters and planning | November 2026 | ready to release |
-| 0.10 | Answers from the clubs | end of December 2026 | planned |
+| 0.9 | Core region, more waters and planning | November 2026 | released 2026-11-16 |
+| 0.10 | More waters and depths (D22, D12) | | released 2026-11-17 |
+| 0.11 | At the water | November 2026 | ready to release |
+| 0.12 | Answers from the clubs | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
 | later | Ideas without a date | | |
 
-Already released: 0.1.0 to 0.8.0, see [CHANGELOG.md](../CHANGELOG.md).
+Already released: 0.1.0 to 0.10.0, see [CHANGELOG.md](../CHANGELOG.md).
 
 Replanned on 2026-11-16: the old 0.9 (core region) and 0.10 (more waters) were done except for items that need a phone call or an answer from a club. Everything finished goes out as 0.9, together with F2, F5, F7 and F8 from "Later". The new 0.10 collects the open questions to the clubs.
+
+Renumbered on 2026-11-19: 0.10.0 went out on 2026-11-17 with the D22 waters and the Tyrolean depths, not with the answers from the clubs. Those move to 0.12. 0.11 collects the features of 2026-11-18 and 2026-11-19.
 
 ## 0.7 Ready for friends
 
@@ -75,7 +79,20 @@ Features:
 
 Release with `npm run release:minor`.
 
-## 0.10 Answers from the clubs
+## 0.11 At the water
+
+Goal: the map helps on the way to the water and at the water, not only with the ticket.
+
+- F9 Parking and access points, shown while a water is selected, with route links (done)
+- D23 Parking for 31 lakes from OSM and for eight more waters from the club pages and Thomas (in progress, rest needs local knowledge)
+- F17 Sunrise and sunset for the shown day (done, allowed fishing hours left out)
+- F21 Favourites with the chip "Meine Gewässer" (done)
+- F23 `npm run links` to check the external links (done)
+- Landscape silhouettes on the region buttons (done)
+
+Release with `npm run release:minor`.
+
+## 0.12 Answers from the clubs
 
 Goal: the open questions that research alone could not answer are settled. Mostly phone calls and mails.
 
