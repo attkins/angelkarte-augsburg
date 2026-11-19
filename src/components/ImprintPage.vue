@@ -136,10 +136,11 @@ const CREDITS: Credit[] = [
         berechnen, und weder gespeichert noch übertragen.
       </p>
 
-      <h3 class="sub-title">Gespeicherte Einstellung</h3>
+      <h3 class="sub-title">Gespeicherte Einstellungen</h3>
       <p>
-        Wenn du zwischen hellem und dunklem Design wechselst, merkt sich dein Browser die Wahl im lokalen Speicher. Sie
-        bleibt auf deinem Gerät und wird nicht übertragen.
+        Wenn du zwischen hellem und dunklem Design wechselst oder Gewässer mit dem Stern merkst, legt dein Browser das
+        im lokalen Speicher ab. Es bleibt auf deinem Gerät und wird nicht übertragen. Auf einem anderen Gerät oder in
+        einem anderen Browser sind deine gemerkten Gewässer deshalb nicht zu sehen.
       </p>
 
       <h3 class="sub-title">Offline-Speicher</h3>

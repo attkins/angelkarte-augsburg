@@ -76,6 +76,8 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
       <path d="M3 21h18" /><path d="M5 21V11M19 21V11" />
       <path d="M3 8l2-5h14l2 5c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3S3 9.7 3 8z" />
     </template>
+    <template v-else-if="name === 'star'"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" /></template>
+    <template v-else-if="name === 'star-filled'"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="currentColor" /></template>
     <template v-else-if="name === 'sun'">
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />

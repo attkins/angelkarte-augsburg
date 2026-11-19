@@ -119,7 +119,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F18 No-fishing zones inside a water (added 2026-11-18)
 - F19 "Was darf ich heute fangen?", closed seasons and minimum sizes per species (added 2026-11-18)
 - F20 Legal requirements per region (added 2026-11-18)
-- F21 Favourites (added 2026-11-18)
+- F21 Favourites (added 2026-11-18, done 2026-11-19)
 - F22 Private notes or catch log (added 2026-11-18, open whether wanted)
 - F23 Link check for the external links in the data (added 2026-11-18)
 - F24 Sort by guest price (added 2026-11-18)

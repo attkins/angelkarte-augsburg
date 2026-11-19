@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import AppIcon from '@/components/AppIcon.vue'
+import { useFavourites } from '@/composables/useFavourites'
 import { useLocation } from '@/composables/useLocation'
 import { DEFAULT_ORIGIN, GUEST_ACCESS } from '@/config'
 import type { MapData } from '@/types'
@@ -17,6 +19,7 @@ const emit = defineEmits<{ selectWater: [id: string] }>()
 
 const sortBy = ref<'name' | 'distance'>('name')
 const location = useLocation()
+const { isFavourite } = useFavourites()
 
 /** Own location once known, otherwise the configured start. */
 const origin = computed(() =>
@@ -56,6 +59,7 @@ const waters = computed(() => {
         token: (GUEST_ACCESS[p.guestAccess] ?? GUEST_ACCESS.unknown).token,
         price: p.guestAccess === 'membersOnly' ? null : typeof guest === 'number' ? formatPrice(guest) : null,
         km: from ? distanceToWaterKm(from, water.geometry) : null,
+        favourite: isFavourite(p.id),
       }
     })
     .sort((a, b) =>
@@ -97,8 +101,12 @@ const waters = computed(() => {
         <button type="button" class="row" @click="emit('selectWater', water.id)">
           <span class="dot" :style="{ background: `var(--${water.token})` }" />
           <span class="name">
-            {{ water.name }}
-            <span v-if="water.clubName || water.distance" class="club">
+            <span
+              >{{ water.name
+              }}<span v-if="water.favourite" class="favourite-mark"
+                ><AppIcon name="star-filled" :size="13" /><span class="visually-hidden">, gemerkt</span></span
+              ></span
+            >{{ ' ' }}<span v-if="water.clubName || water.distance" class="club">
               {{ [water.clubName, water.distance].filter(Boolean).join(' · ') }}
             </span>
           </span>
@@ -110,6 +118,13 @@ const waters = computed(() => {
 </template>
 
 <style scoped>
+.favourite-mark {
+  display: inline-flex;
+  margin-left: 4px;
+  vertical-align: -1px;
+  color: var(--accent);
+}
+
 .water-list {
   display: flex;
   flex-direction: column;

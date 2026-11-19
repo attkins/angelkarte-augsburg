@@ -2,6 +2,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import WaterList from '@/components/WaterList.vue'
+import { resetFavouritesForTests, useFavourites } from '@/composables/useFavourites'
 import { resetLocationForTests } from '@/composables/useLocation'
 import type { WaterFeature } from '@/types'
 import { makeClub, makeMapData, makeSalesPoint, makeWater } from '../../tests/fixtures'
@@ -16,6 +17,20 @@ describe('WaterList', () => {
     ],
     [makeSalesPoint({ waterIds: [] }), makeSalesPoint({ id: 'shop-b', waterIds: [] })],
   )
+
+  it('marks starred waters with a star', () => {
+    window.localStorage.clear()
+    resetFavouritesForTests()
+    useFavourites().toggle('w-zusam')
+
+    const rows = mount(WaterList, { props: { data } }).findAll('.row')
+    const marked = rows.filter((r) => r.find('.favourite-mark').exists()).map((r) => r.find('.name').text())
+    expect(marked).toHaveLength(1)
+    expect(marked[0]).toContain('Zusam')
+    expect(marked[0]).toContain('gemerkt')
+    window.localStorage.clear()
+    resetFavouritesForTests()
+  })
 
   it('counts waters and sales points', () => {
     expect(mount(WaterList, { props: { data } }).find('p').text()).toContain('3 Gewässer und 2 Verkaufsstellen')

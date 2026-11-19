@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import { useFavourites } from '@/composables/useFavourites'
 import type { MapData } from '@/types'
 import { type FixedChip, isFilterActive, type WaterFilter } from '@/utils/filter'
 import { isoDay } from '@/utils/prices'
@@ -14,6 +15,11 @@ const planDay = defineModel<string | null>('planDay', { default: null })
 
 /** Today as ISO date, the earliest day that can be planned. */
 const today = isoDay(new Date())
+
+const { favourites } = useFavourites()
+
+/** "Meine Gewässer" only makes sense once something is starred, or while it is switched on. */
+const showFavourites = computed(() => favourites.value.size > 0 || props.filter.chips.has('favourites'))
 
 const CHIPS = computed<{ key: FixedChip; label: string }[]>(() => [
   { key: 'guests', label: 'Gäste willkommen' },
@@ -78,6 +84,16 @@ function reset() {
     </div>
 
     <div class="chips" role="group" aria-label="Filter">
+      <button
+        v-if="showFavourites"
+        type="button"
+        class="chip favourites-chip"
+        :class="{ 'is-active': props.filter.chips.has('favourites') }"
+        :aria-pressed="props.filter.chips.has('favourites')"
+        @click="toggleChip('favourites')"
+      >
+        <AppIcon name="star-filled" :size="13" />Meine Gewässer
+      </button>
       <button
         v-for="chip in CHIPS"
         :key="chip.key"
@@ -184,6 +200,16 @@ function reset() {
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.favourites-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.favourites-chip:not(.is-active) svg {
+  color: var(--accent);
 }
 
 .chip:hover {

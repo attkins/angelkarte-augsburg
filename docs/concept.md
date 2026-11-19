@@ -70,6 +70,7 @@ Seasons, guest periods and opening hours are stored in a structured form since 2
 - Layer toggle: waters (on by default), sales points (off by default)
 - Own zoom and location buttons, legend with icons
 - Filters as chips from the design: guests welcome, online purchase, season open, fly fishing, fish species (not built yet)
+- Favourites (since 2026-11-19): a star in the water detail, kept in local storage on the device, and the chip "Meine Gewässer" once something is starred. No sync between devices, that would need an account
 
 ## Data model
 

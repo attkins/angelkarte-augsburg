@@ -27,4 +27,6 @@ export type AppIconName =
   | 'route'
   | 'share'
   | 'shop'
+  | 'star'
+  | 'star-filled'
   | 'sun'

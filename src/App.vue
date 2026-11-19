@@ -10,6 +10,7 @@ import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
 import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
+import { useFavourites } from '@/composables/useFavourites'
 import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useOnline } from '@/composables/useOnline'
@@ -23,6 +24,7 @@ useTheme()
 const { data, error } = useMapData()
 const online = useOnline()
 const filter = reactive(emptyFilter())
+const { favourites } = useFavourites()
 
 // The URL hash is the single source of truth for what the panel shows.
 const router = useHashRoute()
@@ -49,7 +51,7 @@ const planLabel = computed(() => (planDate.value ? formatLongDay(planDate.value)
 /** Ids of the waters passing the filter, or null when no filter is active (all shown). */
 const matchingIds = computed(() =>
   data.value && isFilterActive(filter)
-    ? matchingWaterIds(data.value, filter, planDate.value ?? new Date(), planned.value)
+    ? matchingWaterIds(data.value, filter, planDate.value ?? new Date(), planned.value, favourites.value)
     : null,
 )
 /** Only used on small screens: whether the list is shown in the bottom sheet. */

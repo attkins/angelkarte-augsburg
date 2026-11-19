@@ -1,8 +1,9 @@
 // @vitest-environment jsdom
 import { mount } from '@vue/test-utils'
 import { reactive } from 'vue'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import WaterFilters from '@/components/WaterFilters.vue'
+import { resetFavouritesForTests, useFavourites } from '@/composables/useFavourites'
 import { emptyFilter } from '@/utils/filter'
 import { makeClub, makeMapData, makeWater } from '../../tests/fixtures'
 
@@ -13,6 +14,27 @@ function mountFilters(clubId: string | null) {
 }
 
 describe('WaterFilters', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    resetFavouritesForTests()
+  })
+
+  it('offers "Meine Gewässer" only once a water is starred, and toggles it', async () => {
+    expect(mountFilters(null).find('.favourites-chip').exists()).toBe(false)
+
+    useFavourites().toggle('water-a')
+    const filter = reactive(emptyFilter())
+    const wrapper = mount(WaterFilters, {
+      props: { data: makeMapData([makeClub()], [makeWater()]), filter, count: 1 },
+    })
+    const chip = wrapper.find('.favourites-chip')
+    expect(chip.text()).toBe('Meine Gewässer')
+
+    await chip.trigger('click')
+    expect(filter.chips.has('favourites')).toBe(true)
+    expect(chip.attributes('aria-pressed')).toBe('true')
+  })
+
   it('offers the club page only while a club is selected', () => {
     expect(mountFilters(null).find('.club-page').exists()).toBe(false)
     expect(mountFilters('fva').find('.club-page').exists()).toBe(true)

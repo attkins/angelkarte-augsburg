@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import AccessBadge from '@/components/AccessBadge.vue'
 import AppIcon from '@/components/AppIcon.vue'
+import FavouriteButton from '@/components/FavouriteButton.vue'
 import ShareButton from '@/components/ShareButton.vue'
 import { IMPRINT, PRICE_LABELS } from '@/config'
 import { routeHash } from '@/composables/useHashRoute'
@@ -156,6 +157,7 @@ const reportHref = computed(() => {
           <template v-else>Verein unbekannt</template>
         </p>
       </div>
+      <FavouriteButton :water-id="p.id" :name="p.name" />
       <ShareButton :route="{ kind: 'water', id: p.id }" :title="p.name" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />

@@ -6,7 +6,7 @@ import { availability, hoursOnDay, openingStatus } from '@/utils/time'
 // Filtering for the water list and the map. Pure functions, `now` is a parameter so it is testable.
 
 /** Fixed chips from the design. Club and fish species are separate selects. */
-export type FixedChip = 'guests' | 'online' | 'seasonOpen' | 'ticketToday' | 'flyFishing'
+export type FixedChip = 'favourites' | 'guests' | 'online' | 'seasonOpen' | 'ticketToday' | 'flyFishing'
 
 export interface WaterFilter {
   /** Free text, matched against water and club name. */
@@ -50,7 +50,14 @@ export function canGetTicketToday(water: WaterFeature, data: MapData, now: Date,
   })
 }
 
-function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: Date, planned: boolean): boolean {
+function matches(
+  water: WaterFeature,
+  data: MapData,
+  filter: WaterFilter,
+  now: Date,
+  planned: boolean,
+  favourites: ReadonlySet<string>,
+): boolean {
   const p = water.properties
 
   if (filter.clubId && p.clubId !== filter.clubId) return false
@@ -64,6 +71,7 @@ function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: D
   }
 
   for (const chip of filter.chips) {
+    if (chip === 'favourites' && !favourites.has(p.id)) return false
     if (chip === 'guests' && p.guestAccess !== 'open') return false
     if (chip === 'online' && !p.onlinePurchase) return false
     if (chip === 'flyFishing' && !isFlyFishing(water)) return false
@@ -74,11 +82,20 @@ function matches(water: WaterFeature, data: MapData, filter: WaterFilter, now: D
   return true
 }
 
-/** Ids of the waters that pass the filter. `planned` means `now` is a planned day, not this moment. */
-export function matchingWaterIds(data: MapData, filter: WaterFilter, now: Date, planned = false): Set<string> {
+/**
+ * Ids of the waters that pass the filter. `planned` means `now` is a planned day, not this moment.
+ * `favourites` are the waters the user starred, used by the chip "Meine Gewässer".
+ */
+export function matchingWaterIds(
+  data: MapData,
+  filter: WaterFilter,
+  now: Date,
+  planned = false,
+  favourites: ReadonlySet<string> = new Set(),
+): Set<string> {
   const ids = new Set<string>()
   for (const water of data.waters.features) {
-    if (matches(water, data, filter, now, planned)) ids.add(water.properties.id)
+    if (matches(water, data, filter, now, planned, favourites)) ids.add(water.properties.id)
   }
   return ids
 }

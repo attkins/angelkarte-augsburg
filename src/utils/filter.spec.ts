@@ -80,6 +80,13 @@ describe('matchingWaterIds', () => {
     expect([...matchingWaterIds(data, f, NOW)]).toEqual(['open'])
   })
 
+  it('favourites chip keeps only starred waters', () => {
+    const data = build([water('a', {}), water('b', {}), water('c', {})])
+    const f = { ...emptyFilter(), chips: new Set(['favourites' as const]) }
+    expect([...matchingWaterIds(data, f, NOW, false, new Set(['c', 'a', 'gone']))]).toEqual(['a', 'c'])
+    expect([...matchingWaterIds(data, f, NOW)]).toEqual([])
+  })
+
   it('club filter and chips combine', () => {
     const clubs: Club[] = [
       { id: 'c1', name: 'One', website: null, contact: null },
