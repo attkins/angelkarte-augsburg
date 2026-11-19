@@ -2,6 +2,19 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.12.0 (2026-11-19)
+
+### Features
+
+- Show the licences needed in Bavaria and Tyrol ([26bb033](https://github.com/attkins/angelkarte-augsburg/commit/26bb033556c0a7a60ec7c71a406cb5191114a9bd))
+- Show legal closed seasons and minimum sizes ([98246d2](https://github.com/attkins/angelkarte-augsburg/commit/98246d2bdecf72ec4d2a3f4356c12dccd966ded7))
+- Mark and hide waters where the chosen species is protected ([d09d6f2](https://github.com/attkins/angelkarte-augsburg/commit/d09d6f28b74b3945f6638be49a91022c0311a14b))
+- Sort waters by guest price ([7f3d5c0](https://github.com/attkins/angelkarte-augsburg/commit/7f3d5c0cc3556bd071202591a4a95341f12d171a))
+
+### Data
+
+- Add Weitmannsee and Auensee Kissing (Fischergilde Kissing, members only) ([d1766dd](https://github.com/attkins/angelkarte-augsburg/commit/d1766dd42a5fa02fd38437eb5b04d5413babe87f))
+
 ## 0.11.0 (2026-11-19)
 
 ### Features
