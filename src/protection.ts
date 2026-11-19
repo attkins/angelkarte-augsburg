@@ -1,5 +1,6 @@
 import { legalRegionOf } from '@/legal'
-import type { DateRange, WaterFeature } from '@/types'
+import type { DateRange, MonthDay, WaterFeature } from '@/types'
+import { speciesGroup } from '@/utils/species'
 import { isInRange } from '@/utils/time'
 
 // Legal closed seasons and minimum sizes for the species in our data. Clubs may set stricter rules,
@@ -186,4 +187,39 @@ export function speciesProtection(water: WaterFeature, day: Date): SpeciesProtec
     if (!rule) return []
     return [{ name, rule, protectedNow: Boolean(rule.allYear || (rule.closed && isInRange(rule.closed, day))) }]
   })
+}
+
+/** Days from `day` to the next occurrence of `monthDay`, 0 when it is that day. */
+function daysUntil(monthDay: MonthDay, day: Date): number {
+  const [month, date] = monthDay.split('-').map(Number)
+  const start = new Date(day.getFullYear(), day.getMonth(), day.getDate())
+  let target = new Date(day.getFullYear(), month! - 1, date!)
+  if (target < start) target = new Date(day.getFullYear() + 1, month! - 1, date!)
+  return Math.round((target.valueOf() - start.valueOf()) / 86_400_000)
+}
+
+export interface GroupProtection {
+  /** Every species of the group at this water is protected on the day. */
+  protected: boolean
+  /** Last day of the closed season that ends first, null when every species is protected all year. */
+  until: MonthDay | null
+}
+
+/**
+ * Whether a species group of the filter (e.g. "Hecht" or "Forelle") is protected at a water on the day.
+ * Only when every listed species of the group has a rule and is protected, because then nothing of the
+ * group may be kept. A water that only lists a group name without rule ("Forelle") counts as not protected,
+ * the app cannot tell. Null when the water does not list the group at all.
+ */
+export function groupProtection(water: WaterFeature, group: string, day: Date): GroupProtection | null {
+  const names = water.properties.species.filter((name) => speciesGroup(name) === group)
+  if (!names.length) return null
+  const known = new Map(speciesProtection(water, day).map((s) => [s.name, s]))
+  const entries = names.map((name) => known.get(name))
+  if (entries.some((e) => !e || !e.protectedNow)) return { protected: false, until: null }
+  // The group can be fished again as soon as the first seasonal protection ends. Species protected all year never open.
+  const ends = entries.flatMap((e) => (e!.rule.closed && !e!.rule.allYear ? [e!.rule.closed.to] : []))
+  if (!ends.length) return { protected: true, until: null }
+  const until = ends.reduce((a, b) => (daysUntil(b, day) < daysUntil(a, day) ? b : a))
+  return { protected: true, until }
 }

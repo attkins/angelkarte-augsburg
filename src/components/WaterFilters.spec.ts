@@ -62,6 +62,20 @@ describe('WaterFilters', () => {
     expect(filter.species).toBeNull()
   })
 
+  it('offers "Nur ohne Schonzeit" only with a species and resets it', async () => {
+    expect(mountFilters(null).find('.open-only-chip').exists()).toBe(false)
+
+    const filter = reactive({ ...emptyFilter(), species: 'Hecht' as string | null })
+    const wrapper = mount(WaterFilters, {
+      props: { data: makeMapData([makeClub()], [makeWater({ species: ['Hecht'] })]), filter, count: 1 },
+    })
+    await wrapper.find('.open-only-chip').trigger('click')
+    expect(filter.speciesOpenOnly).toBe(true)
+
+    await wrapper.find('.reset').trigger('click')
+    expect(filter.speciesOpenOnly).toBe(false)
+  })
+
   it('hides the species select when no water has species', () => {
     expect(mountFilters(null).find('.species-select').exists()).toBe(false)
   })

@@ -32,6 +32,15 @@ describe('WaterList', () => {
     resetFavouritesForTests()
   })
 
+  it('marks waters where the filtered species is protected on the day', () => {
+    const list = makeMapData(
+      [makeClub({ id: 'c1' })],
+      [makeWater({ id: 'h', name: 'Hechtsee', clubId: 'c1', species: ['Hecht'] }), makeWater({ id: 'k', name: 'Karpfenteich', clubId: 'c1', species: ['Karpfen'] })],
+    )
+    const rows = mount(WaterList, { props: { data: list, species: 'Hecht', day: new Date(2026, 2, 1) } }).findAll('.row')
+    expect(rows.map((r) => r.find('.closed-note').exists() ? r.find('.closed-note').text() : null)).toEqual(['Hecht geschont bis 30.4.', null])
+  })
+
   it('counts waters and sales points', () => {
     expect(mount(WaterList, { props: { data } }).find('p').text()).toContain('3 Gewässer und 2 Verkaufsstellen')
   })

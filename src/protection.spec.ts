@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { PROTECTION, protectionAreaOf, speciesProtection, UPPER_BAVARIA_WATERS } from '@/protection'
+import { groupProtection, PROTECTION, protectionAreaOf, speciesProtection, UPPER_BAVARIA_WATERS } from '@/protection'
 import { makeWater } from '../tests/fixtures'
 
 const day = (month: number, date: number) => new Date(2026, month - 1, date)
@@ -67,5 +67,38 @@ describe('PROTECTION data', () => {
 
   it('lists only Bavarian waters as Upper Bavaria', () => {
     for (const id of UPPER_BAVARIA_WATERS) expect(id.startsWith('at-')).toBe(false)
+  })
+})
+
+describe('groupProtection', () => {
+  it('returns null when the water does not list the group', () => {
+    expect(groupProtection(makeWater({ species: ['Karpfen'] }), 'Hecht', day(3, 1))).toBeNull()
+  })
+
+  it('reports a single protected species with the end of its season', () => {
+    expect(groupProtection(makeWater({ species: ['Hecht'] }), 'Hecht', day(3, 1))).toEqual({ protected: true, until: '04-30' })
+    expect(groupProtection(makeWater({ species: ['Hecht'] }), 'Hecht', day(5, 1))).toEqual({ protected: false, until: null })
+  })
+
+  it('counts a group as protected only when every species of it is', () => {
+    const water = makeWater({ species: ['Bachforelle', 'Regenbogenforelle'] })
+    // 1 March: both closed in Bavaria, the brown trout and the rainbow trout season both end on 15 March.
+    expect(groupProtection(water, 'Forelle', day(3, 1))).toEqual({ protected: true, until: '03-15' })
+    // 1 November: only the brown trout is closed, rainbow trout may be fished.
+    expect(groupProtection(water, 'Forelle', day(11, 1))).toEqual({ protected: false, until: null })
+  })
+
+  it('picks the season that ends first, over New Year as well', () => {
+    const water = makeWater({ id: 'at-see', species: ['Bachforelle', 'Seeforelle'] })
+    // 15 December in Tyrol: brown trout until 28.2., lake trout until 31.12.
+    expect(groupProtection(water, 'Forelle', day(12, 15))).toEqual({ protected: true, until: '12-31' })
+  })
+
+  it('cannot judge a group name without rule', () => {
+    expect(groupProtection(makeWater({ species: ['Forelle'] }), 'Forelle', day(12, 24))).toEqual({ protected: false, until: null })
+  })
+
+  it('has no end for species protected all year', () => {
+    expect(groupProtection(makeWater({ species: ['Karausche'] }), 'Karausche', day(7, 1))).toEqual({ protected: true, until: null })
   })
 })

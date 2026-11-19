@@ -6,7 +6,9 @@ import { useLocation } from '@/composables/useLocation'
 import { DEFAULT_ORIGIN, GUEST_ACCESS } from '@/config'
 import type { MapData } from '@/types'
 import { distanceToWaterKm, formatDistance } from '@/utils/distance'
+import { groupProtection } from '@/protection'
 import { formatPrice } from '@/utils/format'
+import { formatMonthDay } from '@/utils/time'
 import { guestPriceOn } from '@/utils/prices'
 
 const props = defineProps<{
@@ -14,6 +16,8 @@ const props = defineProps<{
   matchingIds?: Set<string> | null
   /** Day the prices are shown for, today when missing. */
   day?: Date
+  /** Species group of the filter, to mark waters where it is protected on the day. */
+  species?: string | null
 }>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
 
@@ -43,6 +47,14 @@ function sortByDistance() {
   location.request()
 }
 
+/** "Hecht geschont bis 30.4." when the filtered species is protected at this water on the day. */
+function closedNote(water: (typeof props.data.waters.features)[number], day: Date): string | null {
+  if (!props.species) return null
+  const state = groupProtection(water, props.species, day)
+  if (!state?.protected) return null
+  return state.until ? `${props.species} geschont bis ${formatMonthDay(state.until)}` : `${props.species} ganzjährig geschont`
+}
+
 const waters = computed(() => {
   const from = origin.value
   const today = props.day ?? new Date()
@@ -60,6 +72,7 @@ const waters = computed(() => {
         price: p.guestAccess === 'membersOnly' ? null : typeof guest === 'number' ? formatPrice(guest) : null,
         km: from ? distanceToWaterKm(from, water.geometry) : null,
         favourite: isFavourite(p.id),
+        closedNote: closedNote(water, today),
       }
     })
     .sort((a, b) =>
@@ -109,6 +122,7 @@ const waters = computed(() => {
             >{{ ' ' }}<span v-if="water.clubName || water.distance" class="club">
               {{ [water.clubName, water.distance].filter(Boolean).join(' · ') }}
             </span>
+            <span v-if="water.closedNote" class="closed-note">{{ water.closedNote }}</span>
           </span>
           <span v-if="water.price" class="price">{{ water.price }}</span>
         </button>
@@ -118,6 +132,12 @@ const waters = computed(() => {
 </template>
 
 <style scoped>
+.closed-note {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--closed-text);
+}
+
 .favourite-mark {
   display: inline-flex;
   margin-left: 4px;

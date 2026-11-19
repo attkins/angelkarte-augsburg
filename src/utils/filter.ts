@@ -1,3 +1,4 @@
+import { groupProtection } from '@/protection'
 import type { MapData, WaterFeature } from '@/types'
 import { holidayOptions } from '@/utils/holidays'
 import { hasSpecies } from '@/utils/species'
@@ -17,10 +18,12 @@ export interface WaterFilter {
   clubId: string | null
   /** Active fish species as offered by `speciesOptions`, or null for all species. */
   species: string | null
+  /** With a species: leave out waters where it is protected by law on the day. */
+  speciesOpenOnly: boolean
 }
 
 export function emptyFilter(): WaterFilter {
-  return { search: '', chips: new Set(), clubId: null, species: null }
+  return { search: '', chips: new Set(), clubId: null, species: null, speciesOpenOnly: false }
 }
 
 export function isFilterActive(filter: WaterFilter): boolean {
@@ -62,6 +65,7 @@ function matches(
 
   if (filter.clubId && p.clubId !== filter.clubId) return false
   if (filter.species && !hasSpecies(water, filter.species)) return false
+  if (filter.species && filter.speciesOpenOnly && groupProtection(water, filter.species, now)?.protected) return false
 
   const search = filter.search.trim().toLowerCase()
   if (search) {

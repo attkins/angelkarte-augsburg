@@ -145,7 +145,8 @@ Friends who fish in Tyrol for the first time need to know that a day ticket alon
 - The area follows the water: `at-` ids are Tyrol, six waters in the Landkreise Landsberg and Neuburg-Schrobenhausen are Upper Bavaria (looked up in OSM), all others Swabia
 - The species chips of a water mark the ones protected on the shown day (today or the planned day), a sentence below names them with the end of the closed season. A collapsible table lists all rules with sources and check date
 - Group names in the data (Forelle, Saibling, Weißfische) get no rule. A data test fails for any other species name without a rule, so new names are noticed
-- Not built: hiding waters in the species filter when the chosen species is protected, and the Bavarian district rules outside Swabia and Upper Bavaria
+- With a fish species chosen in the filter, the list marks the waters where it is protected on the shown day ("Hecht geschont bis 30.4.") and the chip "Nur ohne Schonzeit" leaves them out. A group like "Forelle" counts as protected only when every trout species of the water is
+- Not built: the Bavarian district rules outside Swabia and Upper Bavaria
 
 ## Open questions
 

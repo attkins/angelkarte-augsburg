@@ -206,7 +206,13 @@ watch(router.route, async () => {
               :count="matchingIds ? matchingIds.size : data.waters.features.length"
               @select-club="selectClub"
             />
-            <WaterList :data="data" :matching-ids="matchingIds" :day="planDate" @select-water="selectWater" />
+            <WaterList
+              :data="data"
+              :matching-ids="matchingIds"
+              :day="planDate"
+              :species="filter.species"
+              @select-water="selectWater"
+            />
           </div>
         </template>
 

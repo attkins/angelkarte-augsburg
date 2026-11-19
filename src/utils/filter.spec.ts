@@ -110,6 +110,14 @@ describe('matchingWaterIds', () => {
     expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Döbel' }, NOW)]).toEqual(['b'])
   })
 
+  it('leaves out waters where the species is protected, only when asked to', () => {
+    const data = build([water('a', { species: ['Hecht'] }), water('b', { species: ['Hecht', 'Karpfen'] }), water('c', { species: ['Zander'] })])
+    const march = new Date(2026, 2, 1)
+    expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Hecht' }, march)]).toEqual(['a', 'b'])
+    expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Hecht', speciesOpenOnly: true }, march)]).toEqual([])
+    expect([...matchingWaterIds(data, { ...emptyFilter(), species: 'Hecht', speciesOpenOnly: true }, new Date(2026, 5, 1))]).toEqual(['a', 'b'])
+  })
+
   it('counts the species filter as active', () => {
     expect(isFilterActive({ ...emptyFilter(), species: 'Hecht' })).toBe(true)
   })

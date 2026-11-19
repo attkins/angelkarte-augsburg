@@ -58,6 +58,7 @@ function reset() {
   props.filter.chips.clear()
   props.filter.clubId = null
   props.filter.species = null
+  props.filter.speciesOpenOnly = false
 }
 </script>
 
@@ -139,6 +140,17 @@ function reset() {
       <span>{{ count }} Gewässer</span>
       <button type="button" class="reset" @click="reset">
         <AppIcon name="close" :size="14" :stroke-width="2" /> Filter zurücksetzen
+      </button>
+    </div>
+    <div v-if="props.filter.species" class="species-row">
+      <button
+        type="button"
+        class="chip open-only-chip"
+        :class="{ 'is-active': props.filter.speciesOpenOnly }"
+        :aria-pressed="props.filter.speciesOpenOnly"
+        @click="props.filter.speciesOpenOnly = !props.filter.speciesOpenOnly"
+      >
+        Nur ohne Schonzeit
       </button>
     </div>
     <p v-if="props.filter.species" class="species-hint">
@@ -249,6 +261,10 @@ function reset() {
   justify-content: space-between;
   font-size: 13px;
   color: var(--text-2);
+}
+
+.species-row {
+  display: flex;
 }
 
 .species-hint {
