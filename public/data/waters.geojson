@@ -36029,6 +36029,7 @@
         },
         "lastChecked": "2026-11-16",
         "source": "https://www.fischerverein-koessen.at/aufeldteich/",
+        "licenceExempt": true,
         "accessPoints": [
           {
             "type": "parking",

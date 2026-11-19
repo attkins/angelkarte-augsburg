@@ -214,6 +214,7 @@ export function validateData({ clubs, waters, salesPoints }, { now = new Date() 
     checkDepth(p, where, errors)
     checkWarning(p, where, errors)
     checkAccessPoints(feature, where, errors, warnings)
+    if (p.licenceExempt !== undefined && typeof p.licenceExempt !== 'boolean') errors.push(`${where}: licenceExempt must be true or false`)
   }
 
   const referencedWaterIds = new Set()

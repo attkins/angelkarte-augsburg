@@ -18,6 +18,7 @@ The schema is described in [data-schema.md](data-schema.md). What is still open 
 Most clubs publish new prices at the turn of the year (see D11).
 
 - Start with `npm run links`, so dead price list links are found first.
+- Check the licence rules in `src/legal.ts` against their sources (Fischereischein in Bavaria, Gastfischerkarte in Tyrol, its price) and set `checked` to the day of the check. The date is shown to the users.
 - Go through every club in `clubs.json` and look for the new price list.
 - A list that is known before it applies goes into `prices` with `validFrom`, the old one into `previousPrices`. The app switches on its own. Remove `previousPrices` once the validator says so.
 - Check seasons and guest periods as well, some clubs move them.

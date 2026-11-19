@@ -253,7 +253,7 @@ describe('WaterDetail', () => {
       }),
     )
 
-    const sections = wrapper.findAll('details')
+    const sections = wrapper.findAll('details:not(.legal)')
     expect(sections.map((s) => s.find('summary').text())).toEqual([
       'Regeln und Besonderheiten',
       'Schonzeiten und Mindestmaße',
@@ -270,7 +270,7 @@ describe('WaterDetail', () => {
     const water = makeWater()
     const wrapper = mountDetail(water, makeMapData([club], [water]))
 
-    expect(wrapper.findAll('details')).toHaveLength(0)
+    expect(wrapper.findAll('details:not(.legal)')).toHaveLength(0)
   })
 
   it('links the source next to the check date', () => {
@@ -382,6 +382,34 @@ describe('WaterDetail', () => {
       })
 
       expect(wrapper.find('.sun-badge .sun-text').text()).toMatch(/^Sonne 5:1\d bis 21:2\d$/)
+    })
+  })
+
+  describe('legal requirements', () => {
+    it('shows the Bavarian rules for waters in Bavaria', () => {
+      const legal = mountDetail(makeWater({ id: 'fva-kuhsee' })).find('details.legal')
+
+      expect(legal.find('summary').text()).toBe('Was Du in Bayern zum Angeln brauchst')
+      expect(legal.text()).toContain('Fischereischein')
+      expect(legal.text()).toContain('Ohne Gewähr, Stand 19.11.2026.')
+      expect(legal.find('a').attributes('href')).toContain('stadt.muenchen.de')
+    })
+
+    it('shows the Tyrolean rules for waters with an at- id', () => {
+      const legal = mountDetail(makeWater({ id: 'at-plansee' })).find('details.legal')
+
+      expect(legal.find('summary').text()).toBe('Was Du in Tirol zum Angeln brauchst')
+      expect(legal.text()).toContain('Gastfischerkarte')
+      expect(legal.findAll('a')).toHaveLength(2)
+      expect(legal.find('.legal-sources').text()).toMatch(/Quellen: oesterreich\.gv\.at: Fischen in Tirol, Tiroler Fischereiverband$/)
+    })
+
+    it('replaces the licence points for waters that need no licence', () => {
+      const legal = mountDetail(makeWater({ id: 'at-teich', licenceExempt: true })).find('details.legal')
+
+      expect(legal.findAll('li').map((li) => li.text())).toEqual([
+        'An diesem Gewässer brauchst Du keinen staatlichen Schein, weder Fischerkarte noch Gastfischerkarte. Es reicht die Karte des Betreibers.',
+      ])
     })
   })
 })

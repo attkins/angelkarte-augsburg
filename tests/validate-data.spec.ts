@@ -241,6 +241,17 @@ describe('validateData', () => {
     })
   })
 
+  describe('licenceExempt', () => {
+    it('accepts true, false and a missing value and rejects anything else', () => {
+      const check = (licenceExempt: unknown) =>
+        validate({ waters: [makeWater({ licenceExempt } as Partial<WaterFeature['properties']>)] }).errors
+      expect(check(undefined)).toEqual([])
+      expect(check(true)).toEqual([])
+      expect(check(false)).toEqual([])
+      expect(check('yes')).toEqual(['water "water-a": licenceExempt must be true or false'])
+    })
+  })
+
   describe('access points', () => {
     const check = (accessPoints: unknown) =>
       validate({ waters: [makeWater({ accessPoints } as Partial<WaterFeature['properties']>)] })

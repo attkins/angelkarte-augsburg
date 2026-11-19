@@ -490,6 +490,10 @@ a.list-row {
   padding-left: 1.1rem;
 }
 
+.accordion p.legal-sources {
+  font-size: 13px;
+}
+
 .meta p {
   display: flex;
   align-items: center;

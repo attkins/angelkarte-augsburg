@@ -127,6 +127,16 @@ Many anglers plan around the morning and evening, so the water detail shows sunr
 - Always shown in German local time (Europe/Berlin, the same as Tyrol), so a friend abroad sees the times at the water
 - Allowed fishing hours tied to the sun are left out until a club rule in the data needs them
 
+## Licences and papers (decided 2026-11-19, F20)
+
+Friends who fish in Tyrol for the first time need to know that a day ticket alone is not enough.
+
+- The water detail has a collapsible section "Was Du in Bayern zum Angeln brauchst" or "… in Tirol …", as the first of the sections below the details
+- The texts live in `src/legal.ts`, one block per country with the official sources and the date of the last check, shown as "Ohne Gewähr, Stand …"
+- The country follows the water id: `at-` is Tyrol, everything else Bavaria. A data test makes sure no other water lies in a Tyrolean region
+- Waters without a state licence (`licenceExempt`, so far the Aufeldteich) show a short note instead of the licence rules
+- The Gastfischerkarte sentence in the price notes of the Tyrolean waters stays, it explains the extra 25 € right next to the price
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)

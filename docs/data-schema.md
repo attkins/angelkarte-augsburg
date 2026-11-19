@@ -43,6 +43,7 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `depthMapUrl` | string, null or missing | Optional. Link to a depth map, e.g. on the club website |
 | `warning` | object or null | Optional. `{ "text": "...", "url": "https://..." }`, shown in bold above all other notices, e.g. a health advisory. Used for the PFC warning on the Friedberger Ach |
 | `accessPoints` | list or null | Optional. Parking places and access points, see below |
+| `licenceExempt` | boolean or missing | Optional. `true` when no state licence is needed at this water, e.g. a Tyrolean Angelteich. Only set it when a source says so. The water detail then shows a short note instead of the licence rules from `src/legal.ts` |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
 
 ### Access points

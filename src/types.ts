@@ -115,6 +115,8 @@ export interface WaterProperties {
   depthMapUrl?: string | null
   /** Important warning, e.g. not to eat the fish. Optional, most waters have none. */
   warning?: WaterWarning | null
+  /** No state fishing licence needed, e.g. a Tyrolean Angelteich. Only set when a source says so. */
+  licenceExempt?: boolean
   /** Parking places and access points, shown on the map while the water is selected. Optional. */
   accessPoints?: AccessPoint[] | null
   geometryStatus: GeometryStatus

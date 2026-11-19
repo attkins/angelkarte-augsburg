@@ -5,6 +5,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import FavouriteButton from '@/components/FavouriteButton.vue'
 import ShareButton from '@/components/ShareButton.vue'
 import { IMPRINT, PRICE_LABELS } from '@/config'
+import { LEGAL, LICENCE_EXEMPT_NOTE, legalRegionOf } from '@/legal'
 import { routeHash } from '@/composables/useHashRoute'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { ACCESS_POINT_LABELS, accessPointsOf, directionsUrl, routePoint, toLatLng } from '@/utils/access'
@@ -128,6 +129,16 @@ const waterRoute = computed(() => ({
     ? 'Noch kein Parkplatz erfasst. Die Route führt zur Mitte der Strecke.'
     : 'Noch kein Parkplatz erfasst. Die Route führt zur Mitte des Sees.',
 }))
+
+/** Licence and papers for the country of the water. A water marked `licenceExempt` replaces the licence points. */
+const legal = computed(() => {
+  const info = LEGAL[legalRegionOf(props.water)]
+  return {
+    ...info,
+    points: p.value.licenceExempt ? [LICENCE_EXEMPT_NOTE] : info.points,
+    checked: formatDate(info.checked),
+  }
+})
 
 const lastChecked = computed(() => formatDate(p.value.lastChecked))
 const hasRules = computed(() => p.value.rules.length > 0 || Boolean(p.value.seasonNote))
@@ -282,6 +293,18 @@ const reportHref = computed(() => {
     </section>
 
     <div class="accordion">
+      <details class="legal">
+        <summary>{{ legal.title }}<AppIcon name="chevron-down" :size="18" /></summary>
+        <ul>
+          <li v-for="point in legal.points" :key="point">{{ point }}</li>
+        </ul>
+        <p class="legal-sources">
+          Ohne Gewähr, Stand {{ legal.checked }}. Quellen:
+          <template v-for="(source, index) in legal.sources" :key="source.url"
+            >{{ index > 0 ? ', ' : '' }}<a :href="source.url" target="_blank" rel="noopener">{{ source.label }}</a></template
+          >
+        </p>
+      </details>
       <details v-if="hasRules">
         <summary>Regeln und Besonderheiten<AppIcon name="chevron-down" :size="18" /></summary>
         <ul>

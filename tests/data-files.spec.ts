@@ -72,6 +72,17 @@ describe('data files', () => {
     },
   )
 
+  // The water detail shows the Tyrolean licence rules for `at-` ids and the Bavarian ones for all others (src/legal.ts).
+  it('has no water outside the at- ids in a Tyrolean region', () => {
+    const misplaced = waters.features
+      .filter((f) => !f.properties.id.startsWith('at-'))
+      .filter((f) =>
+        positions(f.geometry.coordinates).some(([lng, lat]) => ['fernpass', 'wilder-kaiser'].includes(regionAt(REGIONS, lat!, lng!) ?? '')),
+      )
+      .map((f) => f.properties.id)
+    expect(misplaced).toEqual([])
+  })
+
   it('uses ids in lowercase with dashes only', () => {
     const ids = [
       ...clubs.map((c) => c.id),
