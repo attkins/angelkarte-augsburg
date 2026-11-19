@@ -68,6 +68,38 @@ describe('WaterList', () => {
     expect(wrapper.emitted('selectWater')).toEqual([['w-zusam']])
   })
 
+  it('sorts by guest price, cheapest first and waters without guest price at the end', async () => {
+    const priced = makeMapData(
+      [makeClub({ id: 'c1' })],
+      [
+        makeWater({ id: 'a', name: 'Teuer', clubId: 'c1', prices: { guest: 30 } }),
+        makeWater({ id: 'b', name: 'Ohne Preis', clubId: 'c1', prices: null }),
+        makeWater({ id: 'c', name: 'Billig', clubId: 'c1', prices: { guest: 10 } }),
+        makeWater({ id: 'd', name: 'Mitglieder', clubId: 'c1', guestAccess: 'membersOnly', prices: { guest: 5, member: 5 } }),
+        makeWater({ id: 'e', name: 'Auch billig', clubId: 'c1', prices: { guest: 10 } }),
+      ],
+      [],
+    )
+    const wrapper = mount(WaterList, { props: { data: priced } })
+    const names = () => wrapper.findAll('.row .name').map((n) => n.text().split(' ')[0])
+
+    await wrapper.findAll('.sort-toggle button').find((b) => b.text() === 'Preis')!.trigger('click')
+
+    expect(names()).toEqual(['Auch', 'Billig', 'Teuer', 'Mitglieder', 'Ohne'])
+    expect(wrapper.find('.origin-note').text()).toBe('Günstigste Tageskarte für Gäste zuerst, Gewässer ohne Gastpreis am Ende')
+  })
+
+  it('sorts by the prices of the planned day', async () => {
+    const water = (id: string, name: string, now: number, later: number) =>
+      makeWater({ id, name, clubId: 'c1', prices: { guest: later, validFrom: '2027-01-01' }, previousPrices: { guest: now } })
+    const data = makeMapData([makeClub({ id: 'c1' })], [water('x', 'Xsee', 10, 40), water('y', 'Ysee', 20, 15)], [])
+    const wrapper = mount(WaterList, { props: { data, day: new Date(2027, 0, 5) } })
+
+    await wrapper.findAll('.sort-toggle button').find((b) => b.text() === 'Preis')!.trigger('click')
+
+    expect(wrapper.findAll('.row .price').map((p) => p.text())).toEqual(['15 €', '40 €'])
+  })
+
   describe('sort by distance', () => {
     /** A small square lake whose south-west corner is at the given point. */
     function lakeAt(id: string, name: string, lng: number, lat: number): WaterFeature {

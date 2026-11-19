@@ -21,7 +21,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ selectWater: [id: string] }>()
 
-const sortBy = ref<'name' | 'distance'>('name')
+const sortBy = ref<'name' | 'distance' | 'price'>('name')
 const location = useLocation()
 const { isFavourite } = useFavourites()
 
@@ -31,6 +31,7 @@ const origin = computed(() =>
 )
 
 const originNote = computed(() => {
+  if (sortBy.value === 'price') return 'Günstigste Tageskarte für Gäste zuerst, Gewässer ohne Gastpreis am Ende'
   if (sortBy.value !== 'distance') return null
   switch (location.status.value) {
     case 'found':
@@ -69,16 +70,27 @@ const waters = computed(() => {
         name: p.name,
         clubName: club ? (club.shortName ?? club.name) : null,
         token: (GUEST_ACCESS[p.guestAccess] ?? GUEST_ACCESS.unknown).token,
-        price: p.guestAccess === 'membersOnly' ? null : typeof guest === 'number' ? formatPrice(guest) : null,
+        /** Guest day price in euros, null for members-only waters or when unknown. */
+        euros: p.guestAccess === 'membersOnly' || typeof guest !== 'number' ? null : guest,
         km: from ? distanceToWaterKm(from, water.geometry) : null,
         favourite: isFavourite(p.id),
         closedNote: closedNote(water, today),
       }
     })
-    .sort((a, b) =>
-      a.km !== null && b.km !== null && a.km !== b.km ? a.km - b.km : a.name.localeCompare(b.name, 'de'),
-    )
-    .map((row) => ({ ...row, distance: row.km === null ? null : formatDistance(row.km) }))
+    .sort((a, b) => {
+      const byName = a.name.localeCompare(b.name, 'de')
+      if (sortBy.value === 'price') {
+        // Waters without a guest price go to the end, they cannot be compared.
+        if (a.euros === null || b.euros === null) return a.euros === b.euros ? byName : a.euros === null ? 1 : -1
+        return a.euros - b.euros || byName
+      }
+      return a.km !== null && b.km !== null && a.km !== b.km ? a.km - b.km : byName
+    })
+    .map((row) => ({
+      ...row,
+      price: row.euros === null ? null : formatPrice(row.euros),
+      distance: row.km === null ? null : formatDistance(row.km),
+    }))
 })
 </script>
 
@@ -103,6 +115,9 @@ const waters = computed(() => {
           @click="sortByDistance"
         >
           Entfernung
+        </button>
+        <button type="button" :class="{ 'is-active': sortBy === 'price' }" :aria-pressed="sortBy === 'price'" @click="sortBy = 'price'">
+          Preis
         </button>
       </div>
       <p v-if="originNote" class="muted origin-note" role="status">{{ originNote }}</p>

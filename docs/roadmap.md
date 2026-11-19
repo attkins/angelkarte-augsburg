@@ -99,6 +99,8 @@ Goal: a friend knows which papers to bring and which fish to put back, in Bavari
 
 - F20 Licences and papers per country in the water detail (done)
 - F19 Legal closed seasons and minimum sizes, protected species marked for the shown day (done)
+- F19 follow-up: the species filter marks and hides waters where the species is protected (done)
+- F24 Sort the water list by guest price (done)
 
 Release with `npm run release:minor`.
 
@@ -149,7 +151,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F21 Favourites (added 2026-11-18, done 2026-11-19)
 - F22 Private notes or catch log (added 2026-11-18, open whether wanted)
 - F23 Link check for the external links in the data (added 2026-11-18, done 2026-11-19 as `npm run links`)
-- F24 Sort by guest price (added 2026-11-18)
+- F24 Sort by guest price (added 2026-11-18, done 2026-11-19)
 
 ## How releases are made
 
