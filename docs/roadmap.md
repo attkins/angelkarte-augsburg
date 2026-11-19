@@ -115,7 +115,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - D23 Parking and access points for the waters
 - D12 Maximum depth for the remaining lakes (Tyrol done 2026-11-17, the Bavarian club lakes need the clubs)
 - D22 Remaining candidates (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg). The six hejfish waters near Fischach were added on 2026-11-16
-- F17 Sun times and allowed fishing hours (added 2026-11-18)
+- F17 Sun times and allowed fishing hours (added 2026-11-18, sun times done 2026-11-19, allowed hours open until a rule needs them)
 - F18 No-fishing zones inside a water (added 2026-11-18)
 - F19 "Was darf ich heute fangen?", closed seasons and minimum sizes per species (added 2026-11-18)
 - F20 Legal requirements per region (added 2026-11-18)

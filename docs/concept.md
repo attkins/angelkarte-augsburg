@@ -117,6 +117,15 @@ Knowing where to park and how to get to the shore matters as much as the ticket,
 - The water detail has a section "Anfahrt" with a route link (Google Maps) for each point, parking first. Without points it offers a route to the middle of the lake or the stretch
 - Data comes later. `npm run access-candidates` collects OSM parking near a water as candidates, a human checks them on the aerial images before they go into the data
 
+## Sun times (decided 2026-11-19, F17)
+
+Many anglers plan around the morning and evening, so the water detail shows sunrise and sunset for the shown day (today or the planned day) as a badge, with civil dawn and dusk in its title.
+
+- Computed in the browser after the NOAA solar calculator (`src/utils/sun.ts`), no library and no network
+- Taken at the middle of the lake or stretch, a few hundred metres make no visible difference
+- Always shown in German local time (Europe/Berlin, the same as Tyrol), so a friend abroad sees the times at the water
+- Allowed fishing hours tied to the sun are left out until a club rule in the data needs them
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)

@@ -65,7 +65,7 @@ describe('WaterDetail', () => {
         makeWater({ season: { from: '03-16', to: '12-14' }, guestPeriod: { from: '05-01', to: '10-31' } }),
       )
 
-      const badges = wrapper.findAll('.info-badge').map((b) => b.text())
+      const badges = wrapper.findAll('.info-badge:not(.sun-badge)').map((b) => b.text())
       expect(badges).toEqual(['Saison 16.3. bis 14.12.', 'Gäste 1.5. bis 31.10.'])
     })
 
@@ -73,12 +73,12 @@ describe('WaterDetail', () => {
       const withDepth = mountDetail(
         makeWater({ maxDepth: 14.5, maxDepthSource: 'https://example.org', depthMapUrl: 'https://example.org/tiefen.pdf' }),
       )
-      expect(withDepth.findAll('.info-badge').map((b) => b.text())).toEqual(['bis 14,5 m tief', 'Tiefenkarte'])
+      expect(withDepth.findAll('.info-badge:not(.sun-badge)').map((b) => b.text())).toEqual(['bis 14,5 m tief', 'Tiefenkarte'])
       const link = withDepth.find('a.info-badge')
       expect(link.attributes('href')).toBe('https://example.org/tiefen.pdf')
       expect(link.attributes('target')).toBe('_blank')
 
-      expect(mountDetail(makeWater()).findAll('.info-badge')).toHaveLength(0)
+      expect(mountDetail(makeWater()).findAll('.info-badge:not(.sun-badge)')).toHaveLength(0)
     })
 
     it('warns when guests are outside their period, together with the access note', () => {
@@ -363,6 +363,25 @@ describe('WaterDetail', () => {
       expect(mountDetail(water).find('.directions .row-sub').text()).toBe(
         'Noch kein Parkplatz erfasst. Die Route führt zur Mitte der Strecke.',
       )
+    })
+  })
+
+  describe('sun times', () => {
+    it('shows sunrise and sunset at the water on the shown day', () => {
+      const badge = mountDetail(makeWater()).find('.sun-badge')
+
+      // Testsee near Augsburg on 13 November 2026: sunrise 7:21, sunset 16:40 (astral, NOAA).
+      expect(badge.find('.sun-text').text()).toMatch(/^Sonne 7:2[01] bis 16:(39|40)$/)
+      expect(badge.attributes('title')).toMatch(/^Sonnenaufgang 7:2\d Uhr, Sonnenuntergang 16:[34]\d Uhr\. Hell genug ab 6:4\d Uhr und bis 17:1\d Uhr\.$/)
+    })
+
+    it('follows the planned day', () => {
+      const water = makeWater()
+      const wrapper = mount(WaterDetail, {
+        props: { water, data: makeMapData([makeClub()], [water]), now: new Date(2026, 5, 21), planned: true, reportEmail: null },
+      })
+
+      expect(wrapper.find('.sun-badge .sun-text').text()).toMatch(/^Sonne 5:1\d bis 21:2\d$/)
     })
   })
 })

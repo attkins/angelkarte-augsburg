@@ -10,6 +10,7 @@ import { ACCESS_POINT_LABELS, accessPointsOf, directionsUrl, routePoint, toLatLn
 import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
 import { reportMailto } from '@/utils/report'
+import { formatClock, sunTimes } from '@/utils/sun'
 import { holidayOptions } from '@/utils/holidays'
 import { availability, describeDayHours, describeOpeningStatus, formatRange, hoursOnDay, openingStatus } from '@/utils/time'
 
@@ -37,6 +38,19 @@ const status = computed(() => availability(p.value.season, p.value.guestPeriod, 
 const closedReason = computed(() => (p.value.guestAccess === 'membersOnly' ? null : status.value.reason))
 
 const priceList = computed(() => pricesOn(p.value, props.now))
+
+/** Sunrise and sunset at the water on the shown day (today or the planned one), dawn and dusk for the details. */
+const sun = computed(() => {
+  const { lat, lng } = routePoint(props.water.geometry)
+  const times = sunTimes(props.now, lat, lng)
+  if (!times) return null
+  return {
+    text: `Sonne ${formatClock(times.sunrise)} bis ${formatClock(times.sunset)}`,
+    title:
+      `Sonnenaufgang ${formatClock(times.sunrise)} Uhr, Sonnenuntergang ${formatClock(times.sunset)} Uhr. ` +
+      `Hell genug ab ${formatClock(times.dawn)} Uhr und bis ${formatClock(times.dusk)} Uhr.`,
+  }
+})
 
 const priceTiles = computed(() => {
   const prices = priceList.value.current
@@ -153,6 +167,10 @@ const reportHref = computed(() => {
       <span v-if="p.season" class="info-badge"><AppIcon name="calendar" :size="15" />Saison {{ formatRange(p.season) }}</span>
       <span v-if="p.guestPeriod" class="info-badge">
         <AppIcon name="calendar" :size="15" />Gäste {{ formatRange(p.guestPeriod) }}
+      </span>
+      <span v-if="sun" class="info-badge sun-badge" :title="sun.title">
+        <AppIcon name="sun" :size="15" /><span class="sun-text" aria-hidden="true">{{ sun.text }}</span
+        ><span class="visually-hidden">{{ sun.title }}</span>
       </span>
       <span v-if="p.maxDepth" class="info-badge"><AppIcon name="depth" :size="15" />bis {{ formatDepth(p.maxDepth) }} tief</span>
       <a v-if="p.depthMapUrl" class="info-badge is-link" :href="p.depthMapUrl" target="_blank" rel="noopener">
