@@ -3281,6 +3281,35 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-14",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.922608,
+              48.236435
+            ],
+            "name": "Staustufe 22 West",
+            "note": "Derselbe Parkplatz wie für den Auensee."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.92884,
+              48.235312
+            ],
+            "name": "Staustufe 22 Ost",
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.940375,
+              48.264733
+            ],
+            "name": "Staustufe 23 Nordost",
+            "note": "Am Kraftwerk Merching, ganz nah am Wasser."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -4070,6 +4099,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.92266,
+              48.26063
+            ],
+            "name": "Obere Grenze",
+            "note": "An der Verbindungsstraße Königsbrunn–Mering."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.91298,
+              48.28218
+            ],
+            "name": "Untere Grenze",
+            "note": "Beim Gelände der ehemaligen Firma Martini. Sonst gibt es keine Parkplätze, ein Weg begleitet aber den ganzen Bach."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -4445,6 +4494,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.71667,
+              48.32273
+            ],
+            "name": "Schmutterbrücke",
+            "note": "An der oberen Grenze am Ortsrand Richtung Thannhausen, laut Verein die beste Parkmöglichkeit."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -5690,6 +5750,44 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.772649,
+              48.233266
+            ],
+            "name": "Brücke Wertachstraße",
+            "note": "Laut Verein gibt es an allen Brücken der Strecke einen legalen Parkplatz."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.761222,
+              48.228321
+            ],
+            "name": "Straßenbrücke",
+            "note": "Laut Verein gibt es an allen Brücken der Strecke einen legalen Parkplatz."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.742415,
+              48.214562
+            ],
+            "name": "Straßenbrücke",
+            "note": "Laut Verein gibt es an allen Brücken der Strecke einen legalen Parkplatz."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.728264,
+              48.192088
+            ],
+            "name": "Brücke Krumbacher Straße",
+            "note": "Laut Verein gibt es an allen Brücken der Strecke einen legalen Parkplatz."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -6177,6 +6275,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.717622,
+              48.608217
+            ],
+            "name": "Brücke Zusamstraße",
+            "note": "Direkt am Wasser gibt es keine Parkplätze. Am besten im Ort in der Nähe einer Brücke parken."
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.715158,
+              48.599274
+            ],
+            "name": "Straßenbrücke",
+            "note": "Direkt am Wasser gibt es keine Parkplätze. Am besten im Ort in der Nähe einer Brücke parken."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -9933,6 +10051,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "access",
+            "coordinates": [
+              10.981854,
+              48.314108
+            ],
+            "name": "Zufahrt",
+            "note": "Parkberechtigung und Schrankenschlüssel gibt es beim Kauf der Tageskarte gegen Pfand."
+          },
+          {
+            "type": "access",
+            "coordinates": [
+              10.977867,
+              48.313709
+            ],
+            "name": "Schranke",
+            "note": "Bitte immer wieder verschließen."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -9993,6 +10131,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "access",
+            "coordinates": [
+              10.981854,
+              48.314108
+            ],
+            "name": "Zufahrt",
+            "note": "Parkberechtigung und Schrankenschlüssel gibt es beim Kauf der Tageskarte gegen Pfand."
+          },
+          {
+            "type": "access",
+            "coordinates": [
+              10.977867,
+              48.313709
+            ],
+            "name": "Schranke",
+            "note": "Bitte immer wieder verschließen."
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -38237,6 +38395,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://1aac.de/portfolio-items/kleine-mindel-burtenbach/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.42394,
+              48.31938
+            ],
+            "name": "Brücke bei Hagenried",
+            "note": "Knapp 300 m unterhalb der oberen Grenze. Weitere Parkmöglichkeiten an den Brücken entlang der Strecke."
+          }
+        ],
         "geometryStatus": "traced"
       }
     },
@@ -39156,6 +39325,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://1aac.de/portfolio-items/guenz-waldstetten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.307042,
+              48.346853
+            ],
+            "name": "Am Günzstausee",
+            "note": "An der Strecke selbst gibt es kaum Parkplätze."
+          }
+        ],
         "geometryStatus": "traced"
       }
     },
