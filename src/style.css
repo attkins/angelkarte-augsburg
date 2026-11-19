@@ -442,6 +442,50 @@ a.list-row {
   font-size: 13px;
 }
 
+.chip.is-protected {
+  gap: 4px;
+  border-color: var(--closed-bg);
+  background: var(--closed-bg);
+  color: var(--closed-text);
+}
+
+.protection-summary {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.protection-table {
+  width: 100%;
+  margin: 0 0 12px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.protection-table th,
+.protection-table td {
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.protection-table thead th {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.protection-table tbody th {
+  color: var(--text);
+}
+
+.protection-table tr.is-protected th,
+.protection-table tr.is-protected td {
+  color: var(--closed-text);
+  font-weight: 600;
+}
+
 .accordion {
   border-top: 1px solid var(--border);
 }

@@ -137,6 +137,16 @@ Friends who fish in Tyrol for the first time need to know that a day ticket alon
 - Waters without a state licence (`licenceExempt`, so far the Aufeldteich) show a short note instead of the licence rules
 - The Gastfischerkarte sentence in the price notes of the Tyrolean waters stays, it explains the extra 25 € right next to the price
 
+## Closed seasons by law (decided 2026-11-19, F19)
+
+"Was darf ich heute fangen?" is answered in the water detail from the legal rules, the club's own rules stay as text.
+
+- `src/protection.ts` holds the closed seasons and minimum sizes per species: the AVBayFiG table (rows for the Danube basin, all our Bavarian waters drain into it), the Bezirksfischereiverordnung Schwaben on top (eel 50 cm, a note for lake trout in closed gravel pits) and the Tiroler Fischereiverordnung (Anlagen 9 and 10)
+- The area follows the water: `at-` ids are Tyrol, six waters in the Landkreise Landsberg and Neuburg-Schrobenhausen are Upper Bavaria (looked up in OSM), all others Swabia
+- The species chips of a water mark the ones protected on the shown day (today or the planned day), a sentence below names them with the end of the closed season. A collapsible table lists all rules with sources and check date
+- Group names in the data (Forelle, Saibling, Weißfische) get no rule. A data test fails for any other species name without a rule, so new names are noticed
+- Not built: hiding waters in the species filter when the chosen species is protected, and the Bavarian district rules outside Swabia and Upper Bavaria
+
 ## Open questions
 
 - How the data is maintained later (editing GeoJSON by hand vs. a small editor)

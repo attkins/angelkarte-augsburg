@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import type { Position } from 'geojson'
 import { describe, expect, it } from 'vitest'
 import { REGIONS } from '../src/config'
+import { UPPER_BAVARIA_WATERS, speciesProtection } from '../src/protection'
 import { regionAt } from '../src/utils/bounds'
 import { validateData } from '../scripts/lib/validate-data.mjs'
 import type { Club, MapData } from '../src/types'
@@ -81,6 +82,23 @@ describe('data files', () => {
       )
       .map((f) => f.properties.id)
     expect(misplaced).toEqual([])
+  })
+
+  // Group names have no legal rule on purpose. Any other name without a rule is probably a new species
+  // or a new spelling that needs an entry in src/protection.ts.
+  it('knows a legal rule for every species name except the group names', () => {
+    const groups = new Set(['Forelle', 'Saibling', 'Salmoniden', 'Weißfische', 'Weißfisch', 'Lachsforelle', 'Graskarpfen', 'Amur', 'Stör'])
+    const unknown = new Set<string>()
+    for (const feature of waters.features) {
+      const known = new Set(speciesProtection(feature, new Date(2026, 0, 1)).map((s) => s.name))
+      for (const name of feature.properties.species) if (!known.has(name) && !groups.has(name)) unknown.add(`${feature.properties.id}: ${name}`)
+    }
+    expect([...unknown]).toEqual([])
+  })
+
+  it('lists only existing waters as Upper Bavaria', () => {
+    const ids = new Set(waters.features.map((f) => f.properties.id))
+    expect([...UPPER_BAVARIA_WATERS].filter((id) => !ids.has(id))).toEqual([])
   })
 
   it('uses ids in lowercase with dashes only', () => {

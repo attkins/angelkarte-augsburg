@@ -18,6 +18,7 @@ The schema is described in [data-schema.md](data-schema.md). What is still open 
 Most clubs publish new prices at the turn of the year (see D11).
 
 - Start with `npm run links`, so dead price list links are found first.
+- Check the legal closed seasons and minimum sizes in `src/protection.ts` against the AVBayFiG Anlage, the Bezirksfischereiverordnung Schwaben (runs until 31.12.2027, look for its successor in January 2028) and the Tiroler Fischereiverordnung, and set `checked`.
 - Check the licence rules in `src/legal.ts` against their sources (Fischereischein in Bavaria, Gastfischerkarte in Tyrol, its price) and set `checked` to the day of the check. The date is shown to the users.
 - Go through every club in `clubs.json` and look for the new price list.
 - A list that is known before it applies goes into `prices` with `validFrom`, the old one into `previousPrices`. The app switches on its own. Remove `previousPrices` once the validator says so.
@@ -65,6 +66,9 @@ The texts are shown to anglers as they are, so they follow the house style of th
 - Health warnings such as the PFC warnings go into `warning` with a link to the authority, not into `accessNote`.
 
 ## Adding a club or water
+
+- A new Bavarian water in Upper Bavaria (Landkreis Landsberg, Neuburg-Schrobenhausen and others east of the Lech) needs its id in `UPPER_BAVARIA_WATERS` in `src/protection.ts`, all other Bavarian waters count as Swabia.
+- A new fish name in `species` needs a rule or an alias in `src/protection.ts`, `npm test` lists names without one. Group names like Forelle or Weißfische stay without rule.
 
 - Club ids are short slugs (`fv-ettringen`), water ids start with a short club prefix (`fve-muehlbach-siebnach`). Ids end up in shared links, so never rename them once published.
 - Copy an existing water of the same kind as a template and replace every field. The validator catches missing fields.

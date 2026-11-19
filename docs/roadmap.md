@@ -14,16 +14,17 @@ Dates are rough targets for a hobby project, not deadlines. A release ships when
 | 0.8 | Austria | end of November 2026 | released 2026-11-16 |
 | 0.9 | Core region, more waters and planning | November 2026 | released 2026-11-16 |
 | 0.10 | More waters and depths (D22, D12) | | released 2026-11-17 |
-| 0.11 | At the water | November 2026 | ready to release |
-| 0.12 | Answers from the clubs | end of December 2026 | planned |
+| 0.11 | At the water | November 2026 | released 2026-11-19 |
+| 0.12 | Rules at the water | November 2026 | collecting, no release yet |
+| 0.13 | Answers from the clubs | end of December 2026 | planned |
 | 1.0 | Season 2027 | mid January 2027 | planned |
 | later | Ideas without a date | | |
 
-Already released: 0.1.0 to 0.10.0, see [CHANGELOG.md](../CHANGELOG.md).
+Already released: 0.1.0 to 0.11.0, see [CHANGELOG.md](../CHANGELOG.md).
 
 Replanned on 2026-11-16: the old 0.9 (core region) and 0.10 (more waters) were done except for items that need a phone call or an answer from a club. Everything finished goes out as 0.9, together with F2, F5, F7 and F8 from "Later". The new 0.10 collects the open questions to the clubs.
 
-Renumbered on 2026-11-19: 0.10.0 went out on 2026-11-17 with the D22 waters and the Tyrolean depths, not with the answers from the clubs. Those move to 0.12. 0.11 collects the features of 2026-11-18 and 2026-11-19.
+Renumbered on 2026-11-19: 0.10.0 went out on 2026-11-17 with the D22 waters and the Tyrolean depths, not with the answers from the clubs. Those move to 0.12. 0.11 collects the features of 2026-11-18 and 2026-11-19. The same day 0.12 took F20 and F19, the answers from the clubs moved on to 0.13.
 
 ## 0.7 Ready for friends
 
@@ -92,7 +93,16 @@ Goal: the map helps on the way to the water and at the water, not only with the 
 
 Release with `npm run release:minor`.
 
-## 0.12 Answers from the clubs
+## 0.12 Rules at the water
+
+Goal: a friend knows which papers to bring and which fish to put back, in Bavaria and in Tyrol.
+
+- F20 Licences and papers per country in the water detail (done)
+- F19 Legal closed seasons and minimum sizes, protected species marked for the shown day (done)
+
+Release with `npm run release:minor`.
+
+## 0.13 Answers from the clubs
 
 Goal: the open questions that research alone could not answer are settled. Mostly phone calls and mails.
 
@@ -134,7 +144,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - D22 Remaining candidates (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg). The six hejfish waters near Fischach were added on 2026-11-16
 - F17 Sun times and allowed fishing hours (added 2026-11-18, sun times done 2026-11-19, allowed hours open until a rule needs them)
 - F18 No-fishing zones inside a water (added 2026-11-18)
-- F19 "Was darf ich heute fangen?", closed seasons and minimum sizes per species (added 2026-11-18)
+- F19 "Was darf ich heute fangen?", closed seasons and minimum sizes per species (added 2026-11-18, done 2026-11-19)
 - F20 Legal requirements per region (added 2026-11-18, done 2026-11-19)
 - F21 Favourites (added 2026-11-18, done 2026-11-19)
 - F22 Private notes or catch log (added 2026-11-18, open whether wanted)

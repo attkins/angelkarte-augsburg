@@ -6,6 +6,7 @@ import FavouriteButton from '@/components/FavouriteButton.vue'
 import ShareButton from '@/components/ShareButton.vue'
 import { IMPRINT, PRICE_LABELS } from '@/config'
 import { LEGAL, LICENCE_EXEMPT_NOTE, legalRegionOf } from '@/legal'
+import { PROTECTION, protectionAreaOf, type SpeciesRule, speciesProtection } from '@/protection'
 import { routeHash } from '@/composables/useHashRoute'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { ACCESS_POINT_LABELS, accessPointsOf, directionsUrl, routePoint, toLatLng } from '@/utils/access'
@@ -14,7 +15,16 @@ import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
 import { reportMailto } from '@/utils/report'
 import { formatClock, sunTimes } from '@/utils/sun'
 import { holidayOptions } from '@/utils/holidays'
-import { availability, describeDayHours, describeOpeningStatus, formatRange, hoursOnDay, openingStatus } from '@/utils/time'
+import {
+  availability,
+  describeDayHours,
+  describeOpeningStatus,
+  formatDayMonth,
+  formatMonthDay,
+  formatRange,
+  hoursOnDay,
+  openingStatus,
+} from '@/utils/time'
 
 const props = withDefaults(
   defineProps<{
@@ -139,6 +149,30 @@ const legal = computed(() => {
     checked: formatDate(info.checked),
   }
 })
+
+/** Legal closed seasons and minimum sizes for the species of this water, on the shown day. */
+const protection = computed(() => {
+  const area = PROTECTION[protectionAreaOf(props.water)]
+  const list = speciesProtection(props.water, props.now)
+  const protectedNames = new Set(list.filter((s) => s.protectedNow).map((s) => s.name))
+  const rows = list.map((s) => ({ ...s, season: seasonText(s.rule), size: s.rule.minSize ? `${s.rule.minSize} cm` : 'kein' }))
+  const notes = list.flatMap((s) => (s.rule.note ? [`${s.name}: ${s.rule.note}`] : []))
+  return { ...area, checked: formatDate(area.checked), rows, notes, protectedNames, summary: protectionSummary(list) }
+})
+
+function seasonText(rule: SpeciesRule): string {
+  if (rule.allYear) return 'ganzjährig'
+  return rule.closed ? formatRange(rule.closed) : 'keine'
+}
+
+function protectionSummary(list: ReturnType<typeof speciesProtection>): string | null {
+  if (!list.length) return null
+  const day = props.planned ? `Am ${formatDayMonth(props.now)}` : 'Heute'
+  const closed = list.filter((s) => s.protectedNow)
+  if (!closed.length) return `${day} ist keine dieser Fischarten gesetzlich geschont.`
+  const names = closed.map((s) => (s.rule.allYear || !s.rule.closed ? `${s.name} ganzjährig` : `${s.name} bis ${formatMonthDay(s.rule.closed.to)}`))
+  return `${day} gesetzlich geschont: ${names.join(', ')}`
+}
 
 const lastChecked = computed(() => formatDate(p.value.lastChecked))
 const hasRules = computed(() => p.value.rules.length > 0 || Boolean(p.value.seasonNote))
@@ -288,8 +322,16 @@ const reportHref = computed(() => {
     <section v-if="p.species.length">
       <h2 class="section-title serif">Fischarten</h2>
       <div class="chips">
-        <span v-for="species in p.species" :key="species" class="chip">{{ species }}</span>
+        <span
+          v-for="species in p.species"
+          :key="species"
+          class="chip"
+          :class="{ 'is-protected': protection.protectedNames.has(species) }"
+          ><AppIcon v-if="protection.protectedNames.has(species)" name="lock" :size="12" />{{ species
+          }}<span v-if="protection.protectedNames.has(species)" class="visually-hidden">, geschont</span></span
+        >
       </div>
+      <p v-if="protection.summary" class="protection-summary">{{ protection.summary }}</p>
     </section>
 
     <div class="accordion">
@@ -305,6 +347,29 @@ const reportHref = computed(() => {
           >
         </p>
       </details>
+      <details v-if="protection.rows.length" class="protection">
+        <summary>Gesetzliche Schonzeiten und Mindestmaße<AppIcon name="chevron-down" :size="18" /></summary>
+        <table class="protection-table">
+          <thead>
+            <tr><th scope="col">Fischart</th><th scope="col">Schonzeit</th><th scope="col">Mindestmaß</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in protection.rows" :key="row.name" :class="{ 'is-protected': row.protectedNow }">
+              <th scope="row">{{ row.name }}</th>
+              <td>{{ row.season }}</td>
+              <td>{{ row.size }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-for="note in protection.notes" :key="note">{{ note }}</p>
+        <p class="legal-sources">
+          Gilt {{ protection.label }}. Der Verein kann strengere Regeln haben. Ohne Gewähr, Stand {{ protection.checked }}.
+          Quellen:
+          <template v-for="(source, index) in protection.sources" :key="source.url"
+            >{{ index > 0 ? ', ' : '' }}<a :href="source.url" target="_blank" rel="noopener">{{ source.label }}</a></template
+          >
+        </p>
+      </details>
       <details v-if="hasRules">
         <summary>Regeln und Besonderheiten<AppIcon name="chevron-down" :size="18" /></summary>
         <ul>
@@ -313,7 +378,7 @@ const reportHref = computed(() => {
         </ul>
       </details>
       <details v-if="p.closedSeasons.length">
-        <summary>Schonzeiten und Mindestmaße<AppIcon name="chevron-down" :size="18" /></summary>
+        <summary>Schonzeiten und Mindestmaße des Vereins<AppIcon name="chevron-down" :size="18" /></summary>
         <ul>
           <li v-for="item in p.closedSeasons" :key="item">{{ item }}</li>
         </ul>

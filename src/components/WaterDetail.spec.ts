@@ -237,7 +237,7 @@ describe('WaterDetail', () => {
   })
 
   it('shows fish species as chips, only when there are any', () => {
-    expect(mountDetail(makeWater({ species: ['Hecht', 'Zander'] })).findAll('.chip').map((c) => c.text())).toEqual([
+    expect(mountDetail(makeWater({ species: ['Hecht', 'Zander'] })).findAll('.chips .chip').map((c) => c.text())).toEqual([
       'Hecht',
       'Zander',
     ])
@@ -253,10 +253,10 @@ describe('WaterDetail', () => {
       }),
     )
 
-    const sections = wrapper.findAll('details:not(.legal)')
+    const sections = wrapper.findAll('details:not(.legal):not(.protection)')
     expect(sections.map((s) => s.find('summary').text())).toEqual([
       'Regeln und Besonderheiten',
-      'Schonzeiten und Mindestmaße',
+      'Schonzeiten und Mindestmaße des Vereins',
       'Verein und Kontakt',
     ])
     expect(sections[0]!.text()).toContain('Saison beginnt mit dem Karfreitagsfischen.')
@@ -270,7 +270,7 @@ describe('WaterDetail', () => {
     const water = makeWater()
     const wrapper = mountDetail(water, makeMapData([club], [water]))
 
-    expect(wrapper.findAll('details:not(.legal)')).toHaveLength(0)
+    expect(wrapper.findAll('details:not(.legal):not(.protection)')).toHaveLength(0)
   })
 
   it('links the source next to the check date', () => {
@@ -410,6 +410,45 @@ describe('WaterDetail', () => {
       expect(legal.findAll('li').map((li) => li.text())).toEqual([
         'An diesem Gewässer brauchst Du keinen staatlichen Schein, weder Fischerkarte noch Gastfischerkarte. Es reicht die Karte des Betreibers.',
       ])
+    })
+  })
+
+  describe('closed seasons by law', () => {
+    it('marks protected species and names them with the end of the closed season', () => {
+      const water = makeWater({ species: ['Hecht', 'Karpfen', 'Bachforelle', 'Forelle'] })
+      const wrapper = mount(WaterDetail, {
+        props: { water, data: makeMapData([makeClub()], [water]), now: new Date(2026, 2, 1), reportEmail: null },
+      })
+
+      expect(wrapper.findAll('.chip.is-protected').map((c) => c.text())).toEqual(['Hecht, geschont', 'Bachforelle, geschont'])
+      expect(wrapper.find('.protection-summary').text()).toBe('Heute gesetzlich geschont: Hecht bis 30.4., Bachforelle bis 15.3.')
+    })
+
+    it('says so when nothing is protected, and names the planned day', () => {
+      const water = makeWater({ species: ['Hecht'] })
+      const wrapper = mount(WaterDetail, {
+        props: { water, data: makeMapData([makeClub()], [water]), now: new Date(2026, 6, 20), planned: true, reportEmail: null },
+      })
+
+      expect(wrapper.find('.protection-summary').text()).toBe('Am 20. Juli ist keine dieser Fischarten gesetzlich geschont.')
+    })
+
+    it('lists the legal rules with sources, leaving out group names', () => {
+      const water = makeWater({ id: 'at-see', species: ['Hecht', 'Weißfisch', 'Regenbogenforelle'] })
+      const table = mountDetail(water).find('details.protection')
+
+      expect(table.findAll('tbody tr').map((r) => r.findAll('th, td').map((c) => c.text()))).toEqual([
+        ['Hecht', '1.3. bis 30.4.', '50 cm'],
+        ['Regenbogenforelle', 'keine', '30 cm'],
+      ])
+      expect(table.find('.legal-sources').text()).toContain('Gilt in Tirol. Der Verein kann strengere Regeln haben.')
+      expect(table.find('.legal-sources a').text()).toBe('Tiroler Fischereiverordnung')
+    })
+
+    it('shows nothing when no species has a rule', () => {
+      const wrapper = mountDetail(makeWater({ species: ['Forelle'] }))
+      expect(wrapper.find('.protection-summary').exists()).toBe(false)
+      expect(wrapper.find('details.protection').exists()).toBe(false)
     })
   })
 })
