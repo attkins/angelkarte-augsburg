@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build",
     "validate": "node scripts/validate-data.mjs",
     "due": "node scripts/due.mjs",
+    "access-candidates": "node scripts/access-candidates.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "changelog": "git-cliff --output CHANGELOG.md",

@@ -38,6 +38,14 @@ When sources disagree, take the club. When nothing official exists, leave the fi
 - Simplify lines and outlines to a few metres and round coordinates to 5 decimals. The files stay readable and small.
 - `geometryStatus` is `traced` when the limits come from a club or hejfish, `placeholder` when they are a guess. Write the assumption into `accessNote` or the backlog so the next round knows what to check.
 
+## Parking and access points
+
+- `npm run access-candidates -- <water ids>` lists the OSM parking places near a water (default within 400 m, `--radius=600` for more), nearest first, each with a link to OSM and a ready-to-paste entry. `--missing` runs it for every water without access points. It needs the public Overpass API, one request per water with a short pause in between.
+- The list is only a starting point. Supermarket and company car parks show up as well, the script marks those with `access=customers` or `private`. Check every candidate on the aerial images (Luftbild in the app) before copying it into `accessPoints`.
+- Add the club's own parking hints when the water page names them, for example "Parken nur am Vereinsheim". They win over OSM.
+- Access points (`type: access`) mostly come from the club pages or from people who know the water, OSM rarely has them.
+- Keep it to the two or three places that matter. A list of every car park around a big lake helps nobody.
+
 ## Sales points
 
 - Only shops, petrol stations, hotels and club huts become pins. Private persons who sell tickets from home are mentioned in `accessNote` of the water, with a pointer to the club page, but get no pin and no address.

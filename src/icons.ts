@@ -1,5 +1,6 @@
 /** Names of the line icons rendered by AppIcon.vue. */
 export type AppIconName =
+  | 'access'
   | 'arrow-left'
   | 'calendar'
   | 'check'
@@ -19,6 +20,7 @@ export type AppIconName =
   | 'member'
   | 'minus'
   | 'moon'
+  | 'parking'
   | 'phone'
   | 'plus'
   | 'question'

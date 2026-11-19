@@ -203,6 +203,32 @@ button {
   opacity: 0.45;
 }
 
+/* Parking and access points of the selected water, smaller and squarer than the shop pins. */
+.place-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--surface-2);
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.place-pin.is-access {
+  border-radius: 50%;
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.place-pin svg {
+  width: 15px;
+  height: 15px;
+}
+
 /* Name labels next to highlighted pins and the selected water. */
 .leaflet-tooltip.map-label {
   padding: 4px 11px;
@@ -346,6 +372,11 @@ button {
   cursor: pointer;
 }
 
+a.list-row {
+  color: inherit;
+  text-decoration: none;
+}
+
 .list-row:last-child {
   border-bottom: 0;
 }
@@ -364,6 +395,12 @@ button {
   border-radius: 10px;
   background: var(--pin);
   color: var(--pin-text);
+}
+
+/* Parking and access points, set apart from the shop icons of the sales points. */
+.row-icon.is-place {
+  background: var(--surface-3);
+  color: var(--accent);
 }
 
 .row-text {

@@ -4,6 +4,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import ShareButton from '@/components/ShareButton.vue'
 import { GUEST_ACCESS } from '@/config'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
+import { directionsUrl, toLatLng } from '@/utils/access'
 import { formatPrice, phoneHref } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
 import { holidayOptions } from '@/utils/holidays'
@@ -47,10 +48,7 @@ const openingLines = computed(() =>
   p.value.openingHours ? formatOpeningHours(p.value.openingHours, props.now.getMonth() + 1) : [],
 )
 
-const routeUrl = computed(() => {
-  const [lon, lat] = props.salesPoint.geometry.coordinates
-  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`
-})
+const routeUrl = computed(() => directionsUrl(toLatLng(props.salesPoint.geometry.coordinates)))
 
 /** Waters grouped by club, clubs in the order they first appear. */
 const groups = computed(() => {

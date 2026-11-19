@@ -22,7 +22,10 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
     aria-hidden="true"
     focusable="false"
   >
-    <template v-if="name === 'arrow-left'"><path d="M19 12H5M12 19l-7-7 7-7" /></template>
+    <template v-if="name === 'access'">
+      <path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" /><path d="M9 17l5-5-5-5M14 12H3" />
+    </template>
+    <template v-else-if="name === 'arrow-left'"><path d="M19 12H5M12 19l-7-7 7-7" /></template>
     <template v-else-if="name === 'calendar'">
       <rect x="4" y="5" width="16" height="16" rx="2" /><path d="M16 3v4M8 3v4M4 11h16" />
     </template>
@@ -59,6 +62,9 @@ withDefaults(defineProps<{ name: AppIconName; size?: number; strokeWidth?: numbe
     </template>
     <template v-else-if="name === 'minus'"><path d="M5 12h14" /></template>
     <template v-else-if="name === 'moon'"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" /></template>
+    <template v-else-if="name === 'parking'">
+      <rect x="4" y="4" width="16" height="16" rx="3" /><path d="M10 17V7h3.5a3 3 0 0 1 0 6H10" />
+    </template>
     <template v-else-if="name === 'phone'">
       <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
     </template>

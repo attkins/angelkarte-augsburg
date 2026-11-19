@@ -241,6 +241,49 @@ describe('validateData', () => {
     })
   })
 
+  describe('access points', () => {
+    const check = (accessPoints: unknown) =>
+      validate({ waters: [makeWater({ accessPoints } as Partial<WaterFeature['properties']>)] })
+
+    it('accepts missing, null and valid access points', () => {
+      expect(check(undefined)).toEqual({ errors: [], warnings: [] })
+      expect(check(null)).toEqual({ errors: [], warnings: [] })
+      expect(
+        check([
+          { type: 'parking', coordinates: [10.905, 48.299], name: 'Parkplatz Süd', note: null },
+          { type: 'access', coordinates: [10.91, 48.305] },
+        ]),
+      ).toEqual({ errors: [], warnings: [] })
+    })
+
+    it('reports an unknown type and broken coordinates', () => {
+      const { errors } = check([
+        { type: 'bench', coordinates: [10.905, 48.299] },
+        { type: 'parking', coordinates: [10.905] },
+        { type: 'access', coordinates: ['10.9', 48.3] },
+      ])
+      expect(errors).toEqual([
+        'water "water-a": accessPoints[0]: type must be one of parking, access',
+        'water "water-a": accessPoints[1]: coordinates must be [lon, lat]',
+        'water "water-a": accessPoints[2]: coordinates must be [lon, lat]',
+      ])
+    })
+
+    it('reports a list that is not a list and empty texts', () => {
+      expect(check({ type: 'parking' }).errors).toEqual(['water "water-a": accessPoints must be null or a list'])
+      expect(check([{ type: 'parking', coordinates: [10.905, 48.299], name: ' ' }]).errors).toEqual([
+        'water "water-a": accessPoints[0]: name must be a non-empty text or null',
+      ])
+    })
+
+    it('warns about points far away from the water, e.g. swapped coordinates', () => {
+      const { errors, warnings } = check([{ type: 'parking', coordinates: [48.3, 10.9] }])
+      expect(errors).toEqual([])
+      expect(warnings).toHaveLength(1)
+      expect(warnings[0]).toMatch(/^water "water-a": accessPoints\[0\]: \d+\.\d km away from the water/)
+    })
+  })
+
   describe('sales points', () => {
     it('reports missing name and address', () => {
       const { errors } = validate({ salesPoints: [makeSalesPoint({ name: '', address: '' })] })

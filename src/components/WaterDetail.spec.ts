@@ -186,7 +186,7 @@ describe('WaterDetail', () => {
       )
       const wrapper = mountDetail(water, data)
 
-      const rows = wrapper.findAll('.list-row')
+      const rows = wrapper.findAll('button.list-row')
       expect(rows).toHaveLength(1)
       expect(rows[0]!.find('.row-title').text()).toBe('Jafispo')
       expect(rows[0]!.text()).toContain('Kurzes Geländ 8a')
@@ -206,7 +206,7 @@ describe('WaterDetail', () => {
           makeSalesPoint({ id: 'unknown', waterIds: ['w1'], openingHours: null }),
         ],
       )
-      const rows = mountDetail(water, data).findAll('.list-row')
+      const rows = mountDetail(water, data).findAll('button.list-row')
 
       expect(rows[0]!.find('.is-open').text()).toBe('Geöffnet, heute bis 18 Uhr')
       expect(rows[1]!.find('.is-closed').text()).toBe('Geschlossen, öffnet Montag um 16 Uhr')
@@ -314,6 +314,55 @@ describe('WaterDetail', () => {
       })
 
       expect(wrapper.find('.meta .report').exists()).toBe(false)
+    })
+  })
+
+  describe('directions', () => {
+    it('lists parking first with a route link to each point', () => {
+      const wrapper = mountDetail(
+        makeWater({
+          accessPoints: [
+            { type: 'access', coordinates: [10.905, 48.301], note: 'Einstieg über den Steg' },
+            { type: 'parking', coordinates: [10.902, 48.299], name: 'Am Nordufer', note: 'Schranke ab 22 Uhr' },
+          ],
+        }),
+      )
+
+      const rows = wrapper.findAll('.directions a.list-row')
+      expect(rows).toHaveLength(2)
+      expect(rows[0]!.find('.row-title').text()).toBe('Am Nordufer')
+      expect(rows[0]!.find('.row-sub').text()).toBe('Parkplatz, Schranke ab 22 Uhr')
+      expect(rows[0]!.attributes('href')).toBe('https://www.google.com/maps/dir/?api=1&destination=48.299,10.902')
+      expect(rows[0]!.attributes('target')).toBe('_blank')
+      expect(rows[1]!.find('.row-title').text()).toBe('Zugang')
+      expect(rows[1]!.find('.row-sub').text()).toBe('Einstieg über den Steg')
+    })
+
+    it('falls back to a route to the middle of the lake', () => {
+      const wrapper = mountDetail(makeWater())
+
+      const rows = wrapper.findAll('.directions a.list-row')
+      expect(rows).toHaveLength(1)
+      expect(rows[0]!.find('.row-title').text()).toBe('Route zum Gewässer')
+      expect(rows[0]!.find('.row-sub').text()).toBe('Noch kein Parkplatz erfasst. Die Route führt zur Mitte des Sees.')
+      expect(rows[0]!.attributes('href')).toMatch(/^https:\/\/www\.google\.com\/maps\/dir\/\?api=1&destination=48\.30\d*,10\.90\d*$/)
+    })
+
+    it('says "Strecke" for a river', () => {
+      const water: WaterFeature = {
+        ...makeWater(),
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [10.9, 48.3],
+            [10.9, 48.4],
+          ],
+        },
+      }
+
+      expect(mountDetail(water).find('.directions .row-sub').text()).toBe(
+        'Noch kein Parkplatz erfasst. Die Route führt zur Mitte der Strecke.',
+      )
     })
   })
 })

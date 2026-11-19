@@ -72,6 +72,19 @@ export interface WaterWarning {
   url?: string | null
 }
 
+export type AccessPointType = 'parking' | 'access'
+
+/** A parking place or an access point (path to the shore, jetty, gate) that belongs to a water. */
+export interface AccessPoint {
+  type: AccessPointType
+  /** `[lon, lat]`, in the same order as GeoJSON. */
+  coordinates: [number, number]
+  /** Short name, e.g. "Parkplatz Nordufer". Without one the type label is shown. */
+  name?: string | null
+  /** Details, e.g. "Schranke, nur für Mitglieder" or "Einstieg über den Steg". */
+  note?: string | null
+}
+
 export interface WaterProperties {
   id: string
   name: string
@@ -102,6 +115,8 @@ export interface WaterProperties {
   depthMapUrl?: string | null
   /** Important warning, e.g. not to eat the fish. Optional, most waters have none. */
   warning?: WaterWarning | null
+  /** Parking places and access points, shown on the map while the water is selected. Optional. */
+  accessPoints?: AccessPoint[] | null
   geometryStatus: GeometryStatus
 }
 

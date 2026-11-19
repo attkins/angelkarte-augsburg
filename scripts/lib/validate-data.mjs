@@ -1,6 +1,8 @@
 // Checks the data files against the schema described in docs/data-schema.md.
 // Pure function without file access, so it can be used by the CLI script and by the tests.
 
+import { nearestVertexKm } from './geo.mjs'
+
 export const GUEST_ACCESS = ['open', 'withMember', 'membersOnly', 'restricted', 'prohibited', 'unknown']
 export const GEOMETRY_STATUS = ['placeholder', 'traced', 'verified']
 export const WATER_GEOMETRIES = ['Polygon', 'MultiPolygon', 'LineString', 'MultiLineString']
@@ -16,6 +18,9 @@ const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 /** Data checked longer ago than this is probably out of date (prices, rules, guest access). */
 export const STALE_AFTER_DAYS = 183
 const DAY_MS = 24 * 60 * 60 * 1000
+export const ACCESS_POINT_TYPES = ['parking', 'access']
+/** An access point further away from its water than this is probably a typo or swapped coordinates. */
+export const ACCESS_POINT_MAX_KM = 1
 
 /** Whole days from an ISO date (YYYY-MM-DD, read as UTC) to `now`. Negative for dates in the future. */
 function daysSince(isoDate, now) {
@@ -103,6 +108,39 @@ function checkWarning(p, where, errors) {
   if (url !== undefined && url !== null && !/^https:\/\//.test(url)) errors.push(`${where}: warning.url must be an https URL`)
 }
 
+/** Access points are optional. Each needs a known type and `[lon, lat]` near its water. */
+function checkAccessPoints(feature, where, errors, warnings) {
+  const points = feature.properties.accessPoints
+  if (points === undefined || points === null) return
+  if (!Array.isArray(points)) {
+    errors.push(`${where}: accessPoints must be null or a list`)
+    return
+  }
+  points.forEach((point, index) => {
+    const label = `${where}: accessPoints[${index}]`
+    if (!ACCESS_POINT_TYPES.includes(point?.type)) {
+      errors.push(`${label}: type must be one of ${ACCESS_POINT_TYPES.join(', ')}`)
+    }
+    const c = point?.coordinates
+    const valid = Array.isArray(c) && c.length === 2 && c.every((n) => typeof n === 'number' && Number.isFinite(n)) &&
+      Math.abs(c[0]) <= 180 && Math.abs(c[1]) <= 90
+    if (!valid) {
+      errors.push(`${label}: coordinates must be [lon, lat]`)
+      return
+    }
+    const km = nearestVertexKm(c, feature.geometry)
+    if (km > ACCESS_POINT_MAX_KM) {
+      warnings.push(`${label}: ${km.toFixed(1)} km away from the water, check the coordinates (order is [lon, lat])`)
+    }
+    for (const key of ['name', 'note']) {
+      const value = point[key]
+      if (value !== undefined && value !== null && (typeof value !== 'string' || !value.trim())) {
+        errors.push(`${label}: ${key} must be a non-empty text or null`)
+      }
+    }
+  })
+}
+
 /**
  * @param {{ clubs: any[], waters: { type?: string, features: any[] }, salesPoints: { type?: string, features: any[] } }} data
  * @param {{ now?: Date }} [options] `now` is the reference date for the age of `lastChecked`, mainly for tests
@@ -175,6 +213,7 @@ export function validateData({ clubs, waters, salesPoints }, { now = new Date() 
     else if (!p.source) warnings.push(`${where}: source is not set`)
     checkDepth(p, where, errors)
     checkWarning(p, where, errors)
+    checkAccessPoints(feature, where, errors, warnings)
   }
 
   const referencedWaterIds = new Set()

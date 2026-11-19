@@ -111,7 +111,8 @@ Status on 2026-11-16 in brackets.
 Ideas without a release yet. Pick from here when planning the next release after 1.0.
 
 - F6 Water level and temperature (on hold, no browser-readable source, see backlog)
-- F9 Parking and access points
+- F9 Parking and access points (code done 2026-11-18, data in D23)
+- D23 Parking and access points for the waters
 - D12 Maximum depth for the remaining lakes (Tyrol done 2026-11-17, the Bavarian club lakes need the clubs)
 - D22 Remaining candidates (Bichlacher Angelteiche, Moorsee Söll, Baggersee Burg). The six hejfish waters near Fischach were added on 2026-11-16
 - F17 Sun times and allowed fishing hours (added 2026-11-18)

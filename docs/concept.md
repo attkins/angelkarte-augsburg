@@ -65,6 +65,7 @@ Seasons, guest periods and opening hours are stored in a structured form since 2
 - CARTO base maps (OpenStreetMap data) with Leaflet
 - Waters drawn as polygons (lakes) and as polygons or line segments (river stretches). River stretches will mostly need custom geometry because club boundaries do not match OSM objects.
 - Sales points as point markers
+- Parking and access points of the selected water as small markers (since 2026-11-18)
 - Colour coding for waters: open to guests, guests only with member, members only, unknown
 - Layer toggle: waters (on by default), sales points (off by default)
 - Own zoom and location buttons, legend with icons
@@ -106,6 +107,15 @@ Anglers often stand at the water with bad reception, so the map should keep work
 ## Data maintenance (decided 2026-11-17, T3)
 
 The data stays in the plain GeoJSON and JSON files. Almost all updates are research (club pages, hejfish, OSM) rather than typing, so an editor would not save much and would be one more thing to maintain. A spreadsheet as source was rejected for the same reason plus the extra format. Instead `docs/data-maintenance.md` holds the playbook and `npm run due` lists what to check next. Validator and tests guard the files.
+
+## Parking and access points (decided 2026-11-18, F9)
+
+Knowing where to park and how to get to the shore matters as much as the ticket, especially at rivers.
+
+- Two kinds of points per water, parking and access (path to the shore, jetty, gate), stored as an optional `accessPoints` list on the water instead of a separate file. A parking place almost always belongs to one water
+- On the map they only show while their water is selected, like the connection lines, so the map stays calm. They sit above the name labels and show their name on hover or tap
+- The water detail has a section "Anfahrt" with a route link (Google Maps) for each point, parking first. Without points it offers a route to the middle of the lake or the stretch
+- Data comes later. `npm run access-candidates` collects OSM parking near a water as candidates, a human checks them on the aerial images before they go into the data
 
 ## Open questions
 

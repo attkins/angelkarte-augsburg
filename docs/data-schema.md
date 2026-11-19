@@ -42,7 +42,28 @@ A GeoJSON FeatureCollection. Geometry is `Polygon` or `MultiPolygon` for lakes a
 | `maxDepthSource` | string, null or missing | URL the depth comes from, required with `maxDepth`. Club or city pages first, angling portals only when nothing better exists |
 | `depthMapUrl` | string, null or missing | Optional. Link to a depth map, e.g. on the club website |
 | `warning` | object or null | Optional. `{ "text": "...", "url": "https://..." }`, shown in bold above all other notices, e.g. a health advisory. Used for the PFC warning on the Friedberger Ach |
+| `accessPoints` | list or null | Optional. Parking places and access points, see below |
 | `geometryStatus` | string | `placeholder`, `traced` (from OSM or geojson.io) or `verified` |
+
+### Access points
+
+Parking places and ways to the shore of a water, shown as small markers while the water is selected and listed under "Anfahrt" in the detail, each with a route link. Without access points the detail offers a route to the middle of the lake or the stretch instead.
+
+```json
+"accessPoints": [
+  { "type": "parking", "coordinates": [10.938512, 48.338841], "name": "Parkplatz Nordufer", "note": "Kostenlos" },
+  { "type": "access", "coordinates": [10.941203, 48.337102], "note": "Einstieg über den Steg" }
+]
+```
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `type` | string | `parking` or `access` (path to the shore, jetty, gate) |
+| `coordinates` | `[lon, lat]` | Same order as GeoJSON. The validator warns when a point is more than 1 km from the water, which usually means swapped coordinates |
+| `name` | string, null or missing | Short name. Without one the app shows "Parkplatz" or "Zugang" |
+| `note` | string, null or missing | Details that matter on site, e.g. a barrier, a fee or "nur für Mitglieder" |
+
+The detail lists parking first, otherwise the order of the data.
 
 ### Waters in Austria (Tyrol)
 

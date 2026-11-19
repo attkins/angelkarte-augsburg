@@ -17,6 +17,15 @@ defineProps<{ embedded?: boolean }>()
       <AppIcon :name="access.icon" :size="15" :stroke-width="2.2" :style="{ color: `var(--${access.token}-text)` }" />
       {{ access.label }}
     </div>
+    <div class="legend-title is-second">Beim gewählten Gewässer</div>
+    <div class="legend-row">
+      <span class="place-pin is-parking legend-place"><AppIcon name="parking" :size="13" :stroke-width="2.4" /></span>
+      Parkplatz
+    </div>
+    <div class="legend-row">
+      <span class="place-pin is-access legend-place"><AppIcon name="access" :size="13" :stroke-width="2.4" /></span>
+      Zugang
+    </div>
   </div>
 </template>
 
@@ -40,6 +49,17 @@ defineProps<{ embedded?: boolean }>()
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--text-2);
+}
+
+.legend-title.is-second {
+  margin-top: 4px;
+}
+
+/* Same look as on the map, a little smaller and without shadow. */
+.legend-place {
+  width: 22px;
+  height: 22px;
+  box-shadow: none;
 }
 
 .legend-row {

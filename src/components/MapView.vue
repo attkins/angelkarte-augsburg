@@ -15,7 +15,8 @@ import {
   type RegionId,
   TILE_LAYERS,
 } from '@/config'
-import type { MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
+import type { AccessPointType, MapData, Selection, WaterFeature, WaterGeometry, WaterProperties } from '@/types'
+import { ACCESS_POINT_LABELS, accessPointsOf } from '@/utils/access'
 import { dataBounds, regionAt } from '@/utils/bounds'
 
 const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
@@ -35,6 +36,16 @@ const SHOP_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<path d="M3 21h18"/><path d="M5 21V11M19 21V11"/>' +
   '<path d="M3 8l2-5h14l2 5c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3S3 9.7 3 8z"/></svg>'
+
+// Same paths as the `parking` and `access` icons in AppIcon.vue.
+const PLACE_ICONS: Record<AccessPointType, string> = {
+  parking:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 17V7h3.5a3 3 0 0 1 0 6H10"/></svg>',
+  access:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M9 17l5-5-5-5M14 12H3"/></svg>',
+}
 
 const container = useTemplateRef<HTMLElement>('container')
 const map = shallowRef<L.Map | null>(null)
@@ -111,6 +122,42 @@ function pinIcon(state: 'default' | 'dimmed' | 'linked' | 'selected'): L.DivIcon
   })
 }
 
+function placeIcon(type: AccessPointType): L.DivIcon {
+  return L.divIcon({
+    className: '',
+    html: `<div class="place-pin is-${type}">${PLACE_ICONS[type]}</div>`,
+    iconSize: [26, 26],
+    iconAnchor: [13, 13],
+  })
+}
+
+/** Parking and access points of the selected water. They live in the overlay and go with the selection. */
+function addPlaces(feature: WaterFeature) {
+  for (const point of accessPointsOf(feature)) {
+    const [lng, lat] = point.coordinates
+    const label = point.name ?? ACCESS_POINT_LABELS[point.type]
+    const marker = L.marker([lat, lng], {
+      icon: placeIcon(point.type),
+      title: label,
+      alt: label,
+      keyboard: false,
+      pane: 'places',
+    })
+    marker.bindTooltip(point.note ? `${label}, ${point.note}` : label, {
+      direction: 'auto',
+      offset: [14, 0],
+      className: 'map-label',
+      pane: 'placeLabels',
+    })
+    // A click on the map would end the selection, the point only shows its name.
+    marker.on('click', (event) => {
+      L.DomEvent.stopPropagation(event)
+      marker.openTooltip()
+    })
+    marker.addTo(overlay)
+  }
+}
+
 function fitOptions(): L.FitBoundsOptions {
   if (window.matchMedia(MOBILE_QUERY).matches) {
     // Keep clear of the search bar on top and the bottom sheet.
@@ -161,6 +208,11 @@ onMounted(() => {
   const labelsPane = m.createPane('labels')
   labelsPane.style.zIndex = '450'
   labelsPane.style.pointerEvents = 'none'
+
+  // Parking and access points sit above the name labels (tooltip pane 650), which often cover the shore.
+  m.createPane('places').style.zIndex = '660'
+  // Their own labels on top, so a neighbouring point does not cover them.
+  m.createPane('placeLabels').style.zIndex = '670'
 
   watersLayer = L.geoJSON<WaterProperties, WaterGeometry>(props.data.waters, {
     // Leaflet types the callback with a generic geometry, the data only contains water geometries.
@@ -344,6 +396,8 @@ function applyHighlight() {
     }).addTo(overlay)
     layer.bringToFront()
 
+    addPlaces(feature)
+
     // Above the water, so the label does not hide a small lake.
     layer
       .bindTooltip(feature.properties.name, {
@@ -417,6 +471,8 @@ function fitToSelection() {
   if (sel.kind === 'water') {
     const layer = waterLayersById.get(sel.id)
     if (layer) bounds.extend(layer.getBounds())
+    const feature = props.data.watersById.get(sel.id)
+    for (const point of feature ? accessPointsOf(feature) : []) bounds.extend([point.coordinates[1], point.coordinates[0]])
     // Hidden sales points would only zoom the map out for nothing.
     if (showSalesPoints.value) {
       for (const id of props.data.salesPointIdsByWater.get(sel.id) ?? []) {

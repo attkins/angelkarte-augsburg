@@ -6,6 +6,7 @@ import ShareButton from '@/components/ShareButton.vue'
 import { IMPRINT, PRICE_LABELS } from '@/config'
 import { routeHash } from '@/composables/useHashRoute'
 import type { MapData, SalesPointFeature, WaterFeature } from '@/types'
+import { ACCESS_POINT_LABELS, accessPointsOf, directionsUrl, routePoint, toLatLng } from '@/utils/access'
 import { formatDate, formatDepth, formatPrice } from '@/utils/format'
 import { describeUpcoming, isoDay, pricesOn } from '@/utils/prices'
 import { reportMailto } from '@/utils/report'
@@ -92,6 +93,26 @@ const salesPoints = computed(() =>
       }
     }),
 )
+
+/** Parking and access points with a route link each. */
+const places = computed(() =>
+  accessPointsOf(props.water).map((point, index) => ({
+    key: `${point.type}-${index}`,
+    icon: point.type,
+    title: point.name ?? ACCESS_POINT_LABELS[point.type],
+    // With a name of its own the type still matters, e.g. "Parkplatz" below "Am Nordufer".
+    sub: [point.name ? ACCESS_POINT_LABELS[point.type] : null, point.note].filter(Boolean).join(', '),
+    href: directionsUrl(toLatLng(point.coordinates)),
+  })),
+)
+
+/** Without known parking the route leads to the water itself. */
+const waterRoute = computed(() => ({
+  href: directionsUrl(routePoint(props.water.geometry)),
+  sub: props.water.geometry.type.includes('LineString')
+    ? 'Noch kein Parkplatz erfasst. Die Route führt zur Mitte der Strecke.'
+    : 'Noch kein Parkplatz erfasst. Die Route führt zur Mitte des Sees.',
+}))
 
 const lastChecked = computed(() => formatDate(p.value.lastChecked))
 const hasRules = computed(() => p.value.rules.length > 0 || Boolean(p.value.seasonNote))
@@ -206,6 +227,31 @@ const reportHref = computed(() => {
         </button>
       </div>
       <p v-else-if="!p.onlinePurchase?.url" class="muted">Noch keine Ausgabestelle erfasst.</p>
+    </section>
+
+    <section class="directions">
+      <h2 class="section-title serif">Anfahrt</h2>
+      <div class="list-card">
+        <template v-if="places.length">
+          <a v-for="place in places" :key="place.key" class="list-row" :href="place.href" target="_blank" rel="noopener">
+            <span class="row-icon is-place"><AppIcon :name="place.icon" :size="17" /></span>
+            <span class="row-text">
+              <span class="row-title">{{ place.title }}</span>
+              <span v-if="place.sub" class="row-sub">{{ place.sub }}</span>
+            </span>
+            <AppIcon name="route" :size="18" class="row-chevron" />
+            <span class="visually-hidden">, Route öffnen</span>
+          </a>
+        </template>
+        <a v-else class="list-row" :href="waterRoute.href" target="_blank" rel="noopener">
+          <span class="row-icon is-place"><AppIcon name="route" :size="17" /></span>
+          <span class="row-text">
+            <span class="row-title">Route zum Gewässer</span>
+            <span class="row-sub">{{ waterRoute.sub }}</span>
+          </span>
+          <AppIcon name="external" :size="18" class="row-chevron" />
+        </a>
+      </div>
     </section>
 
     <section v-if="p.species.length">
