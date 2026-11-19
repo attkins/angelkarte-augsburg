@@ -1096,6 +1096,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.922608,
+              48.236435
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 7,
         "maxDepthSource": "https://www.fva-ev.de/assets/downloads/67f53835/gb---auensee.pdf"
@@ -1191,6 +1202,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.928647,
+              48.412586
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 4,
         "maxDepthSource": "https://www.fva-ev.de/assets/downloads/67f53835/gb---autobahnsee.pdf"
@@ -3123,6 +3145,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.fva-ev.de/angelkarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.939574,
+              48.343292
+            ],
+            "name": "Kuhsee Parkplatz",
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.944291,
+              48.33866
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 5,
         "maxDepthSource": "https://www.augsburg.de/freizeit/baden/badeseen/kuhsee"
@@ -6206,6 +6248,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.967411,
+              48.363949
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 14.5,
         "maxDepthSource": "https://fv-friedberg.de/gewaesser/friedberger-baggersee/"
@@ -6324,6 +6377,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.973864,
+              48.345135
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.970429,
+              48.341661
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 5,
         "maxDepthSource": "https://fv-friedberg.de/gewaesser/afrasee-i/"
@@ -6407,6 +6480,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.96924,
+              48.340969
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -6511,6 +6595,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fv-friedberg.de/wir-uber-uns/gebuehren/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.960555,
+              48.413888
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -8360,6 +8455,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-haunstetten.de/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.876217,
+              48.229514
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 13,
         "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=roemersee-oberottmarshausen"
@@ -8916,6 +9022,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://fischereiverein-koenigsbrunn.de/Das-Fischen/Karten/Preise-Tageskarten",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.893783,
+              48.2429
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 10,
         "maxDepthSource": "https://www.fisch-hitparade.de/gewaesser/hintersee-augsburg/"
@@ -11054,6 +11171,17 @@
         },
         "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.829356,
+              48.13604
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 8,
         "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=hurlacher-see-hurlach-oberbayern"
@@ -11269,6 +11397,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.871982,
+              48.062745
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.866916,
+              48.060767
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 3,
         "maxDepthSource": "https://www.anglermap.de/angeln/steckbrief-gewaesser.php?id=altoettinger-weiher-landsberg-lech"
@@ -11353,6 +11501,17 @@
         },
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.832809,
+              48.323563
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -11513,6 +11672,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-13",
         "source": "https://www.augsburger-angelcenter.com/tageskarten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.61016,
+              48.396849
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 2.5,
         "maxDepthSource": "https://www.fischereiverein-zusmarshausen.de/seite/776489/rothsee.html"
@@ -11612,6 +11782,26 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.323857,
+              47.650956
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              12.31839,
+              47.650064
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 21,
         "maxDepthSource": "https://wassertemperatur.org/?p=19770"
@@ -13109,6 +13299,26 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://fischereiverein-pillersee.at/karten-und-bestimmungen/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.567005,
+              47.541747
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              12.570782,
+              47.546507
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 7,
         "maxDepthSource": "https://austria-forum.org/af/AustriaWiki/Pillersee"
@@ -15264,6 +15474,26 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://www.tiroler-fischereiverband.at/wp-content/uploads/2026/02/Info-fuer-Anlger-2026.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.798576,
+              47.473413
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.830907,
+              47.483207
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 76.5,
         "maxDepthSource": "https://www.tirol.at/reisefuehrer/natur-gesundheit/badeseen/badegewaesser/a-landschaftsee-kampler-see"
@@ -18372,6 +18602,26 @@
         },
         "lastChecked": "2026-11-14",
         "source": "https://www.tiroler-fischereiverband.at/fischerei/fischen-in-tageslizenzgewaesser/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              11.737895,
+              47.430343
+            ],
+            "name": "Parkplatz Atoll",
+            "note": "Gebührenpflichtig"
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              11.703625,
+              47.440843
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 133,
         "maxDepthSource": "https://austria-forum.org/af/AustriaWiki/Achensee"
@@ -21646,6 +21896,26 @@
         },
         "lastChecked": "2026-11-16",
         "source": "https://www.tannheimertal.com/de/fischwasser-haldensee-p2354",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.565977,
+              47.492369
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.586778,
+              47.492389
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 22,
         "maxDepthSource": "https://www.wassertemperatur.org/?p=30780"
@@ -22384,6 +22654,26 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.170273,
+              47.607747
+            ],
+            "name": "Parkplatz Hechtsee",
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              12.164608,
+              47.614937
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 57,
         "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
@@ -23116,6 +23406,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.120707,
+              47.593418
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              12.125828,
+              47.59001
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 12.4,
         "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
@@ -23639,6 +23949,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              11.888184,
+              47.45979
+            ],
+            "name": "Parkplatz West",
+            "note": "Gebührenpflichtig"
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              11.907539,
+              47.46249
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 10.3,
         "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
@@ -24564,6 +24894,26 @@
         },
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/alle-angelmoeglichkeiten-in-der-umgebung-von-kitzbuehel-kufstein-und-pinzgau.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.36483,
+              47.455967
+            ],
+            "name": "Parkplatz Schwarzsee",
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              12.372539,
+              47.45626
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 7,
         "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasserkreislauf/wasserstand/downloads/Seepegel.pdf"
@@ -25816,6 +26166,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.tannheimertal.com/pdfs/prospekte/angeln-und-fischen_25.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.506649,
+              47.470031
+            ],
+            "name": "Parkplatz Vilsalpsee",
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 30,
         "maxDepthSource": "https://www.tirol.tl/de/highlights/natur-landschaft/seen/vilsalpsee/"
@@ -26374,6 +26735,26 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.hotel.de/de/hotel/63070",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.819472,
+              47.34584
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.823743,
+              47.348237
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 17,
         "maxDepthSource": "https://www.tirol.at/aktivitaeten/ausflugsziele/pois/fernsteinsee-1"
@@ -27505,6 +27886,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-15",
         "source": "https://www.kitzbueheler-alpen.com/media/neues-logo-fischen-angeln-im-pillerseetal-deutsch.pdf",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.534141,
+              47.472083
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "maxDepth": 4,
         "maxDepthSource": "https://www.tirol.gv.at/fileadmin/themen/umwelt/wasser/Gewaesseroekologie/30_Jahre_Tiroler_Seenmonitoring_Enbericht_Teil2_Rev3.pdf"
@@ -33142,6 +33534,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://www.tannheimertal.com/de/bloderteich-am-haldensee-p4691",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.567271,
+              47.490133
+            ],
+            "name": null,
+            "note": "Gebührenpflichtig"
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -35468,6 +35871,17 @@
         },
         "lastChecked": "2026-11-16",
         "source": "https://www.fischerverein-koessen.at/aufeldteich/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              12.375754,
+              47.651084
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -39124,6 +39538,17 @@
         "onlinePurchase": null,
         "lastChecked": "2026-11-16",
         "source": "https://1aac.de/portfolio-items/guenz-waldstetten/",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.307042,
+              48.346853
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       }
     },
@@ -40864,6 +41289,17 @@
           "Höchstens 3 Edelfische (davon 1 Hecht oder Zander) und 5 Friedfische pro Tag, Wels ohne Limit"
         ],
         "source": "https://www.fischereiverein-grossaitingen.de",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.731603,
+              48.238782
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced"
       },
       "geometry": {
@@ -42813,6 +43249,26 @@
           "url": "https://www.hejfish.com/d/15799-kaiserweiher"
         },
         "lastChecked": "2026-11-16",
+        "accessPoints": [
+          {
+            "type": "parking",
+            "coordinates": [
+              10.484781,
+              48.139416
+            ],
+            "name": null,
+            "note": null
+          },
+          {
+            "type": "parking",
+            "coordinates": [
+              10.494309,
+              48.144079
+            ],
+            "name": null,
+            "note": null
+          }
+        ],
         "geometryStatus": "traced",
         "id": "fvs-kaiserweiher",
         "name": "Kaiserweiher (Salgen)",
