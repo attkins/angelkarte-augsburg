@@ -331,7 +331,6 @@ watch(router.route, async () => {
 
     <main class="map-area">
       <MapView
-        v-if="data"
         ref="mapView"
         v-model:selection="selection"
         v-model:region="region"
@@ -340,8 +339,8 @@ watch(router.route, async () => {
         :bottom-inset="mapBottomInset"
         @open-regions="regionDialogOpen = true"
       />
-      <p v-else-if="error" class="app-message is-error">Die Kartendaten konnten nicht geladen werden.</p>
-      <p v-else class="app-message">Karte wird geladen …</p>
+      <p v-if="error" class="app-message glass is-error" role="alert">Die Kartendaten konnten nicht geladen werden.</p>
+      <p v-else-if="!data" class="app-message glass" role="status">Gewässer werden geladen …</p>
 
       <div class="mobile-bar">
         <div class="brand-pill glass">
@@ -537,9 +536,17 @@ watch(router.route, async () => {
 }
 
 .app-message {
-  margin: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
   text-align: center;
   color: var(--text-2);
+  pointer-events: none;
 }
 
 .app-message.is-error {

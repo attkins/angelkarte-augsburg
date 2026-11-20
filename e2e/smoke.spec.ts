@@ -94,8 +94,24 @@ test.describe('smoke', () => {
       await dialog.getByRole('button', { name: "Los geht's" }).click()
       await expect(dialog).toBeHidden()
       await page.reload()
-      await expect(page.locator('.leaflet-container')).toBeVisible()
+      await expect(page.locator('.leaflet-overlay-pane path').first()).toBeAttached()
       await expect(dialog).toBeHidden()
     })
   })
+})
+
+test('shows the base map while the data is still loading', async ({ page }) => {
+  // Hold the waters back until the base map is checked.
+  let release: () => void = () => {}
+  const held = new Promise<void>((resolve) => (release = resolve))
+  await page.route('**/data/waters.geojson', async (route) => {
+    await held
+    await route.continue()
+  })
+  await page.goto('./')
+  await expect(page.locator('.leaflet-container')).toBeVisible()
+  await expect(page.getByRole('status').filter({ hasText: 'Gewässer werden geladen' })).toBeVisible()
+  release()
+  await expect(page.locator('.leaflet-overlay-pane path').first()).toBeAttached()
+  await expect(page.getByText('Gewässer werden geladen')).toHaveCount(0)
 })

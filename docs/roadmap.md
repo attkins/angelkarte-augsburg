@@ -128,6 +128,7 @@ Goal: a stable version with the new prices at the turn of the year.
 - T7 Test on real phones (iOS Safari, Android Chrome)
 - T8 Smoke tests against the real page in CI (done)
 - T9 Accessibility check (done)
+- T11 Faster first map on phones, after a Lighthouse run (done)
 - F26 Planned day in the share link (done)
 - F27 Short explanation on the first visit (done)
 - Final pass over the acceptance criteria
@@ -171,6 +172,7 @@ Ideas without a release yet. Pick from here when planning the next release after
 - F35 Place search
 - F36 Print view
 - T10 Weekly GitHub Action for links and due checks
+- T12 Smaller data files in the build (compact JSON in `dist/`)
 
 ## How releases are made
 

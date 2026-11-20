@@ -20,7 +20,8 @@ import { ACCESS_POINT_LABELS, accessPointsOf } from '@/utils/access'
 import { dataBounds, regionAt } from '@/utils/bounds'
 
 const props = defineProps<{
-  data: MapData
+  /** Null while the data files are still loading, the base map is shown already. */
+  data: MapData | null
   matchingIds?: Set<string> | null
   /** Height in px the bottom sheet covers on small screens, null for the default share of the screen. */
   bottomInset?: () => number | null
@@ -181,21 +182,30 @@ function updateMinZoom(m: L.Map) {
   if (limit) m.setMinZoom(m.getBoundsZoom(limit))
 }
 
+/**
+ * The loaded data. Only for code that runs once `map` is set, which waits for the data.
+ */
+function loaded(): MapData {
+  return props.data!
+}
+
 function waterCenter(id: string): L.LatLng | null {
   return waterLayersById.get(id)?.getBounds().getCenter() ?? null
 }
 
-onMounted(() => {
-  // The map cannot be panned or zoomed out away from the area with data, so there is always something to see.
-  limit = L.latLngBounds(dataBounds(props.data, REGION_BOUNDS))
+/** The Leaflet map, created on mount. `map` is only set once the data layers are added. */
+let baseMap: L.Map | null = null
 
+// The base map and its tiles start right away, the waters follow once the data has loaded.
+// Waiting for the data first delayed the first tiles, the largest thing on the screen.
+onMounted(() => {
   // Popups are not used, the details live in the side panel.
   const m = L.map(container.value!, {
     zoomControl: false,
     closePopupOnClick: false,
-    maxBounds: limit,
     maxBoundsViscosity: 1,
   })
+  baseMap = m
   m.attributionControl.setPrefix(false)
   updateMinZoom(m)
   m.on('resize', () => updateMinZoom(m))
@@ -219,40 +229,6 @@ onMounted(() => {
   m.createPane('places').style.zIndex = '660'
   // Their own labels on top, so a neighbouring point does not cover them.
   m.createPane('placeLabels').style.zIndex = '670'
-
-  watersLayer = L.geoJSON<WaterProperties, WaterGeometry>(props.data.waters, {
-    // Leaflet types the callback with a generic geometry, the data only contains water geometries.
-    style: (feature) => waterStyle(feature as WaterFeature, 'default'),
-    onEachFeature: (feature, layer) => {
-      const id = feature.properties.id
-      waterLayersById.set(id, layer as L.Polyline)
-      layer.on('click', (event: L.LeafletMouseEvent) => {
-        L.DomEvent.stopPropagation(event)
-        selection.value = { kind: 'water', id }
-      })
-    },
-  }).addTo(m)
-
-  overlay.addTo(m)
-
-  salesPointsLayer = L.geoJSON(props.data.salesPoints, {
-    pointToLayer: (feature, latlng) => {
-      const id = feature.properties.id as string
-      const marker = L.marker(latlng, {
-        icon: pinIcon('default'),
-        title: feature.properties.name,
-        alt: feature.properties.name,
-        riseOnHover: true,
-      })
-      markersById.set(id, marker)
-      marker.on('click', (event) => {
-        L.DomEvent.stopPropagation(event)
-        selection.value = { kind: 'salesPoint', id }
-      })
-      return marker
-    },
-  })
-  if (showSalesPoints.value) salesPointsLayer.addTo(m)
 
   m.on('click', () => {
     selection.value = null
@@ -279,12 +255,66 @@ onMounted(() => {
 
   m.on('locationerror', () => showLocateMessage('Dein Standort ist gerade nicht verfügbar.'))
 
-  map.value = m
+  if (props.data) addData(m, props.data)
 })
+
+// The data arrives after mount on a first visit.
+watch(
+  () => props.data,
+  (data) => {
+    if (data && baseMap && !map.value) addData(baseMap, data)
+  },
+)
+
+/** Adds waters and sales points and the limits that depend on them, then marks the map as ready. */
+function addData(m: L.Map, data: MapData) {
+  // The map cannot be panned or zoomed out away from the area with data, so there is always something to see.
+  // The box always contains REGION_BOUNDS, so the start view does not move.
+  limit = L.latLngBounds(dataBounds(data, REGION_BOUNDS))
+  m.setMaxBounds(limit)
+  updateMinZoom(m)
+
+  watersLayer = L.geoJSON<WaterProperties, WaterGeometry>(data.waters, {
+    // Leaflet types the callback with a generic geometry, the data only contains water geometries.
+    style: (feature) => waterStyle(feature as WaterFeature, 'default'),
+    onEachFeature: (feature, layer) => {
+      const id = feature.properties.id
+      waterLayersById.set(id, layer as L.Polyline)
+      layer.on('click', (event: L.LeafletMouseEvent) => {
+        L.DomEvent.stopPropagation(event)
+        selection.value = { kind: 'water', id }
+      })
+    },
+  }).addTo(m)
+
+  overlay.addTo(m)
+
+  salesPointsLayer = L.geoJSON(data.salesPoints, {
+    pointToLayer: (feature, latlng) => {
+      const id = feature.properties.id as string
+      const marker = L.marker(latlng, {
+        icon: pinIcon('default'),
+        title: feature.properties.name,
+        alt: feature.properties.name,
+        riseOnHover: true,
+      })
+      markersById.set(id, marker)
+      marker.on('click', (event) => {
+        L.DomEvent.stopPropagation(event)
+        selection.value = { kind: 'salesPoint', id }
+      })
+      return marker
+    },
+  })
+  if (showSalesPoints.value) salesPointsLayer.addTo(m)
+
+  map.value = m
+}
 
 onBeforeUnmount(() => {
   clearTimeout(locateMessageTimer)
-  map.value?.remove()
+  baseMap?.remove()
+  baseMap = null
   map.value = null
 })
 
@@ -296,7 +326,7 @@ function showLocateMessage(message: string) {
 
 function locate() {
   // The view is set in the locationfound handler, only when the location is inside the limits.
-  map.value?.locate()
+  baseMap?.locate()
 }
 
 /** Called from the region dialog in App.vue. */
@@ -322,7 +352,7 @@ function showRegion(target: Region) {
 }
 
 function zoom(delta: number) {
-  map.value?.setZoom(map.value.getZoom() + delta)
+  baseMap?.setZoom(baseMap.getZoom() + delta)
 }
 
 /** Styles, labels, halo and connection lines for the current selection. */
@@ -340,20 +370,20 @@ function applyHighlight() {
   const selectedClub = sel?.kind === 'club' ? sel.id : null
   const linkedWaters = new Set(
     selectedSalesPoint
-      ? (props.data.salesPointsById.get(selectedSalesPoint)?.properties.waterIds ?? [])
+      ? (loaded().salesPointsById.get(selectedSalesPoint)?.properties.waterIds ?? [])
       : selectedClub
-        ? (props.data.waterIdsByClub.get(selectedClub) ?? [])
+        ? (loaded().waterIdsByClub.get(selectedClub) ?? [])
         : [],
   )
   const linkedSalesPoints = new Set(
     selectedWater
-      ? (props.data.salesPointIdsByWater.get(selectedWater) ?? [])
-      : [...linkedWaters].flatMap((id) => (selectedClub ? (props.data.salesPointIdsByWater.get(id) ?? []) : [])),
+      ? (loaded().salesPointIdsByWater.get(selectedWater) ?? [])
+      : [...linkedWaters].flatMap((id) => (selectedClub ? (loaded().salesPointIdsByWater.get(id) ?? []) : [])),
   )
 
   const filtered = props.matchingIds ?? null
   waterLayersById.forEach((layer, id) => {
-    const feature = props.data.watersById.get(id)
+    const feature = loaded().watersById.get(id)
     if (!feature) return
     const state = sel
       ? id === selectedWater
@@ -384,7 +414,7 @@ function applyHighlight() {
 
   if (selectedWater) {
     const layer = waterLayersById.get(selectedWater)
-    const feature = props.data.watersById.get(selectedWater)
+    const feature = loaded().watersById.get(selectedWater)
     const center = waterCenter(selectedWater)
     if (!layer || !feature || !center) return
 
@@ -451,7 +481,7 @@ function syncPinnedMarkers(selectedSalesPoint: string | null) {
 
 function labelWater(id: string) {
   const layer = waterLayersById.get(id)
-  const name = props.data.watersById.get(id)?.properties.name
+  const name = loaded().watersById.get(id)?.properties.name
   const center = waterCenter(id)
   if (layer && name && center) {
     layer
@@ -462,7 +492,7 @@ function labelWater(id: string) {
 
 function labelMarker(id: string) {
   const marker = markersById.get(id)
-  const name = props.data.salesPointsById.get(id)?.properties.name
+  const name = loaded().salesPointsById.get(id)?.properties.name
   if (marker && name) {
     // auto: right of the pin, or left of it near the right edge of the map.
     marker.bindTooltip(name, { permanent: true, direction: 'auto', offset: [18, 0], className: 'map-label' }).openTooltip()
@@ -477,25 +507,25 @@ function fitToSelection() {
   if (sel.kind === 'water') {
     const layer = waterLayersById.get(sel.id)
     if (layer) bounds.extend(layer.getBounds())
-    const feature = props.data.watersById.get(sel.id)
+    const feature = loaded().watersById.get(sel.id)
     for (const point of feature ? accessPointsOf(feature) : []) bounds.extend([point.coordinates[1], point.coordinates[0]])
     // Hidden sales points would only zoom the map out for nothing.
     if (showSalesPoints.value) {
-      for (const id of props.data.salesPointIdsByWater.get(sel.id) ?? []) {
+      for (const id of loaded().salesPointIdsByWater.get(sel.id) ?? []) {
         const marker = markersById.get(id)
         if (marker) bounds.extend(marker.getLatLng())
       }
     }
   } else if (sel.kind === 'club') {
     // Only the waters: a shop selling for the club can be far away and would zoom out too much.
-    for (const id of props.data.waterIdsByClub.get(sel.id) ?? []) {
+    for (const id of loaded().waterIdsByClub.get(sel.id) ?? []) {
       const layer = waterLayersById.get(id)
       if (layer) bounds.extend(layer.getBounds())
     }
   } else {
     const marker = markersById.get(sel.id)
     if (marker) bounds.extend(marker.getLatLng())
-    for (const id of props.data.salesPointsById.get(sel.id)?.properties.waterIds ?? []) {
+    for (const id of loaded().salesPointsById.get(sel.id)?.properties.waterIds ?? []) {
       const layer = waterLayersById.get(id)
       if (layer) bounds.extend(layer.getBounds())
     }
@@ -545,7 +575,7 @@ watch(
 )
 
 watch(baseLayer, (value) => {
-  const m = map.value
+  const m = baseMap
   if (!m || !tileLayer) return
   if (value === 'aerial') {
     aerialLayer ??= L.tileLayer.wms(AERIAL_LAYER.url, AERIAL_LAYER.options)

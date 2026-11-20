@@ -116,6 +116,14 @@ The map can be added to the home screen and then opens like an app, without the 
 - The service worker also stores the manifest and the small icons, and their content counts for its version
 - Checked with Chromium against the build: no manifest or installability errors. On real phones still open, see T7
 
+## Loading speed (decided 2026-11-20, T11)
+
+The largest thing on the first screen is a map tile, so the tiles should start as early as possible.
+
+- `MapView` is shown right away, not only once the data is loaded. It creates the map and the base tiles on mount, the waters, sales points and the panning limits (`maxBounds`, min zoom) are added in `addData()` when the data arrives. Until then a small notice "Gewässer werden geladen" sits on the map. Code that needs the data runs only once `map` is set, which waits for the data
+- `index.html` preconnects to `basemaps.cartocdn.com`
+- Not changed: GitHub Pages serves everything with a 10 minute cache, the service worker covers repeat visits. The retina tiles stay, smaller tiles would look blurry on phones
+
 ## Accessibility (checked 2026-11-20, T9)
 
 Target is WCAG 2.1 AA. Checked automatically with axe in `e2e/a11y.spec.ts` (all page kinds, both themes, dialogs, collapsed sheet) and by hand for what a tool cannot judge.

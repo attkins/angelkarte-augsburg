@@ -18,7 +18,8 @@ export { expect }
 /** Opens the app and waits until the data is loaded. */
 export async function openApp(page: Page, hash = '') {
   await page.goto(`./${hash}`)
-  await expect(page.locator('.leaflet-container')).toBeVisible()
+  // The base map shows before the data, the waters on the map mean the data is there.
+  await expect(page.locator('.leaflet-overlay-pane path').first()).toBeAttached()
 }
 
 /** Shows the water list on phones, where it sits in the collapsed bottom sheet. */
