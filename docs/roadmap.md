@@ -101,6 +101,7 @@ Goal: a friend knows which papers to bring and which fish to put back, in Bavari
 - F19 Legal closed seasons and minimum sizes, protected species marked for the shown day (done)
 - F19 follow-up: the species filter marks and hides waters where the species is protected (done)
 - F24 Sort the water list by guest price (done)
+- F37 Collapsible bottom sheet on phones (done)
 
 Release with `npm run release:minor`.
 

@@ -19,7 +19,12 @@ import type { AccessPointType, MapData, Selection, WaterFeature, WaterGeometry, 
 import { ACCESS_POINT_LABELS, accessPointsOf } from '@/utils/access'
 import { dataBounds, regionAt } from '@/utils/bounds'
 
-const props = defineProps<{ data: MapData; matchingIds?: Set<string> | null }>()
+const props = defineProps<{
+  data: MapData
+  matchingIds?: Set<string> | null
+  /** Height in px the bottom sheet covers on small screens, null for the default share of the screen. */
+  bottomInset?: () => number | null
+}>()
 const selection = defineModel<Selection | null>('selection', { default: null })
 /** The region the map centre is in, null while it is somewhere in between. */
 const region = defineModel<RegionId | null>('region', { default: null })
@@ -161,9 +166,10 @@ function addPlaces(feature: WaterFeature) {
 function fitOptions(): L.FitBoundsOptions {
   if (window.matchMedia(MOBILE_QUERY).matches) {
     // Keep clear of the search bar on top and the bottom sheet.
+    const sheet = props.bottomInset?.() ?? Math.round(window.innerHeight * 0.62)
     return {
       paddingTopLeft: [30, 90],
-      paddingBottomRight: [30, Math.round(window.innerHeight * 0.62) + 20],
+      paddingBottomRight: [30, sheet + 20],
       maxZoom: 14,
     }
   }
@@ -497,10 +503,15 @@ function fitToSelection() {
   if (bounds.isValid()) m.fitBounds(bounds, fitOptions())
 }
 
-watch([selection, map], () => {
-  applyHighlight()
-  fitToSelection()
-})
+// After the DOM update, so the bottom sheet already has the height of the new page.
+watch(
+  [selection, map],
+  () => {
+    applyHighlight()
+    fitToSelection()
+  },
+  { flush: 'post' },
+)
 
 // Re-dim the map when the filter changes. Only fit bounds when nothing is selected.
 watch(

@@ -18,6 +18,7 @@ import { useTheme } from '@/composables/useTheme'
 import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
+import { type SheetState, sheetStateAfterDrag, sheetStateAfterTap } from '@/utils/sheet'
 import { formatLongDay, parseIsoDay } from '@/utils/time'
 
 useTheme()
@@ -82,6 +83,61 @@ const selectedClub = computed(() =>
 )
 const sheetOpen = computed(() => Boolean(selection.value) || listOpen.value || imprintOpen.value)
 
+/**
+ * Only used on small screens: how far the sheet with a detail page is open.
+ * Kept when another water or sales point is selected, so a collapsed sheet stays collapsed.
+ */
+const sheetState = ref<SheetState>('half')
+const sheetCollapsible = computed(() => Boolean(selection.value) && !imprintOpen.value)
+const sheetPeek = computed(() => sheetCollapsible.value && sheetState.value === 'peek')
+
+/** Drag on the sheet handle, the panel follows the finger until it snaps to a state. */
+let drag: { pointerId: number; startY: number; startHeight: number; maxHeight: number } | null = null
+const dragging = ref(false)
+
+function onHandlePointerDown(event: PointerEvent) {
+  if (!panel.value || (event.pointerType === 'mouse' && event.button !== 0)) return
+  const height = panel.value.getBoundingClientRect().height
+  const parentHeight = panel.value.parentElement?.getBoundingClientRect().height ?? window.innerHeight
+  drag = { pointerId: event.pointerId, startY: event.clientY, startHeight: height, maxHeight: parentHeight - 80 }
+  ;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
+}
+
+function onHandlePointerMove(event: PointerEvent) {
+  if (!drag || event.pointerId !== drag.pointerId || !panel.value) return
+  const dy = event.clientY - drag.startY
+  if (!dragging.value && Math.abs(dy) < 4) return
+  dragging.value = true
+  const height = Math.min(Math.max(drag.startHeight - dy, 60), drag.maxHeight)
+  panel.value.style.height = `${height}px`
+}
+
+function onHandlePointerUp(event: PointerEvent) {
+  if (!drag || event.pointerId !== drag.pointerId) return
+  const dy = event.clientY - drag.startY
+  drag = null
+  dragging.value = false
+  panel.value?.style.removeProperty('height')
+  sheetState.value = sheetStateAfterDrag(sheetState.value, dy, window.innerHeight)
+}
+
+function onHandlePointerCancel() {
+  drag = null
+  dragging.value = false
+  panel.value?.style.removeProperty('height')
+}
+
+/** Keyboard only, pointer taps are handled in onHandlePointerUp. */
+function onHandleClick(event: MouseEvent) {
+  if (event.detail === 0) sheetState.value = sheetStateAfterTap(sheetState.value)
+}
+
+/** Height the sheet covers at the bottom of the map, so the map can fit the selection above it. */
+function mapBottomInset(): number | null {
+  if (!sheetPeek.value || !panel.value) return null
+  return Math.round(panel.value.getBoundingClientRect().height)
+}
+
 function selectWater(id: string) {
   router.navigate({ kind: 'water', id })
 }
@@ -120,7 +176,16 @@ watch(router.route, async () => {
 
 <template>
   <div class="app">
-    <aside ref="panel" class="panel" :class="{ 'is-open': sheetOpen }">
+    <aside
+      ref="panel"
+      class="panel"
+      :class="{
+        'is-open': sheetOpen,
+        'is-peek': sheetPeek,
+        'is-full': sheetCollapsible && sheetState === 'full',
+        'is-dragging': dragging,
+      }"
+    >
       <header class="panel-header">
         <div class="logo"><AppIcon name="fish" :size="24" :stroke-width="1.9" /></div>
         <div class="brand">
@@ -150,6 +215,20 @@ watch(router.route, async () => {
       >
         <span class="grip" />
         <span v-if="data">{{ listOpen ? 'Liste schließen' : `Alle ${data.waters.features.length} Gewässer` }}</span>
+      </button>
+      <button
+        v-else-if="sheetCollapsible"
+        type="button"
+        class="sheet-handle is-draggable"
+        :aria-expanded="sheetState !== 'peek'"
+        :aria-label="sheetState === 'peek' ? 'Details ausklappen' : 'Details einklappen'"
+        @pointerdown="onHandlePointerDown"
+        @pointermove="onHandlePointerMove"
+        @pointerup="onHandlePointerUp"
+        @pointercancel="onHandlePointerCancel"
+        @click="onHandleClick"
+      >
+        <span class="grip" />
       </button>
       <div v-else class="sheet-handle is-static" aria-hidden="true"><span class="grip" /></div>
 
@@ -231,6 +310,7 @@ watch(router.route, async () => {
         v-model:region="region"
         :data="data"
         :matching-ids="matchingIds"
+        :bottom-inset="mapBottomInset"
         @open-regions="regionDialogOpen = true"
       />
       <p v-else-if="error" class="app-message is-error">Die Kartendaten konnten nicht geladen werden.</p>
@@ -526,9 +606,39 @@ watch(router.route, async () => {
     cursor: pointer;
   }
 
-  .sheet-handle.is-static {
+  .sheet-handle.is-static,
+  .sheet-handle.is-draggable {
     padding-bottom: 4px;
     cursor: default;
+  }
+
+  .sheet-handle.is-draggable {
+    padding-top: 12px;
+    padding-bottom: 10px;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .panel.is-full {
+    height: calc(100% - 80px - env(safe-area-inset-top));
+    max-height: none;
+  }
+
+  .panel.is-dragging {
+    max-height: none;
+  }
+
+  .panel.is-dragging .sheet-handle {
+    cursor: grabbing;
+  }
+
+  .panel.is-peek:not(.is-dragging) .panel-body {
+    overflow: hidden;
+    padding-bottom: 14px;
+  }
+
+  .panel.is-peek:not(.is-dragging) :is(.plan-banner, .panel-footer) {
+    display: none;
   }
 
   .grip {

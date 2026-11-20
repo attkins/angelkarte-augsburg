@@ -71,7 +71,7 @@ const websiteLabel = computed(() => props.club.website?.replace(/^https?:\/\/(ww
       <AppIcon name="arrow-left" :size="16" />Alle Gewässer
     </button>
 
-    <header class="detail-header">
+    <header class="detail-header sheet-peek">
       <div class="detail-title">
         <p class="eyebrow">Verein</p>
         <h1 class="serif">{{ club.name }}</h1>

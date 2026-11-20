@@ -192,7 +192,7 @@ const reportHref = computed(() => {
       <AppIcon name="arrow-left" :size="16" />Alle Gewässer
     </button>
 
-    <header class="detail-header">
+    <header class="detail-header sheet-peek">
       <div class="detail-title">
         <h1 class="serif">{{ p.name }}</h1>
         <p class="subtitle">
@@ -209,7 +209,7 @@ const reportHref = computed(() => {
       </button>
     </header>
 
-    <div class="badges">
+    <div class="badges sheet-peek">
       <AccessBadge :access="p.guestAccess" />
       <span v-if="p.season" class="info-badge"><AppIcon name="calendar" :size="15" />Saison {{ formatRange(p.season) }}</span>
       <span v-if="p.guestPeriod" class="info-badge">

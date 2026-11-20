@@ -124,3 +124,4 @@ Status values: `open`, `in progress`, `done`, `blocked`.
 | F34 | Water names on the map | Name labels from a certain zoom level, so lakes can be told apart without tapping them | ⬜ open (added 2026-11-19) |
 | F35 | Place search | Typing a place like "Kissing" moves the map there, not only to matching water and club names. Nominatim, low volume | ⬜ open (added 2026-11-19) |
 | F36 | Print view | One page per water with rules, closed seasons, directions and a map clip, to print or save as PDF for the tackle bag | ⬜ open (added 2026-11-19) |
+| F37 | Collapsible bottom sheet on phones | The detail sheet snaps between peek, half and full via the handle (drag or tap). Peek shows only name, club and badges (sales point: name and opening state), so most of the screen stays free for the map. See `concept.md` | ✅ done 2026-11-20. `src/utils/sheet.ts` decides the snap state, elements marked `.sheet-peek` stay visible in peek, the map fits above the collapsed sheet |

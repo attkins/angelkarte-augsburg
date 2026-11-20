@@ -326,6 +326,32 @@ button {
     display: none;
   }
 
+  /* Collapsed bottom sheet: only the elements marked with .sheet-peek stay visible. */
+  .panel.is-peek:not(.is-dragging) .detail {
+    gap: 10px;
+  }
+
+  .panel.is-peek:not(.is-dragging) .detail > :not(.sheet-peek),
+  .panel.is-peek:not(.is-dragging) .opening > :not(.opening-status) {
+    display: none;
+  }
+
+  .panel.is-peek:not(.is-dragging) .badges {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .panel.is-peek:not(.is-dragging) .badges > * {
+    flex: 0 0 auto;
+  }
+
+  .panel.is-peek:not(.is-dragging) .opening-status .muted-inline {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .detail h1 {
     font-size: 27px;
   }

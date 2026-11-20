@@ -127,6 +127,17 @@ Many anglers plan around the morning and evening, so the water detail shows sunr
 - Always shown in German local time (Europe/Berlin, the same as Tyrol), so a friend abroad sees the times at the water
 - Allowed fishing hours tied to the sun are left out until a club rule in the data needs them
 
+## Collapsible bottom sheet (decided 2026-11-19, F37)
+
+On phones the detail page leaves little room for the map, so the sheet with a water, sales point or club page can be collapsed to a small peek.
+
+- Three snap states: peek, half (the height so far, at most 62 % of the screen) and full. The handle switches between them, by dragging or by tapping (tap toggles peek and half, from full it goes to half)
+- Peek shows only the header and the badges. For a water that is name, club and badges in one row that scrolls sideways, for a sales point name, address and the opening state, for a club the header. Elements that stay visible carry the class `.sheet-peek`
+- Collapsing is manual only, moving the map does not change the sheet
+- The state is kept when another page is selected, a collapsed sheet stays collapsed
+- With a collapsed sheet the map fits the selection above the sheet's real height instead of the usual 62 %
+- The list without a selection keeps its own open and close toggle, desktop is unchanged
+
 ## Licences and papers (decided 2026-11-19, F20)
 
 Friends who fish in Tyrol for the first time need to know that a day ticket alone is not enough.

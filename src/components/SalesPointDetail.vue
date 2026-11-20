@@ -88,7 +88,7 @@ function guestPrice(water: WaterFeature): string | null {
       <AppIcon name="arrow-left" :size="16" />Alle Gewässer
     </button>
 
-    <header class="detail-header">
+    <header class="detail-header sheet-peek">
       <div class="detail-title">
         <p class="eyebrow">Verkaufsstelle</p>
         <h1 class="serif">{{ p.name }}</h1>
@@ -100,7 +100,7 @@ function guestPrice(water: WaterFeature): string | null {
       </button>
     </header>
 
-    <div v-if="opening || p.openingHoursNote" class="opening">
+    <div v-if="opening || p.openingHoursNote" class="opening sheet-peek">
       <div v-if="opening && openingState" class="opening-status">
         <span class="dot" :class="openingState.modifier" />
         <strong :class="openingState.modifier">{{ openingState.label }}</strong>
