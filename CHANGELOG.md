@@ -2,6 +2,16 @@
 
 All notable changes to the Angelkarte. Generated from the commit messages with git-cliff, edits by hand get lost on the next run.
 
+## 0.13.0 (2026-11-20)
+
+### Features
+
+- Make the mobile detail sheet collapsible (F37) ([3f1ac74](https://github.com/attkins/angelkarte-augsburg/commit/3f1ac7406145e7168a725cde9b3249ef69b5b6d1))
+
+### Documentation
+
+- Plan 1.0 and collect new feature ideas ([f262930](https://github.com/attkins/angelkarte-augsburg/commit/f262930a2eec0031c511b208bb8259211381ddf2))
+
 ## 0.12.0 (2026-11-19)
 
 ### Features
