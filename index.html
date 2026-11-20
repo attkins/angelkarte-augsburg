@@ -4,7 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐟%3C/text%3E%3C/svg%3E">
+  <!-- App icons, rendered from the header logo with scripts/icons.py. -->
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <!-- Colour of the browser and status bar, the map background (--land). Set for the stored theme below. -->
+  <meta name="theme-color" content="#e7ece5">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Angelkarte">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>Angelkarte Augsburg</title>
   <meta name="description" content="Interaktive Karte für Augsburg und Umland: welcher Verein Tageskarten verkauft, wo es sie gibt und ob Gäste allein fischen dürfen.">
   <!-- Link preview in messengers and social networks. Crawlers need absolute URLs and ignore the #/... routes,
@@ -27,6 +37,8 @@
       var stored = localStorage.getItem('angelkarte-theme')
       var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
       document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+      // Same colours as THEME_COLORS in src/composables/useTheme.ts.
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#151e1c' : '#e7ece5'
     } catch (e) {}
   </script>
 </head>

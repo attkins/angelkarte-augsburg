@@ -171,3 +171,5 @@ The page sets `noindex` so it stays out of search engines, but anyone with the l
 `index.html` has Open Graph tags, so a shared link shows a card with title, text and the image `public/og-image.png` in messengers. Crawlers need absolute URLs, so `og:url` and `og:image` contain the GitHub Pages address. Change both if the site moves. They also ignore the `#/...` routes, so a link to a single water shows the same card.
 
 The image is a small map of all waters in their access colours. After larger data changes it can be rendered again with `python3 scripts/og-image.py` (needs Python with Playwright and the installed npm packages for the fonts). Messengers cache previews, so a changed image may take a while to show up.
+
+The app can be installed to the home screen (`public/manifest.webmanifest`). Its icons in `public/icon.svg` and `public/icons/` are rendered from the fish logo with `python3 scripts/icons.py` (needs Python with Playwright). Run it again after changing the logo or the accent colour.

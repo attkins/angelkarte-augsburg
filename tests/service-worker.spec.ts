@@ -25,6 +25,10 @@ describe('precacheUrls', () => {
     expect(urls).toEqual([
       './',
       './index.html',
+      './manifest.webmanifest',
+      './icon.svg',
+      './icons/icon-192.png',
+      './icons/apple-touch-icon.png',
       './assets/figtree-latin-wght-normal-1.woff2',
       './assets/index-abc.js',
       './assets/index-def.css',

@@ -30,8 +30,15 @@ function systemTheme(): Theme {
 const theme = ref<Theme>('light')
 let initialised = false
 
+/**
+ * Colour of the browser and status bar per theme, the map background (--land in style.css).
+ * The inline script in index.html sets the same colours before the first paint.
+ */
+export const THEME_COLORS: Record<Theme, string> = { light: '#e7ece5', dark: '#151e1c' }
+
 function apply(value: Theme) {
   document.documentElement.dataset.theme = value
+  document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[value])
 }
 
 /**

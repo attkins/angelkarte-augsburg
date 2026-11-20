@@ -105,6 +105,17 @@ Anglers often stand at the water with bad reception, so the map should keep work
 - The version changes with every change to the bundle or the data, so returning visitors get both
 - While the browser is offline a notice on top of the panel says that the data is from the last visit. The privacy note mentions the offline storage
 
+## Installable app (decided 2026-11-20, F25)
+
+The map can be added to the home screen and then opens like an app, without the browser bar.
+
+- `public/manifest.webmanifest` with name "Angelkarte", German language, `display: standalone` and relative `start_url` and `scope`, so it works under the GitHub Pages path
+- Icons from the fish logo of the panel header, petrol with the light fish: `public/icon.svg` as favicon, PNGs in 192 and 512 px, a maskable 512 px icon and a 180 px Apple touch icon without rounded corners (Android and iOS crop those themselves). Rendered with `python3 scripts/icons.py`
+- The browser and status bar take the map background (`--land`) of the current theme. The inline script in `index.html` sets it before the first paint, `useTheme()` keeps it up to date when the theme is switched
+- iOS status bar style `default`, so the app starts below the status bar and needs no extra safe area handling
+- The service worker also stores the manifest and the small icons, and their content counts for its version
+- Checked with Chromium against the build: no manifest or installability errors. On real phones still open, see T7
+
 ## Data maintenance (decided 2026-11-17, T3)
 
 The data stays in the plain GeoJSON and JSON files. Almost all updates are research (club pages, hejfish, OSM) rather than typing, so an editor would not save much and would be one more thing to maintain. A spreadsheet as source was rejected for the same reason plus the extra format. Instead `docs/data-maintenance.md` holds the playbook and `npm run due` lists what to check next. Validator and tests guard the files.

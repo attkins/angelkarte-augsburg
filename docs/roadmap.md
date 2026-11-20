@@ -124,7 +124,7 @@ Goal: a stable version with the new prices at the turn of the year.
 
 - D11 Check the 2027 prices of all clubs in January, switch Hintersee to guests with a member. Start with `npm run links`
 - T3 Decide and document how the data is maintained (done 2026-11-17, plain files plus `docs/data-maintenance.md` and `npm run due`)
-- F25 Installable app (manifest, icons, favicon)
+- F25 Installable app (manifest, icons, favicon) (done)
 - T7 Test on real phones (iOS Safari, Android Chrome)
 - T8 Smoke tests against the real page in CI
 - T9 Accessibility check

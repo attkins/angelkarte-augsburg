@@ -7,9 +7,15 @@ import { fileURLToPath } from 'node:url'
 const TEMPLATE = fileURLToPath(new URL('../service-worker.js', import.meta.url))
 
 /**
+ * Files from public/ the installed app needs offline: the manifest and the icons the page links to.
+ * The large icons are only read when the app is installed, which needs a connection anyway.
+ */
+export const APP_FILES = ['./manifest.webmanifest', './icon.svg', './icons/icon-192.png', './icons/apple-touch-icon.png']
+
+/**
  * URLs the service worker stores on install, relative to the site root.
- * The page itself, the hashed JS and CSS, only the Latin fonts (the other subsets are only
- * fetched for other scripts) and the data files.
+ * The page itself, the manifest and small icons, the hashed JS and CSS, only the Latin fonts
+ * (the other subsets are only fetched for other scripts) and the data files.
  *
  * @param {string[]} bundleFiles file names of the Vite bundle
  * @param {string[]} dataFiles file names in public/data
@@ -19,7 +25,13 @@ export function precacheUrls(bundleFiles, dataFiles) {
   const assets = bundleFiles
     .filter((name) => /\.(js|css)$/.test(name) || /-latin-wght-normal-[^/]*\.woff2$/.test(name))
     .sort()
-  return ['./', './index.html', ...assets.map((name) => `./${name}`), ...[...dataFiles].sort().map((name) => `./data/${name}`)]
+  return [
+    './',
+    './index.html',
+    ...APP_FILES,
+    ...assets.map((name) => `./${name}`),
+    ...[...dataFiles].sort().map((name) => `./data/${name}`),
+  ]
 }
 
 /**
@@ -50,6 +62,8 @@ export function serviceWorker(options = {}) {
       // A new version whenever the app or the data changes, so returning visitors get both.
       const hash = createHash('sha256')
       for (const name of Object.keys(bundle).sort()) hash.update(name)
+      // Manifest and icons keep their names, their content has to count.
+      for (const url of APP_FILES) hash.update(readFileSync(join(publicDir, url)))
       for (const name of dataFiles.sort()) hash.update(readFileSync(join(dataDir, name)))
       const version = hash.digest('hex').slice(0, 12)
       this.emitFile({
