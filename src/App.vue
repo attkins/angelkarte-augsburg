@@ -12,7 +12,7 @@ import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
 import WelcomeDialog from '@/components/WelcomeDialog.vue'
 import { useFavourites } from '@/composables/useFavourites'
-import { routeHash, useHashRoute } from '@/composables/useHashRoute'
+import { parseHashDay, routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useOnline } from '@/composables/useOnline'
 import { useTheme } from '@/composables/useTheme'
@@ -21,6 +21,7 @@ import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
 import { type SheetState, sheetStateAfterDrag, sheetStateAfterTap } from '@/utils/sheet'
+import { isoDay } from '@/utils/prices'
 import { formatLongDay, parseIsoDay } from '@/utils/time'
 
 useTheme()
@@ -42,8 +43,22 @@ const selection = computed<Selection | null>({
   set: (value) => router.navigate(value),
 })
 
-/** Day the user plans for as ISO date, null for right now. */
+/**
+ * Day the user plans for as ISO date, null for right now.
+ * A shared link can bring one along (`?tag=`), it is taken over once and then removed from the
+ * address, so pages opened afterwards and a reload do not keep it.
+ */
 const planDay = ref<string | null>(null)
+
+/** Takes over the day of a shared link, also when the link is opened in a tab that already shows the map. */
+function takeSharedDay() {
+  const hash = window.location.hash
+  if (!hash.includes('?')) return
+  planDay.value = parseHashDay(hash, isoDay(new Date()))
+  router.replace(router.route.value)
+}
+takeSharedDay()
+window.addEventListener('hashchange', takeSharedDay)
 const planned = computed(() => planDay.value !== null)
 /**
  * The planned day at midnight. Undefined for right now, so the pages read the clock

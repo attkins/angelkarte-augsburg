@@ -7,6 +7,7 @@ import type { Club, MapData, SalesPointFeature, WaterFeature } from '@/types'
 import { formatPrice } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
 import { availability, formatRange } from '@/utils/time'
+import { isoDay } from '@/utils/prices'
 
 const props = withDefaults(
   defineProps<{
@@ -19,6 +20,9 @@ const props = withDefaults(
   }>(),
   { now: () => new Date(), planned: false },
 )
+
+/** The planned day goes into a shared link, so it opens with that day. */
+const shareDay = computed(() => (props.planned ? isoDay(props.now) : null))
 
 const emit = defineEmits<{ selectWater: [id: string]; selectSalesPoint: [id: string]; close: [] }>()
 
@@ -77,7 +81,7 @@ const websiteLabel = computed(() => props.club.website?.replace(/^https?:\/\/(ww
         <h1 class="serif">{{ club.name }}</h1>
         <p v-if="club.contact" class="subtitle">{{ club.contact }}</p>
       </div>
-      <ShareButton :route="{ kind: 'club', id: club.id }" :title="club.name" />
+      <ShareButton :route="{ kind: 'club', id: club.id }" :title="club.name" :day="shareDay" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
       </button>

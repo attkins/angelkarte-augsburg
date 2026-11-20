@@ -12,16 +12,23 @@ const SEGMENTS: Record<Selection['kind'], string> = {
 
 const IMPRINT_SEGMENT = 'impressum'
 
-/** URL hash for a route, e.g. `#/verein/fva-augsburg`. Empty for the list. */
-export function routeHash(route: Route | null): string {
+/** Query parameter in the hash of a shared link that carries the planned day. */
+const DAY_PARAM = 'tag'
+
+/**
+ * URL hash for a route, e.g. `#/verein/fva-augsburg`. Empty for the list.
+ * With a planned day (ISO date) it is added for shared links, e.g. `#/gewaesser/fva-kuhsee?tag=2026-12-20`.
+ */
+export function routeHash(route: Route | null, day?: string | null): string {
   if (!route) return ''
   if (route.kind === 'imprint') return `#/${IMPRINT_SEGMENT}`
-  return `#/${SEGMENTS[route.kind]}/${encodeURIComponent(route.id)}`
+  const hash = `#/${SEGMENTS[route.kind]}/${encodeURIComponent(route.id)}`
+  return day ? `${hash}?${DAY_PARAM}=${day}` : hash
 }
 
-/** Route for a URL hash. Unknown hashes lead to the list. */
+/** Route for a URL hash. Unknown hashes lead to the list, a query like `?tag=` is ignored. */
 export function parseHash(hash: string): Route | null {
-  const parts = hash.replace(/^#\/?/, '').split('/')
+  const parts = hash.replace(/^#\/?/, '').split('?')[0]!.split('/')
   if (parts.length === 1 && parts[0] === IMPRINT_SEGMENT) return { kind: 'imprint' }
   if (parts.length !== 2 || !parts[1]) return null
   const kind = (Object.keys(SEGMENTS) as Selection['kind'][]).find((k) => SEGMENTS[k] === parts[0])
@@ -32,6 +39,23 @@ export function parseHash(hash: string): Route | null {
     // Malformed percent encoding.
     return null
   }
+}
+
+/**
+ * Planned day from the hash of a shared link, as ISO date.
+ * Null without a day, for a day that does not exist and for today or a day in the past,
+ * so an old link simply opens for today.
+ */
+export function parseHashDay(hash: string, today: string): string | null {
+  const query = hash.split('?')[1]
+  if (!query) return null
+  const day = new URLSearchParams(query).get(DAY_PARAM)
+  if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return null
+  const [year, month, date] = day.split('-').map(Number)
+  const parsed = new Date(year!, month! - 1, date!)
+  // Rejects days like 2026-02-30, which Date would silently move into March.
+  if (parsed.getFullYear() !== year || parsed.getMonth() !== month! - 1 || parsed.getDate() !== date) return null
+  return day > today ? day : null
 }
 
 export function sameRoute(a: Route | null, b: Route | null): boolean {

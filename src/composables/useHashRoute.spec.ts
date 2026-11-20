@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { effectScope } from 'vue'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { parseHash, routeHash, sameRoute, useHashRoute } from '@/composables/useHashRoute'
+import { parseHash, parseHashDay, routeHash, sameRoute, useHashRoute } from '@/composables/useHashRoute'
 
 function setup() {
   const scope = effectScope()
@@ -41,10 +41,38 @@ describe('routeHash and parseHash', () => {
     },
   )
 
+  it('adds a planned day for shared links and ignores it when parsing', () => {
+    const route = { kind: 'water', id: 'fva-kuhsee' } as const
+    expect(routeHash(route, '2026-12-20')).toBe('#/gewaesser/fva-kuhsee?tag=2026-12-20')
+    expect(routeHash(route, null)).toBe('#/gewaesser/fva-kuhsee')
+    expect(routeHash({ kind: 'imprint' }, '2026-12-20')).toBe('#/impressum')
+    expect(parseHash('#/gewaesser/fva-kuhsee?tag=2026-12-20')).toEqual(route)
+  })
+
   it('compares routes by kind and id', () => {
     expect(sameRoute({ kind: 'club', id: 'a' }, { kind: 'club', id: 'a' })).toBe(true)
     expect(sameRoute({ kind: 'club', id: 'a' }, { kind: 'water', id: 'a' })).toBe(false)
     expect(sameRoute(null, null)).toBe(true)
+  })
+})
+
+describe('parseHashDay', () => {
+  const today = '2026-11-20'
+
+  it('reads a future day from a shared link', () => {
+    expect(parseHashDay('#/gewaesser/fva-kuhsee?tag=2026-12-20', today)).toBe('2026-12-20')
+    expect(parseHashDay('#/verein/fva-augsburg?x=1&tag=2027-01-02', today)).toBe('2027-01-02')
+  })
+
+  it.each([
+    ['#/gewaesser/fva-kuhsee', 'no day'],
+    ['#/gewaesser/fva-kuhsee?tag=2026-11-20', 'today'],
+    ['#/gewaesser/fva-kuhsee?tag=2026-11-01', 'a day in the past'],
+    ['#/gewaesser/fva-kuhsee?tag=2027-02-30', 'a day that does not exist'],
+    ['#/gewaesser/fva-kuhsee?tag=morgen', 'no ISO date'],
+    ['#/gewaesser/fva-kuhsee?tag=', 'an empty day'],
+  ])('falls back to today for %s (%s)', (hash) => {
+    expect(parseHashDay(hash, today)).toBeNull()
   })
 })
 

@@ -116,6 +116,16 @@ The map can be added to the home screen and then opens like an app, without the 
 - The service worker also stores the manifest and the small icons, and their content counts for its version
 - Checked with Chromium against the build: no manifest or installability errors. On real phones still open, see T7
 
+## Planned day in shared links (decided 2026-11-20, F26)
+
+A friend who gets a link while a day is planned should see the waters for that day.
+
+- Only the shared link carries the day, as a query in the hash: `#/gewaesser/fva-kuhsee?tag=2026-12-20`. Navigating inside the app keeps the plain routes
+- On opening, the app takes the day over as planned day and removes it from the address. A reload or a page opened afterwards is for today again, like before
+- A link opened in a tab that already shows the map does the same
+- Today, a day in the past, a day that does not exist or anything that is no ISO date opens for today, so old links never show a stale plan
+- The share sheet text names the day ("Geplant für Sonntag, 20. Dezember 2026")
+
 ## Short explanation on the first visit (decided 2026-11-20, F27)
 
 Friends get only a link, so the map explains itself once.

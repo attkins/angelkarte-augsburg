@@ -40,6 +40,9 @@ const props = withDefaults(
   { now: () => new Date(), planned: false },
 )
 
+/** The planned day goes into a shared link, so it opens with that day. */
+const shareDay = computed(() => (props.planned ? isoDay(props.now) : null))
+
 const emit = defineEmits<{ selectSalesPoint: [id: string]; selectClub: [id: string]; close: [] }>()
 
 const p = computed(() => props.water.properties)
@@ -203,7 +206,7 @@ const reportHref = computed(() => {
         </p>
       </div>
       <FavouriteButton :water-id="p.id" :name="p.name" />
-      <ShareButton :route="{ kind: 'water', id: p.id }" :title="p.name" />
+      <ShareButton :route="{ kind: 'water', id: p.id }" :title="p.name" :day="shareDay" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
       </button>

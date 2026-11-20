@@ -9,6 +9,7 @@ import { formatPrice, phoneHref } from '@/utils/format'
 import { guestPriceOn } from '@/utils/prices'
 import { holidayOptions } from '@/utils/holidays'
 import { describeDayHours, describeOpeningStatus, formatOpeningHours, hoursOnDay, openingStatus } from '@/utils/time'
+import { isoDay } from '@/utils/prices'
 
 const props = withDefaults(
   defineProps<{
@@ -21,6 +22,9 @@ const props = withDefaults(
   }>(),
   { now: () => new Date(), planned: false },
 )
+
+/** The planned day goes into a shared link, so it opens with that day. */
+const shareDay = computed(() => (props.planned ? isoDay(props.now) : null))
 
 const emit = defineEmits<{ selectWater: [id: string]; selectClub: [id: string]; close: [] }>()
 
@@ -94,7 +98,7 @@ function guestPrice(water: WaterFeature): string | null {
         <h1 class="serif">{{ p.name }}</h1>
         <p class="subtitle">{{ p.address }}</p>
       </div>
-      <ShareButton :route="{ kind: 'salesPoint', id: p.id }" :title="p.name" />
+      <ShareButton :route="{ kind: 'salesPoint', id: p.id }" :title="p.name" :day="shareDay" />
       <button type="button" class="icon-button close-button" aria-label="Schließen" @click="emit('close')">
         <AppIcon name="close" :size="18" :stroke-width="2.2" />
       </button>

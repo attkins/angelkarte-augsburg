@@ -31,6 +31,21 @@ describe('ShareButton', () => {
     expect(writeText).not.toHaveBeenCalled()
   })
 
+  it('adds a planned day to the link and names it in the text', async () => {
+    const share = vi.fn().mockResolvedValue(undefined)
+    stubNavigator({ share })
+
+    const wrapper = mount(ShareButton, { props: { ...props, day: '2026-12-20' } })
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    expect(share).toHaveBeenCalledWith({
+      title: 'Kuhsee · Angelkarte',
+      url: `${expectedUrl}?tag=2026-12-20`,
+      text: 'Geplant für Sonntag, 20. Dezember 2026',
+    })
+  })
+
   it('stays quiet when the share sheet is closed', async () => {
     const share = vi.fn().mockRejectedValue(new DOMException('closed', 'AbortError'))
     const writeText = vi.fn()
