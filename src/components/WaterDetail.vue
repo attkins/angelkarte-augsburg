@@ -358,7 +358,10 @@ const reportHref = computed(() => {
           </thead>
           <tbody>
             <tr v-for="row in protection.rows" :key="row.name" :class="{ 'is-protected': row.protectedNow }">
-              <th scope="row">{{ row.name }}</th>
+              <th scope="row">
+                <AppIcon v-if="row.protectedNow" name="lock" :size="12" />{{ row.name
+                }}<span v-if="row.protectedNow" class="visually-hidden">, geschont</span>
+              </th>
               <td>{{ row.season }}</td>
               <td>{{ row.size }}</td>
             </tr>

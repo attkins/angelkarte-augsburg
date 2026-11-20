@@ -184,11 +184,17 @@ watch([data, selection], ([mapData, sel]) => {
   if (!exists) router.replace(null)
 })
 
-// Start every new page at the top.
+// Start every new page at the top, with the focus on its heading. Otherwise the focus would stay on the
+// button that opened the page, which is gone now, and keyboard and screen reader users start over at the top.
 watch(router.route, async () => {
   await nextTick()
   panel.value?.querySelector('.panel-body')?.scrollTo({ top: 0 })
   panel.value?.scrollTo({ top: 0 })
+  const heading = panel.value?.querySelector<HTMLElement>('.panel-body h1')
+  if (heading) {
+    heading.tabIndex = -1
+    heading.focus({ preventScroll: true })
+  }
 })
 </script>
 

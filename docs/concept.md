@@ -116,6 +116,18 @@ The map can be added to the home screen and then opens like an app, without the 
 - The service worker also stores the manifest and the small icons, and their content counts for its version
 - Checked with Chromium against the build: no manifest or installability errors. On real phones still open, see T7
 
+## Accessibility (checked 2026-11-20, T9)
+
+Target is WCAG 2.1 AA. Checked automatically with axe in `e2e/a11y.spec.ts` (all page kinds, both themes, dialogs, collapsed sheet) and by hand for what a tool cannot judge.
+
+- Text contrast: no axe finding in either theme, including badges, closed-season marks and the planned-day pages
+- Map colours (non-text contrast, 3:1): in the light theme orange and grey were below 3:1 against the map background. `--member` is now `#b27818`, `--unknown` `#7a8681`. The access is never shown by colour alone, the detail page always names it in the access badge. The dark theme was fine
+- Keyboard: every control is a real button or link with a name. The map is focusable (arrow keys pan, plus and minus zoom) with labelled controls. Lakes and rivers on the map cannot be reached one by one, the list offers the same waters. Sales point markers are focusable. Dialogs use `showModal`, so focus stays inside and Escape closes. The sheet handle is a button with `aria-expanded` and works with Enter and Space
+- Focus: when a page opens, the focus moves to its heading, so keyboard and screen reader users continue there instead of at the top of the document
+- Screen reader texts: icons are hidden, badges carry text, the star button says what it does and has `aria-pressed`, the closed-season table has header cells and now says "geschont" for protected species instead of colour only, the sun badge has a full sentence
+- The collapsed sheet shows its badges in one row without a scroll area, a scroll area would have needed keyboard access
+- Not checked: real screen readers (VoiceOver, TalkBack). Part of T7 on the phones
+
 ## Planned day in shared links (decided 2026-11-20, F26)
 
 A friend who gets a link while a day is planned should see the waters for that day.

@@ -10,7 +10,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 W = json.load(open(ROOT / 'public/data/waters.geojson'))['features']
 S = json.load(open(ROOT / 'public/data/sales-points.geojson'))['features']
 FONTS = ROOT / 'node_modules/@fontsource-variable'
-col={'open':'#4e8a3b','withMember':'#c4841a','membersOnly':'#9a4b3c','unknown':'#8a9590'}
+col={'open':'#4e8a3b','withMember':'#b27818','membersOnly':'#9a4b3c','unknown':'#7a8681'}
 # focus on the core region so the map is not too sparse
 lon0,lon1,lat0,lat1=10.66,11.10,48.17,48.58
 lat_c=(lat0+lat1)/2; kx=math.cos(math.radians(lat_c))
@@ -62,7 +62,7 @@ h1{{font-family:Vollkorn;font-weight:600;font-size:96px;line-height:1;margin:18p
 <div class="fade"></div>
 <div class="text"><div class="eyebrow">Tageskarten finden</div><h1>Angelkarte</h1><p class="sub">Augsburg und Umland</p>
 <p class="claim">Welcher Verein verkauft wo eine Tageskarte, und dürfen Gäste allein fischen?</p>
-<div class="legend"><span><i style="background:#4e8a3b"></i>Gäste willkommen</span><span><i style="background:#c4841a"></i>Mit Mitglied</span></div></div>
+<div class="legend"><span><i style="background:#4e8a3b"></i>Gäste willkommen</span><span><i style="background:#b27818"></i>Mit Mitglied</span></div></div>
 </div></body></html>'''
 
 with tempfile.TemporaryDirectory() as tmp:

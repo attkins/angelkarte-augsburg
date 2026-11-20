@@ -71,7 +71,7 @@ npm run type-check  # vue-tsc only
 npm run validate    # check the data files
 npm test            # run the unit tests once
 npm run test:watch  # run the unit tests on every change
-npm run test:e2e    # smoke tests against the build, run npm run build first
+npm run test:e2e    # smoke and accessibility tests against the build, run npm run build first
 ```
 
 ## Project structure
@@ -143,6 +143,7 @@ The map itself (`MapView.vue`) and the layout in `App.vue` depend on Leaflet and
 The end-to-end tests in `e2e/` use [Playwright](https://playwright.dev) against `vite preview`, so they see the built site. They run in a desktop and a phone viewport and block every request except to the preview server, so map tiles never make them flaky.
 
 - `e2e/smoke.spec.ts` covers the main flows: a water from the list and from the map, filter and plan a day, a sales point from a water, a shared link with a planned day, the collapsible sheet on phones and the explanation on the first visit.
+- `e2e/a11y.spec.ts` runs [axe](https://github.com/dequelabs/axe-core) against WCAG 2.1 A and AA on every kind of page in the light and the dark theme, plus the dialogs and the collapsed sheet, and checks the keyboard paths that a tool cannot find.
 
 ```sh
 npx playwright install chromium   # once, downloads the browser

@@ -22,13 +22,13 @@
   --open: #4e8a3b;
   --open-bg: #dcebd5;
   --open-text: #2c5520;
-  --member: #c4841a;
+  --member: #b27818;
   --member-bg: #f6e6c4;
   --member-text: #6a4507;
   --closed: #9a4b3c;
   --closed-bg: #f1dad3;
   --closed-text: #6b2e22;
-  --unknown: #8a9590;
+  --unknown: #7a8681;
   --unknown-bg: #e4e8e5;
   --unknown-text: #46524e;
   --pin: #24332f;
@@ -253,6 +253,11 @@ button {
 
 /* --- Panel content (shared by WaterDetail, SalesPointDetail, WaterList) -- */
 
+/* Headings get the focus when a page opens (App.vue), they are no controls and need no focus ring. */
+.panel-body h1[tabindex='-1']:focus {
+  outline: none;
+}
+
 .detail {
   display: flex;
   flex-direction: column;
@@ -336,10 +341,12 @@ button {
     display: none;
   }
 
+  /* One row only. Not scrollable, a scroll area would need to be reachable by keyboard.
+     The full list is one tap away and screen readers read all badges anyway. */
   .panel.is-peek:not(.is-dragging) .badges {
     flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, #000 85%, transparent);
   }
 
   .panel.is-peek:not(.is-dragging) .badges > * {
