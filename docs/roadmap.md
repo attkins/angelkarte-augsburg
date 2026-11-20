@@ -129,7 +129,7 @@ Goal: a stable version with the new prices at the turn of the year.
 - T8 Smoke tests against the real page in CI
 - T9 Accessibility check
 - F26 Planned day in the share link
-- F27 Short explanation on the first visit
+- F27 Short explanation on the first visit (done)
 - Final pass over the acceptance criteria
 
 ### Acceptance criteria for 1.0

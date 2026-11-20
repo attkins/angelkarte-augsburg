@@ -139,7 +139,7 @@ const CREDITS: Credit[] = [
       <h3 class="sub-title">Gespeicherte Einstellungen</h3>
       <p>
         Wenn du zwischen hellem und dunklem Design wechselst oder Gewässer mit dem Stern merkst, legt dein Browser das
-        im lokalen Speicher ab. Es bleibt auf deinem Gerät und wird nicht übertragen. Auf einem anderen Gerät oder in
+        im lokalen Speicher ab. Ebenso merkt er sich, dass du die Kurzanleitung beim ersten Besuch geschlossen hast. Es bleibt auf deinem Gerät und wird nicht übertragen. Auf einem anderen Gerät oder in
         einem anderen Browser sind deine gemerkten Gewässer deshalb nicht zu sehen.
       </p>
 

@@ -10,11 +10,13 @@ import ThemeToggle from '@/components/ThemeToggle.vue'
 import WaterDetail from '@/components/WaterDetail.vue'
 import WaterFilters from '@/components/WaterFilters.vue'
 import WaterList from '@/components/WaterList.vue'
+import WelcomeDialog from '@/components/WelcomeDialog.vue'
 import { useFavourites } from '@/composables/useFavourites'
 import { routeHash, useHashRoute } from '@/composables/useHashRoute'
 import { useMapData } from '@/composables/useMapData'
 import { useOnline } from '@/composables/useOnline'
 import { useTheme } from '@/composables/useTheme'
+import { useWelcome } from '@/composables/useWelcome'
 import { APP_VERSION, type Region, type RegionId, REGIONS } from '@/config'
 import type { Selection } from '@/types'
 import { emptyFilter, isFilterActive, matchingWaterIds } from '@/utils/filter'
@@ -26,6 +28,7 @@ const { data, error } = useMapData()
 const online = useOnline()
 const filter = reactive(emptyFilter())
 const { favourites } = useFavourites()
+const { open: welcomeOpen, show: showWelcome, close: closeWelcome } = useWelcome()
 
 // The URL hash is the single source of truth for what the panel shows.
 const router = useHashRoute()
@@ -296,7 +299,10 @@ watch(router.route, async () => {
         </template>
 
         <footer v-if="!imprintOpen" class="panel-footer">
-          <a :href="IMPRINT_HREF" @click.prevent="openImprint">Impressum und Datenschutz</a>
+          <span class="footer-links">
+            <a :href="IMPRINT_HREF" @click.prevent="openImprint">Impressum und Datenschutz</a>
+            <button type="button" class="link-button" @click="showWelcome">Kurzanleitung</button>
+          </span>
           <span class="version">Version {{ APP_VERSION }}</span>
         </footer>
       </div>
@@ -334,6 +340,8 @@ watch(router.route, async () => {
         </div>
       </div>
     </main>
+
+    <WelcomeDialog v-if="welcomeOpen" @close="closeWelcome" />
 
     <RegionDialog
       v-if="regionDialogOpen"
@@ -476,11 +484,28 @@ watch(router.route, async () => {
   color: var(--text-2);
 }
 
-.panel-footer a {
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.panel-footer a,
+.link-button {
   color: var(--text-2);
 }
 
-.panel-footer a:hover {
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.panel-footer a:hover,
+.link-button:hover {
   color: var(--accent-text);
 }
 

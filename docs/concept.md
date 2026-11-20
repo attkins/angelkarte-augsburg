@@ -116,6 +116,15 @@ The map can be added to the home screen and then opens like an app, without the 
 - The service worker also stores the manifest and the small icons, and their content counts for its version
 - Checked with Chromium against the build: no manifest or installability errors. On real phones still open, see T7
 
+## Short explanation on the first visit (decided 2026-11-20, F27)
+
+Friends get only a link, so the map explains itself once.
+
+- A dialog "Kurz erklärt" opens on the first visit, also when the visit starts with a shared link to a water
+- Content: what the map shows, the four main colours of the guest access, the chips "Saison offen" and "Karte heute noch", planning another day, and that everything is without guarantee
+- Closing it in any way (button, close button, Escape, backdrop) stores the day in local storage (`angelkarte-welcome-seen`), so it does not come back. If storage is blocked it shows on every visit
+- The link "Kurzanleitung" in the panel footer opens it again. The privacy note mentions the stored flag
+
 ## Data maintenance (decided 2026-11-17, T3)
 
 The data stays in the plain GeoJSON and JSON files. Almost all updates are research (club pages, hejfish, OSM) rather than typing, so an editor would not save much and would be one more thing to maintain. A spreadsheet as source was rejected for the same reason plus the extra format. Instead `docs/data-maintenance.md` holds the playbook and `npm run due` lists what to check next. Validator and tests guard the files.
