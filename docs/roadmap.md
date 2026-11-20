@@ -126,7 +126,7 @@ Goal: a stable version with the new prices at the turn of the year.
 - T3 Decide and document how the data is maintained (done 2026-11-17, plain files plus `docs/data-maintenance.md` and `npm run due`)
 - F25 Installable app (manifest, icons, favicon) (done)
 - T7 Test on real phones (iOS Safari, Android Chrome)
-- T8 Smoke tests against the real page in CI
+- T8 Smoke tests against the real page in CI (done)
 - T9 Accessibility check
 - F26 Planned day in the share link (done)
 - F27 Short explanation on the first visit (done)

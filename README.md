@@ -71,6 +71,7 @@ npm run type-check  # vue-tsc only
 npm run validate    # check the data files
 npm test            # run the unit tests once
 npm run test:watch  # run the unit tests on every change
+npm run test:e2e    # smoke tests against the build, run npm run build first
 ```
 
 ## Project structure
@@ -135,11 +136,25 @@ Unit tests live next to the file they test, e.g. `WaterDetail.spec.ts` beside `W
 - `tests/validate-data.spec.ts` covers every rule of the data validator.
 - `tests/data-files.spec.ts` runs the validator on the real files in `public/data/` and also checks that all coordinates lie in Bavaria in lon, lat order, ids are well-formed and polygon rings are closed.
 
-The map itself (`MapView.vue`) and the layout in `App.vue` depend on Leaflet and real rendering and are not unit tested.
+The map itself (`MapView.vue`) and the layout in `App.vue` depend on Leaflet and real rendering and are not unit tested. The end-to-end tests cover them instead.
+
+### End-to-end tests
+
+The end-to-end tests in `e2e/` use [Playwright](https://playwright.dev) against `vite preview`, so they see the built site. They run in a desktop and a phone viewport and block every request except to the preview server, so map tiles never make them flaky.
+
+- `e2e/smoke.spec.ts` covers the main flows: a water from the list and from the map, filter and plan a day, a sales point from a water, a shared link with a planned day, the collapsible sheet on phones and the explanation on the first visit.
+
+```sh
+npx playwright install chromium   # once, downloads the browser
+npm run build
+npm run test:e2e
+```
+
+A failed test keeps a trace in `test-results/`, open it with `npx playwright show-trace <file>`.
 
 Test data is built with the helpers in `tests/fixtures.ts`. Each helper returns a valid object, a test only overrides the fields it is about.
 
-The deploy workflow runs `npm test` before the build, so a failing test stops the deployment.
+The deploy workflow runs `npm test` before the build and `npm run test:e2e` after it, so a failing test stops the deployment. The traces of failed end-to-end tests are kept as a workflow artifact for a week.
 
 `package.json` has `overrides` for `glob`, `minimatch` and `nopt`. All three come in only through `js-beautify`, which `@vue/test-utils` uses to pretty-print HTML. The overrides lift `glob` and `minimatch` to versions without known vulnerabilities and pin `nopt` to a version that still supports Node 24.13. `nopt` is only used by the `js-beautify` command line tool, which this project never runs. When `@vue/test-utils` ships with newer dependencies, the overrides can be removed.
 
